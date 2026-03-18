@@ -440,8 +440,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .icon-circle {
-            width: 35px;
-            height: 35px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: transparent;
             display: flex;
@@ -478,9 +478,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .icon-circle img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             border-radius: 50%;
-            padding: 5px;
+            padding: 0;
         }
         
         .header-icon-link:hover .icon-circle {
@@ -491,11 +491,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .icon-label {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
+            letter-spacing: 0.3px;
+            margin-top: 3px;
             opacity: 0.95;
         }
         
