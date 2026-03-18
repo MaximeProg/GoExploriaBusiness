@@ -440,8 +440,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .icon-circle {
-            width: 45px;
-            height: 45px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             background: transparent;
             display: flex;
@@ -491,10 +491,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .icon-label {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-top: 4px;
             opacity: 0.95;
         }
         
