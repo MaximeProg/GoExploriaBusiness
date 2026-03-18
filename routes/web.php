@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     OpenAIController,
     AuthController,
     GeminiController,
-    HomeController
+    HomeController,
+    LandingPageController
 };
 
 use App\Http\Controllers\Auth\SocialAuthController;
@@ -29,6 +30,26 @@ Route::post('/chat/clear-history', [ChatController::class, 'clearHistory'])->nam
 // Page de login
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Landing Pages Routes
+Route::prefix('landing')->name('landing.')->group(function () {
+    Route::get('/experiences-quebec', [LandingPageController::class, 'experiencesQuebec'])->name('experiences-quebec');
+    Route::get('/experiences-canada', [LandingPageController::class, 'experiencesCanada'])->name('experiences-canada');
+    Route::get('/experiences-regional', [LandingPageController::class, 'experiencesRegional'])->name('experiences-regional');
+    Route::get('/transport-aerien', [LandingPageController::class, 'transportAerien'])->name('transport-aerien');
+    Route::get('/transport-terrestre', [LandingPageController::class, 'transportTerrestre'])->name('transport-terrestre');
+    Route::get('/transport-maritime', [LandingPageController::class, 'transportMaritime'])->name('transport-maritime');
+    Route::get('/hotels', [LandingPageController::class, 'hotels'])->name('hotels');
+    Route::get('/auberges', [LandingPageController::class, 'auberges'])->name('auberges');
+    Route::get('/locations', [LandingPageController::class, 'locations'])->name('locations');
+    Route::get('/assurances', [LandingPageController::class, 'assurances'])->name('assurances');
+    Route::get('/guides', [LandingPageController::class, 'guides'])->name('guides');
+    Route::get('/urgences', [LandingPageController::class, 'urgences'])->name('urgences');
+    Route::get('/promotions', [LandingPageController::class, 'promotions'])->name('promotions');
+    Route::get('/explorer', [LandingPageController::class, 'explorer'])->name('explorer');
+    Route::get('/destinations', [LandingPageController::class, 'destinations'])->name('destinations');
+    Route::get('/certifications', [LandingPageController::class, 'certifications'])->name('certifications');
 });
 
 // Page de login

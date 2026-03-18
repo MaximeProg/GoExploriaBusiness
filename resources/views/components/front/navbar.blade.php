@@ -22,14 +22,37 @@
         white-space: nowrap;
     ">{{\App\Models\Menu::firstOrFail()->title}}</div>
     
-    <!-- GIF qui recharge l'iframe avec l'ancre -->
+    <!-- Images map1 et map2 qui alternent -->
     <a href="{{ url('/theme/business/page-1#plans-daffichage-mondial') }}" 
        target="business-iframe" 
-       style="cursor: pointer;">
-        <img src="https://media.tenor.com/57TRBE6D9C8AAAAM/location-graphics.gif" 
-             alt="Location graphics" 
-             style="width: 140px; height: 65px; display: block; margin: 0 auto;">
-    </a>   
+       style="cursor: pointer; position: relative; display: block; width: 140px; height: 65px; margin: 0 auto;">
+        <img src="{{asset('header_info/map1.png')}}" 
+             alt="Map 1" 
+             class="map-animation map-1"
+             style="width: 140px; height: 65px; position: absolute; top: 0; left: 0; opacity: 1; transition: opacity 1s ease-in-out;">
+        <img src="{{asset('header_info/map2.png')}}" 
+             alt="Map 2" 
+             class="map-animation map-2"
+             style="width: 140px; height: 65px; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1s ease-in-out;">
+    </a>
+    
+    <script>
+        // Animation alternée entre map1 et map2
+        setInterval(function() {
+            const map1 = document.querySelector('.map-1');
+            const map2 = document.querySelector('.map-2');
+            
+            if (map1 && map2) {
+                if (map1.style.opacity === '1') {
+                    map1.style.opacity = '0';
+                    map2.style.opacity = '1';
+                } else {
+                    map1.style.opacity = '1';
+                    map2.style.opacity = '0';
+                }
+            }
+        }, 2000); // Change toutes les 2 secondes
+    </script>   
 </div>
 <!--End: Logo-->
 

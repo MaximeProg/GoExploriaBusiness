@@ -389,16 +389,567 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Styles pour le nouveau header avec bande défilante */
         .info-header {
             background: linear-gradient(90deg, #1a3a5f 0%, #2c5282 50%, #1a3a5f 100%);
-            padding: 8px 0;
+            padding: 12px 0;
             color: white;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            z-index: 1000;
         }
         
         .info-header .container {
             display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        /* Layout principal du header */
+        .header-content-wrapper {
+            display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
+            gap: 20px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        /* Barre de 5 icônes de navigation */
+        .header-icons-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .header-icon-container {
+            position: relative;
+        }
+        
+        .header-icon-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .header-icon-link:hover {
+            transform: translateY(-4px);
+        }
+        
+        .icon-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .icon-circle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .icon-circle i {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            position: absolute !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        
+        .icon-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+            padding: 5px;
+        }
+        
+        .header-icon-link:hover .icon-circle {
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            transform: scale(1.08);
+        }
+        
+        .icon-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+        }
+        
+        /* Mega Menu Header - Layout Complet */
+        .header-mega-menu {
+            position: fixed;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1100px;
+            max-width: 95vw;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            padding: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 2000;
+            border: 2px solid #e0e0e0;
+            overflow: hidden;
+        }
+        
+        .mega-menu-trigger:hover .header-mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Ticker Bourse/Météo en haut */
+        .mega-menu-ticker {
+            background: linear-gradient(135deg, #1a3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            gap: 30px;
+            overflow: hidden;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .ticker-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .ticker-item i {
+            font-size: 1rem;
+            color: #ffd700;
+        }
+        
+        .ticker-up {
+            color: #2ecc71;
+            font-weight: 700;
+        }
+        
+        /* Contenu principal : Icônes + Carrousel */
+        .mega-menu-main-content {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            overflow: visible;
+            box-sizing: border-box;
+        }
+        
+        /* Container des 3 colonnes d'icônes */
+        .mega-menu-icons-container {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        /* Colonne verticale */
+        .mega-menu-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        
+        .mega-menu-section-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 12px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        /* Grille d'icônes (3 lignes verticales max) */
+        .mega-menu-icons-vertical {
+            display: grid;
+            grid-template-rows: repeat(3, auto);
+            grid-auto-flow: column;
+            gap: 10px;
+        }
+        
+        /* Item avec icône */
+        .mega-icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 6px;
+            border-radius: 8px;
+        }
+        
+        .mega-icon-item:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        /* Cercle d'icône coloré */
+        .mega-icon-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            line-height: 1;
+        }
+        
+        .mega-icon-circle i {
+            line-height: 1;
+        }
+        
+        .mega-icon-item:hover .mega-icon-circle {
+            transform: scale(1.08);
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Label sous l'icône */
+        .mega-icon-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+            line-height: 1.1;
+        }
+        
+        /* Carrousel Vidéo/Photo - Défilement Vertical */
+        .mega-menu-carousel {
+            width: 260px;
+            min-width: 260px;
+            max-width: 260px;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            align-self: stretch;
+            box-sizing: border-box;
+        }
+        
+        .carousel-scroll-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        
+        .carousel-item-simple {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        
+        .carousel-item-simple.active {
+            opacity: 1;
+            z-index: 1;
+            pointer-events: auto;
+        }
+        
+        .carousel-item-simple img,
+        .carousel-item-simple > div {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background: #3498db;
+            width: 30px;
+            border-radius: 5px;
+        }
+        
+        /* Boutons de navigation */
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-nav-btn:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-nav-btn.prev {
+            left: 10px;
+        }
+        
+        .carousel-nav-btn.next {
+            right: 10px;
+        }
+        
+        .carousel-nav-btn i {
+            font-size: 18px;
+        }
+        
+        .carousel-scroll-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .carousel-scroll-container::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+        
+        .carousel-scroll-container::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 3px;
+        }
+        
+        .carousel-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #2980b9;
+        }
+        
+        .carousel-item {
+            position: relative;
+            width: 100%;
+            min-height: 150px;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            background: #000;
+        }
+        
+        .carousel-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
+            z-index: 10;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: all 0.4s ease;
+        }
+        
+        .carousel-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+        
+        .play-overlay,
+        .zoom-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+        }
+        
+        .carousel-item:hover .play-overlay,
+        .carousel-item:hover .zoom-overlay {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        
+        .play-overlay i {
+            color: #ff0000;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+        }
+        
+        .zoom-overlay i {
+            color: #3498db;
+            filter: drop-shadow(0 0 10px rgba(52, 152, 219, 0.5));
+        }
+        
+        /* Boutons de navigation */
+        .carousel-nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(52, 152, 219, 0.9);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .carousel-nav:hover {
+            background: #2980b9;
+            transform: translateX(-50%) scale(1.1);
+        }
+        
+        .carousel-prev {
+            top: 10px;
+        }
+        
+        .carousel-next {
+            bottom: 10px;
+        }
+        
+        /* Modal pour vidéo/image en grand */
+        .media-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content-wrapper {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            color: #3498db;
+            transform: scale(1.2);
+        }
+        
+        #modalMediaContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+        
+        #modalMediaContainer iframe {
+            border: none;
         }
         
         .left-info-items {
@@ -459,7 +1010,6 @@ document.addEventListener('DOMContentLoaded', function() {
             flex: 1;
             overflow: hidden;
             position: relative;
-            margin: 0 20px;
             height: 24px;
             display: flex;
             align-items: center;
@@ -496,7 +1046,21 @@ document.addEventListener('DOMContentLoaded', function() {
         .travel-icon {
             margin-right: 8px;
             color: #fbbf24;
+        }
+        
+        .travel-icon-img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            object-fit: contain;
             font-size: 0.9rem;
+        }
+        
+        .travel-end-img {
+            width: 16px;
+            height: 16px;
+            margin-left: 8px;
+            object-fit: contain;
         }
         
         .travel-text {
@@ -527,6 +1091,32 @@ document.addEventListener('DOMContentLoaded', function() {
             .mega-menu-templates {
                 grid-template-columns: repeat(2, 1fr) !important;
                 width: 95vw !important;
+            }
+            
+            .mega-menu-main-content {
+                flex-direction: column;
+            }
+            
+            .mega-menu-icons-container {
+                flex-direction: column;
+            }
+            
+            .mega-menu-carousel {
+                width: 100%;
+            }
+            
+            .header-mega-menu {
+                width: 92vw;
+            }
+            
+            .header-content-wrapper {
+                gap: 20px;
+            }
+            
+            .mega-icon-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
         }
         
@@ -606,6 +1196,59 @@ document.addEventListener('DOMContentLoaded', function() {
             
             .mega-menu-templates {
                 grid-template-columns: 1fr !important;
+            }
+            
+            .header-content-wrapper {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .left-info-items {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .header-icons-bar {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            
+            .icon-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .icon-label {
+                font-size: 0.75rem;
+            }
+            
+            .mega-menu-icons-vertical {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .header-mega-menu {
+                width: 95vw;
+            }
+            
+            .mega-menu-main-content {
+                padding: 15px;
+            }
+            
+            .mega-icon-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .mega-icon-label {
+                font-size: 0.6rem;
+            }
+            
+            .mega-menu-ticker {
+                padding: 8px 15px;
+                font-size: 0.75rem;
             }
         }
         
@@ -753,54 +1396,552 @@ document.addEventListener('DOMContentLoaded', function() {
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Header avec informations en temps réel et bande défilante -->
+    <!-- Header avec infos et navigation -->
     <header class="info-header" id="myScrollableContainer">
         <div class="container">
-            <!-- Bourse et Météo à gauche -->
-            <div class="left-info-items">
-                <a href="#iframe-page-meteo-1" class="info-item">
-                    <i class="fas fa-chart-line info-icon"></i>
-                    <span class="info-label">Bourse TSX:</span>
-                    <span class="info-value ms-1">21,450.12</span>
-                    <span class="info-up ms-1">+1.2%</span>
-                </a>
-                <a href="#iframe-page-meteo-1" class="info-item">
-                    <i class="fas fa-cloud-sun info-icon"></i>
-                    <span class="info-label">Météo QC:</span>
-                    <span class="info-value ms-1">-5°C</span>
-                    <span class="info-details ms-1">Ensoleillé</span>
-                </a>
+            <div class="header-content-wrapper">
+                <!-- Barre de 5 icônes de navigation -->
+                <div class="header-icons-bar" style="flex-shrink: 0;">
+                <!-- Icône Info avec Mega Menu -->
+                <div class="header-icon-container mega-menu-trigger">
+                    <a href="#" class="header-icon-link" id="infoIconBtn">
+                        <div class="icon-circle">
+                            <img src="https://cdn-icons-png.flaticon.com/512/471/471662.png" alt="Info">
+                        </div>
+                        <span class="icon-label">Info</span>
+                    </a>
+                    
+                    <!-- Mega Menu Info - Layout Complet -->
+                    <div class="header-mega-menu" id="infoMegaMenu">
+                        <!-- Défilement Bourse/Météo en haut - Cliquable -->
+                        <div class="mega-menu-ticker">
+                            <a href="#iframe-page-meteo-1" class="ticker-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Bourse TSX: 21,450.12 <span class="ticker-up">+1.2%</span></span>
+                            </a>
+                            <a href="#iframe-page-meteo-1" class="ticker-item">
+                                <i class="fas fa-cloud-sun"></i>
+                                <span>Météo QC: -5°C Ensoleillé</span>
+                            </a>
+                            <a href="#iframe-page-meteo-1" class="ticker-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Bourse TSX: 21,450.12 <span class="ticker-up">+1.2%</span></span>
+                            </a>
+                            <a href="#iframe-page-meteo-1" class="ticker-item">
+                                <i class="fas fa-cloud-sun"></i>
+                                <span>Météo QC: -5°C Ensoleillé</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Contenu principal : Icônes à gauche + Carrousel à droite -->
+                        <div class="mega-menu-main-content">
+                            <!-- Gauche: 3 colonnes d'icônes -->
+                            <div class="mega-menu-icons-container">
+                                <!-- Colonne 1: EXPÉRIENCES QUÉBEC (9 icônes) -->
+                                <div class="mega-menu-column">
+                                    <h3 class="mega-menu-section-title">EXPÉRIENCES QUÉBEC</h3>
+                                    <div class="mega-menu-icons-vertical">
+                                <a href="{{url('/landing/experiences-quebec')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #4A90E2;">
+                                        <i class="fas fa-wheelchair"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Accessibilité</span>
+                                </a>
+                                <a href="{{url('/landing/transport-aerien')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #F5A623;">
+                                        <i class="fas fa-plane-departure"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Vols</span>
+                                </a>
+                                <a href="{{url('/landing/hotels')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #2C3E50;">
+                                        <i class="fas fa-suitcase"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Bagages</span>
+                                </a>
+                                <a href="{{url('/landing/transport-terrestre')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #E74C3C;">
+                                        <i class="fas fa-bus"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Transport</span>
+                                </a>
+                                <a href="{{url('/landing/destinations')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #3498DB;">
+                                        <i class="fas fa-globe-americas"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Destinations</span>
+                                </a>
+                                <a href="{{url('/landing/guides')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #F39C12;">
+                                        <i class="fas fa-bullhorn"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Guides</span>
+                                </a>
+                                <a href="{{url('/landing/assurances')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #9B59B6;">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Assurance</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-quebec')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #1ABC9C;">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Photos</span>
+                                </a>
+                                <a href="{{url('/landing/transport-maritime')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #16A085;">
+                                        <i class="fas fa-ship"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Croisières</span>
+                                </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Colonne 2: EXPÉRIENCES CANADA (12 icônes) -->
+                                <div class="mega-menu-column">
+                                    <h3 class="mega-menu-section-title">EXPÉRIENCES CANADA</h3>
+                                    <div class="mega-menu-icons-vertical">
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #E74C3C;">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Événements</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #F39C12;">
+                                        <i class="fas fa-mountain"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Rocheuses</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #16A085;">
+                                        <i class="fas fa-tree"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Nature</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #2980B9;">
+                                        <i class="fas fa-snowflake"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Hiver</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #8E44AD;">
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Villes</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #27AE60;">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Gastronomie</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #E67E22;">
+                                        <i class="fas fa-flag-checkered"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Festivals</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #27AE60;">
+                                        <i class="fas fa-recycle"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Écologie</span>
+                                </a>
+                                <a href="{{url('/landing/certifications')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #2ECC71;">
+                                        <i class="fas fa-leaf"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Qualité</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #E67E22;">
+                                        <i class="fas fa-cloud"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Météo</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #95A5A6;">
+                                        <i class="fas fa-swimmer"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Activités</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #34495E;">
+                                        <i class="fas fa-water"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Nautique</span>
+                                </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Colonne 3: EXPÉRIENCES RÉGIONAL (9 icônes) -->
+                                <div class="mega-menu-column">
+                                    <h3 class="mega-menu-section-title">EXPÉRIENCES RÉGIONAL</h3>
+                                    <div class="mega-menu-icons-vertical">
+                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #3498DB;">
+                                        <i class="fas fa-fish"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Pêche</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #1ABC9C;">
+                                        <i class="fas fa-spa"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Spa</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #9B59B6;">
+                                        <i class="fas fa-wine-glass-alt"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Vignobles</span>
+                                </a>
+                                <a href="{{url('/landing/locations')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #E74C3C;">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Chalets</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #F39C12;">
+                                        <i class="fas fa-binoculars"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Observation</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #16A085;">
+                                        <i class="fas fa-campground"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Camping</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #2C3E50;">
+                                        <i class="fas fa-video"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Vidéos</span>
+                                </a>
+                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #E74C3C;">
+                                        <i class="fas fa-fire"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Urgence</span>
+                                </a>
+                                <a href="{{url('/landing/urgences')}}" class="mega-icon-item">
+                                    <div class="mega-icon-circle" style="background: #27AE60;">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                    <span class="mega-icon-label">Santé</span>
+                                </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Droite: Carrousel Vidéo/Photo -->
+                            <div class="mega-menu-carousel">
+                                <div class="carousel-scroll-container" id="carouselContainer">
+                                    <!-- Vidéo YouTube 1 -->
+                                    <div class="carousel-item-simple active" onclick="openMediaModal('video', 'https://www.youtube.com/embed/hdxKTW1ER5w?autoplay=1')">
+                                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; overflow: hidden;">
+                                            <i class="fab fa-youtube" style="font-size: 60px; color: white; opacity: 0.9;"></i>
+                                            <div style="position: absolute; bottom: 20px; left: 20px; color: white; font-size: 18px; font-weight: 600;">🎥 Québec Travel</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Image 1 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('image', 'https://picsum.photos/800/600?random=1')">
+                                        <img src="https://picsum.photos/270/400?random=1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer;" alt="Québec">
+                                    </div>
+                                    
+                                    <!-- Vidéo YouTube 2 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('video', 'https://www.youtube.com/embed/SBjQ9tuuTJQ?autoplay=1')">
+                                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; overflow: hidden;">
+                                            <i class="fab fa-youtube" style="font-size: 60px; color: white; opacity: 0.9;"></i>
+                                            <div style="position: absolute; bottom: 20px; left: 20px; color: white; font-size: 18px; font-weight: 600;">🎥 Canada Travel</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Image 2 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('image', 'https://picsum.photos/800/600?random=2')">
+                                        <img src="https://picsum.photos/270/400?random=2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer;" alt="Montréal">
+                                    </div>
+                                    
+                                    <!-- Image 3 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('image', 'https://picsum.photos/800/600?random=3')">
+                                        <img src="https://picsum.photos/270/400?random=3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer;" alt="Nature">
+                                    </div>
+                                    
+                                    <!-- Vidéo YouTube 3 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('video', 'https://www.youtube.com/embed/Uj3_KqkI9Zo?autoplay=1')">
+                                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; overflow: hidden;">
+                                            <i class="fab fa-youtube" style="font-size: 60px; color: white; opacity: 0.9;"></i>
+                                            <div style="position: absolute; bottom: 20px; left: 20px; color: white; font-size: 18px; font-weight: 600;">🎥 Nature Travel</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Image 4 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('image', 'https://picsum.photos/800/600?random=4')">
+                                        <img src="https://picsum.photos/270/400?random=4" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer;" alt="Aventure">
+                                    </div>
+                                    
+                                    <!-- Image 5 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('image', 'https://picsum.photos/800/600?random=5')">
+                                        <img src="https://picsum.photos/270/400?random=5" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer;" alt="Ski">
+                                    </div>
+                                    
+                                    <!-- Image 6 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('image', 'https://picsum.photos/800/600?random=6')">
+                                        <img src="https://picsum.photos/270/400?random=6" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer;" alt="Festival">
+                                    </div>
+                                    
+                                    <!-- Image 7 -->
+                                    <div class="carousel-item-simple" onclick="openMediaModal('image', 'https://picsum.photos/800/600?random=7')">
+                                        <img src="https://picsum.photos/270/400?random=7" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer;" alt="Gastronomie">
+                                    </div>
+                                    
+                                    <!-- Indicateurs de navigation -->
+                                    <div class="carousel-indicators">
+                                        <span class="carousel-dot active" data-index="0"></span>
+                                        <span class="carousel-dot" data-index="1"></span>
+                                        <span class="carousel-dot" data-index="2"></span>
+                                        <span class="carousel-dot" data-index="3"></span>
+                                        <span class="carousel-dot" data-index="4"></span>
+                                        <span class="carousel-dot" data-index="5"></span>
+                                        <span class="carousel-dot" data-index="6"></span>
+                                        <span class="carousel-dot" data-index="7"></span>
+                                        <span class="carousel-dot" data-index="8"></span>
+                                        <span class="carousel-dot" data-index="9"></span>
+                                    </div>
+                                    
+                                    <!-- Boutons de navigation -->
+                                    <button class="carousel-nav-btn prev" id="carouselPrev">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <button class="carousel-nav-btn next" id="carouselNext">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Icône Promotions -->
+                <div class="header-icon-container">
+                    <a href="{{url('/landing/promotions')}}" class="header-icon-link">
+                        <div class="icon-circle">
+                            <img src="{{asset('header_info/h2.png')}}" alt="Promotions">
+                        </div>
+                        <span class="icon-label">Promotions</span>
+                    </a>
+                </div>
+                
+                <!-- Icône Recherche/Exploration -->
+                <div class="header-icon-container">
+                    <a href="{{url('/landing/explorer')}}" class="header-icon-link">
+                        <div class="icon-circle">
+                            <img src="{{asset('header_info/h3.png')}}" alt="Recherche">
+                        </div>
+                        <span class="icon-label">Recherche</span>
+                    </a>
+                </div>
+                
+                <!-- Icône Globe/Destinations -->
+                <div class="header-icon-container">
+                    <a href="{{url('/landing/destinations')}}" class="header-icon-link">
+                        <div class="icon-circle">
+                            <img src="{{asset('header_info/h4.png')}}" alt="Globe">
+                        </div>
+                        <span class="icon-label">Globe</span>
+                    </a>
+                </div>
+                
+                <!-- Icône Validation/Approved -->
+                <div class="header-icon-container">
+                    <a href="{{url('/landing/certifications')}}" class="header-icon-link">
+                        <div class="icon-circle">
+                            <img src="{{asset('header_info/h5.png')}}" alt="Certifié">
+                        </div>
+                        <span class="icon-label">Certifié</span>
+                    </a>
+                </div>
             </div>
             
             <!-- Bande défilante avec messages aux voyageurs -->
             <div class="travel-marquee-container">
                 <div class="travel-marquee">
                     <div class="travel-message">
-                        <i class="fas fa-plane travel-icon"></i>
+                        <img src="{{asset('header_info/map1.png')}}" alt="Map" class="travel-icon-img">
                         <span class="travel-text">✈️ Explorez les magnifiques paysages du Québec cet été !</span>
+                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
                     </div>
                     <div class="travel-message">
-                        <i class="fas fa-snowflake travel-icon"></i>
+                        <img src="{{asset('header_info/map2.png')}}" alt="Map" class="travel-icon-img">
                         <span class="travel-text">❄️ Stations de ski ouvertes - Profitez de la poudreuse fraîche !</span>
+                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
                     </div>
                     <div class="travel-message">
-                        <i class="fas fa-map-marked-alt travel-icon"></i>
+                        <img src="{{asset('header_info/map1.png')}}" alt="Map" class="travel-icon-img">
                         <span class="travel-text">🗺️ Découvrez nos itinéraires touristiques exclusifs</span>
+                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
                     </div>
                     <div class="travel-message">
-                        <i class="fas fa-utensils travel-icon"></i>
+                        <img src="{{asset('header_info/map2.png')}}" alt="Map" class="travel-icon-img">
                         <span class="travel-text">🍽️ Goûtez à la cuisine québécoise authentique dans nos restaurants partenaires</span>
+                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
                     </div>
                     <div class="travel-message">
-                        <i class="fas fa-tags travel-icon"></i>
+                        <img src="{{asset('header_info/map1.png')}}" alt="Map" class="travel-icon-img">
                         <span class="travel-text">🏷️ Offres spéciales vacances - Jusqu'à 30% de réduction</span>
+                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
                     </div>
                     <div class="travel-message">
-                        <i class="fas fa-calendar-alt travel-icon"></i>
+                        <img src="{{asset('header_info/map2.png')}}" alt="Map" class="travel-icon-img">
                         <span class="travel-text">📅 Événements à venir : Festival d'été de Québec, Fête nationale et plus !</span>
+                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
                     </div>
                 </div>
             </div>
+            </div>
+            
+            <!-- Modal pour afficher vidéo/image en grand -->
+            <div id="mediaModal" class="media-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; justify-content: center; align-items: center;">
+                <button onclick="closeMediaModal()" style="position: absolute; top: 20px; right: 30px; background: transparent; border: none; color: white; font-size: 40px; cursor: pointer; z-index: 10001;">&times;</button>
+                <div id="modalMediaContainer" style="width: 90%; max-width: 1200px; height: 80%; background: #000; border-radius: 12px; overflow: hidden;"></div>
+            </div>
+            
+            <script>
+            // Fonction pour ouvrir la modal
+            function openMediaModal(type, src) {
+                const modal = document.getElementById('mediaModal');
+                const container = document.getElementById('modalMediaContainer');
+                
+                container.innerHTML = '';
+                
+                if (type === 'video') {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = src;
+                    iframe.style.width = '100%';
+                    iframe.style.height = '100%';
+                    iframe.style.border = 'none';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                    iframe.allowFullscreen = true;
+                    container.appendChild(iframe);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'contain';
+                    container.appendChild(img);
+                }
+                
+                modal.style.display = 'flex';
+            }
+            
+            // Fonction pour fermer la modal
+            function closeMediaModal() {
+                const modal = document.getElementById('mediaModal');
+                const container = document.getElementById('modalMediaContainer');
+                modal.style.display = 'none';
+                container.innerHTML = '';
+            }
+            
+            // Fermer en cliquant en dehors
+            document.addEventListener('DOMContentLoaded', function() {
+                const modal = document.getElementById('mediaModal');
+                if (modal) {
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal) {
+                            closeMediaModal();
+                        }
+                    });
+                }
+                
+                // Carrousel automatique (slideshow)
+                const carouselItems = document.querySelectorAll('.carousel-item-simple');
+                const carouselDots = document.querySelectorAll('.carousel-dot');
+                let currentIndex = 0;
+                let autoPlayInterval;
+                
+                function showSlide(index) {
+                    // Retirer la classe active de tous les items et dots
+                    carouselItems.forEach(item => item.classList.remove('active'));
+                    carouselDots.forEach(dot => dot.classList.remove('active'));
+                    
+                    // Ajouter la classe active à l'item et dot courant
+                    if (carouselItems[index]) {
+                        carouselItems[index].classList.add('active');
+                    }
+                    if (carouselDots[index]) {
+                        carouselDots[index].classList.add('active');
+                    }
+                    
+                    currentIndex = index;
+                }
+                
+                function nextSlide() {
+                    let nextIndex = (currentIndex + 1) % carouselItems.length;
+                    showSlide(nextIndex);
+                }
+                
+                function startAutoPlay() {
+                    autoPlayInterval = setInterval(nextSlide, 4000); // Change toutes les 4 secondes
+                }
+                
+                function stopAutoPlay() {
+                    clearInterval(autoPlayInterval);
+                }
+                
+                function prevSlide() {
+                    let prevIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+                    showSlide(prevIndex);
+                }
+                
+                // Navigation par les dots
+                carouselDots.forEach((dot, index) => {
+                    dot.addEventListener('click', function() {
+                        stopAutoPlay();
+                        showSlide(index);
+                        startAutoPlay();
+                    });
+                });
+                
+                // Navigation par les boutons
+                const prevBtn = document.getElementById('carouselPrev');
+                const nextBtn = document.getElementById('carouselNext');
+                
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', function() {
+                        stopAutoPlay();
+                        prevSlide();
+                        startAutoPlay();
+                    });
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', function() {
+                        stopAutoPlay();
+                        nextSlide();
+                        startAutoPlay();
+                    });
+                }
+                
+                // Pause au hover du carrousel
+                const carouselContainer = document.getElementById('carouselContainer');
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+                    carouselContainer.addEventListener('mouseleave', startAutoPlay);
+                }
+                
+                // Démarrer l'autoplay
+                if (carouselItems.length > 0) {
+                    startAutoPlay();
+                }
+            });
+            </script>
         </div>
     </header>
 
