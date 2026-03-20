@@ -425,6 +425,13 @@ document.addEventListener('DOMContentLoaded', function() {
             max-width: 90vw !important;
             padding: 40px 35px !important;
             display: block !important;
+            left: auto !important;
+            right: 0 !important;
+            transform: translateX(0) translateY(15px) !important;
+        }
+        
+        .mega-menu-container:hover .mega-menu-favoris {
+            transform: translateX(0) translateY(10px) !important;
         }
         
         .mega-menu-favoris h5 {
@@ -572,10 +579,39 @@ document.addEventListener('DOMContentLoaded', function() {
             z-index: 2;
         }
         
+        /* Bande publicitaire en haut du header */
+        .header-ad-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #ff6b6b 100%);
+            color: white;
+            text-align: center;
+            padding: 8px 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 999;
+        }
+        
+        .header-ad-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
         /* Styles pour le nouveau header avec bande défilante */
         .info-header {
             background: linear-gradient(90deg, #1a3a5f 0%, #2c5282 50%, #1a3a5f 100%);
-            padding: 12px 0;
+            padding: 6px 0;
             color: white;
             position: relative;
             overflow: visible;
@@ -593,7 +629,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 6px 0;
             gap: 20px;
             max-width: 100%;
             margin: 0 auto;
@@ -602,14 +638,29 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Barre de 6 boutons rectangulaires de navigation */
         .header-icons-bar {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             gap: 15px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .header-icons-bar::-webkit-scrollbar {
+            display: none;
         }
         
         .header-icon-container {
             position: relative;
+        }
+        
+        .header-icon-container:hover .header-mega-menu {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateX(-50%) translateY(0) !important;
         }
         
         .header-icon-link {
@@ -619,26 +670,41 @@ document.addEventListener('DOMContentLoaded', function() {
             gap: 10px;
             text-decoration: none;
             color: white;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
+            background: transparent;
             padding: 8px 15px;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
         }
         
         .header-icon-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         
         .icon-image {
-            width: 35px;
-            height: 35px;
+            width: 50px;
+            height: 50px;
             object-fit: contain;
             flex-shrink: 0;
+        }
+        
+        /* Icône Info plus grosse à gauche avec animation flash */
+        .icon-image-info {
+            width: 70px !important;
+            height: 70px !important;
+            order: -1;
+            animation: flash-info 2s infinite;
+        }
+        
+        @keyframes flash-info {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0.4;
+            }
+        }
+        
+        .header-icon-link-info {
+            order: -1;
         }
         
         .icon-label {
@@ -653,9 +719,9 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Mega Menu Header - Layout Professionnel avec Scroll */
         .header-mega-menu {
             position: fixed;
-            top: 120px;
+            top: 80px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(15px);
             width: 1400px;
             max-width: 95vw;
             max-height: 600px;
@@ -1607,16 +1673,23 @@ document.addEventListener('DOMContentLoaded', function() {
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Bande publicitaire en haut du header -->
+    <div class="header-ad-banner">
+        <i class="fas fa-star me-2"></i>
+        <strong>OFFRE SPÉCIALE :</strong> Profitez de -30% sur tous nos forfaits voyage jusqu'au 31 mars !
+        <i class="fas fa-star ms-2"></i>
+    </div>
+
     <!-- Header avec infos et navigation -->
     <header class="info-header" id="myScrollableContainer">
         <div class="container">
             <div class="header-content-wrapper">
                 <!-- Barre de 5 icônes de navigation -->
                 <div class="header-icons-bar" style="flex-shrink: 0;">
-                <!-- Bouton 1: Info avec Mega Menu -->
+                <!-- Bouton 1: Info avec Mega Menu - Icône à gauche avec animation flash -->
                 <div class="header-icon-container mega-menu-trigger">
-                    <a href="#" class="header-icon-link" id="infoIconBtn">
-                        <img src="https://cdn-icons-png.flaticon.com/512/471/471662.png" alt="Info" class="icon-image">
+                    <a href="#" class="header-icon-link header-icon-link-info" id="infoIconBtn">
+                        <img src="{{asset('header_info/info.png')}}" alt="Info" class="icon-image icon-image-info">
                         <span class="icon-label">Info</span>
                     </a>
                     
@@ -1911,8 +1984,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <!-- Bouton 6: Qualité Véridique -->
                 <div class="header-icon-container">
                     <a href="{{url('/landing/qualite')}}" class="header-icon-link">
-                        <img src="{{asset('header_info/GO-EXPLORIA-QUALITE-VERIDIQUE.png')}}" alt="Qualité" class="icon-image">
-                        <span class="icon-label">Qualité</span>
+                        <img src="{{asset('header_info/STATIONS-AVENTURE-QUEBEC.png')}}" alt="Qualité" class="icon-image">
+                        <span class="icon-label">Stations aventure quebec</span>
                     </a>
                 </div>
             </div>
@@ -2109,28 +2182,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="item-btns">
                     
                     <!-- NOUVEAUX MENUS -->
-                    <!-- NOS VALEURS/FAQ/GO NEXT LEVEL - Lien direct vers Espace Entreprise -->
-                    <a href="{{url('/espace-entreprise')}}" class="btn btn-sm btn-primary me-2">
-                        <i class="fas fa-rocket me-1"></i>NOS VALEURS/FAQ/GO NEXT LEVEL
+                    <!-- NOS VALEURS/FAQ -->
+                    <a href="{{url('/espace-entreprise')}}" class="btn btn-sm btn-info me-2">
+                        <i class="fas fa-info-circle me-1"></i>NOS VALEURS/FAQ
                     </a>
                     
-                    <!-- DEVISES -->
-                    <div class="mega-menu-container">
-                        <button class="btn btn-sm btn-outline-secondary me-2" id="devisesBtn">
-                            <i class="fas fa-dollar-sign me-1"></i>Devises
-                        </button>
-                        <div class="mega-menu mega-menu-devises" id="devisesMegaMenu">
-                            <a href="#" class="mega-menu-link-simple" data-devise="EUR">
-                                <i class="fas fa-euro-sign me-2"></i>EURO (EUR)
-                            </a>
-                            <a href="#" class="mega-menu-link-simple" data-devise="CAD">
-                                <i class="fas fa-dollar-sign me-2"></i>CANADIEN (CAD)
-                            </a>
-                            <a href="#" class="mega-menu-link-simple" data-devise="USD">
-                                <i class="fas fa-dollar-sign me-2"></i>USA (USD)
-                            </a>
-                        </div>
-                    </div>
+                    <!-- GO NEXT LEVEL - Séparé avec couleur différente -->
+                    <a href="{{url('/espace-entreprise')}}" class="btn btn-sm btn-warning me-2">
+                        <i class="fas fa-rocket me-1"></i>GO NEXT LEVEL
+                    </a>
                     
                     <!-- S'INSCRIRE avec mega menu -->
                     <div class="mega-menu-container">
@@ -2199,24 +2259,56 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span>Mon compte</span>
                     </a>
                     
-                    <!-- LANGUE avec mega menu -->
+                    <!-- LANGUE avec mega menu - Toutes les langues du monde -->
                     <div class="mega-menu-container">
                         <button class="btn btn-sm btn-outline-info me-2" id="langueBtn">
                             <i class="fas fa-globe me-1"></i>LANGUE
                         </button>
-                        <div class="mega-menu mega-menu-langue" id="langueMegaMenu" style="min-width: 400px; padding: 30px;">
-                            <div style="text-align: center;">
-                                <i class="fas fa-globe-americas" style="font-size: 48px; color: #3498db; margin-bottom: 20px;"></i>
-                                <h4 style="color: #2c3e50; margin-bottom: 15px;">Développement Marché International</h4>
-                                <p style="color: #7f8c8d; font-size: 1rem; line-height: 1.6;">
-                                    Nous travaillons actuellement sur l'expansion de nos services à l'échelle internationale. 
-                                    Bientôt disponible en plusieurs langues pour mieux vous servir partout dans le monde.
-                                </p>
-                                <div style="margin-top: 20px; padding: 15px; background: #ecf0f1; border-radius: 8px;">
-                                    <p style="margin: 0; color: #34495e; font-weight: 600;">
-                                        <i class="fas fa-info-circle me-2"></i>Langues à venir : Anglais, Espagnol, Allemand, Chinois
-                                    </p>
-                                </div>
+                        <div class="mega-menu mega-menu-langue" id="langueMegaMenu" style="min-width: 600px; max-height: 500px; overflow-y: auto; padding: 20px;">
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <a href="#" class="mega-menu-link-simple" data-langue="fr"><span style="font-size: 1.2rem; margin-right: 8px;">🇫🇷</span>Français</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="en"><span style="font-size: 1.2rem; margin-right: 8px;">🇬🇧</span>English</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="es"><span style="font-size: 1.2rem; margin-right: 8px;">🇪🇸</span>Español</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="de"><span style="font-size: 1.2rem; margin-right: 8px;">🇩🇪</span>Deutsch</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="it"><span style="font-size: 1.2rem; margin-right: 8px;">🇮🇹</span>Italiano</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="pt"><span style="font-size: 1.2rem; margin-right: 8px;">🇵🇹</span>Português</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="nl"><span style="font-size: 1.2rem; margin-right: 8px;">🇳🇱</span>Nederlands</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="ru"><span style="font-size: 1.2rem; margin-right: 8px;">🇷🇺</span>Русский</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="zh"><span style="font-size: 1.2rem; margin-right: 8px;">🇨🇳</span>中文</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="ja"><span style="font-size: 1.2rem; margin-right: 8px;">🇯🇵</span>日本語</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="ko"><span style="font-size: 1.2rem; margin-right: 8px;">🇰🇷</span>한국어</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="ar"><span style="font-size: 1.2rem; margin-right: 8px;">🇸🇦</span>العربية</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="hi"><span style="font-size: 1.2rem; margin-right: 8px;">🇮🇳</span>हिन्दी</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="tr"><span style="font-size: 1.2rem; margin-right: 8px;">🇹🇷</span>Türkçe</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="pl"><span style="font-size: 1.2rem; margin-right: 8px;">🇵🇱</span>Polski</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="sv"><span style="font-size: 1.2rem; margin-right: 8px;">🇸🇪</span>Svenska</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="no"><span style="font-size: 1.2rem; margin-right: 8px;">🇳🇴</span>Norsk</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="da"><span style="font-size: 1.2rem; margin-right: 8px;">🇩🇰</span>Dansk</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="fi"><span style="font-size: 1.2rem; margin-right: 8px;">🇫🇮</span>Suomi</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="cs"><span style="font-size: 1.2rem; margin-right: 8px;">🇨🇿</span>Čeština</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="el"><span style="font-size: 1.2rem; margin-right: 8px;">🇬🇷</span>Ελληνικά</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="he"><span style="font-size: 1.2rem; margin-right: 8px;">🇮🇱</span>עברית</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="th"><span style="font-size: 1.2rem; margin-right: 8px;">🇹🇭</span>ไทย</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="vi"><span style="font-size: 1.2rem; margin-right: 8px;">🇻🇳</span>Tiếng Việt</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="id"><span style="font-size: 1.2rem; margin-right: 8px;">🇮🇩</span>Bahasa Indonesia</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="ms"><span style="font-size: 1.2rem; margin-right: 8px;">🇲🇾</span>Bahasa Melayu</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="tl"><span style="font-size: 1.2rem; margin-right: 8px;">🇵🇭</span>Tagalog</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="uk"><span style="font-size: 1.2rem; margin-right: 8px;">🇺🇦</span>Українська</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="ro"><span style="font-size: 1.2rem; margin-right: 8px;">🇷🇴</span>Română</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="hu"><span style="font-size: 1.2rem; margin-right: 8px;">🇭🇺</span>Magyar</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="bg"><span style="font-size: 1.2rem; margin-right: 8px;">🇧🇬</span>Български</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="hr"><span style="font-size: 1.2rem; margin-right: 8px;">🇭🇷</span>Hrvatski</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="sr"><span style="font-size: 1.2rem; margin-right: 8px;">🇷🇸</span>Српски</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="sk"><span style="font-size: 1.2rem; margin-right: 8px;">🇸🇰</span>Slovenčina</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="sl"><span style="font-size: 1.2rem; margin-right: 8px;">🇸🇮</span>Slovenščina</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="lt"><span style="font-size: 1.2rem; margin-right: 8px;">🇱🇹</span>Lietuvių</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="lv"><span style="font-size: 1.2rem; margin-right: 8px;">🇱🇻</span>Latviešu</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="et"><span style="font-size: 1.2rem; margin-right: 8px;">🇪🇪</span>Eesti</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="fa"><span style="font-size: 1.2rem; margin-right: 8px;">🇮🇷</span>فارسی</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="ur"><span style="font-size: 1.2rem; margin-right: 8px;">🇵🇰</span>اردو</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="bn"><span style="font-size: 1.2rem; margin-right: 8px;">🇧🇩</span>বাংলা</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="sw"><span style="font-size: 1.2rem; margin-right: 8px;">🇰🇪</span>Kiswahili</a>
+                                <a href="#" class="mega-menu-link-simple" data-langue="af"><span style="font-size: 1.2rem; margin-right: 8px;">🇿🇦</span>Afrikaans</a>
                             </div>
                         </div>
                     </div>
@@ -2239,6 +2331,24 @@ document.addEventListener('DOMContentLoaded', function() {
                             </p>
                             <a href="{{url('/landing/explorer')}}" class="btn btn-primary mt-3">
                                 <i class="fas fa-search me-2"></i>Découvrir nos offres
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- DEVISES - Déplacé avant Favoris -->
+                    <div class="mega-menu-container">
+                        <button class="btn btn-sm btn-outline-secondary me-2" id="devisesBtn">
+                            <i class="fas fa-dollar-sign me-1"></i>Devises
+                        </button>
+                        <div class="mega-menu mega-menu-devises" id="devisesMegaMenu">
+                            <a href="#" class="mega-menu-link-simple" data-devise="EUR">
+                                <i class="fas fa-euro-sign me-2"></i>EURO (EUR)
+                            </a>
+                            <a href="#" class="mega-menu-link-simple" data-devise="CAD">
+                                <i class="fas fa-dollar-sign me-2"></i>CANADIEN (CAD)
+                            </a>
+                            <a href="#" class="mega-menu-link-simple" data-devise="USD">
+                                <i class="fas fa-dollar-sign me-2"></i>USA (USD)
                             </a>
                         </div>
                     </div>

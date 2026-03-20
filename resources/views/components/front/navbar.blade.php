@@ -6,11 +6,11 @@
             <!--Logo avec texte qui change et image map rotative-->
 <div id="logo" style="position: relative; display: flex; align-items: center; gap: 20px; top:10px; z-index: 100;">
     <a href="{{url('/')}}" style="position: relative; display: inline-block;">
-        <img src="logo.png" class="d-block" style="max-width: 150px; height: auto;">
+        <img src="logo.png" class="d-block" style="max-width: 200px; height: auto;">
         <!-- Texte qui change en bas à droite -->
         <div id="logo-text" style="
             position: absolute;
-            top: 20px;
+            top: 40px;
             right: 5px;
             font-weight: bold;
             font-style: italic;
@@ -29,17 +29,17 @@
         <img src="{{ asset('header_info/map2.png') }}" 
              alt="Map" 
              class="rotating-map"
-             style="width: 70px; height: 70px; object-fit: contain; animation: rotate360 3s linear infinite; display: block;">
+             style="width: 70px; height: 70px; object-fit: contain; animation: rotateVertical 3s linear infinite; display: block;">
     </a>
 </div>
 
 <style>
-@keyframes rotate360 {
+@keyframes rotateVertical {
     from {
-        transform: rotate(0deg);
+        transform: rotateY(0deg);
     }
     to {
-        transform: rotate(360deg);
+        transform: rotateY(360deg);
     }
 }
 
