@@ -151,26 +151,28 @@ document.addEventListener('DOMContentLoaded', function() {
         .mega-menu {
             position: absolute;
             top: 100%;
-            left: 75%;
+            left: 50%;
             transform: translateX(-50%) translateY(15px);
-            width: 1100px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            padding: 30px;
+            width: auto;
+            max-width: 90vw;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            padding: 25px;
             z-index: 1050;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
+            border: 1px solid #e0e0e0;
         }
         
         .mega-menu-container:hover .mega-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(10px);
         }
         
         .mega-menu-column h4 {
@@ -279,6 +281,190 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .mega-menu-templates .mega-menu-link:hover .mega-menu-image {
             transform: scale(1.05);
+        }
+        
+        /* CSS pour les nouveaux menus de la top bar */
+        
+        /* Mega menu link simple pour Devises */
+        .mega-menu-link-simple {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background:#3498db ;
+            border: 1px solid #e9ecef;
+        }
+        
+        .mega-menu-link-simple:hover {
+            background: #3498db;
+            color: white;
+            transform: translateX(5px);
+            border-color: #2980b9;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.25);
+        }
+        
+        .mega-menu-link-simple i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        /* Mega menu Devises */
+        .mega-menu-devises {
+            min-width: 250px !important;
+            width: 250px !important;
+            padding: 20px !important;
+            grid-template-columns: 1fr !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        /* Mega menu Inscription */
+        .mega-menu-inscription {
+            width: 650px !important;
+            max-width: 90vw !important;
+            padding: 30px !important;
+            display: block !important;
+        }
+        
+        .inscription-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .inscription-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 22px 18px;
+            background: #2980b9;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #e9ecef;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+            text-align: center;
+            min-height: 120px;
+        }
+        
+        .inscription-item:hover {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-color: #2980b9;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+        
+        .inscription-item i {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+        
+        .inscription-item:hover i {
+            opacity: 1;
+        }
+        
+        .inscription-item span {
+            line-height: 1.4;
+            font-size: 0.88rem;
+        }
+        
+        /* Mega menu Langue */
+        .mega-menu-langue {
+            min-width: 450px !important;
+            width: 450px !important;
+            max-width: 90vw !important;
+            padding: 35px !important;
+            display: block !important;
+        }
+        
+        .mega-menu-langue h4 {
+            color: #2c3e50 !important;
+            font-weight: 700 !important;
+            margin-bottom: 15px !important;
+        }
+        
+        .mega-menu-langue p {
+            color: #7f8c8d !important;
+            line-height: 1.7 !important;
+        }
+        
+        /* Mega menu Panier */
+        .mega-menu-panier {
+            min-width: 380px !important;
+            width: 380px !important;
+            max-width: 90vw !important;
+            padding: 40px 35px !important;
+            display: block !important;
+        }
+        
+        .mega-menu-panier h5 {
+            color: #2c3e50 !important;
+            font-weight: 700 !important;
+        }
+        
+        .mega-menu-panier p {
+            color: #7f8c8d !important;
+        }
+        
+        /* Mega menu Favoris */
+        .mega-menu-favoris {
+            min-width: 380px !important;
+            width: 380px !important;
+            max-width: 90vw !important;
+            padding: 40px 35px !important;
+            display: block !important;
+        }
+        
+        .mega-menu-favoris h5 {
+            color: #2c3e50 !important;
+            font-weight: 700 !important;
+        }
+        
+        .mega-menu-favoris p {
+            color: #7f8c8d !important;
+        }
+        
+        /* Ajustements pour les boutons de la top bar */
+        .item-btns .btn {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+        
+        /* Mega menu Info combiné */
+        .mega-menu-info-combined {
+            min-width: 320px !important;
+            width: 320px !important;
+            max-width: 90vw !important;
+            padding: 20px !important;
+            grid-template-columns: 1fr !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        /* Animation pour les mega menus */
+        .mega-menu-container:hover .mega-menu-info-combined,
+        .mega-menu-container:hover .mega-menu-devises,
+        .mega-menu-container:hover .mega-menu-inscription,
+        .mega-menu-container:hover .mega-menu-langue,
+        .mega-menu-container:hover .mega-menu-panier,
+        .mega-menu-container:hover .mega-menu-favoris {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(10px);
         }
         
         /* Footer avec photo de fond filtrée */
@@ -413,12 +599,13 @@ document.addEventListener('DOMContentLoaded', function() {
             margin: 0 auto;
         }
         
-        /* Barre de 5 icônes de navigation */
+        /* Barre de 6 boutons rectangulaires de navigation */
         .header-icons-bar {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 25px;
+            gap: 15px;
+            flex-wrap: wrap;
         }
         
         .header-icon-container {
@@ -427,89 +614,54 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .header-icon-link {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             text-decoration: none;
             color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 8px 15px;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
         .header-icon-link:hover {
-            transform: translateY(-4px);
-        }
-        
-        .icon-circle {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .icon-circle::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 50%;
-            z-index: -1;
-        }
-        
-        .icon-circle i {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            position: absolute !important;
-            width: 0 !important;
-            height: 0 !important;
-        }
-        
-        .icon-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            padding: 0;
-        }
-        
-        .header-icon-link:hover .icon-circle {
-            background: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-            transform: scale(1.08);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .icon-image {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+            flex-shrink: 0;
         }
         
         .icon-label {
-            font-size: 0.55rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-top: 3px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
             opacity: 0.95;
         }
         
-        /* Mega Menu Header - Layout Complet */
+        /* Mega Menu Header - Layout Professionnel avec Scroll */
         .header-mega-menu {
             position: fixed;
             top: 120px;
             left: 50%;
             transform: translateX(-50%);
-            width: 1100px;
+            width: 1400px;
             max-width: 95vw;
+            max-height: 600px;
             background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             padding: 0;
             opacity: 0;
             visibility: hidden;
@@ -517,6 +669,8 @@ document.addEventListener('DOMContentLoaded', function() {
             z-index: 2000;
             border: 2px solid #e0e0e0;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         
         .mega-menu-trigger:hover .header-mega-menu {
@@ -564,96 +718,152 @@ document.addEventListener('DOMContentLoaded', function() {
             font-weight: 700;
         }
         
-        /* Contenu principal : Icônes + Carrousel */
+        /* Contenu principal : 3 Colonnes + Carrousel */
         .mega-menu-main-content {
             display: flex;
-            gap: 15px;
-            padding: 15px;
-            overflow: visible;
+            gap: 20px;
+            padding: 20px;
             box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex: 1;
         }
         
-        /* Container des 3 colonnes d'icônes */
-        .mega-menu-icons-container {
-            display: flex;
-            gap: 20px;
+        .mega-menu-main-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .mega-menu-main-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .mega-menu-main-content::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 10px;
+        }
+        
+        .mega-menu-main-content::-webkit-scrollbar-thumb:hover {
+            background: #2980b9;
+        }
+        
+        /* Container des 5 colonnes */
+        .mega-menu-columns-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
             flex: 1;
         }
         
         /* Colonne verticale */
         .mega-menu-column {
-            flex: 1;
             display: flex;
-            flex-direction: column-reverse;
-        }
-        
-        .mega-menu-section-title {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #2c3e50;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin: 0 0 12px 0;
-            padding-bottom: 6px;
-            border-bottom: 2px solid #3498db;
-        }
-        
-        /* Grille d'icônes (3 lignes verticales max) */
-        .mega-menu-icons-vertical {
-            display: grid;
-            grid-template-rows: repeat(3, auto);
-            grid-auto-flow: column;
+            flex-direction: column;
             gap: 10px;
         }
         
-        /* Item avec icône */
-        .mega-icon-item {
+        /* Item avec image carrée + nom */
+        .mega-menu-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 6px;
+            padding: 8px;
             border-radius: 8px;
-        }
-        
-        .mega-icon-item:hover {
             background: #f8f9fa;
-            transform: translateY(-2px);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
         }
         
-        /* Cercle d'icône coloré */
-        .mega-icon-circle {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
+        .mega-menu-item:hover {
+            background: #ffffff;
+            border-color: #3498db;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+        }
+        
+        /* Image carrée */
+        .mega-menu-image {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Label du menu */
+        .mega-menu-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+        
+        /* Boutons de catégorie en bas */
+        .mega-menu-category-btn {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 6px;
+            padding: 10px 12px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
-            font-size: 1.4rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-            line-height: 1;
+            margin-top: 8px;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
         
-        .mega-icon-circle i {
-            line-height: 1;
+        .mega-menu-category-btn:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            color: white;
         }
         
-        .mega-icon-item:hover .mega-icon-circle {
-            transform: scale(1.08);
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+        /* Section des 3 menus en bas */
+        .mega-menu-bottom-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e0e0e0;
         }
         
-        /* Label sous l'icône */
-        .mega-icon-label {
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: #2c3e50;
-            text-align: center;
-            line-height: 1.1;
+        .mega-menu-bottom-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .mega-menu-bottom-item:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            color: white;
+        }
+        
+        .mega-menu-bottom-item i {
+            font-size: 1.1rem;
         }
         
         /* Carrousel Vidéo/Photo - Défilement Vertical */
@@ -1403,12 +1613,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="header-content-wrapper">
                 <!-- Barre de 5 icônes de navigation -->
                 <div class="header-icons-bar" style="flex-shrink: 0;">
-                <!-- Icône Info avec Mega Menu -->
+                <!-- Bouton 1: Info avec Mega Menu -->
                 <div class="header-icon-container mega-menu-trigger">
                     <a href="#" class="header-icon-link" id="infoIconBtn">
-                        <div class="icon-circle">
-                            <img src="https://cdn-icons-png.flaticon.com/512/471/471662.png" alt="Info">
-                        </div>
+                        <img src="https://cdn-icons-png.flaticon.com/512/471/471662.png" alt="Info" class="icon-image">
                         <span class="icon-label">Info</span>
                     </a>
                     
@@ -1434,213 +1642,136 @@ document.addEventListener('DOMContentLoaded', function() {
                             </a>
                         </div>
                         
-                        <!-- Contenu principal : Icônes à gauche + Carrousel à droite -->
+                        <!-- Contenu principal : 3 Colonnes + Carrousel -->
                         <div class="mega-menu-main-content">
-                            <!-- Gauche: 3 colonnes d'icônes -->
-                            <div class="mega-menu-icons-container">
-                                <!-- Colonne 1: EXPÉRIENCES QUÉBEC (9 icônes) -->
+                            <!-- Container des 5 colonnes -->
+                            <div class="mega-menu-columns-container">
+                                <!-- Colonne 1 - 6 items -->
                                 <div class="mega-menu-column">
-                                    <h3 class="mega-menu-section-title">EXPÉRIENCES QUÉBEC</h3>
-                                    <div class="mega-menu-icons-vertical">
-                                <a href="{{url('/landing/experiences-quebec')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #4A90E2;">
-                                        <i class="fas fa-wheelchair"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Accessibilité</span>
-                                </a>
-                                <a href="{{url('/landing/transport-aerien')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #F5A623;">
-                                        <i class="fas fa-plane-departure"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Vols</span>
-                                </a>
-                                <a href="{{url('/landing/hotels')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #2C3E50;">
-                                        <i class="fas fa-suitcase"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Bagages</span>
-                                </a>
-                                <a href="{{url('/landing/transport-terrestre')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #E74C3C;">
-                                        <i class="fas fa-bus"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Transport</span>
-                                </a>
-                                <a href="{{url('/landing/destinations')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #3498DB;">
-                                        <i class="fas fa-globe-americas"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Destinations</span>
-                                </a>
-                                <a href="{{url('/landing/guides')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #F39C12;">
-                                        <i class="fas fa-bullhorn"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Guides</span>
-                                </a>
-                                <a href="{{url('/landing/assurances')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #9B59B6;">
-                                        <i class="fas fa-shield-alt"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Assurance</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-quebec')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #1ABC9C;">
-                                        <i class="fas fa-camera"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Photos</span>
-                                </a>
-                                <a href="{{url('/landing/transport-maritime')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #16A085;">
-                                        <i class="fas fa-ship"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Croisières</span>
-                                </a>
-                                    </div>
+                                    <a href="{{url('/landing/accessibilite')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/k-roule-acces-andicape-quebec.png')}}" alt="Accessibilité" class="mega-menu-image">
+                                        <span class="mega-menu-label">Accessibilité</span>
+                                    </a>
+                                    <a href="{{url('/landing/ambulance')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/AMBULANCE-911-QUEBEC.png')}}" alt="Ambulance" class="mega-menu-image">
+                                        <span class="mega-menu-label">Ambulance 911</span>
+                                    </a>
+                                    <a href="{{url('/landing/defibrillateur')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/borne-defibrilateur-urgence.png')}}" alt="Défibrillateur" class="mega-menu-image">
+                                        <span class="mega-menu-label">Défibrillateur</span>
+                                    </a>
+                                    <a href="{{url('/landing/circuits')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/CIRCUITS-TOURSITIQUES-QUEBEC.png')}}" alt="Circuits" class="mega-menu-image">
+                                        <span class="mega-menu-label">Circuits</span>
+                                    </a>
+                                    <a href="{{url('/landing/culture')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/CULTURE-ATTRAITS.png')}}" alt="Culture" class="mega-menu-image">
+                                        <span class="mega-menu-label">Culture</span>
+                                    </a>
+                                    <a href="{{url('/landing/evenements')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/EVENEMENTS-QUEBEC.png')}}" alt="Événements" class="mega-menu-image">
+                                        <span class="mega-menu-label">Événements</span>
+                                    </a>
                                 </div>
                                 
-                                <!-- Colonne 2: EXPÉRIENCES CANADA (12 icônes) -->
+                                <!-- Colonne 2 - 5 items -->
                                 <div class="mega-menu-column">
-                                    <h3 class="mega-menu-section-title">EXPÉRIENCES CANADA</h3>
-                                    <div class="mega-menu-icons-vertical">
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #E74C3C;">
-                                        <i class="fas fa-calendar-check"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Événements</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #F39C12;">
-                                        <i class="fas fa-mountain"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Rocheuses</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #16A085;">
-                                        <i class="fas fa-tree"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Nature</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #2980B9;">
-                                        <i class="fas fa-snowflake"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Hiver</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #8E44AD;">
-                                        <i class="fas fa-city"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Villes</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #27AE60;">
-                                        <i class="fas fa-utensils"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Gastronomie</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #E67E22;">
-                                        <i class="fas fa-flag-checkered"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Festivals</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #27AE60;">
-                                        <i class="fas fa-recycle"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Écologie</span>
-                                </a>
-                                <a href="{{url('/landing/certifications')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #2ECC71;">
-                                        <i class="fas fa-leaf"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Qualité</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #E67E22;">
-                                        <i class="fas fa-cloud"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Météo</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #95A5A6;">
-                                        <i class="fas fa-swimmer"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Activités</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-canada')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #34495E;">
-                                        <i class="fas fa-water"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Nautique</span>
-                                </a>
-                                    </div>
+                                    <a href="{{url('/landing/fabrique-quebec')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/fabriquer-au-quebec.png')}}" alt="Fabriqué" class="mega-menu-image">
+                                        <span class="mega-menu-label">Fabriqué Québec</span>
+                                    </a>
+                                    <a href="{{url('/landing/info-tourisme')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/INFO-TOURISME.png')}}" alt="Info" class="mega-menu-image">
+                                        <span class="mega-menu-label">Info Tourisme</span>
+                                    </a>
+                                    <a href="{{url('/landing/transport')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/MOYEN-TRANSPORT-QUEBEC.png')}}" alt="Transport" class="mega-menu-image">
+                                        <span class="mega-menu-label">Transport</span>
+                                    </a>
+                                    <a href="{{url('/landing/gare-train')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/GARE-DE-TRAIN-QUEBEC.png')}}" alt="Gare" class="mega-menu-image">
+                                        <span class="mega-menu-label">Gare Train</span>
+                                    </a>
+                                    <a href="{{url('/landing/ferry')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/FERRY.png')}}" alt="Ferry" class="mega-menu-image">
+                                        <span class="mega-menu-label">Ferry</span>
+                                    </a>
                                 </div>
                                 
-                                <!-- Colonne 3: EXPÉRIENCES RÉGIONAL (9 icônes) -->
+                                <!-- Colonne 3 - 5 items -->
                                 <div class="mega-menu-column">
-                                    <h3 class="mega-menu-section-title">EXPÉRIENCES RÉGIONAL</h3>
-                                    <div class="mega-menu-icons-vertical">
-                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #3498DB;">
-                                        <i class="fas fa-fish"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Pêche</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #1ABC9C;">
-                                        <i class="fas fa-spa"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Spa</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #9B59B6;">
-                                        <i class="fas fa-wine-glass-alt"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Vignobles</span>
-                                </a>
-                                <a href="{{url('/landing/locations')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #E74C3C;">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Chalets</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #F39C12;">
-                                        <i class="fas fa-binoculars"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Observation</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #16A085;">
-                                        <i class="fas fa-campground"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Camping</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #2C3E50;">
-                                        <i class="fas fa-video"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Vidéos</span>
-                                </a>
-                                <a href="{{url('/landing/experiences-regional')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #E74C3C;">
-                                        <i class="fas fa-fire"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Urgence</span>
-                                </a>
-                                <a href="{{url('/landing/urgences')}}" class="mega-icon-item">
-                                    <div class="mega-icon-circle" style="background: #27AE60;">
-                                        <i class="fas fa-heartbeat"></i>
-                                    </div>
-                                    <span class="mega-icon-label">Santé</span>
-                                </a>
-                                    </div>
+                                    <a href="{{url('/landing/garage')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/GARAGE.png')}}" alt="Garage" class="mega-menu-image">
+                                        <span class="mega-menu-label">Garage</span>
+                                    </a>
+                                    <a href="{{url('/landing/indice-uv')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/INDICE-UV.png')}}" alt="UV" class="mega-menu-image">
+                                        <span class="mega-menu-label">Indice UV</span>
+                                    </a>
+                                    <a href="{{url('/landing/indice')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/INDICE.png')}}" alt="Indices" class="mega-menu-image">
+                                        <span class="mega-menu-label">Indices</span>
+                                    </a>
+                                    <a href="{{url('/landing/parcs-canada')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/PARC-CANADA.png')}}" alt="Parcs" class="mega-menu-image">
+                                        <span class="mega-menu-label">Parcs Canada</span>
+                                    </a>
+                                    <a href="{{url('/landing/nouvelles')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/nouvelles-proviciales.png')}}" alt="Nouvelles" class="mega-menu-image">
+                                        <span class="mega-menu-label">Nouvelles</span>
+                                    </a>
+                                </div>
+                                
+                                <!-- Colonne 4 - 5 items -->
+                                <div class="mega-menu-column">
+                                    <a href="{{url('/landing/chasse')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/CHASSE-PERIODE-DE.png')}}" alt="Chasse" class="mega-menu-image">
+                                        <span class="mega-menu-label">Chasse</span>
+                                    </a>
+                                    <a href="{{url('/landing/croisieres')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/croisieres.png')}}" alt="Croisières" class="mega-menu-image">
+                                        <span class="mega-menu-label">Croisières</span>
+                                    </a>
+                                    <a href="{{url('/landing/billets-avion')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/billet-avion-pas-cher.png')}}" alt="Billets" class="mega-menu-image">
+                                        <span class="mega-menu-label">Billets Avion</span>
+                                    </a>
+                                    <a href="{{url('/landing/alerte-voyage')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/ALERTE VOYAGE-CANADA.png')}}" alt="Alerte" class="mega-menu-image">
+                                        <span class="mega-menu-label">Alerte Voyage</span>
+                                    </a>
+                                    <a href="{{url('/landing/canada-quebec')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/CANADA-QUEBEC.png')}}" alt="Canada" class="mega-menu-image">
+                                        <span class="mega-menu-label">Canada Québec</span>
+                                    </a>
+                                </div>
+                                
+                                <!-- Colonne 5 - 5 items (ajouter 5 nouveaux items ou dupliquer) -->
+                                <div class="mega-menu-column">
+                                    <a href="{{url('/landing/accessibilite')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/k-roule-acces-andicape-quebec.png')}}" alt="Accessibilité" class="mega-menu-image">
+                                        <span class="mega-menu-label">Accessibilité</span>
+                                    </a>
+                                    <a href="{{url('/landing/ambulance')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/AMBULANCE-911-QUEBEC.png')}}" alt="Ambulance" class="mega-menu-image">
+                                        <span class="mega-menu-label">Ambulance 911</span>
+                                    </a>
+                                    <a href="{{url('/landing/defibrillateur')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/borne-defibrilateur-urgence.png')}}" alt="Défibrillateur" class="mega-menu-image">
+                                        <span class="mega-menu-label">Défibrillateur</span>
+                                    </a>
+                                    <a href="{{url('/landing/circuits')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/CIRCUITS-TOURSITIQUES-QUEBEC.png')}}" alt="Circuits" class="mega-menu-image">
+                                        <span class="mega-menu-label">Circuits</span>
+                                    </a>
+                                    <a href="{{url('/landing/culture')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/CULTURE-ATTRAITS.png')}}" alt="Culture" class="mega-menu-image">
+                                        <span class="mega-menu-label">Culture</span>
+                                    </a>
                                 </div>
                             </div>
                             
-                            <!-- Droite: Carrousel Vidéo/Photo -->
+                            <!-- Carrousel Vidéo/Photo à droite -->
                             <div class="mega-menu-carousel">
                                 <div class="carousel-scroll-container" id="carouselContainer">
                                     <!-- Vidéo YouTube 1 -->
@@ -1726,46 +1857,62 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Section des 3 menus en bas -->
+                        <div class="mega-menu-bottom-section">
+                            <a href="{{url('/landing/experiences-quebec')}}" class="mega-menu-bottom-item">
+                                <i class="fas fa-maple-leaf"></i>
+                                <span>Expériences Québec</span>
+                            </a>
+                            <a href="{{url('/landing/experiences-canada')}}" class="mega-menu-bottom-item">
+                                <i class="fas fa-flag"></i>
+                                <span>Expériences Canada</span>
+                            </a>
+                            <a href="{{url('/landing/experiences-monde')}}" class="mega-menu-bottom-item">
+                                <i class="fas fa-globe-americas"></i>
+                                <span>Expériences Monde</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Icône Promotions -->
+                <!-- Bouton 2: Deals Billets Avion -->
                 <div class="header-icon-container">
-                    <a href="{{url('/landing/promotions')}}" class="header-icon-link">
-                        <div class="icon-circle">
-                            <img src="{{asset('header_info/h2.png')}}" alt="Promotions">
-                        </div>
-                        <span class="icon-label">Promotions</span>
+                    <a href="{{url('/landing/deals-billets')}}" class="header-icon-link">
+                        <img src="{{asset('header_info/DEALS-BILLET-AVION.png')}}" alt="Deals Billets" class="icon-image">
+                        <span class="icon-label">Deals Billets</span>
                     </a>
                 </div>
                 
-                <!-- Icône Recherche/Exploration -->
+                <!-- Bouton 3: Offres Dernière Minute -->
                 <div class="header-icon-container">
-                    <a href="{{url('/landing/explorer')}}" class="header-icon-link">
-                        <div class="icon-circle">
-                            <img src="{{asset('header_info/h3.png')}}" alt="Recherche">
-                        </div>
-                        <span class="icon-label">Recherche</span>
+                    <a href="{{url('/landing/offres-derniere-minute')}}" class="header-icon-link">
+                        <img src="{{asset('header_info/offre-derniere-minutes.png')}}" alt="Offres" class="icon-image">
+                        <span class="icon-label">Offres</span>
                     </a>
                 </div>
                 
-                <!-- Icône Globe/Destinations -->
+                <!-- Bouton 4: Nouvelles du Jour -->
                 <div class="header-icon-container">
-                    <a href="{{url('/landing/destinations')}}" class="header-icon-link">
-                        <div class="icon-circle">
-                            <img src="{{asset('header_info/h4.png')}}" alt="Globe">
-                        </div>
-                        <span class="icon-label">Globe</span>
+                    <a href="{{url('/landing/nouvelles')}}" class="header-icon-link">
+                        <img src="{{asset('header_info/NOUVELLES-DU-JOUR.png')}}" alt="Nouvelles" class="icon-image">
+                        <span class="icon-label">Nouvelles</span>
                     </a>
                 </div>
                 
-                <!-- Icône Validation/Approved -->
+                <!-- Bouton 5: Must à Voir -->
                 <div class="header-icon-container">
-                    <a href="{{url('/landing/certifications')}}" class="header-icon-link">
-                        <div class="icon-circle">
-                            <img src="{{asset('header_info/h5.png')}}" alt="Certifié">
-                        </div>
-                        <span class="icon-label">Certifié</span>
+                    <a href="{{url('/landing/must-voir')}}" class="header-icon-link">
+                        <img src="{{asset('header_info/MOSTS-A-VOIR.png')}}" alt="Must à Voir" class="icon-image">
+                        <span class="icon-label">Must à Voir</span>
+                    </a>
+                </div>
+                
+                <!-- Bouton 6: Qualité Véridique -->
+                <div class="header-icon-container">
+                    <a href="{{url('/landing/qualite')}}" class="header-icon-link">
+                        <img src="{{asset('header_info/GO-EXPLORIA-QUALITE-VERIDIQUE.png')}}" alt="Qualité" class="icon-image">
+                        <span class="icon-label">Qualité</span>
                     </a>
                 </div>
             </div>
@@ -1773,35 +1920,35 @@ document.addEventListener('DOMContentLoaded', function() {
             <!-- Bande défilante avec messages aux voyageurs -->
             <div class="travel-marquee-container">
                 <div class="travel-marquee">
+                    <!-- Message 1: Info -->
                     <div class="travel-message">
-                        <img src="{{asset('header_info/map1.png')}}" alt="Map" class="travel-icon-img">
-                        <span class="travel-text">✈️ Explorez les magnifiques paysages du Québec cet été !</span>
-                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
+                        <span class="travel-text">Découvrez toutes les informations essentielles pour planifier votre voyage au Québec et au Canada</span>
+                        <img src="https://cdn-icons-png.flaticon.com/512/471/471662.png" alt="Info" class="travel-end-img">
                     </div>
+                    <!-- Message 2: Deals Billets -->
                     <div class="travel-message">
-                        <img src="{{asset('header_info/map2.png')}}" alt="Map" class="travel-icon-img">
-                        <span class="travel-text">❄️ Stations de ski ouvertes - Profitez de la poudreuse fraîche !</span>
-                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
+                         <span class="travel-text">Profitez de nos deals exclusifs sur les billets d'avion vers les plus belles destinations</span>
+                        <img src="{{asset('header_info/DEALS-BILLET-AVION.png')}}" alt="Deals" class="travel-end-img">
                     </div>
+                    <!-- Message 3: Offres Dernière Minute -->
                     <div class="travel-message">
-                        <img src="{{asset('header_info/map1.png')}}" alt="Map" class="travel-icon-img">
-                        <span class="travel-text">🗺️ Découvrez nos itinéraires touristiques exclusifs</span>
-                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
+                          <span class="travel-text">Saisissez nos offres de dernière minute et économisez jusqu'à 40% sur vos réservations</span>
+                        <img src="{{asset('header_info/offre-derniere-minutes.png')}}" alt="Offres" class="travel-end-img">
                     </div>
+                    <!-- Message 4: Nouvelles du Jour -->
                     <div class="travel-message">
-                        <img src="{{asset('header_info/map2.png')}}" alt="Map" class="travel-icon-img">
-                        <span class="travel-text">🍽️ Goûtez à la cuisine québécoise authentique dans nos restaurants partenaires</span>
-                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
+                         <span class="travel-text">Restez informé avec les dernières nouvelles et actualités du monde du voyage</span>
+                        <img src="{{asset('header_info/NOUVELLES-DU-JOUR.png')}}" alt="Nouvelles" class="travel-end-img">
                     </div>
+                    <!-- Message 5: Must à Voir -->
                     <div class="travel-message">
-                        <img src="{{asset('header_info/map1.png')}}" alt="Map" class="travel-icon-img">
-                        <span class="travel-text">🏷️ Offres spéciales vacances - Jusqu'à 30% de réduction</span>
-                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
+                          <span class="travel-text">Explorez les incontournables et les sites à ne pas manquer lors de votre séjour</span>
+                        <img src="{{asset('header_info/MOSTS-A-VOIR.png')}}" alt="Must" class="travel-end-img">
                     </div>
+                    <!-- Message 6: Qualité Véridique -->
                     <div class="travel-message">
-                        <img src="{{asset('header_info/map2.png')}}" alt="Map" class="travel-icon-img">
-                        <span class="travel-text">📅 Événements à venir : Festival d'été de Québec, Fête nationale et plus !</span>
-                        <img src="{{asset('header_info/h6.png')}}" alt="End" class="travel-end-img">
+                         <span class="travel-text">Voyagez en toute confiance avec notre certification qualité et nos services vérifiés</span>
+                        <img src="{{asset('header_info/GO-EXPLORIA-QUALITE-VERIDIQUE.png')}}" alt="Qualité" class="travel-end-img">
                     </div>
                 </div>
             </div>
@@ -1960,511 +2107,158 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
 
                 <div class="item-btns">
-                    <!-- NOUVEAU : Bouton Nos Templates avec méga-menu -->
+                    
+                    <!-- NOUVEAUX MENUS -->
+                    <!-- NOS VALEURS/FAQ/GO NEXT LEVEL - Lien direct vers Espace Entreprise -->
+                    <a href="{{url('/espace-entreprise')}}" class="btn btn-sm btn-primary me-2">
+                        <i class="fas fa-rocket me-1"></i>NOS VALEURS/FAQ/GO NEXT LEVEL
+                    </a>
+                    
+                    <!-- DEVISES -->
                     <div class="mega-menu-container">
-                        <button class="btn btn-sm btn-outline-primary me-2" id="templatesBtn">
-                            <i class="fas fa-palette me-1"></i>Nos Templates
+                        <button class="btn btn-sm btn-outline-secondary me-2" id="devisesBtn">
+                            <i class="fas fa-dollar-sign me-1"></i>Devises
                         </button>
-                        
-                        <!-- Méga-menu Templates 8 catégories -->
-                        <div class="mega-menu mega-menu-templates" id="templatesMegaMenu">
-                            <!-- Colonne 1 : E-commerce & Retail -->
-                            <div class="mega-menu-column">
-                                <h4><i class="fas fa-shopping-cart me-2"></i>E-commerce</h4>
-                                <a href="{{url('template/preview/84')}}" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=400&h=400&fit=crop" class="mega-menu-image" alt="Boutique Mode">
-                                    <div class="mega-menu-text">
-                                        <h6>Boutique Mode</h6>
-                                        <p>Site e-commerce pour vêtements</p>
-                                    </div>
-                                </a>
-                                <a href="{{url('template/preview/87')}}" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=400&fit=crop" class="mega-menu-image" alt="Marketplace">
-                                    <div class="mega-menu-text">
-                                        <h6>Marketplace</h6>
-                                        <p>Place de marché multi-vendeurs</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=400&fit=crop" class="mega-menu-image" alt="DropShipping">
-                                    <div class="mega-menu-text">
-                                        <h6>Dropshipping</h6>
-                                        <p>Solution clé en main</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=400&fit=crop" class="mega-menu-image" alt="Cosmétiques">
-                                    <div class="mega-menu-text">
-                                        <h6>Cosmétiques & Beauté</h6>
-                                        <p>Design épuré et élégant</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 2 : Services & Professionnels -->
-                            <div class="mega-menu-column">
-                                <h4><i class="fas fa-briefcase me-2"></i>Services</h4>
-                                <a href="{{url('template/preview/91')}}" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=400&fit=crop" class="mega-menu-image" alt="Cabinet Conseil">
-                                    <div class="mega-menu-text">
-                                        <h6>Cabinet Conseil</h6>
-                                        <p>Site vitrine professionnel</p>
-                                    </div>
-                                </a>
-                                <a href="{{url('template/preview/92')}}" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=400&fit=crop" class="mega-menu-image" alt="Services Médicaux">
-                                    <div class="mega-menu-text">
-                                        <h6>Services Médicaux</h6>
-                                        <p>Prise de rendez-vous en ligne</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=400&fit=crop" class="mega-menu-image" alt="Services Juridiques">
-                                    <div class="mega-menu-text">
-                                        <h6>Services Juridiques</h6>
-                                        <p>Avocats & notaires</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1560250056-07ba64664864?w=400&h=400&fit=crop" class="mega-menu-image" alt="Coaching">
-                                    <div class="mega-menu-text">
-                                        <h6>Coaching & Formation</h6>
-                                        <p>Plateforme de cours</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 3 : Travel & Hospitality -->
-                            <div class="mega-menu-column">
-                                <h4><i class="fas fa-plane me-2"></i>Travel</h4>
-                                <a href="{{url('template/preview/89')}}" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=400&fit=crop" class="mega-menu-image" alt="Agence Voyage">
-                                    <div class="mega-menu-text">
-                                        <h6>Agence de Voyage</h6>
-                                        <p>Forfaits et réservations</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=400&fit=crop" class="mega-menu-image" alt="Hôtellerie">
-                                    <div class="mega-menu-text">
-                                        <h6>Hôtellerie</h6>
-                                        <p>Réservation en ligne</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=400&fit=crop" class="mega-menu-image" alt="Location Saisonnière">
-                                    <div class="mega-menu-text">
-                                        <h6>Location Saisonnière</h6>
-                                        <p>Gestion des disponibilités</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=400&fit=crop" class="mega-menu-image" alt="Tours Opérateur">
-                                    <div class="mega-menu-text">
-                                        <h6>Tours Opérateur</h6>
-                                        <p>Circuits et excursions</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 4 : Entreprise & B2B -->
-                            <div class="mega-menu-column">
-                                <h4><i class="fas fa-building me-2"></i>Entreprise</h4>
-                                <a href="{{url('template/preview/90')}}" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=400&fit=crop" class="mega-menu-image" alt="Site Corporate">
-                                    <div class="mega-menu-text">
-                                        <h6>Site Corporate</h6>
-                                        <p>Présence institutionnelle</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop" class="mega-menu-image" alt="Startup">
-                                    <div class="mega-menu-text">
-                                        <h6>Startup</h6>
-                                        <p>Landing page moderne</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop" class="mega-menu-image" alt="Industrie">
-                                    <div class="mega-menu-text">
-                                        <h6>Industrie & Manufacture</h6>
-                                        <p>Catalogue produits</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=400&fit=crop" class="mega-menu-image" alt="Immobilier">
-                                    <div class="mega-menu-text">
-                                        <h6>Immobilier</h6>
-                                        <p>Listings propriétés</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 5 : Food & Alimentation -->
-                            <div class="mega-menu-column">
-                                <h4><i class="fas fa-utensils me-2"></i>Food & Alimentation</h4>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=400&fit=crop" class="mega-menu-image" alt="Restaurant">
-                                    <div class="mega-menu-text">
-                                        <h6>Restaurant</h6>
-                                        <p>Menu et réservations</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1556740714-a8395b3bf30f?w=400&h=400&fit=crop" class="mega-menu-image" alt="Boulangerie">
-                                    <div class="mega-menu-text">
-                                        <h6>Boulangerie/Pâtisserie</h6>
-                                        <p>Commande en ligne</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=400&h=400&fit=crop" class="mega-menu-image" alt="Traiteur">
-                                    <div class="mega-menu-text">
-                                        <h6>Traiteur</h6>
-                                        <p>Événements et buffets</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1564758582685-88e7885d10c7?w=400&h=400&fit=crop" class="mega-menu-image" alt="Épicerie Fine">
-                                    <div class="mega-menu-text">
-                                        <h6>Épicerie Fine</h6>
-                                        <p>Produits locaux</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 6 : Beauté & Bien-être -->
-                            <div class="mega-menu-column">
-                                <h4><i class="fas fa-heart me-2"></i>Beauté & Bien-être</h4>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=400&h=400&fit=crop" class="mega-menu-image" alt="Salon Coiffure">
-                                    <div class="mega-menu-text">
-                                        <h6>Salon de Coiffure</h6>
-                                        <p>Prise de rendez-vous</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=400&h=400&fit=crop" class="mega-menu-image" alt="Spa">
-                                    <div class="mega-menu-text">
-                                        <h6>Spa & Bien-être</h6>
-                                        <p>Forfaits relaxants</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=400&fit=crop" class="mega-menu-image" alt="Salle Sport">
-                                    <div class="mega-menu-text">
-                                        <h6>Salle de Sport</h6>
-                                        <p>Abonnements en ligne</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1598514982418-0f7051c30492?w=400&h=400&fit=crop" class="mega-menu-image" alt="Yoga">
-                                    <div class="mega-menu-text">
-                                        <h6>Yoga & Méditation</h6>
-                                        <p>Cours virtuels</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 7 : Éducation & Formation -->
-                            <div class="mega-menu-column">
-                                <h4><i class="fas fa-graduation-cap me-2"></i>Éducation & Formation</h4>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop" class="mega-menu-image" alt="École">
-                                    <div class="mega-menu-text">
-                                        <h6>École & Université</h6>
-                                        <p>Portail éducatif</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=400&fit=crop" class="mega-menu-image" alt="Formation Pro">
-                                    <div class="mega-menu-text">
-                                        <h6>Formation Professionnelle</h6>
-                                        <p>LMS et certifications</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=400&fit=crop" class="mega-menu-image" alt="Cours en Ligne">
-                                    <div class="mega-menu-text">
-                                        <h6>Cours en Ligne</h6>
-                                        <p>Plateforme e-learning</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=400&fit=crop" class="mega-menu-image" alt="Tutorat">
-                                    <div class="mega-menu-text">
-                                        <h6>Tutorat</h6>
-                                        <p>Soutien scolaire</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 8 : Créatifs & Artisans -->
-                            <div class="mega-menu-column">
-                                <h4><i class="fas fa-paint-brush me-2"></i>Créatifs & Artisans</h4>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=400&fit=crop" class="mega-menu-image" alt="Portfolio">
-                                    <div class="mega-menu-text">
-                                        <h6>Portfolio Artiste</h6>
-                                        <p>Galerie d'oeuvres</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop" class="mega-menu-image" alt="Photographe">
-                                    <div class="mega-menu-text">
-                                        <h6>Photographe</h6>
-                                        <p>Shooting et portfolios</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=400&fit=crop" class="mega-menu-image" alt="Designer">
-                                    <div class="mega-menu-text">
-                                        <h6>Designer</h6>
-                                        <p>Showcase créatif</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="mega-menu-link" target="_blank">
-                                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=400&fit=crop" class="mega-menu-image" alt="Artisanat">
-                                    <div class="mega-menu-text">
-                                        <h6>Artisanat</h6>
-                                        <p>Créations uniques</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Élément mis en avant -->
-                            <div class="mega-menu-highlight">
-                                <h4><i class="fas fa-star me-2"></i>Templates Populaires</h4>
-                                <div class="d-flex gap-3">
-                                    <div class="highlight-item">
-                                        <i class="fas fa-crown highlight-icon"></i>
-                                        <div>
-                                            <h6>Template Premium</h6>
-                                            <p>Design exclusif - 30% de réduction</p>
-                                        </div>
-                                    </div>
-                                    <div class="highlight-item">
-                                        <i class="fas fa-rocket highlight-icon"></i>
-                                        <div>
-                                            <h6>Nouveauté 2026</h6>
-                                            <p>Templates IA générative</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-3 text-center">
-                                    <a href="#" class="btn btn-sm btn-light">Voir tous les templates →</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bouton Services Web avec méga-menu -->
-                    <div class="mega-menu-container">
-                        <button class="btn btn-sm btn-primary me-2" id="servicesWebBtn">
-                            <i class="fas fa-globe me-1"></i>Services Web
-                        </button>
-                        
-                        <!-- Méga-menu Services Web -->
-                        <div class="mega-menu" id="webServicesMegaMenu">
-                            <!-- Colonne 1 : Création Web -->
-                            <div class="mega-menu-column">
-                                <h4>Création Web</h4>
-                                <a href="#iframe-page-web-1" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop" class="mega-menu-image" alt="Sites Vitrine">
-                                    <div class="mega-menu-text">
-                                        <h6>Sites Vitrine</h6>
-                                        <p>Présence en ligne professionnelle</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=400&fit=crop" class="mega-menu-image" alt="E-commerce">
-                                    <div class="mega-menu-text">
-                                        <h6>E-commerce</h6>
-                                        <p>Boutique en ligne complète</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=400&h=400&fit=crop" class="mega-menu-image" alt="Blogs & CMS">
-                                    <div class="mega-menu-text">
-                                        <h6>Blogs & CMS</h6>
-                                        <p>Plateformes de contenu</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=400&fit=crop" class="mega-menu-image" alt="Applications Web">
-                                    <div class="mega-menu-text">
-                                        <h6>Applications Web</h6>
-                                        <p>Solutions sur mesure</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 2 : Marketing Digital -->
-                            <div class="mega-menu-column">
-                                <h4>Marketing Digital</h4>
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop" class="mega-menu-image" alt="SEO">
-                                    <div class="mega-menu-text">
-                                        <h6>SEO</h6>
-                                        <p>Optimisation pour moteurs</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop" class="mega-menu-image" alt="Publicité en Ligne">
-                                    <div class="mega-menu-text">
-                                        <h6>Publicité en Ligne</h6>
-                                        <p>Google Ads, Facebook Ads</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop" class="mega-menu-image" alt="Analyse Web">
-                                    <div class="mega-menu-text">
-                                        <h6>Analyse Web</h6>
-                                        <p>Google Analytics, tracking</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?w=400&h=400&fit=crop" class="mega-menu-image" alt="Email Marketing">
-                                    <div class="mega-menu-text">
-                                        <h6>Email Marketing</h6>
-                                        <p>Campagnes automatiques</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 3 : Hébergement & Support -->
-                            <div class="mega-menu-column">
-                                <h4>Hébergement & Support</h4>
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop" class="mega-menu-image" alt="Hébergement Web">
-                                    <div class="mega-menu-text">
-                                        <h6>Hébergement Web</h6>
-                                        <p>Serveurs performants</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=400&fit=crop" class="mega-menu-image" alt="Sécurité SSL">
-                                    <div class="mega-menu-text">
-                                        <h6>Sécurité SSL</h6>
-                                        <p>Certificats de sécurité</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop" class="mega-menu-image" alt="Maintenance">
-                                    <div class="mega-menu-text">
-                                        <h6>Maintenance</h6>
-                                        <p>Mises à jour régulières</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=400&fit=crop" class="mega-menu-image" alt="Support 24/7">
-                                    <div class="mega-menu-text">
-                                        <h6>Support 24/7</h6>
-                                        <p>Assistance technique</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Colonne 4 : Solutions Entreprise -->
-                            <div class="mega-menu-column">
-                                <h4>Solutions Entreprise</h4>
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop" class="mega-menu-image" alt="ERP & CRM">
-                                    <div class="mega-menu-text">
-                                        <h6>ERP & CRM</h6>
-                                        <p>Systèmes de gestion intégrés</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop" class="mega-menu-image" alt="Réseaux Sociaux">
-                                    <div class="mega-menu-text">
-                                        <h6>Gestion Réseaux Sociaux</h6>
-                                        <p>Stratégie et publication</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop" class="mega-menu-image" alt="Formation">
-                                    <div class="mega-menu-text">
-                                        <h6>Formation Digital</h6>
-                                        <p>Formation à vos outils</p>
-                                    </div>
-                                </a>
-                                
-                                <a href="#" class="mega-menu-link">
-                                    <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=400&h=400&fit=crop" class="mega-menu-image" alt="Consultation">
-                                    <div class="mega-menu-text">
-                                        <h6>Consultation Stratégique</h6>
-                                        <p>Audit et recommandations</p>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <div>
-                                <a href="">Voir nos plans d'affichages</a>
-                            </div>
+                        <div class="mega-menu mega-menu-devises" id="devisesMegaMenu">
+                            <a href="#" class="mega-menu-link-simple" data-devise="EUR">
+                                <i class="fas fa-euro-sign me-2"></i>EURO (EUR)
+                            </a>
+                            <a href="#" class="mega-menu-link-simple" data-devise="CAD">
+                                <i class="fas fa-dollar-sign me-2"></i>CANADIEN (CAD)
+                            </a>
+                            <a href="#" class="mega-menu-link-simple" data-devise="USD">
+                                <i class="fas fa-dollar-sign me-2"></i>USA (USD)
+                            </a>
                         </div>
                     </div>
                     
-                    <a href="#info-forfaits-go-exploria" class="btn btn-sm btn-secondary">
-                        <i class="fas fa-list me-1"></i>Nos plans
-                    </a>
+                    <!-- S'INSCRIRE avec mega menu -->
+                    <div class="mega-menu-container">
+                        <button class="btn btn-sm btn-success me-2" id="inscriptionBtn">
+                            <i class="fas fa-user-plus me-1"></i>S'INSCRIRE
+                        </button>
+                        <div class="mega-menu mega-menu-inscription" id="inscriptionMegaMenu">
+                            <div class="inscription-grid">
+                                <a href="{{url('/register/administrateur')}}" class="inscription-item">
+                                    <i class="fas fa-user-shield"></i>
+                                    <span>Administrateur</span>
+                                </a>
+                                <a href="{{url('/register/executif')}}" class="inscription-item">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span>Exécutif</span>
+                                </a>
+                                <a href="{{url('/register/client')}}" class="inscription-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>Client</span>
+                                </a>
+                                <a href="{{url('/register/chef-entreprise')}}" class="inscription-item">
+                                    <i class="fas fa-briefcase"></i>
+                                    <span>Chef d'entreprise</span>
+                                </a>
+                                <a href="{{url('/register/client-2')}}" class="inscription-item">
+                                    <i class="fas fa-user-circle"></i>
+                                    <span>Client</span>
+                                </a>
+                                <a href="{{url('/register/employe')}}" class="inscription-item">
+                                    <i class="fas fa-id-badge"></i>
+                                    <span>Employé</span>
+                                </a>
+                                <a href="{{url('/register/directeur-ventes')}}" class="inscription-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Directeur des ventes</span>
+                                </a>
+                                <a href="{{url('/register/agent-vente')}}" class="inscription-item">
+                                    <i class="fas fa-handshake"></i>
+                                    <span>Agent de vente</span>
+                                </a>
+                                <a href="{{url('/register/chef-projet')}}" class="inscription-item">
+                                    <i class="fas fa-tasks"></i>
+                                    <span>Chef de projet</span>
+                                </a>
+                                <a href="{{url('/register/gestionnaire-stock')}}" class="inscription-item">
+                                    <i class="fas fa-boxes"></i>
+                                    <span>Gestionnaire de stock</span>
+                                </a>
+                                <a href="{{url('/register/fournisseur')}}" class="inscription-item">
+                                    <i class="fas fa-truck"></i>
+                                    <span>Fournisseur</span>
+                                </a>
+                                <a href="{{url('/register/documentation')}}" class="inscription-item">
+                                    <i class="fas fa-book"></i>
+                                    <span>Documentation</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="top-bar-icons">
                     <!-- Mon compte -->
-                    <a href="{{route('register')}}" class="top-bar-icon">
-                        <i class="fas fa-user-plus"></i>
-                        <span>S'inscrire</span>
-                    </a>
                     <a href="{{route('login')}}" class="top-bar-icon">
                         <i class="fas fa-user"></i>
                         <span>Mon compte</span>
                     </a>
                     
-                    <!-- Localisation / Langue -->
-                    <div class="language-selector">
-                        <button class="language-btn" id="languageBtn">
-                            <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
-                            <span>FR</span>
-                            <i class="fas fa-chevron-down ms-1"></i>
+                    <!-- LANGUE avec mega menu -->
+                    <div class="mega-menu-container">
+                        <button class="btn btn-sm btn-outline-info me-2" id="langueBtn">
+                            <i class="fas fa-globe me-1"></i>LANGUE
                         </button>
-                        <div class="language-dropdown" id="languageDropdown">
-                            <a href="#" class="language-option" data-lang="fr">
-                                <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
-                                <span>Français</span>
-                            </a>
-                            <a href="#" class="language-option" data-lang="en">
-                                <img src="https://flagcdn.com/w20/gb.png" class="flag-icon" alt="English">
-                                <span>English</span>
-                            </a>
+                        <div class="mega-menu mega-menu-langue" id="langueMegaMenu" style="min-width: 400px; padding: 30px;">
+                            <div style="text-align: center;">
+                                <i class="fas fa-globe-americas" style="font-size: 48px; color: #3498db; margin-bottom: 20px;"></i>
+                                <h4 style="color: #2c3e50; margin-bottom: 15px;">Développement Marché International</h4>
+                                <p style="color: #7f8c8d; font-size: 1rem; line-height: 1.6;">
+                                    Nous travaillons actuellement sur l'expansion de nos services à l'échelle internationale. 
+                                    Bientôt disponible en plusieurs langues pour mieux vous servir partout dans le monde.
+                                </p>
+                                <div style="margin-top: 20px; padding: 15px; background: #ecf0f1; border-radius: 8px;">
+                                    <p style="margin: 0; color: #34495e; font-weight: 600;">
+                                        <i class="fas fa-info-circle me-2"></i>Langues à venir : Anglais, Espagnol, Allemand, Chinois
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- YouTube Icon -->
-                    <a href="https://www.youtube.com/user/explorezlemonde/videos?view_as=subscriber" target="_blank" class="top-bar-icon">
+                    <!-- <a href="https://www.youtube.com/user/explorezlemonde/videos?view_as=subscriber" target="_blank" class="top-bar-icon">
                         <i class="fab fa-youtube"></i>
-                    </a>
-                    <!-- Panier -->
-                    <a href="#" class="top-bar-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Panier</span>
-                    </a>
-                    <!-- Favoris -->
-                    <a href="#" class="top-bar-icon">
-                        <i class="fas fa-heart"></i>
-                        <span>Favoris</span>
-                    </a>
+                    </a> -->
+                    
+                    <!-- Panier avec mega menu vide -->
+                    <div class="mega-menu-container">
+                        <button class="btn btn-sm btn-outline-warning me-2" id="panierBtn">
+                            <i class="fas fa-shopping-cart me-1"></i>PANIER
+                        </button>
+                        <div class="mega-menu mega-menu-panier" id="panierMegaMenu" style="min-width: 350px; padding: 40px; text-align: center;">
+                            <i class="fas fa-shopping-cart" style="font-size: 64px; color: #bdc3c7; margin-bottom: 20px;"></i>
+                            <h5 style="color: #7f8c8d; margin-bottom: 10px;">Votre panier est vide</h5>
+                            <p style="color: #95a5a6; font-size: 0.95rem;">
+                                Vous n'avez pas encore d'achats dans votre panier.
+                            </p>
+                            <a href="{{url('/landing/explorer')}}" class="btn btn-primary mt-3">
+                                <i class="fas fa-search me-2"></i>Découvrir nos offres
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Favoris avec mega menu vide -->
+                    <div class="mega-menu-container">
+                        <button class="btn btn-sm btn-outline-danger me-2" id="favorisBtn">
+                            <i class="fas fa-heart me-1"></i>FAVORIS
+                        </button>
+                        <div class="mega-menu mega-menu-favoris" id="favorisMegaMenu" style="min-width: 350px; padding: 40px; text-align: center;">
+                            <i class="fas fa-heart" style="font-size: 64px; color: #bdc3c7; margin-bottom: 20px;"></i>
+                            <h5 style="color: #7f8c8d; margin-bottom: 10px;">Aucun favori</h5>
+                            <p style="color: #95a5a6; font-size: 0.95rem;">
+                                Vous n'avez pas encore de favoris enregistrés.
+                            </p>
+                            <a href="{{url('/landing/destinations')}}" class="btn btn-danger mt-3">
+                                <i class="fas fa-globe me-2"></i>Explorer les destinations
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

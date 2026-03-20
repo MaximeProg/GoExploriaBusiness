@@ -3,57 +3,54 @@
 <header id="header" data-transparent="true" data-fullwidth="true" class="dark submenu-light">
     <div class="header-inner">
         <div class="container">
-            <!--Logo avec texte qui change-->
-<div id="logo" style="position: relative; display: inline-block; top:10px;">
-    <a href="{{url('/')}}">
-        <img src="logo.png" class="d-block">
+            <!--Logo avec texte qui change et image map rotative-->
+<div id="logo" style="position: relative; display: flex; align-items: center; gap: 20px; top:10px; z-index: 100;">
+    <a href="{{url('/')}}" style="position: relative; display: inline-block;">
+        <img src="logo.png" class="d-block" style="max-width: 150px; height: auto;">
+        <!-- Texte qui change en bas à droite -->
+        <div id="logo-text" style="
+            position: absolute;
+            top: 20px;
+            right: 5px;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 15px;
+            color: red;
+            padding: 2px 6px;
+            border-radius: 3px;
+            white-space: nowrap;
+        ">{{\App\Models\Menu::firstOrFail()->title}}</div>
     </a>
-    <!-- Texte qui change en bas à droite -->
-    <div id="logo-text" style="
-        position: absolute;
-        top: 20px;
-        right: 5px;
-        font-weight: bold;
-        font-style: italic;
-        font-size: 15px;
-        color: red;
-        padding: 2px 6px;
-        border-radius: 3px;
-        white-space: nowrap;
-    ">{{\App\Models\Menu::firstOrFail()->title}}</div>
     
-    <!-- Images map1 et map2 qui alternent -->
+    <!-- Image map qui tourne -->
     <a href="{{ url('/theme/business/page-1#plans-daffichage-mondial') }}" 
        target="business-iframe" 
-       style="cursor: pointer; position: relative; display: block; width: 140px; height: 65px; margin: 0 auto;">
-        <img src="{{ url('header_info/map1.jpg') }}" 
-             alt="Map 1" 
-             class="map-animation map-1"
-             style="width: 140px; height: 65px; display: block; object-fit: contain;">
-        <img src="{{ url('header_info/map2.png') }}" 
-             alt="Map 2" 
-             class="map-animation map-2"
-             style="width: 140px; height: 65px; display: none; object-fit: contain;">
+       style="cursor: pointer; display: inline-block;">
+        <img src="{{ asset('header_info/map2.png') }}" 
+             alt="Map" 
+             class="rotating-map"
+             style="width: 70px; height: 70px; object-fit: contain; animation: rotate360 3s linear infinite; display: block;">
     </a>
-    
-    <script>
-        // Animation alternée entre map1 et map2
-        setInterval(function() {
-            const map1 = document.querySelector('.map-1');
-            const map2 = document.querySelector('.map-2');
-            
-            if (map1 && map2) {
-                if (map1.style.display === 'block') {
-                    map1.style.display = 'none';
-                    map2.style.display = 'block';
-                } else {
-                    map1.style.display = 'block';
-                    map2.style.display = 'none';
-                }
-            }
-        }, 2000); // Change toutes les 2 secondes
-    </script>   
 </div>
+
+<style>
+@keyframes rotate360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotating-map {
+    transition: transform 0.3s ease;
+}
+
+.rotating-map:hover {
+    animation-play-state: paused;
+}
+</style>
 <!--End: Logo-->
 
             
