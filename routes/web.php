@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     AuthController,
     GeminiController,
     HomeController,
-    LandingPageController
+    LandingPageController,
+    DestinationPageController
 };
 
 use App\Http\Controllers\Auth\SocialAuthController;
@@ -30,6 +31,22 @@ Route::post('/chat/clear-history', [ChatController::class, 'clearHistory'])->nam
 // Page de login
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Nouvelle page d'accueil V2
+Route::get('/home-v2', function () {
+    return view('home-v2.index');
+})->name('home-v2');
+
+// Routes pour les pages de destinations
+Route::prefix('destinations')->name('destinations.')->group(function () {
+    Route::get('/', [DestinationPageController::class, 'index'])->name('index');
+    Route::get('/continent/{slug}', [DestinationPageController::class, 'continent'])->name('continent');
+    Route::get('/pays/{slug}', [DestinationPageController::class, 'country'])->name('country');
+    Route::get('/province/{slug}', [DestinationPageController::class, 'province'])->name('province');
+    Route::get('/region/{slug}', [DestinationPageController::class, 'region'])->name('region');
+    Route::get('/ville/{slug}', [DestinationPageController::class, 'ville'])->name('ville');
+    Route::get('/secteur/{slug}', [DestinationPageController::class, 'secteur'])->name('secteur');
 });
 
 // Landing Pages Routes
@@ -158,6 +175,33 @@ Route::prefix('api')->group(function () {
             'version' => '1.0.0',
             'timestamp' => now()
         ]);
+    });
+    
+    // Routes API Destinations (publiques)
+    Route::prefix('v1/destinations')->group(function () {
+        Route::get('/continents', [App\Http\Controllers\Api\DestinationController::class, 'continents']);
+        Route::get('/continents/{identifier}', [App\Http\Controllers\Api\DestinationController::class, 'continent']);
+        Route::get('/countries', [App\Http\Controllers\Api\DestinationController::class, 'countries']);
+        Route::get('/countries/{identifier}', [App\Http\Controllers\Api\DestinationController::class, 'country']);
+        Route::get('/provinces', [App\Http\Controllers\Api\DestinationController::class, 'provinces']);
+        Route::get('/provinces/{identifier}', [App\Http\Controllers\Api\DestinationController::class, 'province']);
+        Route::get('/regions', [App\Http\Controllers\Api\DestinationController::class, 'regions']);
+        Route::get('/regions/{identifier}', [App\Http\Controllers\Api\DestinationController::class, 'region']);
+        Route::get('/villes', [App\Http\Controllers\Api\DestinationController::class, 'villes']);
+        Route::get('/villes/{identifier}', [App\Http\Controllers\Api\DestinationController::class, 'ville']);
+        Route::get('/secteurs', [App\Http\Controllers\Api\DestinationController::class, 'secteurs']);
+        Route::get('/secteurs/{identifier}', [App\Http\Controllers\Api\DestinationController::class, 'secteur']);
+        Route::get('/search', [App\Http\Controllers\Api\DestinationController::class, 'search']);
+        Route::get('/hierarchy/{type}/{identifier}', [App\Http\Controllers\Api\DestinationController::class, 'hierarchy']);
+    });
+    
+    // Routes API Map Points (publiques)
+    Route::prefix('v1/map-points')->group(function () {
+        Route::get('/', [App\Http\Controllers\Api\MapPointController::class, 'index']);
+        Route::get('/{id}', [App\Http\Controllers\Api\MapPointController::class, 'show']);
+        Route::get('/search', [App\Http\Controllers\Api\MapPointController::class, 'search']);
+        Route::get('/categories', [App\Http\Controllers\Api\MapPointController::class, 'categories']);
+        Route::get('/villes', [App\Http\Controllers\Api\MapPointController::class, 'villes']);
     });
     
     // Routes démo (limitées)

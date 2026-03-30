@@ -831,10 +831,12 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Item avec image carrée + nom */
         .mega-menu-item {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 10px;
             text-decoration: none;
-            padding: 8px;
+            padding: 15px 10px;
             border-radius: 8px;
             background: #f8f9fa;
             border: 2px solid transparent;
@@ -844,26 +846,27 @@ document.addEventListener('DOMContentLoaded', function() {
         .mega-menu-item:hover {
             background: #ffffff;
             border-color: #3498db;
-            transform: translateX(5px);
+            transform: translateY(-5px);
             box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
         }
         
         /* Image carrée */
         .mega-menu-image {
-            width: 40px;
-            height: 40px;
+            width: 70px;
+            height: 70px;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 8px;
             flex-shrink: 0;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         /* Label du menu */
         .mega-menu-label {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #2c3e50;
             line-height: 1.2;
+            text-align: center;
         }
         
         /* Boutons de catégorie en bas */
@@ -1737,10 +1740,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <img src="{{asset('header_info/megamenu/CIRCUITS-TOURSITIQUES-QUEBEC.png')}}" alt="Circuits" class="mega-menu-image">
                                         <span class="mega-menu-label">Circuits</span>
                                     </a>
-                                    <a href="{{url('/landing/culture')}}" class="mega-menu-item">
-                                        <img src="{{asset('header_info/megamenu/CULTURE-ATTRAITS.png')}}" alt="Culture" class="mega-menu-image">
-                                        <span class="mega-menu-label">Culture</span>
-                                    </a>
+                                   
                                     <a href="{{url('/landing/evenements')}}" class="mega-menu-item">
                                         <img src="{{asset('header_info/megamenu/EVENEMENTS-QUEBEC.png')}}" alt="Événements" class="mega-menu-image">
                                         <span class="mega-menu-label">Événements</span>
@@ -1765,10 +1765,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <img src="{{asset('header_info/megamenu/GARE-DE-TRAIN-QUEBEC.png')}}" alt="Gare" class="mega-menu-image">
                                         <span class="mega-menu-label">Gare Train</span>
                                     </a>
-                                    <a href="{{url('/landing/ferry')}}" class="mega-menu-item">
-                                        <img src="{{asset('header_info/megamenu/FERRY.png')}}" alt="Ferry" class="mega-menu-image">
-                                        <span class="mega-menu-label">Ferry</span>
-                                    </a>
+                                   
                                 </div>
                                 
                                 <!-- Colonne 3 - 5 items -->
@@ -1789,10 +1786,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <img src="{{asset('header_info/megamenu/PARC-CANADA.png')}}" alt="Parcs" class="mega-menu-image">
                                         <span class="mega-menu-label">Parcs Canada</span>
                                     </a>
-                                    <a href="{{url('/landing/nouvelles')}}" class="mega-menu-item">
-                                        <img src="{{asset('header_info/megamenu/nouvelles-proviciales.png')}}" alt="Nouvelles" class="mega-menu-image">
-                                        <span class="mega-menu-label">Nouvelles</span>
-                                    </a>
+                                   
                                 </div>
                                 
                                 <!-- Colonne 4 - 5 items -->
@@ -1813,33 +1807,28 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <img src="{{asset('header_info/megamenu/ALERTE VOYAGE-CANADA.png')}}" alt="Alerte" class="mega-menu-image">
                                         <span class="mega-menu-label">Alerte Voyage</span>
                                     </a>
+                                </div>
+
+
+
+                                 <!-- Colonne 5 -->
+                                <div class="mega-menu-column">
+                                     <a href="{{url('/landing/culture')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/CULTURE-ATTRAITS.png')}}" alt="Culture" class="mega-menu-image">
+                                        <span class="mega-menu-label">Culture</span>
+                                    </a>
+                                    <a href="{{url('/landing/ferry')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/FERRY.png')}}" alt="Ferry" class="mega-menu-image">
+                                        <span class="mega-menu-label">Ferry</span>
+                                    </a>
+                                     <a href="{{url('/landing/nouvelles')}}" class="mega-menu-item">
+                                        <img src="{{asset('header_info/megamenu/nouvelles-proviciales.png')}}" alt="Nouvelles" class="mega-menu-image">
+                                        <span class="mega-menu-label">Nouvelles</span>
+                                    </a>
+    
                                     <a href="{{url('/landing/canada-quebec')}}" class="mega-menu-item">
                                         <img src="{{asset('header_info/megamenu/CANADA-QUEBEC.png')}}" alt="Canada" class="mega-menu-image">
                                         <span class="mega-menu-label">Canada Québec</span>
-                                    </a>
-                                </div>
-                                
-                                <!-- Colonne 5 - 5 items (ajouter 5 nouveaux items ou dupliquer) -->
-                                <div class="mega-menu-column">
-                                    <a href="{{url('/landing/accessibilite')}}" class="mega-menu-item">
-                                        <img src="{{asset('header_info/megamenu/k-roule-acces-andicape-quebec.png')}}" alt="Accessibilité" class="mega-menu-image">
-                                        <span class="mega-menu-label">Accessibilité</span>
-                                    </a>
-                                    <a href="{{url('/landing/ambulance')}}" class="mega-menu-item">
-                                        <img src="{{asset('header_info/megamenu/AMBULANCE-911-QUEBEC.png')}}" alt="Ambulance" class="mega-menu-image">
-                                        <span class="mega-menu-label">Ambulance 911</span>
-                                    </a>
-                                    <a href="{{url('/landing/defibrillateur')}}" class="mega-menu-item">
-                                        <img src="{{asset('header_info/megamenu/borne-defibrilateur-urgence.png')}}" alt="Défibrillateur" class="mega-menu-image">
-                                        <span class="mega-menu-label">Défibrillateur</span>
-                                    </a>
-                                    <a href="{{url('/landing/circuits')}}" class="mega-menu-item">
-                                        <img src="{{asset('header_info/megamenu/CIRCUITS-TOURSITIQUES-QUEBEC.png')}}" alt="Circuits" class="mega-menu-image">
-                                        <span class="mega-menu-label">Circuits</span>
-                                    </a>
-                                    <a href="{{url('/landing/culture')}}" class="mega-menu-item">
-                                        <img src="{{asset('header_info/megamenu/CULTURE-ATTRAITS.png')}}" alt="Culture" class="mega-menu-image">
-                                        <span class="mega-menu-label">Culture</span>
                                     </a>
                                 </div>
                             </div>
@@ -2187,9 +2176,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-info-circle me-1"></i>NOS VALEURS/FAQ
                     </a>
                     
-                    <!-- GO NEXT LEVEL - Séparé avec couleur différente -->
-                    <a href="{{url('/espace-entreprise')}}" class="btn btn-sm btn-warning me-2">
-                        <i class="fas fa-rocket me-1"></i>GO NEXT LEVEL
+                    <!-- GO NEXT LEVEL - Logo -->
+                    <a href="{{url('/espace-entreprise')}}" class="me-2" style="display: inline-block; background: none; border: none; padding: 0; height: 31px; width: 80px; position: relative; vertical-align: middle;">
+                        <img src="{{asset('header_info/GO-EXPLORIA-NEXT-LEVEL.png')}}" alt="GO NEXT LEVEL" style="height: 65px; width: auto; object-fit: contain; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; transition: transform 0.3s ease;" onmouseover="this.style.transform='translate(-50%, -50%) scale(1.08)'" onmouseout="this.style.transform='translate(-50%, -50%) scale(1)'">
                     </a>
                     
                     <!-- S'INSCRIRE avec mega menu -->
@@ -2375,6 +2364,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     @include('components.front.navbar')
+    @include('components.front.horizontal-nav')
     @include('components.front.slideshows')
 
     <!-- Video Slider Full Width -->
