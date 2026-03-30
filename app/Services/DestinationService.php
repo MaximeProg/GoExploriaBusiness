@@ -532,4 +532,102 @@ class DestinationService
     {
         return $this->getContinents($withRelations);
     }
+
+    /**
+     * Récupérer les pays d'un continent
+     */
+    public function getCountriesByContinent($continentId, bool $withRelations = false): Collection
+    {
+        $cacheKey = "destinations.continent.{$continentId}.countries." . ($withRelations ? 'with_relations' : 'simple');
+        
+        return Cache::remember($cacheKey, self::CACHE_DURATION, function () use ($continentId, $withRelations) {
+            $query = Country::active()->where('continent_id', $continentId)->orderBy('name');
+            
+            if ($withRelations) {
+                $query->with(['provinces' => function ($q) {
+                    $q->active()->orderBy('name');
+                }]);
+            }
+            
+            return $query->get();
+        });
+    }
+
+    /**
+     * Récupérer les provinces d'un pays
+     */
+    public function getProvincesByCountry($countryId, bool $withRelations = false): Collection
+    {
+        $cacheKey = "destinations.country.{$countryId}.provinces." . ($withRelations ? 'with_relations' : 'simple');
+        
+        return Cache::remember($cacheKey, self::CACHE_DURATION, function () use ($countryId, $withRelations) {
+            $query = Province::active()->where('country_id', $countryId)->orderBy('name');
+            
+            if ($withRelations) {
+                $query->with(['regions' => function ($q) {
+                    $q->active()->orderBy('name');
+                }]);
+            }
+            
+            return $query->get();
+        });
+    }
+
+    /**
+     * Récupérer les régions d'une province
+     */
+    public function getRegionsByProvince($provinceId, bool $withRelations = false): Collection
+    {
+        $cacheKey = "destinations.province.{$provinceId}.regions." . ($withRelations ? 'with_relations' : 'simple');
+        
+        return Cache::remember($cacheKey, self::CACHE_DURATION, function () use ($provinceId, $withRelations) {
+            $query = Region::active()->where('province_id', $provinceId)->orderBy('name');
+            
+            if ($withRelations) {
+                $query->with(['villes' => function ($q) {
+                    $q->active()->orderBy('name');
+                }]);
+            }
+            
+            return $query->get();
+        });
+    }
+
+    /**
+     * Récupérer les villes d'une région
+     */
+    public function getVillesByRegion($regionId, bool $withRelations = false): Collection
+    {
+        $cacheKey = "destinations.region.{$regionId}.villes." . ($withRelations ? 'with_relations' : 'simple');
+        
+        return Cache::remember($cacheKey, self::CACHE_DURATION, function () use ($regionId, $withRelations) {
+            $query = Ville::active()->where('region_id', $regionId)->orderBy('name');
+            
+            if ($withRelations) {
+                $query->with(['secteurs' => function ($q) {
+                    $q->active()->orderBy('name');
+                }]);
+            }
+            
+            return $query->get();
+        });
+    }
+
+    /**
+     * Récupérer les secteurs d'une ville
+     */
+    public function getSecteursByVille($villeId, bool $withRelations = false): Collection
+    {
+        $cacheKey = "destinations.ville.{$villeId}.secteurs." . ($withRelations ? 'with_relations' : 'simple');
+        
+        return Cache::remember($cacheKey, self::CACHE_DURATION, function () use ($villeId, $withRelations) {
+            $query = Secteur::active()->where('ville_id', $villeId)->orderBy('name');
+            
+            if ($withRelations) {
+                $query->with(['ville']);
+            }
+            
+            return $query->get();
+        });
+    }
 }

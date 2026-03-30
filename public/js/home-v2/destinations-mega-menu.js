@@ -41,11 +41,8 @@ class DestinationsMegaMenu {
         console.log('📍 Trigger trouvé:', !!this.trigger);
         
         if (this.trigger) {
-            console.log('✅ Événements hover ajoutés sur le trigger');
-            
             // Événements sur le trigger
             this.trigger.addEventListener('mouseenter', () => {
-                console.log('🖱️ Hover sur DESTINATIONS');
                 this.show();
             });
             this.trigger.addEventListener('mouseleave', () => this.scheduleHide());
@@ -54,7 +51,7 @@ class DestinationsMegaMenu {
             this.megaMenu.addEventListener('mouseenter', () => this.cancelHide());
             this.megaMenu.addEventListener('mouseleave', () => this.scheduleHide());
         } else {
-            console.error('❌ Trigger non trouvé (.search-bar-v2-destinations)');
+            console.error('Trigger non trouvé (.search-bar-v2-destinations)');
         }
     }
     

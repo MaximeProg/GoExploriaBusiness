@@ -16,7 +16,13 @@
     <link rel="stylesheet" href="{{ asset('css/home-v2/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/vertical-menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/vertical-menu-videos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/hero.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/navigation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/vertical-destinations-mega.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/mega-menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/destinations-mega-menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/destinations-search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/search-bar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/videos-dropdown.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/interactive-map.css') }}">
@@ -45,10 +51,15 @@
     
     <script src="{{ asset('js/home-v2/carousel.js') }}"></script>
     <script src="{{ asset('js/home-v2/navigation.js') }}"></script>
-    <script src="{{ asset('js/home-v2/vertical-menu.js') }}"></script>
-    <script src="{{ asset('js/home-v2/mega-menu.js') }}"></script>
+    {{-- Charger le service API pour les menus EN PREMIER --}}
+    <script src="{{ asset('js/home-v2/menu-api-service.js') }}"></script>
     {{-- Charger le service API pour le mega menu destinations --}}
     <script src="{{ asset('js/home-v2/mega-menu-service.js') }}"></script>
+    {{-- Charger le menu vertical dynamique --}}
+    <script src="{{ asset('js/home-v2/vertical-menu-dynamic.js') }}"></script>
+    {{-- Charger le mega menu Destinations pour le menu vertical --}}
+    <script src="{{ asset('js/home-v2/vertical-destinations-mega.js') }}"></script>
+    <script src="{{ asset('js/home-v2/mega-menu.js') }}"></script>
     <script src="{{ asset('js/home-v2/destinations-mega-menu.js') }}"></script>
     <script src="{{ asset('js/home-v2/destinations-search.js') }}"></script>
     <script src="{{ asset('js/home-v2/search-bar.js') }}"></script>

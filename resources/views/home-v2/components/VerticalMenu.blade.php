@@ -13,127 +13,23 @@
     </div>
     
     <nav class="vertical-menu-v2-content">
-        <ul class="vertical-menu-v2-list">
-            <li class="vertical-menu-v2-item">
-                <a href="#destinations" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/EXPERIENCES-QUEBEC-CANADA.png') }}" alt="Destinations" class="vertical-menu-v2-icon">
-                    <span>Destinations</span>
+        <ul class="vertical-menu-v2-list" id="verticalMenuList">
+            {{-- Menu Destinations avec Mega Menu (TOUJOURS EN PREMIER) --}}
+            <li class="vertical-menu-v2-item vertical-menu-v2-destinations-item">
+                <a href="#" class="vertical-menu-v2-link vertical-menu-v2-destinations-trigger">
+                    <span>🌍 Destinations</span>
                 </a>
             </li>
             
-            <li class="vertical-menu-v2-item">
-                <a href="#info" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/info.png') }}" alt="Info" class="vertical-menu-v2-icon">
-                    <span>Info</span>
-                </a>
+            {{-- Les menus principaux seront chargés dynamiquement par JavaScript depuis l'API --}}
+            <li class="vertical-menu-v2-item vertical-menu-v2-loading">
+                <div class="vertical-menu-v2-loader">
+                    <div class="spinner"></div>
+                    <span>Chargement des menus...</span>
+                </div>
             </li>
             
-            <li class="vertical-menu-v2-item">
-                <a href="#deals-billets" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/DEALS-BILLET-AVION.png') }}" alt="Deals Billets" class="vertical-menu-v2-icon">
-                    <span>Deals Billets</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#offres" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/offre-derniere-minutes.png') }}" alt="Offres" class="vertical-menu-v2-icon">
-                    <span>Offres</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#nouvelles" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/NOUVELLES-DU-JOUR.png') }}" alt="Nouvelles" class="vertical-menu-v2-icon">
-                    <span>Nouvelles</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#must-voir" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/MOSTS-A-VOIR.png') }}" alt="Must à Voir" class="vertical-menu-v2-icon">
-                    <span>Must à Voir</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#station-aventure" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/STATIONS-AVENTURE-QUEBEC.png') }}" alt="Station Aventure Québec" class="vertical-menu-v2-icon">
-                    <span>Station Aventure Québec</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#info-tourisme" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/info.png') }}" alt="Info Tourisme" class="vertical-menu-v2-icon">
-                    <span>Info Tourisme</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#info-business" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/GO-EXPLORIA-NEXT-LEVEL.png') }}" alt="Info Business" class="vertical-menu-v2-icon">
-                    <span>Info Business</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#partenaires" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/GO-EXPLORIA-QUALITE-VERIDIQUE.png') }}" alt="Partenaires Affiliés" class="vertical-menu-v2-icon">
-                    <span>Partenaires Affiliés</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#prime-time" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/info.png') }}" alt="Affichage Prime Time" class="vertical-menu-v2-icon">
-                    <span>Affichage Prime Time</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#mosts-quebec" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/MOSTS-A-VOIR.png') }}" alt="MOSTS AU QUÉBEC" class="vertical-menu-v2-icon">
-                    <span>MOSTS AU QUÉBEC</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#vos-nouvelles" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/NOUVELLES-DU-JOUR.png') }}" alt="Vos Nouvelles" class="vertical-menu-v2-icon">
-                    <span>Vos Nouvelles</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#chaine-video" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/info.png') }}" alt="Ma chaîne vidéo" class="vertical-menu-v2-icon">
-                    <span>Ma chaîne vidéo</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#marketplace" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/info.png') }}" alt="Marketplace" class="vertical-menu-v2-icon">
-                    <span>Marketplace</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#info-forfaits" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/info.png') }}" alt="Info forfaits" class="vertical-menu-v2-icon">
-                    <span>Info forfaits</span>
-                </a>
-            </li>
-            
-            <li class="vertical-menu-v2-item">
-                <a href="#info-voyages" class="vertical-menu-v2-link">
-                    <img src="{{ asset('header_info/info.png') }}" alt="Info voyages" class="vertical-menu-v2-icon">
-                    <span>Info voyages</span>
-                </a>
-            </li>
-            
-            {{-- Menu horizontal ajouté sur mobile/tablette --}}
+            {{-- Menu horizontal ajouté sur mobile/tablette (NE PAS TOUCHER) --}}
             <li class="vertical-menu-v2-item vertical-menu-v2-mobile-only">
                 <a href="#valeurs" class="vertical-menu-v2-link">
                     <span>Nos Valeurs</span>
@@ -211,4 +107,7 @@
             </li>
         </ul>
     </nav>
+    
+    {{-- Mega Menu Destinations --}}
+    @include('home-v2.components.VerticalDestinationsMegaMenu')
 </aside>

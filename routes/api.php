@@ -90,22 +90,27 @@ Route::prefix('v1')->group(function () {
         // Continents
         Route::get('/continents', [DestinationController::class, 'continents']);
         Route::get('/continents/{identifier}', [DestinationController::class, 'continent']);
+        Route::get('/continents/{identifier}/countries', [DestinationController::class, 'countriesByContinent']);
         
         // Countries
         Route::get('/countries', [DestinationController::class, 'countries']);
         Route::get('/countries/{identifier}', [DestinationController::class, 'country']);
+        Route::get('/countries/{identifier}/provinces', [DestinationController::class, 'provincesByCountry']);
         
         // Provinces
         Route::get('/provinces', [DestinationController::class, 'provinces']);
         Route::get('/provinces/{identifier}', [DestinationController::class, 'province']);
+        Route::get('/provinces/{identifier}/regions', [DestinationController::class, 'regionsByProvince']);
         
         // Regions
         Route::get('/regions', [DestinationController::class, 'regions']);
         Route::get('/regions/{identifier}', [DestinationController::class, 'region']);
+        Route::get('/regions/{identifier}/villes', [DestinationController::class, 'villesByRegion']);
         
         // Villes
         Route::get('/villes', [DestinationController::class, 'villes']);
         Route::get('/villes/{identifier}', [DestinationController::class, 'ville']);
+        Route::get('/villes/{identifier}/secteurs', [DestinationController::class, 'secteursByVille']);
         
         // Secteurs
         Route::get('/secteurs', [DestinationController::class, 'secteurs']);

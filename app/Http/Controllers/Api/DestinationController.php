@@ -310,4 +310,84 @@ class DestinationController extends Controller
             'data' => $hierarchy
         ]);
     }
+
+    /**
+     * GET /api/destinations/continents/{identifier}/countries
+     * Récupérer les pays d'un continent
+     */
+    public function countriesByContinent(Request $request, $identifier): JsonResponse
+    {
+        $withRelations = $request->boolean('with_relations', false);
+        $countries = $this->destinationService->getCountriesByContinent($identifier, $withRelations);
+
+        return response()->json([
+            'success' => true,
+            'data' => $countries,
+            'count' => $countries->count()
+        ]);
+    }
+
+    /**
+     * GET /api/destinations/countries/{identifier}/provinces
+     * Récupérer les provinces d'un pays
+     */
+    public function provincesByCountry(Request $request, $identifier): JsonResponse
+    {
+        $withRelations = $request->boolean('with_relations', false);
+        $provinces = $this->destinationService->getProvincesByCountry($identifier, $withRelations);
+
+        return response()->json([
+            'success' => true,
+            'data' => $provinces,
+            'count' => $provinces->count()
+        ]);
+    }
+
+    /**
+     * GET /api/destinations/provinces/{identifier}/regions
+     * Récupérer les régions d'une province
+     */
+    public function regionsByProvince(Request $request, $identifier): JsonResponse
+    {
+        $withRelations = $request->boolean('with_relations', false);
+        $regions = $this->destinationService->getRegionsByProvince($identifier, $withRelations);
+
+        return response()->json([
+            'success' => true,
+            'data' => $regions,
+            'count' => $regions->count()
+        ]);
+    }
+
+    /**
+     * GET /api/destinations/regions/{identifier}/villes
+     * Récupérer les villes d'une région
+     */
+    public function villesByRegion(Request $request, $identifier): JsonResponse
+    {
+        $withRelations = $request->boolean('with_relations', false);
+        $villes = $this->destinationService->getVillesByRegion($identifier, $withRelations);
+
+        return response()->json([
+            'success' => true,
+            'data' => $villes,
+            'count' => $villes->count()
+        ]);
+    }
+
+    /**
+     * GET /api/destinations/villes/{identifier}/secteurs
+     * Récupérer les secteurs d'une ville
+     */
+    public function secteursByVille(Request $request, $identifier): JsonResponse
+    {
+        $withRelations = $request->boolean('with_relations', false);
+        $secteurs = $this->destinationService->getSecteursByVille($identifier, $withRelations);
+
+        return response()->json([
+            'success' => true,
+            'data' => $secteurs,
+            'count' => $secteurs->count()
+        ]);
+    }
 }
