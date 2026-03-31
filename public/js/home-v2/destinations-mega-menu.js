@@ -96,6 +96,7 @@ class DestinationsMegaMenu {
     hide() {
         this.isOpen = false;
         this.megaMenu.classList.remove('active');
+        this.resetBreadcrumb();
         setTimeout(() => {
             if (!this.isOpen) {
                 this.megaMenu.style.display = 'none';
@@ -126,94 +127,147 @@ class DestinationsMegaMenu {
     }
     
     async renderContinents(continents) {
-        this.grid.innerHTML = '';
+        // Créer le container avec scroll horizontal
+        const scrollContainer = document.createElement('div');
+        scrollContainer.className = 'destinations-mega-menu-scroll-container';
         
-        // Limiter à 4 continents pour l'affichage
-        const displayContinents = continents.slice(0, 4);
+        const horizontalContainer = document.createElement('div');
+        horizontalContainer.className = 'destinations-mega-menu-horizontal';
         
-        for (const continent of displayContinents) {
-            const column = await this.createContinentColumn(continent);
-            this.grid.appendChild(column);
-        }
-    }
-    
-    async createContinentColumn(continent) {
-        const column = document.createElement('div');
-        column.className = 'destinations-mega-menu-column';
-        
-        // Titre du continent
-        const title = document.createElement('div');
-        title.className = 'destinations-mega-menu-column-title';
-        title.textContent = continent.name;
-        column.appendChild(title);
-        
-        // Conteneur des items
-        const items = document.createElement('div');
-        items.className = 'destinations-mega-menu-items';
-        
-        // Charger les pays du continent
-        const countries = await this.service.getCountriesByContinent(continent.id);
-        
-        // Limiter à 8 pays
-        const displayCountries = countries.slice(0, 8);
-        
-        displayCountries.forEach(country => {
-            const item = this.createDestinationItem(country, 'country', continent);
-            items.appendChild(item);
+        // Créer une colonne pour chaque continent SANS charger les pays
+        // Les pays seront chargés au hover (lazy loading)
+        continents.forEach((continent) => {
+            const column = this.createContinentColumn(continent, []);
+            horizontalContainer.appendChild(column);
         });
         
-        // Si plus de 8 pays, ajouter un lien "Voir plus"
-        if (countries.length > 8) {
-            const moreLink = document.createElement('a');
-            moreLink.className = 'destinations-mega-menu-item';
-            moreLink.href = this.service.getDestinationUrl(continent);
-            moreLink.innerHTML = `
-                <div class="destinations-mega-menu-item-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </div>
-                <span class="destinations-mega-menu-item-name">Voir tous les pays (${countries.length})</span>
-            `;
-            items.appendChild(moreLink);
-        }
+        scrollContainer.appendChild(horizontalContainer);
+        this.grid.innerHTML = '';
+        this.grid.appendChild(scrollContainer);
+    }
+    
+    createContinentColumn(continent, countries) {
+        const column = document.createElement('div');
+        column.className = 'destinations-mega-continent-column';
+        column.dataset.continentId = continent.id;
+        column.dataset.loaded = 'false';
         
-        column.appendChild(items);
+        // Header du continent avec image
+        const header = document.createElement('div');
+        header.className = 'destinations-mega-continent-header';
+        
+        const imageUrl = continent.image_url || continent.image || this.getDefaultImage('continent');
+        
+        header.innerHTML = `
+            <img src="${imageUrl}" alt="${continent.name}" class="destinations-mega-continent-image" onerror="this.src='${this.getDefaultImage('continent')}'">
+            <div class="destinations-mega-continent-info">
+                <h3 class="destinations-mega-continent-name">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    ${continent.name}
+                </h3>
+                <p class="destinations-mega-continent-count">Survolez pour voir les pays</p>
+            </div>
+        `;
+        
+        // Événement hover sur le header du continent pour charger les pays
+        header.addEventListener('mouseenter', async () => {
+            this.updateBreadcrumb([continent]);
+            
+            // Charger les pays si pas encore chargés
+            if (column.dataset.loaded === 'false') {
+                await this.loadCountriesForContinent(column, continent);
+            }
+        });
+        
+        column.appendChild(header);
+        
+        // Liste des pays (vide au départ)
+        const countriesList = document.createElement('div');
+        countriesList.className = 'destinations-mega-countries-list';
+        column.appendChild(countriesList);
+        
         return column;
     }
     
-    createDestinationItem(destination, type, parent = null) {
-        const item = document.createElement('a');
-        item.className = 'destinations-mega-menu-item';
-        item.href = this.service.getDestinationUrl(destination);
+    async loadCountriesForContinent(column, continent) {
+        const countriesList = column.querySelector('.destinations-mega-countries-list');
+        const countElement = column.querySelector('.destinations-mega-continent-count');
         
-        // Icône selon le type
-        const icon = this.getIconForType(type);
+        // Afficher un loader
+        countriesList.innerHTML = '<div class="destinations-mega-country-loader">Chargement...</div>';
+        
+        try {
+            const countries = await this.service.getCountriesByContinent(continent.id);
+            
+            // Mettre à jour le compteur
+            countElement.textContent = `${countries.length} ${countries.length > 1 ? 'pays' : 'pays'}`;
+            
+            // Limiter à 6 pays
+            const displayCountries = countries.slice(0, 6);
+            
+            // Vider le loader
+            countriesList.innerHTML = '';
+            
+            // Ajouter les pays
+            displayCountries.forEach(country => {
+                const countryItem = this.createCountryItem(country, continent);
+                countriesList.appendChild(countryItem);
+            });
+            
+            // Marquer comme chargé
+            column.dataset.loaded = 'true';
+        } catch (error) {
+            console.error(`Erreur chargement pays pour ${continent.name}:`, error);
+            countriesList.innerHTML = '<div class="destinations-mega-country-error">Erreur de chargement</div>';
+        }
+    }
+    
+    createCountryItem(country, continent) {
+        const item = document.createElement('a');
+        item.className = 'destinations-mega-country-item';
+        item.href = this.service.getDestinationUrl(country);
+        
+        const imageUrl = country.image_url || country.image || this.getDefaultImage('country');
         
         item.innerHTML = `
-            <div class="destinations-mega-menu-item-icon">
-                ${icon}
+            <img src="${imageUrl}" alt="${country.name}" class="destinations-mega-country-image" onerror="this.src='${this.getDefaultImage('country')}'">
+            <div class="destinations-mega-country-info">
+                <h4 class="destinations-mega-country-name">${country.name}</h4>
+                <p class="destinations-mega-country-type">Pays</p>
             </div>
-            <span class="destinations-mega-menu-item-name">${destination.name}</span>
+            <div class="destinations-mega-country-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
         `;
         
-        // Événement hover pour mettre à jour le fil d'Ariane
+        // Événement hover sur le pays
         item.addEventListener('mouseenter', () => {
-            this.updateBreadcrumb(destination, type, parent);
+            this.updateBreadcrumb([continent, country]);
         });
         
         return item;
+    }
+    
+    getDefaultImage(type) {
+        const defaults = {
+            continent: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400',
+            country: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400'
+        };
+        return defaults[type] || defaults.country;
     }
     
     getIconForType(type) {
         const icons = {
             continent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
             country: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>',
-            province: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
-            region: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon></svg>',
             ville: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>'
         };
-        
         return icons[type] || icons.ville;
     }
     
@@ -235,38 +289,24 @@ class DestinationsMegaMenu {
         this.empty.style.display = 'block';
     }
     
-    updateBreadcrumb(destination, type, parent = null) {
-        console.log('🔄 updateBreadcrumb appelé:', {destination, type, parent, breadcrumbElement: !!this.breadcrumb});
-        
+    updateBreadcrumb(destinations) {
         if (!this.breadcrumb) {
             console.error('❌ Élément breadcrumb non trouvé!');
             return;
         }
         
-        const breadcrumbParts = [];
-        
-        // Construire le fil d'Ariane selon le type
-        if (parent) {
-            breadcrumbParts.push({
-                name: parent.name,
-                url: this.service.getDestinationUrl(parent)
-            });
+        if (!destinations || destinations.length === 0) {
+            this.resetBreadcrumb();
+            return;
         }
         
-        breadcrumbParts.push({
-            name: destination.name,
-            url: this.service.getDestinationUrl(destination)
-        });
-        
-        console.log('📋 Parties du fil d\'Ariane:', breadcrumbParts);
-        
         // Générer le HTML du fil d'Ariane
-        const breadcrumbHTML = breadcrumbParts.map((part, index) => {
+        const breadcrumbHTML = destinations.map((dest, index) => {
             const separator = index > 0 ? '<span class="search-bar-v2-separator">/</span>' : '';
-            return `${separator}<a href="${part.url}" class="search-bar-v2-destinations-link">${part.name}</a>`;
+            const url = this.service.getDestinationUrl(dest);
+            return `${separator}<a href="${url}" class="search-bar-v2-destinations-link">${dest.name}</a>`;
         }).join('');
         
-        console.log('✅ HTML du fil d\'Ariane généré:', breadcrumbHTML);
         this.breadcrumb.innerHTML = breadcrumbHTML;
     }
     

@@ -112,13 +112,22 @@ class DestinationsSearch {
             items.forEach(item => {
                 const url = this.service.getDestinationUrl(item);
                 const icon = this.getIconForType(item.type);
+                const imageUrl = item.image_url || item.image || this.getDefaultImage(item.type);
                 
                 html += `
                     <a href="${url}" class="search-bar-v2-result-item">
-                        <div class="search-bar-v2-result-icon">${icon}</div>
+                        <div class="search-bar-v2-result-image">
+                            <img src="${imageUrl}" alt="${item.name}" onerror="this.src='${this.getDefaultImage(item.type)}'">
+                        </div>
                         <div class="search-bar-v2-result-content">
                             <div class="search-bar-v2-result-name">${item.name}</div>
-                            ${item.description ? `<div class="search-bar-v2-result-description">${this.truncate(item.description, 80)}</div>` : ''}
+                            <div class="search-bar-v2-result-type">${this.getTypeLabel(item.type)}</div>
+                            ${item.description ? `<div class="search-bar-v2-result-description">${this.truncate(item.description, 100)}</div>` : ''}
+                        </div>
+                        <div class="search-bar-v2-result-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
                     </a>
                 `;
@@ -252,6 +261,19 @@ class DestinationsSearch {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+    }
+    
+    getDefaultImage(type) {
+        const defaults = {
+            continent: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400',
+            country: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400',
+            province: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400',
+            region: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400',
+            ville: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400',
+            secteur: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400'
+        };
+        
+        return defaults[type] || defaults.ville;
     }
 }
 

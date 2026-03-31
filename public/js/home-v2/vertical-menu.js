@@ -317,5 +317,11 @@ class VerticalMenuV2 {
 
 // Initialiser le menu vertical quand le DOM est prêt
 document.addEventListener('DOMContentLoaded', () => {
-    new VerticalMenuV2();
+    const menuInstance = new VerticalMenuV2();
+    
+    // Réinitialiser les accordéons après un court délai pour s'assurer que tous les éléments sont chargés
+    setTimeout(() => {
+        menuInstance.initAccordion();
+        menuInstance.loadVideosSubmenu();
+    }, 500);
 });

@@ -59,13 +59,13 @@
                 {{-- Logo REDI + DESTINATIONS (un seul élément à gauche) --}}
                 <div class="search-bar-v2-destinations" style="position: relative;">
                     <img src="{{ asset('REDI.png') }}" alt="Destinations" class="search-bar-v2-globe-icon">
-                    <span class="search-bar-v2-destinations-title">DESTINATIONS</span>
+                    <span class="search-bar-v2-destinations-title" id="destinationsMainTrigger">DESTINATIONS</span>
                     <div class="search-bar-v2-destinations-links" id="destinationsBreadcrumb">
                         {{-- Le fil d'Ariane sera généré dynamiquement par JavaScript --}}
                         <span class="search-bar-v2-destinations-link">Survolez pour explorer</span>
                     </div>
                     
-                    {{-- Mega Menu Destinations --}}
+                    {{-- Mega Menu Destinations Principal --}}
                     @include('home-v2.components.DestinationsMegaMenu')
                 </div>
 
@@ -80,7 +80,7 @@
                             type="text" 
                             class="search-bar-v2-input" 
                             id="searchBarInput"
-                            placeholder="Rechercher une destination..."
+                            placeholder="Rechercher une destination, activité, hébergement..."
                             aria-label="Rechercher une destination"
                             autocomplete="off"
                         >

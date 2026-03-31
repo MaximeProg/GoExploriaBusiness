@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/home-v2/navigation.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/vertical-destinations-mega.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/mega-menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/home-v2/destinations-mega-menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/destinations-mega-menu-modern.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/destinations-search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/search-bar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/videos-dropdown.css') }}">
@@ -31,6 +31,10 @@
     <link rel="stylesheet" href="{{ asset('css/video-modal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/slideshows.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/video-player.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/events-vedette.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/destinations-vedette.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/restaurants-vedette.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/menu-accord-mets-vins.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/footer.css') }}">
 </head>
 <body>
@@ -42,6 +46,10 @@
         @include('home-v2.components.slideshows')
         @include('home-v2.components.InteractiveMap')
         @include('home-v2.components.VideoPlayer')
+        @include('home-v2.components.EventsVedette')
+        @include('home-v2.components.DestinationsVedette')
+        @include('home-v2.components.RestaurantsVedette')
+        @include('home-v2.components.MenuAccordMetsVins')
     </main>
     
     {{-- Modal vidéo réutilisable pour toute la plateforme --}}
@@ -57,6 +65,8 @@
     <script src="{{ asset('js/home-v2/mega-menu-service.js') }}"></script>
     {{-- Charger le menu vertical dynamique --}}
     <script src="{{ asset('js/home-v2/vertical-menu-dynamic.js') }}"></script>
+    {{-- Charger le contrôleur du menu vertical (gestion accordéon et vidéos) --}}
+    <script src="{{ asset('js/home-v2/vertical-menu.js') }}"></script>
     {{-- Charger le mega menu Destinations pour le menu vertical --}}
     <script src="{{ asset('js/home-v2/vertical-destinations-mega.js') }}"></script>
     <script src="{{ asset('js/home-v2/mega-menu.js') }}"></script>
@@ -72,5 +82,6 @@
     <script src="{{ asset('js/home-v2/videos-dropdown.js') }}"></script>
     <script src="{{ asset('js/home-v2/slideshows.js') }}"></script>
     <script src="{{ asset('js/home-v2/video-player.js') }}"></script>
+    <script src="{{ asset('js/home-v2/events-vedette.js') }}"></script>
 </html>
 </html>

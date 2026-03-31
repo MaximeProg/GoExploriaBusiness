@@ -354,11 +354,11 @@ body {
 
 .hero-v2 {
     position: relative;
-    min-height: 100vh;
+    min-height: 120vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 60px 40px;
+    padding: 80px 40px;
     overflow: hidden;
 }
 

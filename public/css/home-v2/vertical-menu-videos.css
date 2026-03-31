@@ -2,22 +2,17 @@
    VERTICAL MENU VIDEOS - Styles pour le sous-menu vidéos
    ============================================ */
 
-/* Sous-menu vidéos spécifique */
-.vertical-menu-v2-videos-submenu {
-    padding: 8px 0 !important;
-}
-
 /* Item vidéo dans le menu vertical */
 .vertical-menu-v2-video-item {
     display: flex;
     gap: 12px;
     padding: 12px 16px;
     margin: 6px 12px;
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
+    border: 1px solid #e9ecef;
 }
 
 .vertical-menu-v2-video-item:hover {
@@ -96,7 +91,7 @@
 .vertical-menu-v2-video-title {
     font-size: 13px;
     font-weight: 600;
-    color: #ffffff;
+    color: #1a2942;
     margin: 0 0 6px 0;
     line-height: 1.3;
     overflow: hidden;
@@ -136,7 +131,7 @@
 .vertical-menu-v2-video-date {
     font-size: 10px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
+    color: #6c757d;
 }
 
 /* Animation d'entrée */
@@ -165,7 +160,7 @@
 .vertical-menu-v2-videos-empty {
     padding: 30px 20px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.5);
+    color: #6c757d;
 }
 
 .vertical-menu-v2-videos-empty svg {

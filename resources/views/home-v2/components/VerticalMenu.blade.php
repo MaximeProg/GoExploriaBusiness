@@ -39,7 +39,7 @@
             {{-- Accordéon Vidéos avec liste des vidéos --}}
             <li class="vertical-menu-v2-item vertical-menu-v2-mobile-only vertical-menu-v2-accordion">
                 <button class="vertical-menu-v2-link vertical-menu-v2-accordion-trigger" data-accordion="videos">
-                    <span>Vidéos</span>
+                    <span>Nos vidéos</span>
                     <svg class="vertical-menu-v2-accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>

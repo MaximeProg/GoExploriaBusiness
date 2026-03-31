@@ -1,0 +1,467 @@
+/* ============================================
+   MEGA MENU DESTINATIONS - Design Moderne
+   Fond blanc, disposition horizontale, scroll
+   ============================================ */
+
+/* Container principal du mega menu */
+#destinationsMegaMenu {
+    position: fixed;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    width: 95%;
+    max-width: 1600px;
+    background: #ffffff;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    pointer-events: none;
+    border-top: 2px solid #d4af37;
+    max-height: 500px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+#destinationsMegaMenu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+/* Container avec scroll vertical */
+.destinations-mega-menu-scroll-container {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 30px 20px;
+}
+
+/* Scrollbar personnalisée */
+.destinations-mega-menu-scroll-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.destinations-mega-menu-scroll-container::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.destinations-mega-menu-scroll-container::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 4px;
+}
+
+.destinations-mega-menu-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #c09d2f;
+}
+
+/* Container horizontal avec scroll */
+.destinations-mega-menu-horizontal {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar horizontale personnalisée */
+.destinations-mega-menu-horizontal::-webkit-scrollbar {
+    height: 8px;
+}
+
+.destinations-mega-menu-horizontal::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.destinations-mega-menu-horizontal::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 4px;
+}
+
+.destinations-mega-menu-horizontal::-webkit-scrollbar-thumb:hover {
+    background: #c09d2f;
+}
+
+/* Colonne de continent */
+.destinations-mega-continent-column {
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+/* Header du continent */
+.destinations-mega-continent-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.destinations-mega-continent-header:hover {
+    border-color: #d4af37;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Image du continent */
+.destinations-mega-continent-image {
+    width: 100%;
+    height: 140px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Info du continent */
+.destinations-mega-continent-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.destinations-mega-continent-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0a1628;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.destinations-mega-continent-name svg {
+    width: 20px;
+    height: 20px;
+    stroke: #d4af37;
+}
+
+.destinations-mega-continent-count {
+    font-size: 13px;
+    color: #6c757d;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Liste des pays */
+.destinations-mega-countries-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Item de pays */
+.destinations-mega-country-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.destinations-mega-country-item:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%);
+    border-color: #d4af37;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+/* Image du pays */
+.destinations-mega-country-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Info du pays */
+.destinations-mega-country-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.destinations-mega-country-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0a1628;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.destinations-mega-country-type {
+    font-size: 11px;
+    font-weight: 500;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* Flèche de navigation */
+.destinations-mega-country-arrow {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+.destinations-mega-country-arrow svg {
+    width: 100%;
+    height: 100%;
+    stroke: #0a1628;
+}
+
+.destinations-mega-country-item:hover .destinations-mega-country-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+/* Loader */
+.destinations-mega-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    gap: 20px;
+}
+
+.destinations-mega-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f5f5f5;
+    border-top-color: #d4af37;
+    border-radius: 50%;
+    animation: destinations-spin 0.8s linear infinite;
+}
+
+@keyframes destinations-spin {
+    to { transform: rotate(360deg); }
+}
+
+.destinations-mega-loader p {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* État vide */
+.destinations-mega-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    gap: 15px;
+}
+
+.destinations-mega-empty svg {
+    width: 60px;
+    height: 60px;
+    stroke: #adb5bd;
+}
+
+.destinations-mega-empty p {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Animations désactivées */
+
+/* Loader et erreur dans les listes de pays */
+.destinations-mega-country-loader,
+.destinations-mega-country-error {
+    padding: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.destinations-mega-country-error {
+    color: #dc3545;
+}
+
+/* Responsive */
+/* Grands écrans */
+@media (max-width: 1700px) {
+    #destinationsMegaMenu {
+        width: 1400px;
+    }
+}
+
+/* Tablette */
+@media (max-width: 1440px) {
+    #destinationsMegaMenu {
+        width: 1200px;
+    }
+}
+
+@media (max-width: 1280px) {
+    #destinationsMegaMenu {
+        width: 1000px;
+    }
+    
+    .destinations-mega-continent-column {
+        min-width: 240px;
+        max-width: 240px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #destinationsMegaMenu {
+        width: 800px;
+    }
+    
+    .destinations-mega-continent-column {
+        min-width: 220px;
+        max-width: 220px;
+    }
+    
+    .destinations-mega-continent-name {
+        font-size: 15px;
+    }
+    
+    .destinations-mega-country-name {
+        font-size: 12px;
+    }
+}
+
+/* Mobile - Layout Vertical */
+@media (max-width: 768px) {
+    #destinationsMegaMenu {
+        width: 100%;
+        max-width: none;
+        left: 0;
+        transform: translateY(-10px);
+        max-height: 70vh;
+        border-radius: 0;
+        top: 120px;
+    }
+    
+    #destinationsMegaMenu.active {
+        transform: translateY(0);
+    }
+    
+    .destinations-mega-menu-scroll-container {
+        max-height: 70vh;
+        padding: 15px;
+    }
+    
+    /* Layout vertical au lieu de horizontal */
+    .destinations-mega-menu-horizontal {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .destinations-mega-continent-column {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .destinations-mega-continent-image {
+        height: 140px;
+        width: 100%;
+    }
+    
+    .destinations-mega-continent-name {
+        font-size: 16px;
+    }
+    
+    .destinations-mega-continent-count {
+        font-size: 12px;
+    }
+    
+    .destinations-mega-countries-list {
+        gap: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .destinations-mega-country-item {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .destinations-mega-country-image {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+    }
+    
+    .destinations-mega-country-info {
+        flex: 1;
+    }
+    
+    .destinations-mega-country-name {
+        font-size: 13px;
+    }
+    
+    .destinations-mega-country-type {
+        font-size: 11px;
+    }
+}
+
+/* Très petits mobiles */
+@media (max-width: 480px) {
+    .destinations-mega-menu-scroll-container {
+        padding: 12px;
+    }
+    
+    .destinations-mega-continent-image {
+        height: 120px;
+    }
+    
+    .destinations-mega-continent-name {
+        font-size: 15px;
+    }
+    
+    .destinations-mega-continent-count {
+        font-size: 11px;
+    }
+    
+    .destinations-mega-country-item {
+        padding: 8px;
+    }
+    
+    .destinations-mega-country-image {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .destinations-mega-country-name {
+        font-size: 12px;
+    }
+    
+    .destinations-mega-country-type {
+        font-size: 10px;
+    }
+}
