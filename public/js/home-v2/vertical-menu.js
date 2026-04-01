@@ -107,19 +107,11 @@ class VerticalMenuV2 {
         this.openBtn.classList.add('active');
         document.body.style.overflow = 'hidden';
         
-        // Animation des items du menu
+        // Afficher les items instantanément sans animation
         const items = this.menu.querySelectorAll('.vertical-menu-v2-item');
-        items.forEach((item, index) => {
-            setTimeout(() => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-20px)';
-                item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateX(0)';
-                }, 50);
-            }, index * 30);
+        items.forEach((item) => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
         });
     }
     
@@ -319,9 +311,7 @@ class VerticalMenuV2 {
 document.addEventListener('DOMContentLoaded', () => {
     const menuInstance = new VerticalMenuV2();
     
-    // Réinitialiser les accordéons après un court délai pour s'assurer que tous les éléments sont chargés
-    setTimeout(() => {
-        menuInstance.initAccordion();
-        menuInstance.loadVideosSubmenu();
-    }, 500);
+    // Initialiser les accordéons et vidéos instantanément
+    menuInstance.initAccordion();
+    menuInstance.loadVideosSubmenu();
 });

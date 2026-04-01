@@ -255,19 +255,11 @@ class VerticalMenuDynamic {
         this.openBtn.classList.add('active');
         document.body.style.overflow = 'hidden';
         
-        // Animation des items du menu
+        // Afficher les items instantanément sans animation
         const items = this.menuList.querySelectorAll('.vertical-menu-v2-item');
-        items.forEach((item, index) => {
-            setTimeout(() => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-20px)';
-                item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateX(0)';
-                }, 50);
-            }, index * 30);
+        items.forEach((item) => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
         });
     }
     

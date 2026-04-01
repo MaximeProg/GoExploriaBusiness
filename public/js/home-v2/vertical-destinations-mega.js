@@ -133,7 +133,7 @@ class VerticalDestinationsMegaMenu {
         const countryCount = isLazyLoad ? '...' : countries.length;
         
         return `
-            <div class="vmenu-dest-section" data-continent-id="${continent.id}" data-loaded="${!isLazyLoad}">
+            <div class="vmenu-dest-section" data-destination-id="${continent.id}" data-type="continent" data-loaded="${!isLazyLoad}">
                 <div class="vmenu-dest-section-header">
                     <img src="${imageUrl}" alt="${continent.name}" class="vmenu-dest-section-image" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400'">
                     <div class="vmenu-dest-section-info">
@@ -150,27 +150,72 @@ class VerticalDestinationsMegaMenu {
                 </div>
                 <div class="vmenu-dest-section-content">
                     <div class="vmenu-dest-section-list">
-                        ${isLazyLoad ? '<div class="vmenu-dest-section-loader"><div class="vmenu-destinations-spinner"></div></div>' : countries.map(country => this.createDestinationItem(country, 'country')).join('')}
+                        ${isLazyLoad ? '<div class="vmenu-dest-section-loader"><div class="vmenu-destinations-spinner"></div></div>' : countries.map(country => this.createDestinationSection(country, 'country', null)).join('')}
                     </div>
                 </div>
             </div>
         `;
     }
     
-    createDestinationItem(destination, type) {
+    createDestinationSection(destination, type, children) {
         const imageUrl = destination.image_url || destination.image || this.getDefaultImage(type);
-        const url = this.service.getDestinationUrl(destination);
+        const url = this.service.getDestinationUrl({...destination, type});
         const typeName = this.getTypeName(type);
+        const isLazyLoad = children === null;
+        const childCount = isLazyLoad ? '...' : (children ? children.length : 0);
+        const hasChildren = isLazyLoad || (children && children.length > 0);
+        const childType = this.getChildType(type);
+        const childTypeName = childType ? this.getTypeName(childType) + 's' : '';
         
+        // Si pas d'enfants possibles, afficher comme item simple
+        if (!hasChildren && !isLazyLoad) {
+            return `
+                <a href="${url}" class="vmenu-dest-item" data-destination-id="${destination.id}" data-type="${type}">
+                    <img src="${imageUrl}" alt="${destination.name}" class="vmenu-dest-item-image" onerror="this.src='${this.getDefaultImage(type)}'">
+                    <div class="vmenu-dest-item-info">
+                        <h5 class="vmenu-dest-item-name">${destination.name}</h5>
+                        <p class="vmenu-dest-item-type">${typeName}</p>
+                    </div>
+                </a>
+            `;
+        }
+        
+        // Sinon, afficher comme section expandable
         return `
-            <a href="${url}" class="vmenu-dest-item" data-destination-id="${destination.id}" data-type="${type}">
-                <img src="${imageUrl}" alt="${destination.name}" class="vmenu-dest-item-image" onerror="this.src='${this.getDefaultImage(type)}'">
-                <div class="vmenu-dest-item-info">
-                    <h5 class="vmenu-dest-item-name">${destination.name}</h5>
-                    <p class="vmenu-dest-item-type">${typeName}</p>
+            <div class="vmenu-dest-section vmenu-dest-subsection" data-destination-id="${destination.id}" data-type="${type}" data-loaded="${!isLazyLoad}">
+                <div class="vmenu-dest-section-header">
+                    <img src="${imageUrl}" alt="${destination.name}" class="vmenu-dest-section-image" onerror="this.src='${this.getDefaultImage(type)}'">
+                    <div class="vmenu-dest-section-info">
+                        <h4 class="vmenu-dest-section-name">
+                            <a href="${url}" class="vmenu-dest-name-link">${destination.name}</a>
+                        </h4>
+                        <p class="vmenu-dest-section-count">
+                            ${isLazyLoad ? 'Cliquez pour explorer' : (childCount > 0 ? `${childCount} ${childTypeName}` : typeName)}
+                        </p>
+                    </div>
+                    ${hasChildren ? `<svg class="vmenu-dest-section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>` : ''}
                 </div>
-            </a>
+                ${hasChildren ? `<div class="vmenu-dest-section-content">
+                    <div class="vmenu-dest-section-list">
+                        ${isLazyLoad ? '<div class="vmenu-dest-section-loader"><div class="vmenu-destinations-spinner"></div></div>' : children.map(child => this.createDestinationSection(child, childType, null)).join('')}
+                    </div>
+                </div>` : ''}
+            </div>
         `;
+    }
+    
+    getChildType(parentType) {
+        const hierarchy = {
+            'continent': 'country',
+            'country': 'province',
+            'province': 'region',
+            'region': 'ville',
+            'ville': 'secteur',
+            'secteur': null
+        };
+        return hierarchy[parentType] || null;
     }
     
     getDefaultImage(type) {
@@ -204,14 +249,20 @@ class VerticalDestinationsMegaMenu {
         
         sections.forEach(header => {
             header.addEventListener('click', async (e) => {
+                // Ne pas empêcher la navigation si on clique sur le lien du nom
+                if (e.target.closest('.vmenu-dest-name-link')) {
+                    return;
+                }
+                
                 e.preventDefault();
                 const section = header.closest('.vmenu-dest-section');
-                const continentId = section.dataset.continentId;
+                const destinationId = section.dataset.destinationId;
+                const type = section.dataset.type;
                 const isLoaded = section.dataset.loaded === 'true';
                 
-                // Si pas encore chargé, charger les pays (LAZY LOADING)
+                // Si pas encore chargé, charger les enfants (LAZY LOADING)
                 if (!isLoaded) {
-                    await this.loadCountriesForContinent(section, continentId);
+                    await this.loadChildrenForDestination(section, destinationId, type);
                 }
                 
                 // Toggle l'expansion
@@ -220,32 +271,64 @@ class VerticalDestinationsMegaMenu {
         });
     }
     
-    async loadCountriesForContinent(section, continentId) {
+    async loadChildrenForDestination(section, destinationId, type) {
         try {
-            // Charger les pays pour ce continent uniquement
-            const countries = await this.service.getCountriesByContinent(continentId);
+            let children = [];
+            const childType = this.getChildType(type);
+            
+            if (!childType) {
+                section.dataset.loaded = 'true';
+                return;
+            }
+            
+            // Charger les enfants selon le type de destination
+            switch(type) {
+                case 'continent':
+                    children = await this.service.getCountriesByContinent(destinationId);
+                    break;
+                case 'country':
+                    children = await this.service.getProvincesByCountry(destinationId);
+                    break;
+                case 'province':
+                    children = await this.service.getRegionsByProvince(destinationId);
+                    break;
+                case 'region':
+                    children = await this.service.getVillesByRegion(destinationId);
+                    break;
+                case 'ville':
+                    // Pour les villes, on pourrait charger les secteurs si l'API le supporte
+                    // Pour l'instant, on considère que les villes n'ont pas d'enfants
+                    children = [];
+                    break;
+                default:
+                    children = [];
+            }
             
             // Mettre à jour le contenu
             const listContainer = section.querySelector('.vmenu-dest-section-list');
             const countElement = section.querySelector('.vmenu-dest-section-count');
+            const childTypeName = this.getTypeName(childType) + 's';
             
-            if (countries.length > 0) {
-                listContainer.innerHTML = countries.map(country => 
-                    this.createDestinationItem(country, 'country')
+            if (children.length > 0) {
+                listContainer.innerHTML = children.map(child => 
+                    this.createDestinationSection(child, childType, null)
                 ).join('');
-                countElement.textContent = `${countries.length} pays`;
+                countElement.textContent = `${children.length} ${childTypeName}`;
+                
+                // Réinitialiser les événements pour les nouvelles sections
+                this.initSectionEvents();
             } else {
-                listContainer.innerHTML = '<p style="padding: 20px; text-align: center; color: rgba(255,255,255,0.5);">Aucun pays disponible</p>';
-                countElement.textContent = '0 pays';
+                listContainer.innerHTML = `<p style="padding: 20px; text-align: center; color: #6c757d;">Aucun ${childTypeName.toLowerCase()} disponible</p>`;
+                countElement.textContent = `0 ${childTypeName}`;
             }
             
             // Marquer comme chargé
             section.dataset.loaded = 'true';
             
         } catch (error) {
-            console.error(`Erreur chargement pays pour continent ${continentId}:`, error);
+            console.error(`Erreur chargement enfants pour ${type} ${destinationId}:`, error);
             const listContainer = section.querySelector('.vmenu-dest-section-list');
-            listContainer.innerHTML = '<p style="padding: 20px; text-align: center; color: rgba(255,100,100,0.8);">Erreur de chargement</p>';
+            listContainer.innerHTML = '<p style="padding: 20px; text-align: center; color: #dc3545;">Erreur de chargement</p>';
         }
     }
     

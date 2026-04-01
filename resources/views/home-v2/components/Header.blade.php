@@ -1,13 +1,13 @@
 {{-- Header Component --}}
 <header class="header-v2">
-    <div class="header-top">
+    <!-- <div class="header-top">
         <div class="header-contact">
             <a href="mailto:INFOGOEXPLORIA@GMAIL.COM">INFOGOEXPLORIA@GMAIL.COM</a>
         </div>
         <div class="header-promo">
             <span>GO PROMO</span>
         </div>
-    </div>
+    </div> -->
     
     <nav class="header-nav">
         <div class="nav-container">

@@ -3,29 +3,78 @@
     {{-- Video Carousel Background - Confiné au Hero --}}
     <div class="video-carousel-background">
         <div class="video-carousel-container">
-            <div class="video-slide active" data-slide="0">
-                <video class="video-background" autoplay muted loop playsinline>
-                    <source src="{{ asset('home2/videos/hero-video-1.mp4.mp4') }}" type="video/mp4">
-                </video>
+            @foreach($sliders as $index => $slider)
+            <div class="video-slide {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}">
+                @if($slider->video_type === 'youtube' || $slider->video_type === 'vimeo')
+                    {{-- Vidéo YouTube/Vimeo avec iframe --}}
+                    <iframe 
+                        class="video-background" 
+                        src="{{ $slider->video_embed_url }}?autoplay={{ $index === 0 ? '1' : '0' }}&mute=1&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" 
+                        frameborder="0" 
+                        allow="autoplay; encrypted-media" 
+                        allowfullscreen
+                    ></iframe>
+                @else
+                    {{-- Vidéo uploadée avec balise video HTML5 --}}
+                    <video class="video-background" {{ $index === 0 ? 'autoplay' : '' }} muted loop playsinline>
+                        <source src="{{ $slider->video_embed_url }}" type="video/mp4">
+                    </video>
+                @endif
+                
+                {{-- Overlay avec titre et bouton sur la vidéo principale --}}
+                <div class="hero-video-overlay">
+                    <div class="hero-video-info">
+                        <h2 class="hero-video-main-title">{{ $slider->name }}</h2>
+                        @if($slider->button_text && $slider->button_url)
+                            <a href="{{ $slider->button_url }}" class="hero-video-main-button">
+                                {{ $slider->button_text }}
+                            </a>
+                        @endif
+                    </div>
+                </div>
             </div>
-            
-            <div class="video-slide" data-slide="1">
-                <video class="video-background" muted loop playsinline>
-                    <source src="{{ asset('home2/videos/hero-video-2.mp4.mp4') }}" type="video/mp4">
-                </video>
+            @endforeach
+        </div>
+        
+        {{-- Cartes vidéo miniatures sur la vidéo principale --}}
+        <div class="hero-video-cards-overlay">
+            <button class="carousel-nav-btn prev" aria-label="Précédent">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <div class="hero-video-cards">
+                @foreach($sliders as $index => $slider)
+                <div class="hero-video-card {{ $index === 0 ? 'active' : '' }}" data-video="{{ $index }}">
+                    @if($slider->video_type === 'youtube' || $slider->video_type === 'vimeo')
+                        <img class="hero-video-card-thumbnail" src="{{ $slider->thumbnail_url }}" alt="{{ $slider->name }}">
+                    @else
+                        <video class="hero-video-card-thumbnail" muted>
+                            <source src="{{ $slider->video_embed_url }}" type="video/mp4">
+                        </video>
+                    @endif
+                    <div class="hero-video-card-overlay">
+                        <div class="hero-video-card-play">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="hero-video-card-title">{{ $slider->name }}</div>
+                </div>
+                @endforeach
             </div>
-            
-            <div class="video-slide" data-slide="2">
-                <video class="video-background" muted loop playsinline>
-                    <source src="{{ asset('home2/videos/hero-video-3.mp4.mp4') }}" type="video/mp4">
-                </video>
-            </div>
+            <button class="carousel-nav-btn next" aria-label="Suivant">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
         </div>
         
         <div class="carousel-controls">
-            <button class="carousel-dot" data-slide="0" aria-label="Video 1"></button>
-            <button class="carousel-dot" data-slide="1" aria-label="Video 2"></button>
-            <button class="carousel-dot" data-slide="2" aria-label="Video 3"></button>
+            @foreach($sliders as $index => $slider)
+            <button class="carousel-dot" data-slide="{{ $index }}" aria-label="Video {{ $index + 1 }}"></button>
+            @endforeach
         </div>
     </div>
 
@@ -117,4 +166,5 @@
             </svg>
         </button>
     </div>
+
 </section>

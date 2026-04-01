@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     AuthController,
     GeminiController,
     HomeController,
+    HomeV2Controller,
     LandingPageController,
     DestinationPageController
 };
@@ -34,9 +35,7 @@ Route::get('/', function () {
 });
 
 // Nouvelle page d'accueil V2
-Route::get('/home-v2', function () {
-    return view('home-v2.index');
-})->name('home-v2');
+Route::get('/home-v2', [HomeV2Controller::class, 'index'])->name('home-v2');
 
 // Routes pour les pages de destinations
 Route::prefix('destinations')->name('destinations.')->group(function () {

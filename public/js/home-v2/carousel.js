@@ -9,10 +9,15 @@ class VideoCarousel {
         this.currentSlide = 0;
         this.slides = document.querySelectorAll('.video-slide');
         this.dots = document.querySelectorAll('.carousel-dot');
+        this.videoCards = document.querySelectorAll('.hero-video-card');
+        this.prevBtn = document.querySelector('.carousel-nav-btn.prev');
+        this.nextBtn = document.querySelector('.carousel-nav-btn.next');
+        this.cardsContainer = document.querySelector('.hero-video-cards');
         this.autoPlayInterval = null;
         this.autoPlayDelay = 8000;
         this.isMobile = window.innerWidth <= 768;
         this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.scrollPosition = 0;
         
         this.init();
     }
@@ -23,6 +28,20 @@ class VideoCarousel {
         this.dots.forEach((dot, index) => {
             dot.addEventListener('click', () => this.goToSlide(index));
         });
+        
+        this.videoCards.forEach((card, index) => {
+            card.addEventListener('click', () => this.goToSlide(index));
+            
+            const thumbnail = card.querySelector('.hero-video-card-thumbnail');
+            if (thumbnail) {
+                thumbnail.currentTime = 2;
+            }
+        });
+        
+        if (this.prevBtn && this.nextBtn) {
+            this.prevBtn.addEventListener('click', () => this.scrollCarousel('prev'));
+            this.nextBtn.addEventListener('click', () => this.scrollCarousel('next'));
+        }
         
         if (this.isMobile) {
             this.optimizeForMobile();
@@ -167,6 +186,14 @@ class VideoCarousel {
                 dot.classList.remove('active');
             }
         });
+        
+        this.videoCards.forEach((card, index) => {
+            if (index === this.currentSlide) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
     }
     
     startAutoPlay() {
@@ -180,6 +207,25 @@ class VideoCarousel {
         if (this.autoPlayInterval) {
             clearInterval(this.autoPlayInterval);
             this.autoPlayInterval = null;
+        }
+    }
+    
+    scrollCarousel(direction) {
+        if (!this.cardsContainer) return;
+        
+        const cardWidth = 250 + 20; // largeur carte + gap
+        const scrollAmount = cardWidth * 2; // Défiler 2 cartes à la fois
+        
+        if (direction === 'next') {
+            this.cardsContainer.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        } else {
+            this.cardsContainer.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
         }
     }
 }

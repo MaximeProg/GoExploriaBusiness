@@ -65,13 +65,11 @@ class DestinationsMegaMenu {
         }
         this.isOpen = true;
         
-        // Afficher le mega menu
+        // Afficher le mega menu instantanément
         console.log('👁️ Affichage du mega menu DOM');
         this.megaMenu.style.display = 'block';
-        setTimeout(() => {
-            this.megaMenu.classList.add('active');
-            console.log('✅ Classe "active" ajoutée');
-        }, 10);
+        this.megaMenu.classList.add('active');
+        console.log('✅ Classe "active" ajoutée');
         
         // Charger les données si pas encore chargées
         if (this.grid.children.length === 0) {
@@ -96,12 +94,9 @@ class DestinationsMegaMenu {
     hide() {
         this.isOpen = false;
         this.megaMenu.classList.remove('active');
-        this.resetBreadcrumb();
-        setTimeout(() => {
-            if (!this.isOpen) {
-                this.megaMenu.style.display = 'none';
-            }
-        }, 300);
+        if (!this.isOpen) {
+            this.megaMenu.style.display = 'none';
+        }
     }
     
     async loadDestinations() {
@@ -120,6 +115,20 @@ class DestinationsMegaMenu {
             await this.renderContinents(continents);
             
             this.showGrid();
+            
+            // Sélectionner "Amérique du Nord" par défaut
+            const ameriqueDuNord = continents.find(c => c.name.toLowerCase().includes('amérique du nord') || c.name.toLowerCase().includes('north america'));
+            if (ameriqueDuNord) {
+                // Simuler un hover sur Amérique du Nord
+                const continentItems = this.grid.querySelectorAll('.destinations-mega-continent-item');
+                continentItems.forEach(item => {
+                    if (item.dataset.continentId == ameriqueDuNord.id) {
+                        item.classList.add('active');
+                        this.updateBreadcrumb([ameriqueDuNord]);
+                        this.loadContinentDetails(ameriqueDuNord);
+                    }
+                });
+            }
         } catch (error) {
             console.error('Erreur lors du chargement des destinations:', error);
             this.showEmpty();
@@ -127,139 +136,208 @@ class DestinationsMegaMenu {
     }
     
     async renderContinents(continents) {
-        // Créer le container avec scroll horizontal
-        const scrollContainer = document.createElement('div');
-        scrollContainer.className = 'destinations-mega-menu-scroll-container';
+        // Créer le container à 2 colonnes
+        const container = document.createElement('div');
+        container.className = 'destinations-mega-two-columns';
         
-        const horizontalContainer = document.createElement('div');
-        horizontalContainer.className = 'destinations-mega-menu-horizontal';
+        // Colonne gauche: Liste des continents
+        const leftColumn = document.createElement('div');
+        leftColumn.className = 'destinations-mega-left-column';
         
-        // Créer une colonne pour chaque continent SANS charger les pays
-        // Les pays seront chargés au hover (lazy loading)
+        const continentsList = document.createElement('div');
+        continentsList.className = 'destinations-mega-continents-list';
+        
         continents.forEach((continent) => {
-            const column = this.createContinentColumn(continent, []);
-            horizontalContainer.appendChild(column);
+            const item = this.createContinentItem(continent);
+            continentsList.appendChild(item);
         });
         
-        scrollContainer.appendChild(horizontalContainer);
+        leftColumn.appendChild(continentsList);
+        
+        // Colonne droite: Contenu dynamique
+        const rightColumn = document.createElement('div');
+        rightColumn.className = 'destinations-mega-right-column';
+        rightColumn.innerHTML = '<div class="destinations-mega-placeholder">Survolez un continent pour voir les destinations</div>';
+        
+        container.appendChild(leftColumn);
+        container.appendChild(rightColumn);
+        
         this.grid.innerHTML = '';
-        this.grid.appendChild(scrollContainer);
+        this.grid.appendChild(container);
     }
     
-    createContinentColumn(continent, countries) {
-        const column = document.createElement('div');
-        column.className = 'destinations-mega-continent-column';
-        column.dataset.continentId = continent.id;
-        column.dataset.loaded = 'false';
+    createContinentItem(continent) {
+        const item = document.createElement('div');
+        item.className = 'destinations-mega-continent-item';
+        item.dataset.continentId = continent.id;
+        item.dataset.loaded = 'false';
+        item.textContent = continent.name;
         
-        // Header du continent avec image
-        const header = document.createElement('div');
-        header.className = 'destinations-mega-continent-header';
-        
-        const imageUrl = continent.image_url || continent.image || this.getDefaultImage('continent');
-        
-        header.innerHTML = `
-            <img src="${imageUrl}" alt="${continent.name}" class="destinations-mega-continent-image" onerror="this.src='${this.getDefaultImage('continent')}'">
-            <div class="destinations-mega-continent-info">
-                <h3 class="destinations-mega-continent-name">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                    </svg>
-                    ${continent.name}
-                </h3>
-                <p class="destinations-mega-continent-count">Survolez pour voir les pays</p>
-            </div>
-        `;
-        
-        // Événement hover sur le header du continent pour charger les pays
-        header.addEventListener('mouseenter', async () => {
+        // Événement hover pour charger et afficher les pays
+        item.addEventListener('mouseenter', async () => {
+            // Retirer la sélection des autres continents
+            const siblings = item.parentElement.querySelectorAll('.destinations-mega-continent-item');
+            siblings.forEach(sibling => sibling.classList.remove('active'));
+            item.classList.add('active');
+            
+            // Mettre à jour le fil d'Ariane
             this.updateBreadcrumb([continent]);
             
-            // Charger les pays si pas encore chargés
-            if (column.dataset.loaded === 'false') {
-                await this.loadCountriesForContinent(column, continent);
-            }
-        });
-        
-        column.appendChild(header);
-        
-        // Liste des pays (vide au départ)
-        const countriesList = document.createElement('div');
-        countriesList.className = 'destinations-mega-countries-list';
-        column.appendChild(countriesList);
-        
-        return column;
-    }
-    
-    async loadCountriesForContinent(column, continent) {
-        const countriesList = column.querySelector('.destinations-mega-countries-list');
-        const countElement = column.querySelector('.destinations-mega-continent-count');
-        
-        // Afficher un loader
-        countriesList.innerHTML = '<div class="destinations-mega-country-loader">Chargement...</div>';
-        
-        try {
-            const countries = await this.service.getCountriesByContinent(continent.id);
-            
-            // Mettre à jour le compteur
-            countElement.textContent = `${countries.length} ${countries.length > 1 ? 'pays' : 'pays'}`;
-            
-            // Limiter à 6 pays
-            const displayCountries = countries.slice(0, 6);
-            
-            // Vider le loader
-            countriesList.innerHTML = '';
-            
-            // Ajouter les pays
-            displayCountries.forEach(country => {
-                const countryItem = this.createCountryItem(country, continent);
-                countriesList.appendChild(countryItem);
-            });
-            
-            // Marquer comme chargé
-            column.dataset.loaded = 'true';
-        } catch (error) {
-            console.error(`Erreur chargement pays pour ${continent.name}:`, error);
-            countriesList.innerHTML = '<div class="destinations-mega-country-error">Erreur de chargement</div>';
-        }
-    }
-    
-    createCountryItem(country, continent) {
-        const item = document.createElement('a');
-        item.className = 'destinations-mega-country-item';
-        item.href = this.service.getDestinationUrl(country);
-        
-        const imageUrl = country.image_url || country.image || this.getDefaultImage('country');
-        
-        item.innerHTML = `
-            <img src="${imageUrl}" alt="${country.name}" class="destinations-mega-country-image" onerror="this.src='${this.getDefaultImage('country')}'">
-            <div class="destinations-mega-country-info">
-                <h4 class="destinations-mega-country-name">${country.name}</h4>
-                <p class="destinations-mega-country-type">Pays</p>
-            </div>
-            <div class="destinations-mega-country-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        `;
-        
-        // Événement hover sur le pays
-        item.addEventListener('mouseenter', () => {
-            this.updateBreadcrumb([continent, country]);
+            // Charger et afficher les pays dans la colonne droite
+            await this.loadContinentDetails(continent);
         });
         
         return item;
     }
     
+    async loadContinentDetails(continent) {
+        const rightColumn = this.grid.querySelector('.destinations-mega-right-column');
+        
+        // Afficher un loader
+        rightColumn.innerHTML = '<div class="destinations-mega-loader-text">Chargement...</div>';
+        
+        try {
+            // Charger les pays du continent
+            const countries = await this.service.getCountriesByContinent(continent.id);
+            
+            if (countries.length === 0) {
+                rightColumn.innerHTML = '<div class="destinations-mega-empty-text">Aucun pays disponible</div>';
+                return;
+            }
+            
+            // Créer le contenu de la colonne droite
+            const content = document.createElement('div');
+            content.className = 'destinations-mega-right-content';
+            
+            // Titre
+            const title = document.createElement('h3');
+            title.className = 'destinations-mega-right-title';
+            title.textContent = continent.name;
+            content.appendChild(title);
+            
+            // Liste des pays
+            const countriesList = document.createElement('div');
+            countriesList.className = 'destinations-mega-countries-grid';
+            
+            // Charger tous les pays avec leurs provinces directement
+            for (const country of countries) {
+                const countryItem = await this.createCountryItemWithChildren(country, continent);
+                countriesList.appendChild(countryItem);
+            }
+            
+            content.appendChild(countriesList);
+            rightColumn.innerHTML = '';
+            rightColumn.appendChild(content);
+            
+        } catch (error) {
+            console.error(`Erreur chargement pays pour ${continent.name}:`, error);
+            rightColumn.innerHTML = '<div class="destinations-mega-error-text">Erreur de chargement</div>';
+        }
+    }
+    
+    async createCountryItemWithChildren(country, continent) {
+        const item = document.createElement('div');
+        item.className = 'destinations-mega-country-item';
+        item.dataset.countryId = country.id;
+        
+        const link = document.createElement('a');
+        link.href = this.service.getDestinationUrl({...country, type: 'country'});
+        link.className = 'destinations-mega-country-link';
+        link.textContent = country.name;
+        
+        // Mettre à jour le fil d'Ariane au hover sur le pays
+        link.addEventListener('mouseenter', () => {
+            this.updateBreadcrumb([continent, country]);
+        });
+        
+        link.addEventListener('mouseleave', () => {
+            this.updateBreadcrumb([continent]);
+        });
+        
+        item.appendChild(link);
+        
+        // Charger directement les provinces/villes
+        try {
+            const provinces = await this.service.getProvincesByCountry(country.id);
+            
+            if (provinces.length > 0) {
+                const provincesList = document.createElement('div');
+                provincesList.className = 'destinations-mega-provinces-list';
+                
+                provinces.forEach(province => {
+                    const provinceItem = this.createProvinceItem(province, country, continent);
+                    provincesList.appendChild(provinceItem);
+                });
+                
+                item.appendChild(provincesList);
+            }
+        } catch (error) {
+            console.error(`Erreur chargement provinces pour ${country.name}:`, error);
+        }
+        
+        return item;
+    }
+    
+    
+    createProvinceItem(province, country, continent) {
+        const item = document.createElement('div');
+        item.className = 'destinations-mega-province-item';
+        
+        const link = document.createElement('a');
+        link.href = this.service.getDestinationUrl({...province, type: 'province'});
+        link.className = 'destinations-mega-province-link';
+        link.textContent = province.name;
+        
+        // Mettre à jour le fil d'Ariane au hover sur la province/ville
+        link.addEventListener('mouseenter', () => {
+            this.updateBreadcrumb([continent, country, province]);
+        });
+        
+        link.addEventListener('mouseleave', () => {
+            this.updateBreadcrumb([continent, country]);
+        });
+        
+        item.appendChild(link);
+        return item;
+    }
+    
+    
+    
+    getChildType(parentType) {
+        const hierarchy = {
+            'continent': 'country',
+            'country': 'province',
+            'province': 'region',
+            'region': 'ville',
+            'ville': 'secteur',
+            'secteur': null
+        };
+        return hierarchy[parentType] || null;
+    }
+    
+    
     getDefaultImage(type) {
         const defaults = {
             continent: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400',
-            country: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400'
+            country: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400',
+            province: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400',
+            region: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400',
+            ville: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400',
+            secteur: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400'
         };
         return defaults[type] || defaults.country;
+    }
+    
+    getTypeName(type) {
+        const names = {
+            continent: 'Continent',
+            country: 'Pays',
+            province: 'Province',
+            region: 'Région',
+            ville: 'Ville',
+            secteur: 'Secteur'
+        };
+        return names[type] || type;
     }
     
     getIconForType(type) {
@@ -272,39 +350,37 @@ class DestinationsMegaMenu {
     }
     
     showLoader() {
-        this.loader.style.display = 'block';
+        this.loader.style.display = 'flex';
         this.grid.style.display = 'none';
         this.empty.style.display = 'none';
     }
     
     showGrid() {
         this.loader.style.display = 'none';
-        this.grid.style.display = 'grid';
+        this.grid.style.display = 'block';
         this.empty.style.display = 'none';
     }
     
     showEmpty() {
         this.loader.style.display = 'none';
         this.grid.style.display = 'none';
-        this.empty.style.display = 'block';
+        this.empty.style.display = 'flex';
     }
     
-    updateBreadcrumb(destinations) {
-        if (!this.breadcrumb) {
-            console.error('❌ Élément breadcrumb non trouvé!');
+    updateBreadcrumb(path) {
+        if (!this.breadcrumb) return;
+        
+        this.currentBreadcrumb = path;
+        
+        if (path.length === 0) {
+            this.breadcrumb.innerHTML = '<span class="search-bar-v2-destinations-link">Survolez pour explorer</span>';
             return;
         }
         
-        if (!destinations || destinations.length === 0) {
-            this.resetBreadcrumb();
-            return;
-        }
-        
-        // Générer le HTML du fil d'Ariane
-        const breadcrumbHTML = destinations.map((dest, index) => {
-            const separator = index > 0 ? '<span class="search-bar-v2-separator">/</span>' : '';
-            const url = this.service.getDestinationUrl(dest);
-            return `${separator}<a href="${url}" class="search-bar-v2-destinations-link">${dest.name}</a>`;
+        const breadcrumbHTML = path.map((item, index) => {
+            const isLast = index === path.length - 1;
+            const separator = isLast ? '' : ' › ';
+            return `<span class="search-bar-v2-destinations-link${isLast ? ' active' : ''}">${item.name}</span>${separator}`;
         }).join('');
         
         this.breadcrumb.innerHTML = breadcrumbHTML;

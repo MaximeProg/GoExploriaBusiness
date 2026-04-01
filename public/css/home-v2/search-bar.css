@@ -5,9 +5,9 @@
 
 /* Container principal de la barre horizontale */
 .search-bar-v2 {
-    background: linear-gradient(135deg, #0a1628 0%, #1a2942 100%);
+    background: rgba(10, 22, 40, 0.95);
     padding: 12px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 50;
 }
@@ -432,6 +432,8 @@
 @media (max-width: 768px) {
     .search-bar-v2 {
         padding: 12px 0;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
     }
 
     .search-bar-v2-container {
@@ -439,6 +441,8 @@
         gap: 10px;
         flex-direction: column;
         align-items: stretch;
+        width: 100%;
+        max-width: 100%;
     }
 
     /* Ligne 1: Globe + DESTINATIONS + liens */
@@ -452,6 +456,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+        padding: 0 5px;
     }
 
     .search-bar-v2-destinations-title {
@@ -492,6 +497,7 @@
         order: 2;
         width: 100%;
         max-width: none;
+        padding: 0 5px;
     }
 
     .search-bar-v2-input-wrapper {
@@ -506,6 +512,7 @@
     .search-bar-v2-brand {
         order: 3;
         text-align: center;
+        padding: 0 5px;
         margin-top: 8px;
     }
 
