@@ -270,11 +270,11 @@ body {
 
 .video-carousel-background {
     position: absolute;
-    top: 20px;
+    top: 0;
     left: 0;
     right: 0;
     width: 100%;
-    height: calc(100% - 180px);
+    height: 100%;
     z-index: 0;
     overflow: hidden;
     border-radius: 0;
@@ -358,8 +358,8 @@ body {
 
 .hero-v2 {
     position: relative;
-    height: 120vh;
-    min-height: 120vh;
+    height: calc(100vh - 70px);
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -731,6 +731,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -738,12 +739,19 @@ body {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-10px);
     }
+
     60% {
         transform: translateY(-5px);
     }
@@ -758,7 +766,7 @@ body {
     .nav-container {
         padding: 20px 80px;
     }
-    
+
     .hero-main {
         font-size: 84px;
     }
@@ -769,7 +777,7 @@ body {
     .nav-container {
         padding: 16px 30px;
     }
-    
+
     .header-top {
         padding: 8px 30px;
     }
@@ -780,11 +788,11 @@ body {
     .nav-menu {
         gap: 20px;
     }
-    
+
     .nav-menu li a {
         font-size: 12px;
     }
-    
+
     .hero-main {
         font-size: 64px;
     }
@@ -796,11 +804,11 @@ body {
         padding: 8px 20px;
         font-size: 11px;
     }
-    
+
     .nav-container {
         padding: 12px 20px;
     }
-    
+
     .nav-center {
         position: fixed;
         top: 0;
@@ -814,39 +822,39 @@ body {
         transition: left 0.3s ease;
         z-index: 999;
     }
-    
+
     .nav-center.active {
         left: 0;
     }
-    
+
     .nav-menu {
         flex-direction: column;
         gap: 30px;
         text-align: center;
     }
-    
+
     .nav-menu li a {
         font-size: 20px;
     }
-    
+
     .menu-toggle {
         display: flex;
     }
-    
+
     .logo img {
         width: 60px;
         height: 60px;
     }
-    
+
     .hero-main {
         font-size: 56px;
         letter-spacing: 3px;
     }
-    
+
     .search-container {
         max-width: 700px;
     }
-    
+
     .main-content {
         margin-top: 90px;
     }
@@ -854,56 +862,57 @@ body {
 
 /* Tablet Portrait (600px - 767px) */
 @media (max-width: 768px) {
+
     /* Forcer un fond sombre au header sur mobile pour visibilité */
     .header-v2 {
         background-color: rgba(26, 41, 66, 0.95);
         backdrop-filter: blur(10px);
     }
-    
+
     .header-v2.scrolled {
         background-color: var(--navy-dark);
     }
-    
+
     .header-top {
         padding: 6px 15px;
         font-size: 10px;
         background-color: rgba(26, 41, 66, 0.8);
     }
-    
+
     .header-nav {
         background-color: rgba(26, 41, 66, 0.6);
     }
-    
+
     .header-contact a {
         font-size: 10px;
     }
-    
+
     .header-promo {
         font-size: 10px;
     }
-    
+
     .nav-container {
         padding: 10px 15px;
     }
-    
+
     .nav-left {
         gap: 12px;
     }
-    
+
     /* Masquer le logo et map2 sur mobile */
     .logo {
         display: none;
     }
-    
+
     .nav-right {
         gap: 10px;
     }
-    
+
     .nav-icon {
         width: 38px;
         height: 38px;
     }
-    
+
     /* Afficher la section mobile dans le Hero */
     .hero-mobile-header {
         display: block;
@@ -914,12 +923,12 @@ body {
         z-index: 20;
         padding: 15px 20px;
     }
-    
+
     .hero-mobile-email {
         text-align: center;
         margin-bottom: 10px;
     }
-    
+
     .hero-mobile-email a {
         color: #d4af37;
         font-size: 11px;
@@ -927,50 +936,50 @@ body {
         text-decoration: none;
         letter-spacing: 0.5px;
     }
-    
+
     .hero-mobile-logo-container {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 12px;
     }
-    
+
     .hero-mobile-map {
         width: 35px;
         height: 35px;
         object-fit: contain;
     }
-    
+
     .hero-mobile-logo {
         text-decoration: none;
         display: flex;
         align-items: center;
         gap: 10px;
     }
-    
+
     .hero-mobile-logo-img {
         width: 120px;
         height: 80;
         object-fit: contain;
     }
-    
+
     .hero-mobile-logo .logo-text {
         text-align: left;
     }
-    
+
     .hero-mobile-logo .logo-exploria {
         font-size: 18px;
         font-weight: 800;
         color: var(--white);
     }
-    
+
     .hero-mobile-logo .logo-location {
         font-size: 8px;
         font-weight: 500;
         color: var(--white);
         letter-spacing: 1px;
     }
-    
+
     .hero-v2 {
         padding: 0 !important;
         height: 120vh;
@@ -978,7 +987,7 @@ body {
         margin-top: 70px;
         justify-content: flex-start;
     }
-    
+
     .hero-video-cards-overlay {
         bottom: 40px;
         width: auto;
@@ -986,41 +995,41 @@ body {
         padding: 0;
         gap: 10px;
     }
-    
+
     .hero-video-card {
         width: 180px;
         min-width: 180px;
         height: 140px;
     }
-    
+
     .hero-video-card-title {
         font-size: 11px;
     }
-    
+
     .hero-video-main-title {
         font-size: 36px;
     }
-    
+
     .hero-video-description {
         font-size: 16px;
         margin-bottom: 20px;
     }
-    
+
     .hero-video-main-button {
         font-size: 14px;
         padding: 12px 30px;
     }
-    
+
     .carousel-nav-btn {
         width: 35px;
         height: 60px;
     }
-    
+
     .carousel-nav-btn svg {
         width: 22px;
         height: 22px;
     }
-    
+
     .video-carousel-background {
         top: 15px;
         left: 0;
@@ -1029,7 +1038,7 @@ body {
         height: calc(100% - 195px);
         border-radius: 0;
     }
-    
+
     .hero-content {
         margin-top: 40px;
         padding-top: 40px;
@@ -1038,12 +1047,12 @@ body {
         gap: 35px;
         max-width: 100%;
     }
-    
+
     .hero-main {
         font-size: 48px;
         letter-spacing: 2px;
     }
-    
+
     .search-container {
         flex-direction: column;
         gap: 0;
@@ -1052,17 +1061,17 @@ body {
         width: 100%;
         margin: 0;
     }
-    
+
     .search-wrapper {
         padding: 14px 18px;
         width: 100%;
     }
-    
+
     .search-input {
         font-size: 15px;
         padding: 12px 0;
     }
-    
+
     .search-brand {
         border-left: none;
         border-top: 2px solid var(--gray-medium);
@@ -1071,25 +1080,25 @@ body {
         display: flex;
         justify-content: center;
     }
-    
+
     .plan-n-go-logo {
         height: 38px;
     }
-    
+
     .carousel-controls {
         bottom: 25px;
     }
-    
+
     .carousel-dot {
         width: 11px;
         height: 11px;
     }
-    
+
     .hero-video-footer {
         padding: 20px 15px;
         background: #ffffff;
     }
-    
+
     .hero-video-cards {
         flex-direction: row;
         gap: 10px;
@@ -1098,21 +1107,21 @@ body {
         flex-wrap: nowrap;
         padding-bottom: 10px;
     }
-    
+
     .hero-video-card {
         width: 180px;
         min-width: 180px;
         height: 110px;
         flex-shrink: 0;
     }
-    
+
     .hero-video-card-title {
         font-size: 11px;
         bottom: 8px;
         left: 8px;
         right: 8px;
     }
-    
+
     .main-content {
         margin-top: 75px;
     }
@@ -1124,11 +1133,11 @@ body {
         font-size: 42px;
         letter-spacing: 1px;
     }
-    
+
     .search-input {
         font-size: 14px;
     }
-    
+
     .search-input::placeholder {
         font-size: 13px;
     }
@@ -1140,107 +1149,107 @@ body {
         padding: 5px 12px;
         font-size: 9px;
     }
-    
+
     .header-contact a {
         font-size: 9px;
         letter-spacing: 0;
     }
-    
+
     .header-promo {
         font-size: 9px;
     }
-    
+
     .nav-container {
         padding: 8px 12px;
     }
-    
+
     .nav-left {
         gap: 10px;
     }
-    
+
     .logo img {
         width: 50px;
         height: 50px;
     }
-    
+
     .nav-right {
         gap: 6px;
     }
-    
+
     .nav-icon {
         width: 34px;
         height: 34px;
     }
-    
+
     .nav-icon svg {
         width: 20px;
         height: 20px;
     }
-    
+
     .hero-v2 {
         padding: 0;
         height: 120vh;
         min-height: 120vh;
     }
-    
+
     .hero-main {
         font-size: 38px;
         letter-spacing: 0;
     }
-    
+
     .hero-content {
         gap: 28px;
     }
-    
+
     .search-container {
         padding: 5px;
         border-width: 2px;
         width: 100%;
         margin: 0;
     }
-    
+
     .search-wrapper {
         padding: 12px 14px;
     }
-    
+
     .search-icon {
         width: 20px;
         height: 20px;
     }
-    
+
     .search-input {
         font-size: 13px;
         padding: 10px 0;
     }
-    
+
     .search-brand {
         padding: 10px 12px;
     }
-    
+
     .plan-n-go-logo {
         height: 30px;
     }
-    
+
     .hero-scroll-btn {
         width: 45px;
         height: 45px;
     }
-    
+
     .hero-scroll-btn svg {
         width: 20px;
         height: 20px;
     }
-    
+
     .carousel-controls {
         bottom: 20px;
     }
-    
+
     .carousel-dot {
         width: 8px;
         height: 8px;
         border-width: 1.5px;
     }
-    
+
     .main-content {
         margin-top: 70px;
     }
@@ -1252,46 +1261,46 @@ body {
         padding: 4px 10px;
         font-size: 8px;
     }
-    
+
     .header-contact a {
         display: none;
     }
-    
+
     .header-promo {
         font-size: 8px;
         margin: 0 auto;
     }
-    
+
     .nav-container {
         padding: 8px 10px;
     }
-    
+
     .logo img {
         width: 45px;
         height: 45px;
     }
-    
+
     .nav-right {
         gap: 4px;
     }
-    
+
     .nav-icon {
         width: 32px;
         height: 32px;
     }
-    
+
     .hero-main {
         font-size: 32px;
     }
-    
+
     .search-input {
         font-size: 12px;
     }
-    
+
     .search-input::placeholder {
         font-size: 11px;
     }
-    
+
     .plan-n-go-logo {
         height: 25px;
     }
@@ -1302,37 +1311,37 @@ body {
     .header-top {
         display: none;
     }
-    
+
     .nav-container {
         padding: 8px 20px;
     }
-    
+
     .hero-v2 {
         padding: 0;
         height: 120vh;
         min-height: 120vh;
     }
-    
+
     .hero-content {
         gap: 20px;
     }
-    
+
     .hero-main {
         font-size: 32px;
     }
-    
+
     .search-container {
         max-width: 600px;
     }
-    
+
     .hero-scroll-btn {
         display: none;
     }
-    
+
     .carousel-controls {
         bottom: 15px;
     }
-    
+
     .main-content {
         margin-top: 60px;
     }
@@ -1343,13 +1352,13 @@ body {
     .hero-main {
         font-size: 28px;
     }
-    
+
     .search-wrapper {
         flex-direction: column;
         gap: 8px;
         align-items: flex-start;
     }
-    
+
     .search-icon {
         width: 18px;
         height: 18px;
