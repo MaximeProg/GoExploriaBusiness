@@ -10,13 +10,6 @@
                 <p style="font-size: 16px; color: #666; font-weight: 500; max-width: 800px; margin: 0 auto;">
                     Découvrez comment nous combinons expertise commerciale et expériences touristiques pour créer des opportunités uniques et mémorables.
                 </p>
-                
-                {{-- Badge d'excellence à droite sur desktop --}}
-                <div style="position: absolute; right: 40px; top: 110px;" class="desktop-only">
-                    <span class="web-badge-pro" style="background: rgba(0, 201, 183, 0.05); color: #00c9b7; border-color: rgba(0, 201, 183, 0.1);">
-                        <i class="fas fa-star"></i> EXCELLENCE PROFESSIONNELLE
-                    </span>
-                </div>
             </div>
 
             {{-- 1. Duo de Cartes Business & Tourisme --}}
@@ -102,67 +95,8 @@
                 </div>
             </div>
 
-            {{-- 3. Carte Interactive --}}
-            <div style="margin-top: 100px; text-align: center;">
-                <h2 class="design-bosse-label" style="font-size: 22px; color: #1a3a8f; margin-bottom: 10px;">Notre Carte Interactive</h2>
-                <p style="font-size: 14px; color: #666; margin-bottom: 40px;">Découvrez nos lieux d'intérêt business et tourisme sur la carte</p>
-            </div>
-
-            <div class="bt-map-container">
-                {{-- Zone Carte Leaflet --}}
-                <div class="map-view-box">
-                    <div id="map"></div>
-                    <div class="map-overlay-loading" id="mapLoading" style="display: none;">
-                        <i class="fas fa-spinner fa-spin"></i> Chargement...
-                    </div>
-                </div>
-
-                {{-- Sidebar Filtres & Liste --}}
-                <div class="bt-sidebar">
-                    <div class="bt-sidebar-header">
-                        <div style="margin-bottom: 15px;">
-                            <label style="font-size: 11px; font-weight: 800; color: #888; text-transform: uppercase;">Province/Région</label>
-                            <select id="province-filter" class="form-select" style="margin-top: 5px; border-radius: 10px; font-size: 13px;">
-                                <option value="">Toutes les provinces</option>
-                                <option value="qc">Québec</option>
-                                <option value="on">Ontario</option>
-                                <option value="bc">Colombie-Britannique</option>
-                                <option value="ab">Alberta</option>
-                            </select>
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="font-size: 11px; font-weight: 800; color: #888; text-transform: uppercase;">Catégorie</label>
-                            <select id="category-filter" class="form-select" style="margin-top: 5px; border-radius: 10px; font-size: 13px;">
-                                <option value="all">Toutes les catégories</option>
-                                <option value="business">Business</option>
-                                <option value="tourism">Tourisme</option>
-                                <option value="hotel">Hôtels</option>
-                                <option value="restaurant">Restaurants</option>
-                            </select>
-                        </div>
-
-                        <button id="locate-me" class="bt-filter-btn">
-                            <i class="fas fa-location-arrow"></i> ME LOCALISER
-                        </button>
-                    </div>
-
-                    <div class="bt-places-list" id="places-list">
-                        {{-- Liste générée via JS --}}
-                    </div>
-                </div>
-            </div>
-
+            
         </div>
     </div>
 </section>
 
-{{-- Modal pour les détails (cachée au démarrage) --}}
-<div id="place-modal" class="modal" style="display: none; background: rgba(0,0,0,0.85); z-index: 10000;">
-    <div class="modal-content" style="max-width: 900px; margin: 50px auto; border-radius: 30px; overflow: hidden; position: relative;">
-        <button class="close-modal" id="closePlaceModal" style="position: absolute; right: 25px; top: 25px; z-index: 10; background: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer;"><i class="fas fa-times"></i></button>
-        <div id="modal-content-body">
-            {{-- Dynamique via JS --}}
-        </div>
-    </div>
-</div>

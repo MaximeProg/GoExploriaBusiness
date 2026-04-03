@@ -152,6 +152,29 @@
                     </div>
                 </div>
 
+                {{-- NOUVEAU : 6 Boutons Images Rapides --}}
+                <div class="search-bar-v2-quick-links">
+                    <div class="quick-link-item info-trigger" id="infoTrigger">
+                        <img src="{{ asset('header_info/info.png') }}" alt="Info">
+                        @include('home-v2.components.InfoMegaMenu')
+                    </div>
+                    <a href="{{ url('/deals') }}" class="quick-link-item">
+                        <img src="{{ asset('header_info/DEALS-BILLET-AVION.png') }}" alt="Deals">
+                    </a>
+                    <a href="{{ url('/offres') }}" class="quick-link-item">
+                        <img src="{{ asset('header_info/offre-derniere-minutes.png') }}" alt="Offres">
+                    </a>
+                    <a href="{{ url('/nouvelles') }}" class="quick-link-item">
+                        <img src="{{ asset('header_info/NOUVELLES-DU-JOUR.png') }}" alt="Nouvelles">
+                    </a>
+                    <a href="{{ url('/must-see') }}" class="quick-link-item">
+                        <img src="{{ asset('header_info/MOSTS-A-VOIR.png') }}" alt="Must See">
+                    </a>
+                    <a href="{{ url('/aventures') }}" class="quick-link-item">
+                        <img src="{{ asset('header_info/STATIONS-AVENTURE-QUEBEC.png') }}" alt="Aventures">
+                    </a>
+                </div>
+
                 {{-- Logo Plan-n-go --}}
                 <div class="search-bar-v2-brand">
                     <img src="{{ asset('plan-n-go.png') }}" alt="PLAN-N-GO" class="search-bar-v2-logo">
@@ -159,12 +182,26 @@
             </div>
         </div>
         
-        <button class="hero-scroll-btn" aria-label="Défiler vers le bas">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14"></path>
-                <path d="m19 12-7 7-7-7"></path>
-            </svg>
-        </button>
     </div>
-
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const infoBtn = document.getElementById('infoTrigger');
+    if (infoBtn) {
+        infoBtn.addEventListener('click', function(e) {
+            // Uniquement actif sur mobile/tablette (moins de 1025px)
+            if (window.innerWidth <= 1025) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.toggle('active');
+            }
+        });
+    }
+    document.addEventListener('click', function(e) {
+        if (infoBtn && !infoBtn.contains(e.target)) {
+            infoBtn.classList.remove('active');
+        }
+    });
+});
+</script>

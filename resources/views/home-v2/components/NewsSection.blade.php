@@ -11,11 +11,6 @@
                 <p style="font-size: 16px; color: #666; font-weight: 500; max-width: 800px; margin: 0 auto;">
                     Les articles les plus récents par région
                 </p>
-                
-                {{-- Bouton Optionnel En savoir plus à droite sur desktop --}}
-                <a href="#" class="design-bosse-more-btn desktop-only" style="position: absolute; right: 40px; top: 110px;">
-                    Voir tout <span class="events-vedette-v2-plus-icon">+</span>
-                </a>
             </div>
 
             {{-- 1. Grille des Articles Récents --}}
