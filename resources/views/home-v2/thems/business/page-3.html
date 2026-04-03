@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section Entreprise - Agence de conseil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section principale */
+        .consulting-section {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Header de la section */
+        .section-header {
+            width: 100%;
+            background: linear-gradient(135deg, #1a3a8f 0%, #2d5cc2 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Partie gauche : Présentation entreprise avec image de clientèle */
+        .company-presentation {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .company-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+
+        .company-logo {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1a3a8f 0%, #2d5cc2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .logo-icon i {
+            font-size: 30px;
+            color: white;
+        }
+
+        .logo-text h2 {
+            font-size: 2rem;
+            color: #1a3a8f;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Image de clientèle à droite du logo */
+        .clientele-image {
+            flex: 1;
+            min-width: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+
+        .clientele-image:hover {
+            transform: translateY(-5px);
+        }
+
+        .company-description {
+            margin-bottom: 30px;
+        }
+
+        .company-description h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaeaea;
+        }
+
+        .company-description p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list i {
+            color: #2d5cc2;
+            margin-right: 12px;
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+
+        /* Partie droite : Formulaire et plans avec image */
+        .request-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            background-color: white;
+            border-left: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1a3a8f;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* Conteneur pour formulaire + image */
+        .form-image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Formulaire */
+        .request-form {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #2d5cc2;
+            box-shadow: 0 0 0 3px rgba(45, 92, 194, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1a3a8f 0%, #2d5cc2 100%);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #153074 0%, #2449a8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 92, 194, 0.2);
+        }
+
+        /* Image de graphique de croissance */
+        .growth-chart {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+
+        .growth-chart:hover {
+            transform: scale(1.02);
+        }
+
+        /* Stats sous l'image */
+        .chart-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 10px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a3a8f;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Plans d'affichage */
+        .plans-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .plan-card {
+            background-color: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #eaeaea;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            border-color: #2d5cc2;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .plan-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(45, 92, 194, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        .plan-icon i {
+            font-size: 24px;
+            color: #2d5cc2;
+        }
+
+        .plan-card h4 {
+            font-size: 1.3rem;
+            color: #1a3a8f;
+            margin-bottom: 10px;
+        }
+
+        .plan-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Footer de la section */
+        .section-footer {
+            width: 100%;
+            padding: 20px 30px;
+            background-color: #f1f5f9;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaeaea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .consulting-section {
+                flex-direction: column;
+            }
+
+            .request-section {
+                border-left: none;
+                border-top: 1px solid #eee;
+            }
+
+            .section-header h1 {
+                font-size: 2rem;
+            }
+
+            .form-image-container {
+                flex-direction: column;
+            }
+
+            .image-container {
+                order: -1;
+                margin-bottom: 20px;
+            }
+
+            .company-header {
+                flex-direction: column;
+            }
+
+            .clientele-image {
+                margin-top: 20px;
+                max-width: 100%;
+            }
+        }
+
+        /* Styles pour GrapeJS */
+        .gjs-selected {
+            outline: 2px solid #3b97e3 !important;
+            outline-offset: 2px;
+        }
+
+        .gjs-highlighted {
+            outline: 2px dashed #3b97e3 !important;
+        }
+
+        /* Note pour GrapeJS */
+        .grapejs-note {
+            background-color: #f8f9fa;
+            border-left: 4px solid #2d5cc2;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .grapejs-note h4 {
+            color: #1a3a8f;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .grapejs-note h4 i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="consulting-section" id="consulting-section">
+        <!-- En-tête de la section -->
+        <div class="section-header" data-gjs-type="header">
+            <h1 data-gjs-editable="true" data-gjs-name="Titre Principal">Agence de Conseil pour Votre Entreprise</h1>
+            <p data-gjs-editable="true" data-gjs-name="Sous-titre">Développez votre entreprise avec notre expertise
+                stratégique et nos solutions sur mesure. Demandez votre consultation personnalisée.</p>
+        </div>
+
+        <div class="section-content">
+            <!-- Partie gauche : Présentation de l'entreprise avec image de clientèle -->
+            <div class="company-presentation" data-gjs-type="company-presentation">
+                <!-- En-tête avec logo et image de clientèle -->
+                <div class="company-header">
+                    <div class="company-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h2 data-gjs-editable="true" data-gjs-name="Nom Entreprise">Stratégis Conseil</h2>
+                            <p data-gjs-editable="true" data-gjs-name="Slogan">Votre succès, notre expertise</p>
+                        </div>
+                    </div>
+
+                    <!-- Image de clientèle à droite -->
+                    <div class="clientele-image">
+                        <!-- SVG illustrant une équipe de clients satisfaits -->
+                        <img style="width:500px;"
+                            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExMVFRUWGBcXGBgXGBgaGxgYFxoXFxgYHRoaHSggGRolGxcXITEhJSkrLi4uGh8zODMsNygtLisBCgoKDg0OGhAQGy8lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALUBFgMBIgACEQEDEQH/xAAcAAABBAMBAAAAAAAAAAAAAAAEAwUGBwABAgj/xABJEAACAQIEAgcFBQYCCQIHAAABAhEAAwQSITEFQQYTIlFhcYEHMpGh8EJSscHRFCNikuHxctIzQ1NUgpOissIVFiQlNERzs7T/xAAZAQADAQEBAAAAAAAAAAAAAAAAAQMCBAX/xAAmEQACAgICAgEEAwEAAAAAAAAAAQIRAxIhMRNBUQQyYXEiscGh/9oADAMBAAIRAxEAPwCuFHj+H6UoqxzP8oNITrv8zS9vXmPl+Vcx0nLWZ5x6VoWo+19fGljYn7VKrh+9h8T+lFhQDlHM1jWQdiflH4UdetrIHPnH61oWh3D8aLChvOHHePz+VctYA7/hH40fcQUlct+VOxUBMo/uRXLWwe70pd7QpMr4VoyDvY+opAiKNnwFJXI7hWkxHNtvdHKcx/KiTczK890z3RtQZFbW7AIHOmUjkpDyLwWE10ABjkaUgd5pot4iPOn/AAfAcRcwxxSrKA+6NXKjdwsaqDp3+FEopIHLd2gO4R9TQ114pNsSI3mnroPgbeIxSLeGZMwGXaT6UdKydNuhufg17qhfKHqyYzfKT3CdJodMPXpD/wBJtdWysq9WVK5IEZQIA8oqk7GATMYMqCY21AOh1PdWY5eOSjxR9AvDsNnExGgXzgzP13094bDxtv6fmaXQKBAny0/WtX76KCT+VRcrZdybVMU4c5e/bsAEs5A+yAOZYkNoAoZj4KaJxL5ASdI5/wBpofom4Szdxbb3i1mz/gWOuf8A7U/npLiGJRlYciCDv+lElTSJxbdsX6N2XucQtq6kILb3crz2gOyCVPLMwOoqf3OF2c2YWlB7wIjyjaoV7L7jXr+IvOcxS3ashjz1Yn1hEqwLh1q6SoUPkb8XglCEgnypvw102zPdTzxA9kDx/D+9MN9dZrmyUpcG1yI4yxBlR2XAZZLAweRB1BBkQe6kVtN3f9T/AKU7p2rcc11Hj3j4CfSmy5f8PmazYIT6nv8AxNciyD9NSounu+ZpM3iOX4/pRYHdjCf4vw/GjbVrL9k/H+tBLiPL5/pSqYnwHzpiHAD+E/E/rWUIL48PnWUCopa0s86VtLrz+Vdr35QKKsqfT68as2TSOCPA/EfpWNan6mlXaPoVisDvPnFIZwtgilAnifiP0rRylo5en5V0yRoAR5x/ekMTax3a/E1hwxjmPP8AvNbct3n1J/IVtnJ7vl+ZoA0LK95J8IoN8OZMTRHWn7zfXkK4I7yfnWjLEGwrc/x/pSLWKNJXz+vOk2Udx+vWmmJoCNukLlqi3TzodxW0zDQgqajuqd9GMSxvWbYmM6iAeXd5aCoQy1K+AYjJctXOSspbyJms5OUUw8Mfvap0YIxloYayzNdtlnW2ugKEAueSyGEkwNPGm3oLw+7h8WhuoAJ3V7bidoJtsQD591Ontn4hea/at5v3DWUdQuguGXBL/eynYHQTO5NQnovxJcNird1gMoMHTbYgnwkVp8x4FHias9LpfV7ly3IJUKCByLDNr5g/Kqjbh6ocpnQkHtd2lT7o9i7d7HXbtpg6XLFlsy6rIzJodiexy7qjXH7SLibwBHvsdp3MkfEx6VCfVl0knX4QytggNZc/XhTRxTBm69vD2pN26wRZ5Tz8gJJ8qfsUygaH/pNCdEjD3sY0SM1izv7xA61x5KQvm3hRB+2Zn8IdOMYG0uS0mbq7KLaTxC7sfFmLMf8AFTDxPDqqEww08f1pzJVt/wAB+lNXGrOZGy7x9cqynb5HVKiUeyPC5cG9z/a3nPooW3+KtUyJ1qLdBOK4WzgbFlr1tLiqcyuchzszM3vQDqTqKkmHuB9VII7wZHyrrMw6Ece2oHh+NNl4UXjX7Z8NKFfvrhyO5MohC1dKERuNhSeOsqCGAIDdoDXSd1MGNDp8KUuDWa6uW+ttlPtDtL5xqPUfOKS5QnwBJanYmt3LXh+VA23X73r9CuLl4A6Mfh/StAGLaPgfUfrS9uye8Aef6CmsYsD7R+vSulxCt9r6+FMQ8GyRzU/Gspv60jn9fCtUrHRWwdfD69aIt4pfqf1pjW7/ABV2l0TvNdGpHYejeB2J+FdLB3NNi5o2pW341nUewcqKBuNKy5dU8/w/KkWvrGw7t/6VwIOyz6ClQ7FT4Ck3c0rIA1VBSbMPuj0FCBg73fKi+G8Pv4ksLFq5dKRm6tZygzExtMH4Ugt0a/0H41ZfsOcG5jSDPZw344itxVsxJ0iDnozjhocHif8AlP8ApXJ6M47/AHHFf8t/0r0jWTVNET3Z5lxHR7GLvgsT/wAm4fwWgb/BcWNTg8SB3mxdH/jXqO6dVpSnqhOR5KvYK8vvWLo87bj8RUm4Fct5QtyQHTKTGqnTX0NehcZgluCGE1X/AEk9nIcl7BytvHI0pRtG8eTV2RH2m4K9dazetrnsrZyKLcsVCsxLkASQZEkDsnQ/ZLQXh/C72JfLaQnWCxBCLy7TR8hqeQJqzcBicThLZtXcOzBTzGYHxHd5gzTh0Xx+DuXibT3Guyq5L9y6+SCQzW+slgZIBGuw2qam0qaOh4lN2nwSDofwt8DZuXHkottciZe0FtpGsbuxliORcgTULu4m4SS1pyTJJKNqdydu+ras3hn6sSzCM0bIP4j39w38I1pXEYwqSImPFu7wU03ivsk81PhFLPinM/uXPklz/LSNvGMqhBacATAyvzMnlzJNXIOIn7vzb/LWuLcct4VUa91gDT7iPciIktkUwNRqaPCjPmZTl7EtztXB5q3+Wh3xQ5oR5qf0q+uH45L1tbttsyOJU6iRMbGDuDRQNHhQeZnna5ibcbEekUlw3E9TdW+obIDluFQfcO5kc1MH08a9HGtJptpT8QvL+CvutnWZnnW96O4hwK4t0rbQlCcynkATqpOwgz6RTrw7o2BrdOY/dXb1O5+VcywyuizyxqyG47GJa0cx4bk+QpsHGGJ7PZHrP9KkXtRsogwwVVX/AEuwA26rfvqEWykauv15TWnHV0OL2Vi9/HRuD8DTdj+Mqo8e76NJ466oE9Yp9D+lNfCcF+03CzsBbXvMZj3DwHP4d9ajFdsUpPpC1h7l8yxKr4AyfLw8aPHD1jTOD3gt+tOS4cAaMPSlerkbj4/1oc/gNPkYW4jfsGAesU7ZwZHqK1Tri8IT4+tZTuPtC1l6ZCeq/hrMpnYVmVu+tqp7x8K2TNk94pQ3ECxkHnrNJgHvpG6NDHj30Ac/ttxs2TQKRJ3gTAnwNcpjbiE6yD3nffX4z8q5s3CF+wM0aGdAPtEDWDt6TWYjJIAB0UGTGrczHITsPGt0iLm7JFhLRuW0uBCA0wcphspKtB2IkRWXXjTIs+Q/Snb2cYe82ExR2sqVKEwQt0MocKJmCjiToJC7kGOMX10/6RfgK55/xlR143tGxqUyPcj4mrH9iy9rGGI0ww//AKKry693/aD4CrD9ihJ/bCSDrhxp5Xz+dbx9mMvRZ01lZWV0HOJvuK7ofGXsmU6ROs+R/OK4t40FcxAA5yToZiD2e+gBHjWIIC21e2j3CQC75dhMCNTPhHmDFK8KvswKsB2Mq5191zHay6DY6d3LlSfFsJYdC95ZVV1ILAxvEqQTrsO+mPC8YNshUW1aUgZUfrHcrHZlhMaEQCdj3GaAHzF4cu0RlCFWnsHrNDKQQSo8dDMQYmWrhPRDBrdfFCyyveDZlYnQXCGaVmFae7b51IIEAsonnpOsSfPY038ZushUKuVT9oQCT90RqAN/H4yDTa6FbGHOHt5LShyJZpOUsd+6J2GulLWyXth8zDMoaBEAGDG3z/tSAutcWznt/wCkJDHMBplLqYB5xMcoI7geb2KtYaUNyZgrbJWVHdmYgKDyzEbGJoEA3sSijObt4AZdAwG5y/d9T+u5nEMCMiLnIClYzFsxKktAy6k7GAPsjQiRQzXswjqjl7Owvt7jZ11SyRv3E0ZhMarXO2CjkQuaQCOarnVWnmeyJgb5dAAnBYgEEagrqxKsolu0YLATqT4/Kibd9SYDKT3Ag7b7eYqP8SuXkxByvCsqtDElSACpAX/EFmCvvjXvcMDiLbj7QdFBZC7krI75hhoRPh6UAOlcruaCbGuHgoBbhSHzc2J7MRrAAO/Ooj0y6erg0JXKbkwtt5BbfUZZ7O3a25SDQBPxXQqrejPFeJmymIw963j0cBrlhyUdH2dbd06aN9ltBpGhFS/D9M8OABiM+EeNVxCMig93Wx1Z/mooBl9p12Gw4gbXTqPG3ULe9A1inb2r8fw7PhzbvJcGRzNt1YaleakjlVevcv4g5bSuAftMYHz39K5pxbk2dMJJRR3jrr4q8LNs89T3Abn65xUuwOBNtAiCFUQAJ+ekyaF4JwVLCR7zN7zEwSe7Q6Dwo29dCiBp4Zyfzqcpp8Lo3GL7Zt7xXdCTSbY25yUjyFA3b3OT6TSNks0akCddTSSNPgLxOOcb5vnWUxcWxgQxmPyrdbULRhzSY2dT9a1htx3VoYlO/wCQrTYhe+tmDh9jXAtV2Li99Y19e/8AH9KYgG5gmzTMjaPD6j4V1wzAC5dVLr9UhkNcys2QQY7K6trAj5ijrd5Dux+H60Tav2vvH+UU92jOiZK8FjbWHwq4WwWZQS1y6wCNdOZiBlk5UGYwJJ74oDFX1PL503JjbQ/1g+H9KWPELUe+NP4RUJJt2zoi0lSEHA+6PjVh+xVOzjDEfvLQ+CsfzqC3b6Kgd3CA7FwFkbyo3b0mueB9P3wCXkwqLca64frLgKqsKFAVJluZkx5VbDF30RzSVdnoetMYEkwBqSaoDo57Tsbbxdt8Xf6zDu2W4uVQEVtAywJGUwfETV/MAwgwVI8wQfxFdDVHOmn0IX7YuAAFTHhmGo2IBG4PfXBwJJmV/leDpEkdZBMflSbXbInsAgGCAnMSIAjXnEelNnTPHjCYO5ft2gxGQQsKcrMAxmNBBNIY4YzEYfJ1VwqVMCAGy9k6AFdoI79Irm1g7IcXEuBQzF2hgRcmNJnYRttqfSuLfTVLoVTaKNmHMRJC5QTMw2cAHz0FS/oVjHLXEMsIDjwJ0MSYE6aeFAD/AH79uQS4jWIk7DXbzFC9IjAtax2iPlTl1h+4fiv61iXXzQUgT72YajXWPh8fCgBrxTt+z2kBy5ranMACcyqhCoD9vUkczkIGpkDpZuox/Z1Q2mgZ5UtOTLmZyc1xs5BObWFOpOlOlnHpde9byFhbCzI0fNmkAHeMo33zA7QSHcwGHz5haQNmCh1VkEaAguojNMgaxMDegAd8Ji8p/fquhEtEbJDCFGU9l+emc7wCN27ihyGcPbYEEMzMCNCAobV2DFwMoOkSZAou3wXDMQxtAnkXzE/BtqaLvSdLOcJgr65TE5ERTBicwJ0PLTuoAdLlhrtoW5KXVzNbZxMqCyqTr2jkZQwOoJmNpD4fg7mEe9dvuhshLjG5oWgEEFoUEHICCBIOVTptS/HOKC2LDjMG1uZGAGmQiHOpWCw0EkwR4hsxrpxTDXMFcfq2eCXtgEfu3V/dLSPdG579aAE+k3F4w9y5ZD5rcr1bCDnyhwDO0qynTvrz9iuJPdum9eYvcJ1nlHIDkByFX70f6FJw/C37Iui6bjF1LKE1CKqrBYg6iZkb1VfTbohcUNfRRzzKpUzEgkBSdopp0B30A42+AuLevXhas3Ss22VznVdBcUW+0kAEA5SGGhnl6C4djbd+2royXFYAhl1VgeY/SvNHSbDvfZLli0blk27S22thny5UAKNGqkGdDvvUq6LdKLvDFsYRhmMXLl5R2jYLkMinLJmFYug1AuaaimzJNfaHgbfX2gFVf3ZJgRuxGsDwqPpaRTEL6sfwiiekPHrmIvr1uHbDP1Qa2jmWayzPDER2X3BXWNNabRe5Cfw/OuDLezO7F9qHFMncD/N+tDX7IYz/AOJpNiRrlPxpB78a5fmB+NSRQSuWvr+woPE4hbak7fGt8R4yiAmRP+MH8qY7Nq7jGliUtd8GWHhA+dWjH2+jEpel2DWsFdxjsU0VefKe6sqf4DJaQJbRQo2EXPomspvM/RjxL2VvHh860w8Pn/WuQV7zWwF7viKqTMjwHzrsW/D6+NaQCYie4AflS11ET/SMtv8AhOr/AMgkj/iyjxo5C6NLb8D8aXsYJmmAxjcyIUd5Y6KPExTc/EkX/R2pP3rv5W1MD1LUJiMXcux1jlgNl2VfJBCj0FUWJsw8qXQ83buHT3na433bRDAedw9n+XNQVziz/wCqVbQ7x2rn/Mb3T4oFoVVkch9eFY9sLzB74qqxRiQ8spHDqS2ZpLHXMxkmecnet0bicSICC3EaiZBAbUgfwk6xrQrL37+HLzqkeiU1ycMsiDV7+xnpN+04T9muGb2FhNftWv8AVt6AZfQd9UYlonu9acejPHXwGKTEodpS4IkG22hkc4MNHeopTVoeOVOj0pftWlYK9yDcJyglZJJmFOWRqRsdz30niMP1iMj5buHugKABJVSABqJDidZ3Gm+pqG4K893EWma6SDiGKwxIhihGUn7JBBGkbVOFwzFHXM2sgBgoAAJiMv2TpuZionQVtf8AZi5crZxFoppM5s0CVggSDAMb7jlVg8A4WMKmQZ7jGMznL2o20zf3MmlJGRbiKFZTBUaTydPE6aeQ76LcO0FHUAjmhaZ1BEMsUAc3cQwiLbHUDddPHQmsv4qIVVm4wkJO38TEe6gO59BJgVz+zXD714+SKqz6nMw9CKZF451OINlLCkdaiMwuHOS2QZ2DL2iM2vaJgDfUKAH8Px9gxbRw90liCyOuZ+0xMldtG0BMAQNBTbxhzZvWEZrhVytpArNkj3SCo7JbKZkyZWREEADo6xN6xMaEgeXU3NI8P02nV8wHGmuX3tdXAWQe0CQVmSSNCDpoNR8YAHJrLypW5lUAyrDNJOxJJzaa6Tz8K6N8ro4EHQMPdnlIOqmdtx4yQKS4jhmuJlUxrJ1jkecHUEg+nKksNdC2XDierFzMsawMxIggdkiY0AIjlQA29L3QZAyOWytlYQVPehB948405+IoLo1euC6qLIQlsyTICwxDgfY7cbb5oO4h3s4y7dtLGEZrbKI627aGZSAVJgsdRB11rXCLxt3P2drC2uwboy3DcJ7QUySoJOveeVACmKwl43S4uwsEKvmBPLmQD8KzEcLN1SpAggwMzaE85jXc6H86AxBKm8xuFT1ggtdVAFm5CgkGF0Jj0+yaVxK3L2EdcO69YYmLpcEA6qHOxI05DXlvQBAelXsyxVu91vDWKi6YdA+QLJ1cHuHONe7uqbdB+gdjAWwDF26QQzsJEHUqoOyz8adOiVh7eHVHtdUQTI07RO7QNu7xiedPNOwKe9sgb9ttsrMCtlCpB9057s6TsRoe/wBKiKcZX7RZT3SY9Dzqee1Eg4tfCyo5feuH8DUI/ZJ1APwWuSTVtM6oJ0qBbnGrfJSx8BJpLrr94wiC2PvNv8N/wp5w+DnkPjRy4Nl2X51nZLpGtW+2NnDOA2gQ1wda3e50nwUaD1mpJbKqAMo9CPzoG2WnUfh+RpW0zdyzz1+pNTk2+zaSXQ5LfEaCPUVugkL8sv1/xVlYoZW6OAKTOI86JuWRGlCMldiOY4xeMuBRkYqmzZdGnvZhqQdt40+IVpI8Kc7Vvfs6bGeYPzoS/h+rMbqfdP8A4nxH6d9XxSXRDLF9nKBcrSJJiDMQRvpsQa7s2S3ZVczE6Rv8OfOkmanrH43Cm1ltWiG7OUkEFT9vM2c55EwIgVZoimBIkfu8jG5m0hhEDcFY185HrWcPuNavBwuZrZJykE8iCdNo3nkQK44diTbbNEiCD+O9GXeP5UKrKsw7TTEyIOg8O+s/yv8AA3rqmru/+G+N8dbElJXKEBy9osxmJJY77DYCmwPHLahuuJ0UeX9qfOCdCsbjBmW2RbGpuPCIBzOZoGndM09kuhKEnyxqxGPkAadkACB3d55099Euh2K4mGNk20towV3dtiRMBQCToe4Dxp8wPRLh9nN119sZctqrtbw0C2FfLlLX37GUhgdJ0kjanDE9Jhhbd23hbaYYZrVtreFXPf6wicty/c0MEXEzIDBKkb1nZm9F2yzeiHRpMLhrVi4VvvamLhQAwTKgbkZRA35DyEg0UQIEcpjc/qajPQTiT38InWZlup+7uB2zuCNixEdoiGmBvNCe0/gdzE4JjauC3+zk3yD/AKzq1JykzCxoRIOqjass2SXEW7chmBnMNP4ogGRrt3GPnXHEOMph1QlHOeQAgXTKBO7DvjSo/wCzHjF7GYJLl/M7h7im4wQBxmYgqFAjL2V2GoNOmO4d+0G3muwELQFSJzAHtHOe4HlqKQDFx3ipu3Va011VNlSFDsp0uXlYwrQTKDWdgO80ivaxQLbl7BDa6mLRKt48+e/LWXz/ANsKxVheEIIEJoIZ7hOj7/vG0mIjTQGsvcHWwWvXMQApa371tiEK5UUDK8gEqN5EsdpoAaujZ/fWpmcx9R1N2PkR6R3ayvHFkUG2ozZvuzEySYGupgE67zB2IOC6PmzlK3QSpJBa2TuGEaXBp2mPmT3mnC7i8oZQQ91Uz5F0JGoBCyTEiP70AJYbE32BhE0cDtZk7MTMQZO3ONTzEEm+JRzcCKMjAkNMLBzEsVEDw8Kb24o3VGexeIGUZGnUKTCmZIlgORI7qIwV91Sb7rrEHsiSZJChSZERGpJ18BQBGeD9OLVvD2bfVXndLdtCUVWUlVAJBDEkad1E8N4y2Ixlp/2a/bUW7luXtvHaKMJOUBRp386krYprdvOwPMxsRmbsA+SkA+R3pPhOMN1STvJ+GhHwmPSgBp6Pcds4s3lWybd60xW6jAe+GdZDD3gWDQdDqTGtc2+J3TaDZ0SftIEyDSSQHYs5BMEADUHeIJyX7HXZhai4c6C5kAzAFHYZhrBZ515gnzXwihLmUWkRWHZZYEtqWUgDQxJmdddo1AHHD3Myq0RmAMd0iYpStCsoApj2sYorjyBytW+Y/iJqIHEMe7+apl7UROPeRIyW/wDtqHp1YOoHwrll2zsjdIKsuyw35/qKcLPG2jb5A/KaTsY+xGXMvqQKX4N0Ye8HxAKdQJjNJEKYmF98khoBMRrvFYSt9GnKjscSLfZkjuHz3rn9vLMBBAA121PfvpSnHOLGz+6VFECCTbBysDqO7TyPPupDg/EczdXcAltmEEbA+Y7MHx19TxurDyILXF8of4j8jWUVdww8J/w/0rKnaKEKDD+L5V0cvcT5kUKt5R9GlBfX6muijms1dYchQt4ggqRKnykHkR4j9Rzossp5fjXSop+zPxpp0FWR26hVirbjUHkw5MPrwpI3hsNamnRLhmHxOOs2MSs2znKrqMzhSwQkGQpAJjvUd9WN0lfB4cLgxgFYAdakhLNjPluQM85nfQggCdRXVHI2jkljSZSXDOD4nFMFs2ncn7qk+s/pUuw3s6SzJx+JS0wAY2bf76+R/wDjSTrMzppJ5Gnq10nuXhbS08WriuhtYRGtW1cZoLOR1pGtonNlAze8RTVaxZULmZLZWw2exYhndWJyMLh0Ig5srOSAhkcqTdjSodbF7B4TMuHwiIwsrdFzFkXL2pSR+yr7pAJgv3g6iaD4lxW/iELu73Feza6u7iGC4cvKkqtpSLaXJtscoLmVMAgRQRwzJkVVtWJsi3h7985rmZiM6MuT3cruuYWtFykkAzXCBbzG51V3EBytrEm+erS11QR+ty5pXQOwBcCAwK60DN4wdZ1qHr8TkNkNYtKUS0yaNctdk/uwVZYVBAfesv4gq5UX0svm6y3+yjO9+zZDwrurQZNsQrOe1MrNZaxBdrSvdN9st4raw6ZbV+2kottjAh+y6yFeVK9rnR3A+DPdBVbuHwVq1aYXWdx1+HdyYOYkuhJtqSuZRBYUAOXsp4kLWJaz1P7PaxAZkW5c/eFlOZYQhezlZ9VX7IknSrO4/wAIXGYe5YfRbi5cwMFSNQ0c4I2OhjxqmuheEtWbl90wOIxeJtXVFtjdAVj25uSAAolQdc85xrzq6hiHChgv8TKd4jUDxoAinEMB/wCl8JujDtkuoi/vEtsTcvdi2GyAmGeF1MgZvCpXgsS5spcuIA/Vo7IANGZZZQAx57do+ZoPFY1rdt7twBoDXACqkgIQQF1GZiSgGu866auFubtphAzEa6yCWUEGTuCCPw5UgBjiExKPaa3dRWXUsMs6jQGd/wBK6wvDXtmyLd39zbVgyECXJiGLAbjXXcyZOs01rwG5p2Lcc/rNWcR6OuR1uDxWIwrAEhAResv9r/ROxAn+ErvPjQA+8Qxq21MkFoOVZ1Y8gBuSTA05kASdKEw9/MbVxly5gVMg6NPYOoBEjOJIGrKBM1SnSrpfjmxHUX3tTbi2Xsq4UkkMWKmCxEjbTQxMyTuj3Sa7w7FNZx6r1d0L2l1UqZAcE+8p+UGYg1iU2n0WjiTVt8/r/S6LmCVnD7ETyU75dZIJU9kbRsO4VsWgQsABVjJIkiNAQTtp60h1jKqst0FGICl1LbjTtqw08TPnSuIudWBzEgd0eu0ecedbJNUL3TA7XaGnLXXQeB1pnfpDYv4N8Rh7qumUgMCUIYwFUzDI0svKdRHKh+ly8Qe11eDWz21g3GuFSk81GUhj3NOh+zTX7NuizYPDXbV+2Q7vLK3VvbIUQhSCZHPtQZ5QAaBCFzLbbrLcB+wGuE3FYkui/wCs0IyExy7o0NTKwjMylgAqSRrJJIKye4QTprM8o1a06PorlmbrAwIKsojX8OfxI2p6wnujyoALFbrQrKAKZ9qC/wDzB9fsW9P+Ec6iRsr3+ev61IfaviI4jcBiAtrkf9mvpUWsXwd2Hw+vr41yyTtnZFqkPGFs2oJuEZeckGfL6NSXopx/CtghhlUi5ba2xEZesFt1zCebQAY5zUKS3mOXrBJ2Gxgb86d+G8MFo51aHI12YEcgQfjO49TWVJR5HKO3QH0zZmxDaMCxJ20KkyCPAiNa54RcV71hTBFtSXPfAYxpuCzZAe4Cn3F4YYgjPlkDLu8QNtM1bwXARa1XL38zPiZMn4x4U/LFIz43YS1grHZB05zpWUBxLGXw0WxbB0nOPPaK1UdW+S2yXBChcrlsTHfSeRiQo7RJgASSSdgABJPhVkdEfZjEX+I6DQrh1Ord3WEf9g9TuK7FGzjcqI50P6MYriLTaXq7IMNecdmRyUDV28BoOZFHdI+jt3B3GtOc0QVcaB1P2gNY5gidCDvpV2cPsOCuULasooC21EbE92gWIAAHfrSHTHo8MZYKrAurLWmPfzQ/wtEeBg8qcsfHARyc8nnR7r2biXk0e2y3B5qQYnuMRVn+0TDLisJhuI2ER3tZXU3HKotu5DBmgiSrhQASB22magvGeEOJDCCNCO4jQg+Mipp7LL64nB3+H3+0EzLBnW1enu17L5ttpWljlfAZY+yD4LFh0yhzfdFZbmGwyhbTi4z/ALwDLlLCUBItvJCbzocW6oBRdt4YLdCWXtDPcFsnMyXGBLWzFxSylkG4A0imfiNq7be6ly+QbLBXsYRcrAzHabQMFZQMxLkSNBT7heBYzE9cMHYSyty4l1LpB7SENDZ2BCNDqwNsKRrOsVUkCrkty7WFtW3xDtdGKYEiBo1pNAw1aVi5BC66U13uNh7lsKL2NxFt7htsQyqVfXJkAzusliYFs6xtVkYT2S27lzr8bee7cYLnVDAZwoDEv7xkidI1JqecG4FhsKuXD2bdoc8oEnzbcnxNAFScK6D8SxmHNu9lwaF8ygCCVZSHDKpzPsh7bE6Gp3wr2c4O3ma6OvZwufOBlZgFligGpLKW1kgs0GCRUxJpMNuPX6+udACS2lQQqhQNAAI0FJ54INK3DSDCgAEXHxGIbLPVICpDSASAe7UElogbquu4FOdnCuFIBEySNTvAAkxPh3xFN56S4OzNt76KwJkamCddcoInWtp0zwE//VW/+r/LS2XyPV/AY2AZrYRn5mYmGB0hspUkanSYra8PClWklkEINAqCCIVBoNDuZPjECm//AN68P/3u1/1fpXLdNuHf75Z+J/Si0Gr+CFdOOBM3a0JGg7I25DWTtpy5aCgsNw1eK4BbMqmIwsqhZQVIMSjSCQrQNRqCAfAy3iXSzhrgg4yz/N/SoNa4th8NihdwuIS4GPbUHceHee4eFTyLjZFcT51fsnfRPoDawRF1L1+Momw1ybIcxLZY1IO0zFO78Hl7puO123dBBtPJUA7gCYggAGRsPMlXo/xu1iUBtkMpGoO47wRTlcwek2zH8J29DuvzHhRjnaFkhT5NroABsKyabuIcYs4eOvfqp0GcGCe4MAQfjQR6XYL/AHm3/wBX6VTZGNX8DxeNKYMdlfIVHbvS/Bf7yn/V+ld4fpvw9VUHF2wYHJ/8tGyFqyUisqNHp/w0f/eW/g/+Wkn9o/CxvjE/luf5KLQUyovbBdH/AKrfHctn/wDUhqFftpXan72mcUtYriN+9YcXLbC2FYAgHLbRToQDuCKiygbnlSpGtmPvDuJEdq5kVBsSCST3KsifEkgDvp14f0lsu4Vs1uTozQVPnHu/MVFbKs/aDDMNQJgiCqqE7zLaBdeyTU14FjUF22t62qpluLi7bosA28oX92sG3ma4FUwCWbnrWXji/Qeaa9j2pA0n6+FENfjQN84+GlA4PDC1eGGZhke0L+HOaSLZMG0881IIB5gHXkHe5w9Pv/E/oa4skNHR2wyKasaQsEkMST36/j6VlOBwIj+p/WsrOxsrNbjIwZCVZSGVhoQwMgg94MGvRHQTjKYzCriGIa6OxdH3Lg3EcgdGHga87Oh+iKfehPSZsBiA+ptPC3lGsrOjAfeUmR6jnXfF0cDVlm4/2yYa1iGtDD3blpGKvdQjcGGKofeA7yRNWNhuJWX6vLdQ9cnWWxIl0gHMBuRBHxqmsX7Jb9+6Xw2Ms/sl8m4GOYsFua6KohxBEHMJG8VbPBsHh1S0lpQThrYsoWjOqhQup5SFE1QmRL2odHzlOLtjYfvh4DQXdO7QN4QeRqsuinFf2XiFm4TCXD1T92W4QAfRgh9DV89J8ebFkXett2wjoX60Eh7c9tBGucrOWAdQORNedemF2zdv3Xw6m3ZZiVQkSJ3290TJAkxMVKSSlZWLbjReH/t7C/tD4k2VN65GZjrMBRsdB7qnzE08I1RnoRxn9rwVq6T2wMlz/GnZY+ujeTCpArVUkGK1azUOboAJJAA3JMAeZO1RbjHT/CWpCP1zDlagj1cwo9M3lSbS7Gk30TBnoHH8UtWQGu3FQd7GJ8AN28lmqf4t01x18mHWyv3U971cmf5ctMTNcJzF5PexJPxJqbyL0UWJ+y0uLe0G2BGHtm4fvPKL5hYzH1y1DOJ8dxeJnrL2VfuWzlX1jVh5k009fdiCw+ArhluffHy/Soucn2yygl6OruH03FDvZj+k1p7jj7X4ULfuvHvfMUkhtg9y4DIg+ppDDWesYlswRPej3mJ91BPMmkMU55mn7o1hAGt5gYBDGDB7zB5GNJqkqirMwW0qC7XRPKhLWusxDLK2lJK2FOouXm74+zud9BTZjOjzIyGwDeiC1wiEz7wsRIH3tqufh2Hwxw74i6ptYe1mc2xJ6yO1mc73WPJTz7zSKW3vfvntdSrL2LW2STpmIEdYRBPLWPGsqbasrKMVarohPRniL4TFLJIVjqOU7Grzt3ZUMDoR6VRXSbDZGBG4PkefLb1FWl0A4n12HUE6rp8KninUv2LLHbHfwSR7CXUKXEVlYaqwDKR+BqB8c9mdtgWwjZDM9XcJZT4BjLL6z6VYKDTzroV1uKkuTkjOUejz/wAS4BcsNkuqbbdxU6+RGjDyJFNT8LO4gjv8a9H4zC27yFLqK6nkwkeY/UVXHSb2Ztq2DukD/Y3G08lf8m/mqEsUl0dEckJd8Mqy7w88o+BpuxWAYbipHiuE3bbMl3OrroysdRz/AA5igL2C+pn86yp0OUCL3rJFIgbjv/GpBc4YT3fXrS2H6Plt4q3lSI+Jsj1hrY99GYjdZyiIbcwTMlT6Ec6nPR8XMv7Klq31otdd2iVMHLFsHMe0Ctu9nGWCHGkzSD9EwQpW5kddmAMzy9PgfHlTn0f6PvZLNcxDPmBBWSAQY96Zz7bHTzoeaFXYvDO6H+7glfFLiQW7NhbK5iTpmd2aWM65gB/xeBK4YaaefP8AGker1GxHmPy350qmBTQx+P5kiuKc3J2zqhBQVHBgASBPPbesrm+iq2wjx/pW6Rsqy8aGZjO1auYkkwKPt4C51ec5cskaETIGxAMjQ8xXfVHJFOXRYPsf6drZIwWJeLbH9y52RmOtsnkpJkHkSeREWJ0g6S4XAu+UC5iXGqA7d2c/ZHhud45157w+GBG2lO9hgo5TqTJEyTuTSeRpcCUE3yPPH+N3sU+e88kbAaKo7lXl+PeTUfv2yf70rduDv+dJF+4/OpcleB/9nnHhgWupezdVcIYZdcrgQTE7EQP+EU/cV9obnTDWgv8AHdMn0RTA9SfKq9Nwzz+Bru3c1/oa3tKjGkbDuJY/EYkzfvNc8CeyPJBCj0FCrh42j412tyNdR5j+tdC/4mptsokjWXTYfGuYg8vj/WtviRtBpNr08qXI+AlU8vjSmXy+NBrjCOXprXRxum3zpasdoJuIY5fGm3FJvt8TXV/GGOfxpqxmMNUjFk5SQi6y4Hj8udWB0O4d1rbb6eQqHdGcOz3dIGgBLc8xGi6bxJPlV4YK1huFYUXcQ2QEqpIBYktoAANTzOnIGlmi3UUawzUU5Eiw+EVbQtZQwGXSJ1BBBPqAaSxaf32n12I1Oho7heLsX7QuYe4ly2ftoZ18SNQ3gYIpDiVswf0BnwIOhHwNWjDVHPLI5Mq7pjbAB/xbbc/unbblprRXs24lkcoTvQnThCST3ajuA7hzU+BqN8AxnV3QZ51xzjXJ3YWpRpnopGkA+VdT9f1pu4HiustKfCnXLXbiltGzhyR1lQl9fQ/Sh8bjEs22uXDCIpYnwHj47a99FMtV17TuMz/8IhJiGuQdiRKIfTteq05z1jYscHOVEKxvEzir1y6xBZyTprA2AHgAAPSm97fdH161qzbO0mBtt+NKt461w+zvXQphcOOYH160ZbEHlHl/WhEcCARB8zRFq5/D+NZYB9o+X160UjDYEelNlsT/AG2pww9gNqYkeFKgHCwnifl+lEiI1JgU2rfykbfP8jSy3jvI+vWkZo4x+FaQVmPGJ5edZXN26Tr2fr1rKLGrKo4GqkvnXMcnZ1iCTE7a+VFcPxTC3d2OYouo2gMZEaA9mJ8T31lZXpM54eh0CFRAOw7qTfEnuHwrdZURsSLzyFa15GKyspAC33PMzNco3hWVlaEEoZFdBKysrLNIUVKJwtvN4VlZWGaRq4iqYKg/L8NaFdhOigfE/iayspoGCYxiNP6fhTSi53AO1ZWVWPRKXZbfQDo7auAFpPMa6A98bU1e0LE3DiWsXXzpYMoAMqgsq6xJ1jTU8zESaysqGOTcZWWyRSmqI1gsddwj9dhrr2n55Tow7mUiHHgQatXoJ00ucRt3Rdtqr2YBZCYeRvlPu/E1lZVsTdEcyQF0ytjKWjWD6gCarHDvDetZWVOXbK4S7/Z7iS1kTU2XasrK39N9pP6r7wfiGI6u1cuRORGeO/KpMfKqA/anuFrjkFnZnYxuxMn012rKyjP6KfS/bN/r+zQB2n5UqNq3WVzMqjSqMxG+nOlw+9ZWUAKpd2pYX4G1arKyAk9/XaiLN+OXdzrKymwHKy1ZWVlZEf/Z"
+                            alt="Clientèle satisfaite" class="clientele-svg">
+
+                    </div>
+                </div>
+
+                <!-- Description de l'entreprise -->
+                <div class="company-description">
+                    <h3 data-gjs-editable="true" data-gjs-name="Titre Description">Notre Agence de Conseil</h3>
+                    <p data-gjs-editable="true" data-gjs-name="Description 1">Nous sommes une agence de conseil
+                        spécialisée dans l'accompagnement des entreprises vers l'excellence opérationnelle et la
+                        croissance durable.</p>
+                    <p data-gjs-editable="true" data-gjs-name="Description 2">Notre équipe d'experts vous aide à
+                        identifier les opportunités, optimiser vos processus et mettre en place des stratégies efficaces
+                        pour atteindre vos objectifs.</p>
+
+                    <ul class="features-list">
+                        <li data-gjs-editable="true" data-gjs-name="Feature 1">
+                            <i class="fas fa-check-circle"></i> Conseil stratégique sur mesure
+                        </li>
+                        <li data-gjs-editable="true" data-gjs-name="Feature 2">
+                            <i class="fas fa-check-circle"></i> Analyse approfondie de votre marché
+                        </li>
+                        <li data-gjs-editable="true" data-gjs-name="Feature 3">
+                            <i class="fas fa-check-circle"></i> Solutions digitales innovantes
+                        </li>
+                        <li data-gjs-editable="true" data-gjs-name="Feature 4">
+                            <i class="fas fa-check-circle"></i> Accompagnement pas à pas
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie droite : Formulaire, image et plans -->
+            <div class="request-section" data-gjs-type="request-section">
+                <h3 class="section-title" data-gjs-editable="true" data-gjs-name="Titre Formulaire">Demandez Votre
+                    Consultation</h3>
+
+                <!-- Conteneur formulaire + image -->
+                <div class="form-image-container">
+                    <!-- Formulaire -->
+                    <div class="form-container">
+                        <form class="request-form" data-gjs-type="form">
+                            <div class="form-group">
+                                <label for="company-name" data-gjs-editable="true" data-gjs-name="Label Société">Nom de
+                                    votre société</label>
+                                <input type="text" id="company-name" class="form-control" data-gjs-editable="true"
+                                    data-gjs-name="Champ Société" placeholder="Ex: Ma Société SARL">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-name" data-gjs-editable="true" data-gjs-name="Label Nom">Votre
+                                    nom</label>
+                                <input type="text" id="contact-name" class="form-control" data-gjs-editable="true"
+                                    data-gjs-name="Champ Nom" placeholder="Ex: Jean Dupont">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" data-gjs-editable="true" data-gjs-name="Label Email">Adresse
+                                    email</label>
+                                <input type="email" id="email" class="form-control" data-gjs-editable="true"
+                                    data-gjs-name="Champ Email" placeholder="exemple@societe.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service" data-gjs-editable="true" data-gjs-name="Label Service">Service
+                                    souhaité</label>
+                                <select id="service" class="form-control" data-gjs-editable="true"
+                                    data-gjs-name="Select Service">
+                                    <option value="" data-gjs-editable="true">Sélectionnez un service</option>
+                                    <option value="strategy" data-gjs-editable="true">Conseil stratégique</option>
+                                    <option value="digital" data-gjs-editable="true">Transformation digitale</option>
+                                    <option value="management" data-gjs-editable="true">Management opérationnel</option>
+                                    <option value="marketing" data-gjs-editable="true">Stratégie marketing</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="submit-btn" data-gjs-editable="true"
+                                data-gjs-name="Bouton Soumettre">
+                                <i class="fas fa-paper-plane"></i> Envoyer ma demande
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Image de graphique à droite -->
+                    <div class="image-container">
+                        <div>
+                            <!-- Image SVG de graphique de croissance -->
+                            <svg class="growth-chart" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="chartBg" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f0f5ff;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="barGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#1a3a8f;stop-opacity:0.8" />
+                                        <stop offset="100%" style="stop-color:#2d5cc2;stop-opacity:0.8" />
+                                    </linearGradient>
+                                    <linearGradient id="barGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#1a3a8f;stop-opacity:0.6" />
+                                        <stop offset="100%" style="stop-color:#2d5cc2;stop-opacity:0.6" />
+                                    </linearGradient>
+                                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#1a3a8f;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#2d5cc2;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Fond du graphique -->
+                                <rect width="100%" height="100%" fill="url(#chartBg)" rx="8" />
+
+                                <!-- Grille -->
+                                <g opacity="0.2">
+                                    <line x1="50" y1="50" x2="50" y2="250" stroke="#333" stroke-width="1" />
+                                    <line x1="50" y1="250" x2="350" y2="250" stroke="#333" stroke-width="1" />
+                                    <line x1="50" y1="200" x2="350" y2="200" stroke="#333" stroke-width="1"
+                                        stroke-dasharray="5,5" />
+                                    <line x1="50" y1="150" x2="350" y2="150" stroke="#333" stroke-width="1"
+                                        stroke-dasharray="5,5" />
+                                    <line x1="50" y1="100" x2="350" y2="100" stroke="#333" stroke-width="1"
+                                        stroke-dasharray="5,5" />
+                                    <line x1="50" y1="50" x2="350" y2="50" stroke="#333" stroke-width="1"
+                                        stroke-dasharray="5,5" />
+                                </g>
+
+                                <!-- Axes -->
+                                <text x="25" y="260" font-family="Arial" font-size="12" fill="#666">0%</text>
+                                <text x="25" y="210" font-family="Arial" font-size="12" fill="#666">25%</text>
+                                <text x="25" y="160" font-family="Arial" font-size="12" fill="#666">50%</text>
+                                <text x="25" y="110" font-family="Arial" font-size="12" fill="#666">75%</text>
+                                <text x="25" y="60" font-family="Arial" font-size="12" fill="#666">100%</text>
+
+                                <!-- Barres du graphique -->
+                                <rect x="80" y="150" width="40" height="100" fill="url(#barGradient1)" rx="3" />
+                                <rect x="140" y="120" width="40" height="130" fill="url(#barGradient1)" rx="3" />
+                                <rect x="200" y="90" width="40" height="160" fill="url(#barGradient2)" rx="3" />
+                                <rect x="260" y="60" width="40" height="190" fill="url(#barGradient2)" rx="3" />
+                                <rect x="320" y="30" width="40" height="220" fill="url(#barGradient1)" rx="3" />
+
+                                <!-- Ligne de tendance -->
+                                <path d="M100,150 Q170,120 220,90 T340,30" stroke="url(#lineGradient)" stroke-width="3"
+                                    fill="none" stroke-linecap="round" />
+
+                                <!-- Points sur la ligne -->
+                                <circle cx="100" cy="150" r="4" fill="#1a3a8f" />
+                                <circle cx="160" cy="120" r="4" fill="#1a3a8f" />
+                                <circle cx="220" cy="90" r="4" fill="#2d5cc2" />
+                                <circle cx="280" cy="60" r="4" fill="#2d5cc2" />
+                                <circle cx="340" cy="30" r="6" fill="#1a3a8f" />
+
+                                <!-- Étiquettes -->
+                                <text x="100" y="270" font-family="Arial" font-size="12" fill="#666"
+                                    text-anchor="middle">M1</text>
+                                <text x="160" y="270" font-family="Arial" font-size="12" fill="#666"
+                                    text-anchor="middle">M2</text>
+                                <text x="220" y="270" font-family="Arial" font-size="12" fill="#666"
+                                    text-anchor="middle">M3</text>
+                                <text x="280" y="270" font-family="Arial" font-size="12" fill="#666"
+                                    text-anchor="middle">M4</text>
+                                <text x="340" y="270" font-family="Arial" font-size="12" fill="#666"
+                                    text-anchor="middle">M5</text>
+
+                                <!-- Titre du graphique -->
+                                <text x="200" y="20" font-family="Arial" font-size="16" font-weight="bold"
+                                    fill="#1a3a8f" text-anchor="middle">Croissance des entreprises</text>
+                                <text x="200" y="40" font-family="Arial" font-size="12" fill="#666"
+                                    text-anchor="middle">après notre accompagnement</text>
+
+                                <!-- Légende -->
+                                <rect x="280" y="280" width="12" height="12" fill="url(#barGradient1)" rx="2" />
+                                <text x="300" y="290" font-family="Arial" font-size="10" fill="#666">Clients</text>
+                                <rect x="340" y="280" width="12" height="12" fill="url(#barGradient2)" rx="2" />
+                                <text x="360" y="290" font-family="Arial" font-size="10" fill="#666">Moyenne</text>
+                            </svg>
+
+                            <!-- Statistiques sous le graphique -->
+                            <div class="chart-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number" data-gjs-editable="true" data-gjs-name="Stat Croissance">
+                                        +42%</div>
+                                    <div class="stat-label" data-gjs-editable="true" data-gjs-name="Label Croissance">
+                                        Croissance moyenne</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-gjs-editable="true" data-gjs-name="Stat Satisfaction">
+                                        94%</div>
+                                    <div class="stat-label" data-gjs-editable="true" data-gjs-name="Label Satisfaction">
+                                        Satisfaction</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plans d'affichage -->
+                <div class="plans-section">
+                    <h3 class="section-title" data-gjs-editable="true" data-gjs-name="Titre Plans">Nos Plans d'Affichage
+                    </h3>
+
+                    <div class="plans-grid">
+                        <div class="plan-card" data-gjs-type="plan-card">
+                            <div class="plan-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4 data-gjs-editable="true" data-gjs-name="Plan 1 Titre">Essentiel</h4>
+                            <p data-gjs-editable="true" data-gjs-name="Plan 1 Description">Analyse initiale et
+                                recommandations de base</p>
+                        </div>
+
+                        <div class="plan-card" data-gjs-type="plan-card">
+                            <div class="plan-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <h4 data-gjs-editable="true" data-gjs-name="Plan 2 Titre">Professionnel</h4>
+                            <p data-gjs-editable="true" data-gjs-name="Plan 2 Description">Accompagnement stratégique
+                                complet</p>
+                        </div>
+
+                        <div class="plan-card" data-gjs-type="plan-card">
+                            <div class="plan-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4 data-gjs-editable="true" data-gjs-name="Plan 3 Titre">Enterprise</h4>
+                            <p data-gjs-editable="true" data-gjs-name="Plan 3 Description">Solution sur mesure pour
+                                grandes entreprises</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer de la section -->
+        <div class="section-footer" data-gjs-type="footer">
+            <p data-gjs-editable="true" data-gjs-name="Footer Texte">© 2023 Stratégis Conseil. Tous droits réservés. |
+                <span data-gjs-editable="true">Contact: contact@strategis-conseil.fr</span> | <span
+                    data-gjs-editable="true">Tél: 01 23 45 67 89</span></p>
+        </div>
+    </div>
+
+    <!-- Note pour GrapeJS -->
+    <div class="grapejs-note">
+        <h4><i class="fas fa-info-circle"></i> Note pour l'édition GrapeJS</h4>
+        <p>Cette section est conçue pour être éditée avec GrapeJS. Chaque élément avec l'attribut
+            <code>data-gjs-editable="true"</code> peut être modifié directement dans l'interface. Les composants sont
+            organisés par blocs avec des attributs <code>data-gjs-type</code> pour faciliter la manipulation.</p>
+        <p><strong>Nouveauté :</strong> Une image de clientèle a été ajoutée à droite du logo "Stratégis Conseil". Cette
+            image illustre les différents types de clients et leurs taux de satisfaction.</p>
+    </div>
+
+    <script>
+        // Script pour gérer la soumission du formulaire
+        document.querySelector('.request-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Récupération des données du formulaire
+            const companyName = document.getElementById('company-name').value;
+            const contactName = document.getElementById('contact-name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+
+            // Simulation d'envoi
+            console.log('Demande de consultation envoyée:', {
+                companyName,
+                contactName,
+                email,
+                service
+            });
+
+            // Message de confirmation
+            alert(`Merci ${contactName}, votre demande de consultation pour "${service}" a été envoyée. Nous vous répondrons dans les 48h.`);
+
+            // Réinitialisation du formulaire
+            this.reset();
+        });
+
+        // Gestion des clics sur les plans
+        document.querySelectorAll('.plan-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const planTitle = this.querySelector('h4').textContent;
+                document.getElementById('service').value = 'strategy';
+                document.getElementById('company-name').focus();
+
+                // Animation de feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+
+                console.log(`Plan sélectionné: ${planTitle}`);
+            });
+        });
+
+        // Animation du graphique au chargement
+        document.addEventListener('DOMContentLoaded', function () {
+            const bars = document.querySelectorAll('rect[x="80"], rect[x="140"], rect[x="200"], rect[x="260"], rect[x="320"]');
+            const line = document.querySelector('path[d="M100,150 Q170,120 220,90 T340,30"]');
+            const points = document.querySelectorAll('circle[cx="100"], circle[cx="160"], circle[cx="220"], circle[cx="280"], circle[cx="340"]');
+
+            // Initial state
+            bars.forEach(bar => {
+                const originalHeight = bar.getAttribute('height');
+                bar.setAttribute('height', '0');
+                bar.setAttribute('y', '250');
+            });
+
+            line.style.strokeDasharray = line.getTotalLength();
+            line.style.strokeDashoffset = line.getTotalLength();
+
+            points.forEach(point => {
+                point.style.opacity = '0';
+            });
+
+            // Animate after a delay
+            setTimeout(() => {
+                // Animate bars
+                bars.forEach((bar, index) => {
+                    const originalHeight = bar.getAttribute('height');
+                    const originalY = bar.getAttribute('y');
+
+                    setTimeout(() => {
+                        bar.style.transition = 'height 1s ease, y 1s ease';
+                        bar.setAttribute('height', originalHeight);
+                        bar.setAttribute('y', originalY);
+                    }, index * 200);
+                });
+
+                // Animate line
+                setTimeout(() => {
+                    line.style.transition = 'stroke-dashoffset 1.5s ease';
+                    line.style.strokeDashoffset = '0';
+                }, 1000);
+
+                // Animate points
+                setTimeout(() => {
+                    points.forEach((point, index) => {
+                        setTimeout(() => {
+                            point.style.transition = 'opacity 0.5s ease, r 0.3s ease';
+                            point.style.opacity = '1';
+
+                            // Pulse effect for the last point
+                            if (index === points.length - 1) {
+                                setInterval(() => {
+                                    point.style.r = '8';
+                                    setTimeout(() => {
+                                        point.style.r = '6';
+                                    }, 300);
+                                }, 2000);
+                            }
+                        }, index * 300);
+                    });
+                }, 1500);
+            }, 500);
+
+            // Animation pour l'image de clientèle
+            const clientCircles = document.querySelectorAll('.clientele-image circle[cx="0"]');
+            const satisfactionIcons = document.querySelectorAll('.clientele-image polygon, .clientele-image circle[cx="0"][r="15"], .clientele-image path[d="M-10,-5 L10,-5 L0,10 Z"]');
+
+            clientCircles.forEach((circle, index) => {
+                circle.style.opacity = '0';
+                circle.style.transform = 'scale(0)';
+
+                setTimeout(() => {
+                    circle.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    circle.style.opacity = '1';
+                    circle.style.transform = 'scale(1)';
+                }, 300 * index);
+            });
+
+            satisfactionIcons.forEach((icon, index) => {
+                icon.style.opacity = '0';
+                icon.style.transform = 'translateY(20px)';
+
+                setTimeout(() => {
+                    icon.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    icon.style.opacity = '1';
+                    icon.style.transform = 'translateY(0)';
+                }, 1000 + (index * 200));
+            });
+        });
+    </script>
+</body>
+
+</html>

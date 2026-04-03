@@ -35,6 +35,17 @@
     <link rel="stylesheet" href="{{ asset('css/home-v2/destinations-vedette.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/restaurants-vedette.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/menu-accord-mets-vins.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/page-6-packages.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/page-3-infos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/page-5-tourism.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/business-tourism.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ asset('css/home-v2/multilingual-grid.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/news-section.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/web-services.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/agency-section.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/partners-master.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home-v2/real-estate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home-v2/footer.css') }}">
 </head>
 <body>
@@ -50,6 +61,16 @@
         @include('home-v2.components.DestinationsVedette')
         @include('home-v2.components.RestaurantsVedette')
         @include('home-v2.components.MenuAccordMetsVins')
+        @include('home-v2.components.TravelPackages')
+        @include('home-v2.components.TravelInfos')
+        @include('home-v2.components.TourismSection')
+        @include('home-v2.components.PartnersMaster')
+        @include('home-v2.components.AgencySection')
+        @include('home-v2.components.RealEstateSection')
+        @include('home-v2.components.MultilingualGrid')
+        @include('home-v2.components.NewsSection')
+        @include('home-v2.components.WebServices')
+        @include('home-v2.components.BusinessTourism')
     </main>
     
     {{-- Modal vidéo réutilisable pour toute la plateforme --}}
@@ -83,5 +104,8 @@
     <script src="{{ asset('js/home-v2/slideshows.js') }}"></script>
     <script src="{{ asset('js/home-v2/video-player.js') }}"></script>
     <script src="{{ asset('js/home-v2/events-vedette.js') }}"></script>
-</html>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{{ asset('js/home-v2/business-tourism.js') }}"></script>
+    <script src="{{ asset('js/home-v2/partners-master.js') }}"></script>
+</body>
 </html>

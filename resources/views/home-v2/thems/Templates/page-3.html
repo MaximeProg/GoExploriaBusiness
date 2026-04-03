@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace · Multi-vendeurs</title>
+  <style>
+    /* ===== STYLE MARKETPLACE MULTI-VENDEURS ===== */
+    /* Design moderne, confiance, communauté */
+    .marketplace-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1440px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #18181b;
+      position: relative;
+    }
+
+    /* HEADER MARKETPLACE */
+    .mp-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: white;
+      border-bottom: 1px solid #f0f0f3;
+      flex-wrap: wrap;
+    }
+
+    .mp-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mp-logo-icon {
+      font-size: 32px;
+      background: linear-gradient(145deg, #3b3f5c, #252837);
+      color: white;
+      padding: 10px;
+      border-radius: 16px;
+    }
+
+    .mp-logo-text {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .mp-logo-text span {
+      color: #ff6b6b;
+    }
+
+    .mp-search {
+      flex: 0 1 400px;
+      display: flex;
+      background: #f4f6fa;
+      border-radius: 50px;
+      padding: 4px;
+      border: 1px solid #eaeef2;
+    }
+
+    .mp-search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 14px 22px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .mp-search-btn {
+      background: #ff6b6b;
+      border: none;
+      border-radius: 50px;
+      padding: 0 28px;
+      color: white;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .mp-actions {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .mp-action-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 13px;
+      color: #5a5a6e;
+    }
+
+    .mp-action-icon {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .seller-badge {
+      background: #2e3b4e;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* HERO MARKETPLACE */
+    .mp-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      padding: 50px 40px;
+      background: linear-gradient(145deg, #fbfcff, #f6f9ff);
+    }
+
+    .mp-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mp-hero-tag {
+      background: #ffe8e8;
+      color: #ff4d4d;
+      padding: 8px 20px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 24px;
+      width: fit-content;
+    }
+
+    .mp-hero-title {
+      font-size: 54px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0 0 24px 0;
+      color: #1e1e2f;
+      letter-spacing: -2px;
+    }
+
+    .mp-hero-highlight {
+      color: #ff6b6b;
+      position: relative;
+    }
+
+    .mp-hero-desc {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #4a4a5e;
+      margin-bottom: 36px;
+      max-width: 90%;
+    }
+
+    .mp-hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 16px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1e1e2f;
+    }
+
+    .stat-label {
+      font-size: 15px;
+      color: #6b6b80;
+    }
+
+    .mp-hero-right {
+      background: linear-gradient(145deg, #ffffff, #f3f7fd);
+      border-radius: 40px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 1px solid rgba(255, 107, 107, 0.1);
+    }
+
+    .seller-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .seller-mini-card {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.05);
+      border: 1px solid #f0f0f5;
+    }
+
+    .seller-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(145deg, #ffd6d6, #ffe0e0);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    /* CATÉGORIES MARKETPLACE */
+    .mp-categories {
+      padding: 60px 40px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -1px;
+      color: #1e1e2f;
+    }
+
+    .section-sub {
+      color: #6f6f8a;
+      font-size: 17px;
+      margin: 8px 0 0 0;
+    }
+
+    .categories-masonry {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .category-mega-card {
+      background: white;
+      border-radius: 28px;
+      padding: 28px 20px;
+      border: 1px solid #f3f3f8;
+      transition: 0.25s ease;
+      text-align: center;
+    }
+
+    .category-mega-card:hover {
+      border-color: #ffb5b5;
+      box-shadow: 0 20px 30px -15px rgba(255,107,107,0.1);
+      transform: translateY(-5px);
+    }
+
+    .category-emoji {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .category-mega-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #27273a;
+    }
+
+    .seller-count {
+      font-size: 14px;
+      color: #ff6b6b;
+      font-weight: 600;
+      background: #ffecec;
+      padding: 4px 14px;
+      border-radius: 30px;
+      display: inline-block;
+    }
+
+    /* VENDEURS À LA UNE */
+    .mp-sellers {
+      padding: 40px 40px 70px;
+      background: #fafcff;
+    }
+
+    .sellers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      margin-top: 30px;
+    }
+
+    .seller-card {
+      background: white;
+      border-radius: 28px;
+      padding: 28px;
+      border: 1px solid #edeef2;
+      transition: 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .seller-card:hover {
+      border-color: #ffa5a5;
+      box-shadow: 0 25px 35px -18px rgba(255,90,90,0.12);
+    }
+
+    .seller-avatar-large {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(145deg, #ffecec, #ffe0e0);
+      border-radius: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin-bottom: 22px;
+    }
+
+    .seller-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: #232338;
+    }
+
+    .seller-specialty {
+      font-size: 15px;
+      color: #6b6b83;
+      margin-bottom: 16px;
+    }
+
+    .seller-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #faf5f0;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #c97a2e;
+    }
+
+    .seller-products {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #5a5a70;
+    }
+
+    /* PRODUITS MULTI-VENDEURS */
+    .mp-products {
+      padding: 50px 40px;
+    }
+
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .product-mp-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid #f0f0f5;
+      transition: 0.2s;
+    }
+
+    .product-mp-card:hover {
+      border-color: #d6d6e0;
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.05);
+    }
+
+    .product-image {
+      background: #f5f7fb;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 60px;
+    }
+
+    .product-seller-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(4px);
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ff5e5e;
+      border: 1px solid #ffe0e0;
+    }
+
+    .product-info {
+      padding: 22px;
+    }
+
+    .product-seller-name {
+      font-size: 13px;
+      color: #ff6b6b;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .product-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      color: #1e1e2f;
+    }
+
+    .product-price {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1e1e2f;
+    }
+
+    .product-shipping {
+      font-size: 13px;
+      color: #6f6f8a;
+      margin-top: 8px;
+    }
+
+    /* BANDEAU DEVENIR VENDEUR */
+    .mp-become-seller {
+      background: linear-gradient(145deg, #2a2a44, #1e1e32);
+      border-radius: 48px;
+      margin: 20px 40px 40px;
+      padding: 56px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: white;
+    }
+
+    .become-content h3 {
+      font-size: 38px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .become-content p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      margin: 0;
+      max-width: 600px;
+    }
+
+    .become-btn {
+      background: #ff6b6b;
+      color: white;
+      padding: 20px 52px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 18px;
+      border: none;
+      box-shadow: 0 20px 35px -12px rgba(255,107,107,0.3);
+    }
+
+    /* AVANTAGES MARKETPLACE */
+    .mp-features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      padding: 60px 40px;
+      background: white;
+    }
+
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 42px;
+      background: #fff3f3;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 26px;
+      color: #ff6b6b;
+      margin-bottom: 24px;
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1e1e2f;
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      color: #5e5e76;
+      line-height: 1.6;
+    }
+
+    /* FOOTER MARKETPLACE */
+    .mp-footer {
+      background: #f8faff;
+      padding: 60px 40px 30px;
+      border-top: 1px solid #e9ebf0;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-about p {
+      color: #5a5a72;
+      line-height: 1.7;
+      margin: 24px 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #4f4f67;
+      font-size: 15px;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      color: #1e1e2f;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid #e2e4ec;
+      color: #6f6f89;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1200px) {
+      .categories-masonry,
+      .sellers-grid,
+      .products-grid,
+      .mp-features {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .mp-hero {
+        grid-template-columns: 1fr;
+      }
+      .categories-masonry,
+      .sellers-grid,
+      .products-grid,
+      .mp-features,
+      .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .categories-masonry,
+      .sellers-grid,
+      .products-grid,
+      .mp-features,
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+      .mp-header {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    .gjs-draggable { cursor: move; }
+  </style>
+</head>
+<body>
+  <!-- MARKETPLACE MULTI-VENDEURS - LANDING MODERNE -->
+  <section class="marketplace-section">
+
+    <!-- HEADER avec recherche -->
+    <header class="mp-header">
+      <div class="mp-logo">
+        <span class="mp-logo-icon">🛍️</span>
+        <span class="mp-logo-text">Market<span>Place</span></span>
+      </div>
+
+      <div class="mp-search">
+        <input type="text" placeholder="Rechercher produits, vendeurs..." class="mp-search-input" value="">
+        <button class="mp-search-btn">🔍</button>
+      </div>
+
+      <div class="mp-actions">
+        <div class="mp-action-item">
+          <span class="mp-action-icon">👤</span>
+          <span>Compte</span>
+        </div>
+        <div class="mp-action-item">
+          <span class="mp-action-icon">❤️</span>
+          <span>Favoris</span>
+        </div>
+        <div class="mp-action-item">
+          <span class="mp-action-icon">🛒</span>
+          <span>Panier</span>
+        </div>
+        <span class="seller-badge">
+          <span>+</span> Devenir vendeur
+        </span>
+      </div>
+    </header>
+
+    <!-- HERO : Confiance & communauté -->
+    <div class="mp-hero">
+      <div class="mp-hero-left">
+        <span class="mp-hero-tag">
+          <span>🤝</span> +1200 vendeurs indépendants
+        </span>
+        <h1 class="mp-hero-title">
+          La marketplace où <span class="mp-hero-highlight">chaque vendeur</span> a sa vitrine
+        </h1>
+        <p class="mp-hero-desc">
+          Mode, déco, artisanat, vintage… Découvrez des milliers de produits uniques, 
+          directement des créateurs et petites boutiques du monde entier.
+        </p>
+        <div class="mp-hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">1.2k+</span>
+            <span class="stat-label">Vendeurs</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15k+</span>
+            <span class="stat-label">Produits</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Avis positifs</span>
+          </div>
+        </div>
+      </div>
+      <div class="mp-hero-right">
+        <div class="seller-showcase">
+          <div class="seller-mini-card">
+            <span class="seller-avatar">👚</span>
+            <div>
+              <div style="font-weight: 700;">Léa Créations</div>
+              <div style="font-size: 13px; color: #ff5e5e;">★ 4.9 (328)</div>
+            </div>
+          </div>
+          <div class="seller-mini-card">
+            <span class="seller-avatar">🧢</span>
+            <div>
+              <div style="font-weight: 700;">Urban Supply</div>
+              <div style="font-size: 13px; color: #ff5e5e;">★ 4.8 (512)</div>
+            </div>
+          </div>
+          <div class="seller-mini-card">
+            <span class="seller-avatar">🪑</span>
+            <div>
+              <div style="font-weight: 700;">Bois & Co</div>
+              <div style="font-size: 13px; color: #ff5e5e;">★ 4.9 (147)</div>
+            </div>
+          </div>
+          <div class="seller-mini-card">
+            <span class="seller-avatar">🎨</span>
+            <div>
+              <div style="font-weight: 700;">Atelier K</div>
+              <div style="font-size: 13px; color: #ff5e5e;">★ 5.0 (89)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATÉGORIES POPULAIRES (multi-vendeurs) -->
+    <div class="mp-categories">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Catégories populaires</h2>
+          <p class="section-sub">Ce que nos vendeurs proposent</p>
+        </div>
+        <span style="color: #ff6b6b; font-weight: 600; border-bottom: 2px solid #ff6b6b; padding-bottom: 4px;">
+          Toutes les catégories →
+        </span>
+      </div>
+
+      <div class="categories-masonry">
+        <div class="category-mega-card">
+          <div class="category-emoji">👗</div>
+          <h3 class="category-mega-title">Mode</h3>
+          <span class="seller-count">340 vendeurs</span>
+        </div>
+        <div class="category-mega-card">
+          <div class="category-emoji">🪑</div>
+          <h3 class="category-mega-title">Décoration</h3>
+          <span class="seller-count">215 vendeurs</span>
+        </div>
+        <div class="category-mega-card">
+          <div class="category-emoji">🎨</div>
+          <h3 class="category-mega-title">Artisanat</h3>
+          <span class="seller-count">187 vendeurs</span>
+        </div>
+        <div class="category-mega-card">
+          <div class="category-emoji">💎</div>
+          <h3 class="category-mega-title">Bijoux</h3>
+          <span class="seller-count">156 vendeurs</span>
+        </div>
+        <div class="category-mega-card">
+          <div class="category-emoji">📚</div>
+          <h3 class="category-mega-title">Livres</h3>
+          <span class="seller-count">92 vendeurs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VENDEURS À LA UNE (MULTI-VENDEURS) -->
+    <div class="mp-sellers">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Vendeurs à la une</h2>
+          <p class="section-sub">Découvrez nos créateurs et boutiques</p>
+        </div>
+        <span style="color: #ff6b6b; font-weight: 600;">Devenir vendeur →</span>
+      </div>
+
+      <div class="sellers-grid">
+        <div class="seller-card">
+          <div class="seller-avatar-large">👚</div>
+          <h4 class="seller-name">Léa Créations</h4>
+          <span class="seller-specialty">Mode éthique</span>
+          <div class="seller-rating">★ 4.9 (328 avis)</div>
+          <div class="seller-products">
+            <span>🧥 23 produits</span>
+          </div>
+        </div>
+        <div class="seller-card">
+          <div class="seller-avatar-large">🔨</div>
+          <h4 class="seller-name">Atelier Bois</h4>
+          <span class="seller-specialty">Mobilier sur mesure</span>
+          <div class="seller-rating">★ 4.8 (147 avis)</div>
+          <div class="seller-products">
+            <span>🪑 17 produits</span>
+          </div>
+        </div>
+        <div class="seller-card">
+          <div class="seller-avatar-large">📷</div>
+          <h4 class="seller-name">Vintage Lab</h4>
+          <span class="seller-specialty">Appareils photo</span>
+          <div class="seller-rating">★ 4.7 (92 avis)</div>
+          <div class="seller-products">
+            <span>📸 31 produits</span>
+          </div>
+        </div>
+        <div class="seller-card">
+          <div class="seller-avatar-large">🧶</div>
+          <h4 class="seller-name">Maison Fil</h4>
+          <span class="seller-specialty">Textile maison</span>
+          <div class="seller-rating">★ 4.9 (211 avis)</div>
+          <div class="seller-products">
+            <span>🛋️ 28 produits</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUITS MULTI-VENDEURS (provenant de différents vendeurs) -->
+    <div class="mp-products">
+      <div class="products-header">
+        <div>
+          <h2 class="section-title" style="font-size: 32px;">Nouveautés de nos vendeurs</h2>
+        </div>
+        <span style="background: #ffecec; color: #ff5e5e; padding: 10px 26px; border-radius: 40px; font-weight: 600;">
+          🛒 Voir tout
+        </span>
+      </div>
+
+      <div class="products-grid">
+        <!-- Produit 1 (vendeur Léa) -->
+        <div class="product-mp-card">
+          <div class="product-image">
+            <span>🧥</span>
+            <span class="product-seller-badge">👗 Léa Créations</span>
+          </div>
+          <div class="product-info">
+            <div class="product-seller-name">★ 4.9 (328)</div>
+            <h4 class="product-title">Manteau en laine recyclée</h4>
+            <div class="product-price">189 €</div>
+            <div class="product-shipping">Livraison offerte</div>
+          </div>
+        </div>
+        <!-- Produit 2 (vendeur Atelier Bois) -->
+        <div class="product-mp-card">
+          <div class="product-image">
+            <span>🪑</span>
+            <span class="product-seller-badge">🔨 Atelier Bois</span>
+          </div>
+          <div class="product-info">
+            <div class="product-seller-name">★ 4.8 (147)</div>
+            <h4 class="product-title">Tabouret chêne massif</h4>
+            <div class="product-price">129 €</div>
+            <div class="product-shipping">Fabrication française</div>
+          </div>
+        </div>
+        <!-- Produit 3 (vendeur Vintage Lab) -->
+        <div class="product-mp-card">
+          <div class="product-image">
+            <span>📷</span>
+            <span class="product-seller-badge">📷 Vintage Lab</span>
+          </div>
+          <div class="product-info">
+            <div class="product-seller-name">★ 4.7 (92)</div>
+            <h4 class="product-title">Appareil argentique</h4>
+            <div class="product-price">249 €</div>
+            <div class="product-shipping">Révisé</div>
+          </div>
+        </div>
+        <!-- Produit 4 (vendeur Maison Fil) -->
+        <div class="product-mp-card">
+          <div class="product-image">
+            <span>🛏️</span>
+            <span class="product-seller-badge">🧶 Maison Fil</span>
+          </div>
+          <div class="product-info">
+            <div class="product-seller-name">★ 4.9 (211)</div>
+            <h4 class="product-title">Plaid en coton tissé</h4>
+            <div class="product-price">79 €</div>
+            <div class="product-shipping">Stock limité</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANDEAU DEVENIR VENDEUR -->
+    <div class="mp-become-seller">
+      <div class="become-content">
+        <h3>Vous êtes créateur ou boutique ?</h3>
+        <p>Rejoignez plus de 1200 vendeurs et développez votre activité sur notre marketplace.</p>
+      </div>
+      <span class="become-btn">Ouvrir ma boutique →</span>
+    </div>
+
+    <!-- AVANTAGES MARKETPLACE -->
+    <div class="mp-features">
+      <div class="feature-item">
+        <div class="feature-icon">🤝</div>
+        <h4 class="feature-title">Commission 8%</h4>
+        <p class="feature-desc">Parmi les plus basses du marché, sans frais cachés.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📦</div>
+        <h4 class="feature-title">Logistique intégrée</h4>
+        <p class="feature-desc">Expédiez simplement, on s'occupe du support.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📈</div>
+        <h4 class="feature-title">Visibilité offerte</h4>
+        <p class="feature-desc">Mise en avant des nouveaux vendeurs pendant 30 jours.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">💳</div>
+        <h4 class="feature-title">Paiement sécurisé</h4>
+        <p class="feature-desc">Virements sous 48h, protection acheteur incluse.</p>
+      </div>
+    </div>
+
+    <!-- FOOTER MARKETPLACE -->
+    <footer class="mp-footer">
+      <div class="footer-main">
+        <div class="footer-about">
+          <div class="mp-logo">
+            <span class="mp-logo-icon">🛍️</span>
+            <span class="mp-logo-text">Market<span>Place</span></span>
+          </div>
+          <p>La marketplace équitable qui connecte acheteurs et vendeurs indépendants. Rejoignez l'aventure !</p>
+          <div style="display: flex; gap: 24px; font-size: 24px;">
+            <span>📘</span>
+            <span>📷</span>
+            <span>🐦</span>
+            <span>🎵</span>
+          </div>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Vendeurs</span>
+          <a href="#">Devenir vendeur</a>
+          <a href="#">Espace vendeur</a>
+          <a href="#">Tarifs & commissions</a>
+          <a href="#">Guide du vendeur</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Acheteurs</span>
+          <a href="#">Aide & contact</a>
+          <a href="#">Livraison</a>
+          <a href="#">Retours</a>
+          <a href="#">Paiement sécurisé</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">À propos</span>
+          <a href="#">Qui sommes-nous</a>
+          <a href="#">Blog</a>
+          <a href="#">Presse</a>
+          <a href="#">CGU</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Marketplace. Tous droits réservés.</span>
+        <span style="display: flex; gap: 28px;">
+          <span>Confidentialité</span>
+          <span>Cookies</span>
+          <span>Mentions légales</span>
+        </span>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>

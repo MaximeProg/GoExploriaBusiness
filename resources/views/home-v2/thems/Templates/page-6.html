@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet de conseil · Site vitrine professionnel</title>
+  <style>
+    /* ===== STYLE CABINET DE CONSEIL - EXPERTISE & CONFIANCE ===== */
+    /* Design premium, épuré, typographie élégante */
+    .consulting-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      max-width: 1440px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #1a2e3b;
+      position: relative;
+    }
+
+    /* HEADER - SIGNATURE VISUELLE */
+    .cons-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: white;
+      border-bottom: 1px solid #f0f3f7;
+      flex-wrap: wrap;
+    }
+
+    .cons-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .cons-logo-symbol {
+      font-size: 32px;
+      font-weight: 700;
+      color: #0f4c5c;
+      background: #eaf2f4;
+      padding: 8px 14px;
+      border-radius: 12px;
+      letter-spacing: -1px;
+    }
+
+    .cons-logo-text {
+      font-size: 26px;
+      font-weight: 600;
+      color: #173e4a;
+      margin-left: 8px;
+    }
+
+    .cons-logo-dot {
+      color: #c17b4b;
+      font-size: 32px;
+    }
+
+    .cons-nav {
+      display: flex;
+      gap: 42px;
+      font-weight: 500;
+    }
+
+    .cons-nav a {
+      text-decoration: none;
+      color: #2b4853;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .cons-nav a:hover {
+      color: #b45a3b;
+    }
+
+    .cons-cta {
+      background: #0f4c5c;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      box-shadow: 0 8px 18px -8px rgba(15, 76, 92, 0.3);
+      transition: 0.2s;
+    }
+
+    /* HERO - IMPACT CONSEIL */
+    .cons-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 60px 60px 80px;
+      background: linear-gradient(145deg, #fbfdfe, #f6fafc);
+      position: relative;
+    }
+
+    .cons-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cons-hero-tag {
+      background: rgba(15, 76, 92, 0.08);
+      color: #0f4c5c;
+      padding: 8px 24px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 24px;
+      width: fit-content;
+      border: 1px solid rgba(15, 76, 92, 0.1);
+    }
+
+    .cons-hero-title {
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 24px 0;
+      color: #0d2f38;
+      letter-spacing: -1.5px;
+    }
+
+    .cons-hero-accent {
+      color: #b45a3b;
+      border-bottom: 3px solid rgba(180, 90, 59, 0.15);
+    }
+
+    .cons-hero-desc {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #3a5f6b;
+      margin-bottom: 36px;
+      max-width: 90%;
+    }
+
+    .cons-hero-btns {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn-primary {
+      background: #0f4c5c;
+      color: white;
+      padding: 16px 38px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 17px;
+      border: none;
+      box-shadow: 0 12px 22px -12px rgba(15, 76, 92, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #0f4c5c;
+      color: #0f4c5c;
+      padding: 16px 38px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 17px;
+    }
+
+    .cons-hero-right {
+      background: white;
+      border-radius: 40px;
+      padding: 40px 38px;
+      box-shadow: 0 30px 50px -30px rgba(0,60,70,0.06);
+      border: 1px solid #ecf3f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cons-testimonial {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #1c424e;
+      font-weight: 500;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .cons-client {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cons-client-avatar {
+      width: 60px;
+      height: 60px;
+      background: #eef2f4;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: #0f4c5c;
+    }
+
+    /* SECTION EXPERTISES */
+    .cons-expertises {
+      padding: 80px 60px;
+      background: white;
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .section-surtitle {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #b45a3b;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 0 0 22px 0;
+      color: #0d2f38;
+      letter-spacing: -1px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: #4c6d78;
+      line-height: 1.6;
+    }
+
+    .expertises-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 20px;
+    }
+
+    .expertise-card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 38px 32px;
+      border: 1px solid #ecf3f6;
+      transition: all 0.25s ease;
+    }
+
+    .expertise-card:hover {
+      border-color: #c9a287;
+      box-shadow: 0 25px 40px -22px rgba(15, 76, 92, 0.08);
+      transform: translateY(-6px);
+    }
+
+    .expertise-icon {
+      font-size: 48px;
+      margin-bottom: 28px;
+      background: #f5fafb;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      color: #0f4c5c;
+    }
+
+    .expertise-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: #173e4a;
+    }
+
+    .expertise-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #4a6e7a;
+      margin-bottom: 24px;
+    }
+
+    .expertise-link {
+      color: #b45a3b;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* SECTION MÉTHODOLOGIE */
+    .cons-methodology {
+      background: #f8fbfc;
+      padding: 80px 60px;
+    }
+
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .methodology-step {
+      text-align: center;
+      padding: 32px 24px;
+      background: white;
+      border-radius: 32px;
+      border: 1px solid #e8f0f2;
+    }
+
+    .step-number {
+      font-size: 42px;
+      font-weight: 800;
+      color: rgba(180, 90, 59, 0.2);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .step-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: #0f4c5c;
+    }
+
+    .step-desc {
+      font-size: 15px;
+      color: #4b6e79;
+      line-height: 1.6;
+    }
+
+    /* SECTION ÉQUIPE - ASSOCIÉS */
+    .cons-team {
+      padding: 80px 60px;
+      background: white;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      margin-top: 40px;
+    }
+
+    .team-card {
+      background: white;
+      border-radius: 32px;
+      padding: 36px 32px;
+      border: 1px solid #ecf3f6;
+      transition: 0.2s;
+      text-align: center;
+    }
+
+    .team-card:hover {
+      border-color: #bfaa9a;
+      box-shadow: 0 30px 45px -28px rgba(15,76,92,0.08);
+    }
+
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(145deg, #e4edf0, #d3e1e6);
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      margin: 0 auto 26px;
+      color: #0f4c5c;
+    }
+
+    .team-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #173e4a;
+    }
+
+    .team-role {
+      font-size: 16px;
+      color: #b45a3b;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .team-bio {
+      font-size: 15px;
+      color: #4a6e7a;
+      line-height: 1.7;
+    }
+
+    /* SECTION ÉTUDES DE CAS */
+    .cons-cases {
+      background: #f8fbfc;
+      padding: 80px 60px;
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .case-card {
+      background: white;
+      border-radius: 32px;
+      padding: 36px;
+      border: 1px solid #e6eff2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .case-tag {
+      background: rgba(15, 76, 92, 0.08);
+      color: #0f4c5c;
+      padding: 6px 20px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 600;
+      align-self: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .case-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 0 0 18px 0;
+      color: #0d2f38;
+    }
+
+    .case-desc {
+      font-size: 16px;
+      color: #4b6e79;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .case-link {
+      color: #b45a3b;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* SECTION CHIFFRES */
+    .cons-figures {
+      padding: 60px 60px 70px;
+      background: white;
+    }
+
+    .figures-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      background: linear-gradient(145deg, #f1f8fa, #e9f2f5);
+      border-radius: 60px;
+      padding: 60px 40px;
+    }
+
+    .figure-block {
+      text-align: center;
+    }
+
+    .figure-number {
+      font-size: 52px;
+      font-weight: 800;
+      color: #0f4c5c;
+      margin-bottom: 12px;
+    }
+
+    .figure-label {
+      font-size: 17px;
+      color: #2e5a66;
+      font-weight: 500;
+    }
+
+    /* BANDEAU CONTACT */
+    .cons-contact-cta {
+      background: linear-gradient(145deg, #0f4c5c, #0a3a46);
+      border-radius: 48px;
+      margin: 40px 60px 60px;
+      padding: 56px 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: white;
+    }
+
+    .contact-left h3 {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .contact-left p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      margin: 0;
+    }
+
+    .contact-btn {
+      background: white;
+      color: #0f4c5c;
+      padding: 18px 52px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 18px;
+      border: none;
+      box-shadow: 0 18px 32px -12px rgba(0,0,0,0.18);
+    }
+
+    /* FOOTER CABINET */
+    .cons-footer {
+      background: #0d2f38;
+      color: white;
+      padding: 60px 60px 30px;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .footer-about p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 28px;
+      font-size: 22px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .expertises-grid,
+      .team-grid,
+      .figures-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .methodology-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .cons-hero {
+        grid-template-columns: 1fr;
+      }
+      .cases-grid {
+        grid-template-columns: 1fr;
+      }
+      .cons-header {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .expertises-grid,
+      .team-grid,
+      .methodology-grid,
+      .figures-wrapper,
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+      .cons-hero,
+      .cons-expertises,
+      .cons-methodology,
+      .cons-team,
+      .cons-cases {
+        padding: 40px 24px;
+      }
+    }
+
+    .gjs-draggable { cursor: move; }
+  </style>
+</head>
+<body>
+  <!-- CABINET DE CONSEIL - SITE VITRINE PROFESSIONNEL -->
+  <section class="consulting-section">
+
+    <!-- HEADER ÉLÉGANT -->
+    <header class="cons-header">
+      <div class="cons-logo">
+        <span class="cons-logo-symbol">⟁</span>
+        <span class="cons-logo-text">Axis<span style="color: #b45a3b;">.</span>Conseil</span>
+      </div>
+      <nav class="cons-nav">
+        <a href="#">Expertises</a>
+        <a href="#">Méthode</a>
+        <a href="#">Équipe</a>
+        <a href="#">Réalisations</a>
+        <a href="#">Perspectives</a>
+      </nav>
+      <button class="cons-cta">Échanger</button>
+    </header>
+
+    <!-- HERO - MESSAGE CONSEIL -->
+    <div class="cons-hero">
+      <div class="cons-hero-left">
+        <span class="cons-hero-tag">
+          <span>📊</span> Cabinet indépendant depuis 2008
+        </span>
+        <h1 class="cons-hero-title">
+          Stratégie, management, <span class="cons-hero-accent">performance durable</span>
+        </h1>
+        <p class="cons-hero-desc">
+          Nous accompagnons les directions générales dans leurs transformations critiques. 
+          Une approche sur-mesure, des résultats mesurables.
+        </p>
+        <div class="cons-hero-btns">
+          <button class="btn-primary">Nos expertises →</button>
+          <button class="btn-outline">Nous rencontrer</button>
+        </div>
+      </div>
+      <div class="cons-hero-right">
+        <div class="cons-testimonial">
+          “Axis.Conseil a structuré notre plan stratégique et nous a aidés à pivoter face aux défis du marché. Un partenaire de confiance.”
+        </div>
+        <div class="cons-client">
+          <div class="cons-client-avatar">JD</div>
+          <div>
+            <div style="font-weight: 700; color: #173e4a;">Jean Delamare</div>
+            <div style="font-size: 14px; color: #547a85;">DG, Groupe Delamare Industries</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERTISES - CŒUR DE MÉTIER -->
+    <div class="cons-expertises">
+      <div class="section-header">
+        <div class="section-surtitle">NOTRE SAVOIR-FAIRE</div>
+        <h2 class="section-title">Expertises à haute valeur ajoutée</h2>
+        <p class="section-desc">
+          Des compétences pointues au service de vos enjeux stratégiques et opérationnels.
+        </p>
+      </div>
+
+      <div class="expertises-grid">
+        <div class="expertise-card">
+          <div class="expertise-icon">📐</div>
+          <h3 class="expertise-name">Stratégie d'entreprise</h3>
+          <p class="expertise-desc">
+            Diagnostic stratégique, feuille de route croissance, diversification, internationalisation.
+          </p>
+          <span class="expertise-link">Découvrir →</span>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">⚙️</div>
+          <h3 class="expertise-name">Performance opérationnelle</h3>
+          <p class="expertise-desc">
+            Optimisation des processus, supply chain, excellence industrielle, transformation lean.
+          </p>
+          <span class="expertise-link">Découvrir →</span>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">👥</div>
+          <h3 class="expertise-name">Management & RH</h3>
+          <p class="expertise-desc">
+            Conduite du changement, marque employeur, organisation du travail, développement des talents.
+          </p>
+          <span class="expertise-link">Découvrir →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÉTHODOLOGIE EN 4 ÉTAPES -->
+    <div class="cons-methodology">
+      <div class="section-header">
+        <div class="section-surtitle">NOTRE MÉTHODE</div>
+        <h2 class="section-title">Un processus éprouvé</h2>
+        <p class="section-desc">
+          De l'audit à la mise en œuvre, nous vous accompagnons à chaque étape.
+        </p>
+      </div>
+
+      <div class="methodology-grid">
+        <div class="methodology-step">
+          <div class="step-number">01</div>
+          <h4 class="step-title">Diagnostic</h4>
+          <p class="step-desc">Analyse terrain, entretiens, data review. Nous identifions vos leviers.</p>
+        </div>
+        <div class="methodology-step">
+          <div class="step-number">02</div>
+          <h4 class="step-title">Stratégie</h4>
+          <p class="step-desc">Co-construction du plan d'action avec vos équipes de direction.</p>
+        </div>
+        <div class="methodology-step">
+          <div class="step-number">03</div>
+          <h4 class="step-title">Déploiement</h4>
+          <p class="step-desc">Accompagnement opérationnel, agile et pragmatique.</p>
+        </div>
+        <div class="methodology-step">
+          <div class="step-number">04</div>
+          <h4 class="step-title">Pérennisation</h4>
+          <p class="step-desc">Transfert de compétences et pilotage des résultats.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉQUIPE DIRIGEANTE / ASSOCIÉS -->
+    <div class="cons-team">
+      <div class="section-header">
+        <div class="section-surtitle">NOTRE ÉQUIPE</div>
+        <h2 class="section-title">Des associés impliqués</h2>
+        <p class="section-desc">
+          Des profils complémentaires, une culture commune de l'impact.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">👨</div>
+          <h3 class="team-name">François Vernier</h3>
+          <div class="team-role">Associé fondateur</div>
+          <p class="team-bio">Ancien BCG, 20 ans d'expérience en stratégie corporate.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👩</div>
+          <h3 class="team-name">Céline Arnaud</h3>
+          <div class="team-role">Associée - Performance</div>
+          <p class="team-bio">Experte en transformation opérationnelle et supply chain.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👨‍💼</div>
+          <h3 class="team-name">Marc Delcourt</h3>
+          <div class="team-role">Associé - RH & Conduite du changement</div>
+          <p class="team-bio">DRH de grands groupes, spécialiste des transformations humaines.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉTUDES DE CAS CLIENTS -->
+    <div class="cons-cases">
+      <div class="section-header">
+        <div class="section-surtitle">RÉALISATIONS</div>
+        <h2 class="section-title">Ils nous ont fait confiance</h2>
+        <p class="section-desc">
+          Quelques exemples de missions à fort impact.
+        </p>
+      </div>
+
+      <div class="cases-grid">
+        <div class="case-card">
+          <span class="case-tag">Industrie</span>
+          <h3 class="case-title">Redressement opérationnel</h3>
+          <p class="case-desc">
+            Retour à la rentabilité en 18 mois pour un équipementier automobile de 800 salariés. Plan de performance et recentrage stratégique.
+          </p>
+          <span class="case-link">Lire l'étude →</span>
+        </div>
+        <div class="case-card">
+          <span class="case-tag">Services</span>
+          <h3 class="case-title">Transformation digitale</h3>
+          <p class="case-desc">
+            Accompagnement d'un groupe de conseil dans sa digitalisation interne et l'optimisation de son modèle de delivery.
+          </p>
+          <span class="case-link">Lire l'étude →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHIFFRES CLÉS -->
+    <div class="cons-figures">
+      <div class="figures-wrapper">
+        <div class="figure-block">
+          <div class="figure-number">+150</div>
+          <div class="figure-label">missions réalisées</div>
+        </div>
+        <div class="figure-block">
+          <div class="figure-number">85%</div>
+          <div class="figure-label">clients récurrents</div>
+        </div>
+        <div class="figure-block">
+          <div class="figure-number">16</div>
+          <div class="figure-label">consultants seniors</div>
+        </div>
+        <div class="figure-block">
+          <div class="figure-number">4,8/5</div>
+          <div class="figure-label">satisfaction client</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANDEAU PRISE DE CONTACT -->
+    <div class="cons-contact-cta">
+      <div class="contact-left">
+        <h3>Un défi stratégique ?</h3>
+        <p>Parlons de vos enjeux. Première rencontre sans engagement.</p>
+      </div>
+      <button class="contact-btn">Nous contacter →</button>
+    </div>
+
+    <!-- FOOTER CABINET CONSEIL -->
+    <footer class="cons-footer">
+      <div class="footer-main">
+        <div class="footer-about">
+          <div class="footer-logo">Axis.Conseil</div>
+          <p>Cabinet de conseil en stratégie et management, indépendant et engagé auprès de ses clients depuis 2008.</p>
+          <div class="social-links">
+            <span>📘</span>
+            <span>📷</span>
+            <span>🐦</span>
+            <span>🔗</span>
+          </div>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Expertises</span>
+          <a href="#">Stratégie</a>
+          <a href="#">Performance</a>
+          <a href="#">Management</a>
+          <a href="#">Digital</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Ressources</span>
+          <a href="#">Publications</a>
+          <a href="#">Études de cas</a>
+          <a href="#">Newsletter</a>
+          <a href="#">Carrières</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Contact</span>
+          <a href="#">Paris</a>
+          <a href="#">Lyon</a>
+          <a href="#">contact@axis-conseil.fr</a>
+          <a href="#">01 42 68 12 34</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Axis.Conseil. Tous droits réservés.</span>
+        <span style="display: flex; gap: 28px;">
+          <span>Mentions légales</span>
+          <span>Confidentialité</span>
+        </span>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>

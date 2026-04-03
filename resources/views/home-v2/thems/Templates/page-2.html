@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Boutique · Vêtements Modernes</title>
+  <style>
+    /* ===== STYLE BOUTIQUE E-COMMERCE ===== */
+    /* Compatible GrapesJS - design épuré, luxe décontracté */
+    .boutique-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1440px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #1e1e1e;
+      position: relative;
+    }
+
+    /* HEADER NAVIGATION */
+    .boutique-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 40px;
+      background: white;
+      border-bottom: 1px solid #f1f1f1;
+      flex-wrap: wrap;
+    }
+
+    .boutique-logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #0a0a0a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .boutique-logo span {
+      background: #0a0a0a;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 20px;
+    }
+
+    .boutique-nav {
+      display: flex;
+      gap: 36px;
+      font-weight: 500;
+      color: #2e2e2e;
+    }
+
+    .boutique-nav a {
+      text-decoration: none;
+      color: #1e1e1e;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .boutique-nav a:hover {
+      color: #7c4d3a;
+    }
+
+    .boutique-actions {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .boutique-icon {
+      font-size: 20px;
+      cursor: default;
+    }
+
+    .cart-badge {
+      background: #1e1e1e;
+      color: white;
+      border-radius: 30px;
+      padding: 2px 10px;
+      font-size: 14px;
+      margin-left: 6px;
+    }
+
+    /* HERO SECTION — ÉDITORIAL MODE */
+    .boutique-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 40px 40px 60px;
+      background: #fafaf7;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-surtitle {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #7c4d3a;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 58px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0 0 20px 0;
+      color: #0a0a0a;
+      letter-spacing: -2px;
+    }
+
+    .hero-title i {
+      font-style: normal;
+      background: linear-gradient(145deg, #7c4d3a, #a67b5b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #4a4a4a;
+      margin-bottom: 32px;
+      max-width: 90%;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 18px;
+    }
+
+    .btn {
+      padding: 16px 36px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: default;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: #1e1e1e;
+      color: white;
+      box-shadow: 0 15px 25px -10px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary:hover {
+      background: #2e2e2e;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1e1e1e;
+      color: #1e1e1e;
+    }
+
+    .hero-image {
+      background: linear-gradient(145deg, #eae4dd, #dfd7cf);
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 400px;
+    }
+
+    .hero-image-content {
+      font-size: 130px;
+      transform: rotate(-5deg);
+    }
+
+    /* BANDEAU COLLECTION */
+    .collection-tag {
+      background: #f4f2ef;
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .collection-tag span {
+      font-weight: 600;
+      color: #3e3e3e;
+    }
+
+    .collection-highlight {
+      display: flex;
+      gap: 40px;
+    }
+
+    /* SECTION CATÉGORIES VÊTEMENTS */
+    .categories-section {
+      padding: 70px 40px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -1.5px;
+      color: #121212;
+    }
+
+    .section-sub {
+      color: #6b6b6b;
+      font-size: 17px;
+      margin: 8px 0 0 0;
+    }
+
+    .view-all {
+      font-weight: 600;
+      color: #7c4d3a;
+      border-bottom: 2px solid #7c4d3a;
+      padding-bottom: 4px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .category-card {
+      background: #fbfaf8;
+      border-radius: 28px;
+      padding: 32px 24px;
+      transition: 0.3s ease;
+      border: 1px solid #f0eeeb;
+      text-align: center;
+    }
+
+    .category-card:hover {
+      background: white;
+      border-color: #cdc6be;
+      transform: translateY(-6px);
+      box-shadow: 0 25px 35px -18px rgba(0,0,0,0.08);
+    }
+
+    .category-icon {
+      font-size: 58px;
+      margin-bottom: 24px;
+    }
+
+    .category-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      color: #1a1a1a;
+    }
+
+    .category-count {
+      color: #7e7e7e;
+      font-size: 15px;
+    }
+
+    /* PRODUITS EN VEDETTE */
+    .featured-section {
+      padding: 40px 40px 70px;
+      background: #ffffff;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.25s;
+      border: 1px solid #f3f1ee;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 30px 45px -20px rgba(30,30,30,0.15);
+      border-color: #dad3cb;
+    }
+
+    .product-image {
+      background: #f1efeb;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #1e1e1e;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .product-badge.sale {
+      background: #c73a3a;
+    }
+
+    .product-info {
+      padding: 24px 22px 28px;
+    }
+
+    .product-category {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #7c4d3a;
+      margin-bottom: 8px;
+    }
+
+    .product-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      color: #1a1a1a;
+    }
+
+    .product-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f0f0f;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .old-price {
+      font-size: 16px;
+      color: #989898;
+      text-decoration: line-through;
+      font-weight: 400;
+    }
+
+    .product-color {
+      display: flex;
+      gap: 10px;
+      margin: 16px 0 0;
+    }
+
+    .color-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: black;
+      border: 2px solid white;
+      box-shadow: 0 0 0 1px #ddd;
+    }
+
+    /* BANDEAU PROMO */
+    .promo-banner {
+      background: linear-gradient(145deg, #dad3cb, #cbc2b7);
+      border-radius: 32px;
+      margin: 20px 40px 40px;
+      padding: 48px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .promo-text h4 {
+      font-size: 34px;
+      font-weight: 800;
+      margin: 0 0 12px 0;
+      color: #1e1e1e;
+      letter-spacing: -1px;
+    }
+
+    .promo-text p {
+      font-size: 18px;
+      color: #3a3530;
+      margin: 0;
+    }
+
+    .promo-btn {
+      background: #1e1e1e;
+      color: white;
+      padding: 18px 48px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 18px;
+      border: none;
+    }
+
+    /* NOUVEAUTÉS */
+    .nouveautes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .nouveau-item {
+      background: #fbf9f7;
+      border-radius: 24px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: #f4f2ef;
+      margin: 60px 40px 40px;
+      padding: 56px;
+      border-radius: 48px;
+      text-align: center;
+    }
+
+    .newsletter h3 {
+      font-size: 38px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1e1e1e;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 600px;
+      margin: 32px auto 0;
+      gap: 12px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 18px 28px;
+      border-radius: 60px;
+      border: 1px solid #d4cdc4;
+      font-size: 16px;
+      background: white;
+    }
+
+    .newsletter-btn {
+      background: #1e1e1e;
+      color: white;
+      padding: 18px 36px;
+      border-radius: 60px;
+      font-weight: 600;
+      border: none;
+    }
+
+    /* FOOTER */
+    .boutique-footer {
+      padding: 60px 40px 30px;
+      background: #fcfcfc;
+      border-top: 1px solid #ece8e2;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #4a4a4a;
+      font-size: 15px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 24px;
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .categories-grid, .products-grid, .nouveautes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .boutique-hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .boutique-header {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .categories-grid, .products-grid, .nouveautes-grid, .boutique-footer {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 44px;
+      }
+      .promo-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+      }
+    }
+
+    /* GrapesJS compatibility */
+    .gjs-draggable { cursor: move; }
+  </style>
+</head>
+<body>
+  <!-- LANDING BOUTIQUE VÊTEMENTS — MODE, ÉLÉGANT, MODERNE -->
+  <section class="boutique-section">
+
+    <!-- HEADER SHOP -->
+    <header class="boutique-header">
+      <div class="boutique-logo">
+        <span>✦</span> MODERNE
+      </div>
+      <nav class="boutique-nav">
+        <a href="#">Nouveautés</a>
+        <a href="#">Femme</a>
+        <a href="#">Homme</a>
+        <a href="#">Accessoires</a>
+        <a href="#">Soldes</a>
+      </nav>
+      <div class="boutique-actions">
+        <span class="boutique-icon">🔍</span>
+        <span class="boutique-icon">👤</span>
+        <span class="boutique-icon">🛒<span class="cart-badge">3</span></span>
+      </div>
+    </header>
+
+    <!-- HERO : COLLECTION AUTOMNE-HIVER -->
+    <div class="boutique-hero">
+      <div class="hero-text">
+        <div class="hero-surtitle">Collection automne-hiver</div>
+        <h1 class="hero-title">L'élégance <i>brutale</i>, <br>l'émotion durable</h1>
+        <p class="hero-desc">Des matières nobles, des coupes architecturales. Une garde-robe pensée pour durer, sans compromis sur le style.</p>
+        <div class="hero-buttons">
+          <span class="btn btn-primary">Découvrir ✦</span>
+          <span class="btn btn-outline">Lookbook</span>
+        </div>
+        <div style="display: flex; gap: 32px; margin-top: 40px;">
+          <span style="font-weight: 600;">🇫🇷 Livraison offerte</span>
+          <span style="font-weight: 600;">🔄 Retours 30 jours</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-content">👚</div>
+      </div>
+    </div>
+
+    <!-- FLASH SALE / INFOS COLLECTION -->
+    <div class="collection-tag">
+      <span>✨ NOUVELLE COLLECTION : -15% sur votre première commande</span>
+      <span class="collection-highlight">
+        <span>🇪🇺 Paiement sécurisé</span>
+        <span>🚚 Livraison rapide</span>
+      </span>
+    </div>
+
+    <!-- CATÉGORIES VÊTEMENTS (4 ICÔNES) -->
+    <div class="categories-section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Catégories</h2>
+          <p class="section-sub">Explorez nos univers</p>
+        </div>
+        <span class="view-all">Toutes les catégories →</span>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="category-icon">👗</div>
+          <h3 class="category-name">Robes</h3>
+          <span class="category-count">32 articles</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🧥</div>
+          <h3 class="category-name">Manteaux</h3>
+          <span class="category-count">18 articles</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">👕</div>
+          <h3 class="category-name">T-shirts</h3>
+          <span class="category-count">27 articles</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">👖</div>
+          <h3 class="category-name">Pantalons</h3>
+          <span class="category-count">21 articles</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUITS VEDETTES - BEST SELLERS -->
+    <div class="featured-section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Meilleures ventes</h2>
+          <p class="section-sub">Les pièces les plus aimées</p>
+        </div>
+        <span class="view-all">Voir tout →</span>
+      </div>
+
+      <div class="products-grid">
+        <!-- Produit 1 -->
+        <div class="product-card">
+          <div class="product-image">
+            <span style="font-size: 80px;">🧥</span>
+            <span class="product-badge">Nouveau</span>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Manteau</div>
+            <h4 class="product-title">Cabans oversize laine</h4>
+            <div class="product-price">259 €</div>
+            <div class="product-color">
+              <span class="color-dot" style="background: #2e3a47;"></span>
+              <span class="color-dot" style="background: #9c7c5b;"></span>
+              <span class="color-dot" style="background: #d4c7b9;"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Produit 2 -->
+        <div class="product-card">
+          <div class="product-image">
+            <span style="font-size: 80px;">👖</span>
+            <span class="product-badge sale">-25%</span>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Pantalon</div>
+            <h4 class="product-title">Jean brut droit</h4>
+            <div class="product-price"><span class="old-price">119 €</span> 89 €</div>
+            <div class="product-color">
+              <span class="color-dot" style="background: #2b4450;"></span>
+              <span class="color-dot" style="background: #a6806a;"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Produit 3 -->
+        <div class="product-card">
+          <div class="product-image">
+            <span style="font-size: 80px;">👚</span>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Chemisier</div>
+            <h4 class="product-title">Chemise en soie</h4>
+            <div class="product-price">145 €</div>
+            <div class="product-color">
+              <span class="color-dot" style="background: #f0e5d8;"></span>
+              <span class="color-dot" style="background: #000;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMO BANNER - COLLECTION HIVER -->
+    <div class="promo-banner">
+      <div class="promo-text">
+        <h4>❄️ SOLDES D'HIVER</h4>
+        <p>Jusqu'à -40% sur une sélection de manteaux & pulls</p>
+      </div>
+      <span class="promo-btn">Je profite →</span>
+    </div>
+
+    <!-- NOUVEAUTÉS (4 PRODUITS SIMPLES) -->
+    <div style="padding: 20px 40px;">
+      <div class="section-header">
+        <h2 class="section-title">Nouveautés</h2>
+        <span class="view-all">Voir les nouveautés →</span>
+      </div>
+      <div class="nouveautes-grid">
+        <div class="nouveau-item">
+          <span style="font-size: 48px;">🧶</span>
+          <h4 style="margin: 16px 0 8px; font-size: 18px;">Pull col roulé</h4>
+          <span style="font-weight: 700;">79 €</span>
+        </div>
+        <div class="nouveau-item">
+          <span style="font-size: 48px;">🧥</span>
+          <h4 style="margin: 16px 0 8px; font-size: 18px;">Veste cuir</h4>
+          <span style="font-weight: 700;">299 €</span>
+        </div>
+        <div class="nouveau-item">
+          <span style="font-size: 48px;">👟</span>
+          <h4 style="margin: 16px 0 8px; font-size: 18px;">Baskets édition</h4>
+          <span style="font-weight: 700;">129 €</span>
+        </div>
+        <div class="nouveau-item">
+          <span style="font-size: 48px;">👜</span>
+          <h4 style="margin: 16px 0 8px; font-size: 18px;">Sac bandoulière</h4>
+          <span style="font-weight: 700;">159 €</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter">
+      <h3>10% de réduction offerte</h3>
+      <p style="font-size: 18px; color: #4a4a4a;">Inscrivez-vous à notre newsletter et recevez un code promo immédiat</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Votre adresse email" class="newsletter-input" value="">
+        <span class="newsletter-btn">S'inscrire</span>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="boutique-footer">
+      <div>
+        <div class="footer-logo">✦ MODERNE</div>
+        <p style="color: #5f5f5f; margin: 20px 0; line-height: 1.6;">Mode responsable, coupes intemporelles. <br>Paris · Milan · New York</p>
+        <div class="social-icons">
+          <span>📘</span>
+          <span>📷</span>
+          <span>🎵</span>
+          <span>🐦</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <span style="font-weight: 700; margin-bottom: 8px;">Boutique</span>
+        <a href="#">Nouveautés</a>
+        <a href="#">Femme</a>
+        <a href="#">Homme</a>
+        <a href="#">Accessoires</a>
+      </div>
+      <div class="footer-links">
+        <span style="font-weight: 700; margin-bottom: 8px;">Service client</span>
+        <a href="#">Livraison</a>
+        <a href="#">Retours</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-links">
+        <span style="font-weight: 700; margin-bottom: 8px;">Informations</span>
+        <a href="#">À propos</a>
+        <a href="#">Carrières</a>
+        <a href="#">CGV</a>
+        <a href="#">Confidentialité</a>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>

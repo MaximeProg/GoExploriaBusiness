@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partenaires Affiliés - GO Exploria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5fb4;
+            --primary-dark: #0d4a8f;
+            --secondary: #e67e22;
+            --accent: #27ae60;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+            --gray-light: #ecf0f1;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f9f9;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 60px;
+            box-shadow: var(--shadow);
+            height: 500px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .slide-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        .slide-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .slide-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .slide-btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .slide-btn:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+        }
+
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.5rem;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: white;
+            opacity: 0.5;
+            width: 12px;
+            height: 12px;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background-color: var(--secondary);
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-subtitle::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Avantages Section */
+        .avantages-section {
+            margin-bottom: 60px;
+        }
+
+        .avantages-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+        }
+
+        .avantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .avantage-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 35px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .avantage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .avantage-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            height: 70px;
+            width: 70px;
+            background-color: rgba(26, 95, 180, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .avantage-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .avantage-description {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Niveaux Partenariats */
+        .niveaux-section {
+            margin-bottom: 60px;
+        }
+
+        .niveaux-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+        }
+
+        .niveaux-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .niveau-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .niveau-card.popular {
+            border: 2px solid var(--secondary);
+            transform: scale(1.05);
+        }
+
+        .niveau-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--secondary);
+            color: white;
+            padding: 8px 35px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transform: rotate(45deg);
+        }
+
+        .niveau-header {
+            padding: 30px 20px;
+            text-align: center;
+            background: linear-gradient(to right, #1a5fb4, #0d4a8f);
+            color: white;
+        }
+
+        .niveau-numero {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .niveau-titre {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .niveau-description {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .niveau-content {
+            padding: 30px;
+        }
+
+        .niveau-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .niveau-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--gray-light);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .niveau-item:last-child {
+            border-bottom: none;
+        }
+
+        .niveau-icon {
+            margin-right: 12px;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .niveau-actions {
+            text-align: center;
+            padding: 0 30px 30px;
+        }
+
+        .btn-niveau {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-niveau:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(26, 95, 180, 0.2);
+        }
+
+        /* Section CTA */
+        .cta-section {
+            background: linear-gradient(to right, #1a5fb4, #0d4a8f);
+            border-radius: var(--border-radius);
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .contact-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .contact-person {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .contact-phone {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(26, 95, 180, 0.1);
+            border-radius: 30px;
+        }
+
+        /* GrapeJS Compatibility */
+        .grapejs-editable {
+            outline: 2px dashed rgba(26, 95, 180, 0.2);
+            outline-offset: 2px;
+            transition: outline 0.2s ease;
+            min-height: 20px;
+        }
+
+        .grapejs-editable:hover {
+            outline: 2px dashed rgba(26, 95, 180, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .slide-title {
+                font-size: 2.5rem;
+            }
+            
+            .niveaux-container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
+            .niveau-card.popular {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-slider {
+                height: 400px;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .slide-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-slider {
+                height: 350px;
+            }
+            
+            .slide-title {
+                font-size: 1.8rem;
+            }
+            
+            .slide-content {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .avantages-grid, .niveaux-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Slider -->
+    <section class="hero-slider grapejs-editable" data-gjs-type="slider" data-gjs-name="Hero Slider">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <img src="https://www.goexploria.com/uploads/companies/147185/partenaires-affilies-go-exploria_headImage.jpg" alt="Voyage sans frontières" class="slide-image">
+                    <div class="slide-overlay"></div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Section Partenaires Affiliés -->
+    <section id="partenaires" class="container">
+        <div class="section-header">
+            <h2 class="section-subtitle grapejs-editable" data-gjs-type="text" data-gjs-name="Sous-titre">Partenaires Affiliés</h2>
+            <h1 class="section-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">GO Exploria - L'Opportunité Idéale</h1>
+            <p class="section-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">
+                C'est l'opportunité idéale pour étudiants, retraités, professionnels, organisations, entrepreneurs, qui veulent reprendre le contrôle de leur temps, atteindre la liberté financière et vivre sans frontières, en s'associant à une startup déjà opérationnelle et performante.
+            </p>
+            <p class="section-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">
+                Inscrivez-vous et dites-nous la ville que vous voulez développer ou le type de marché que vous voulez couvrir: tourisme, mode, restauration, alimentation, etc. Cette offre n'est pas une offre d'emploi, c'est une occasion d'utiliser la nouvelle version 2.0 afin de tirer des revenus sous forme de travailleurs autonomes.
+            </p>
+        </div>
+
+        <!-- Objectif Section -->
+        <div class="section-header">
+            <h2 class="section-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Objectif des Partenaires Affiliés</h2>
+            <p class="section-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">
+                Les Partenaires Affiliés GO Exploria constituent un réseau stratégique international de personnes, organisations et de professionnels qui créent ensemble la force numérique du Québec et de leurs destinations d'origines, avec une plateforme numérique stable et la plus complète possible, afin d'informer le grand public des offres touristiques et d'affaires disponibles.
+            </p>
+            <p class="section-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">
+                L'objectif est de créer des synergies mutuellement bénéfiques, en combinant ressources, expertises et visibilité pour accroître la portée des produits et services offert par GO Exploria, offrir une valeur ajoutée aux clients via des services complémentaires, et renforcer la crédibilité et la notoriété grâce à des collaborations pertinentes.
+            </p>
+        </div>
+
+        <!-- Domaines partenariaux -->
+        <div class="avantages-section">
+            <h2 class="avantages-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Domaines Partenariaux</h2>
+            <div class="avantages-grid">
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Tourisme & Hébergement</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">Promouvoir des destinations, hébergements et expériences touristiques.</p>
+                </div>
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Immobilier & Développement</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">Projets immobiliers et de développement économique.</p>
+                </div>
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Marketing & Communication</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">Stratégies de marketing, communication et médias.</p>
+                </div>
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Construction & Services</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">Services techniques, construction et rénovation.</p>
+                </div>
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Développement Économique</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">Promotion locale, régionale et développement économique international.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avantages pour les partenaires -->
+        <div class="avantages-section">
+            <h2 class="avantages-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Ce que cela implique pour les partenaires</h2>
+            <div class="avantages-grid">
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Visibilité Accrue</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">Promotion de vos espaces d'affiliation sur le site GO Exploria et dans les communications.</p>
+                </div>
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Partage de Contenus</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">Articles, offres conjointes, événements communs et promotions croisées.</p>
+                </div>
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Accès au Réseau</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">Opportunités de mise en relation avec d'autres acteurs du secteur.</p>
+                </div>
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre Avantage">Référencement</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description Avantage">GO Exploria dirige ses clients vers vos services lorsque pertinent.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Niveaux de Partenariats -->
+        <div id="niveaux" class="niveaux-section">
+            <h2 class="niveaux-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Niveaux de Partenariats GO Exploria</h2>
+            <div class="niveaux-container">
+                <!-- Niveau 1 -->
+                <div class="niveau-card">
+                    <div class="niveau-header">
+                        <div class="niveau-numero grapejs-editable" data-gjs-type="text" data-gjs-name="Numéro">NIVEAU 1</div>
+                        <h3 class="niveau-titre grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Partenaires Master User</h3>
+                        <p class="niveau-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">Gestionnaires des marchés par pays</p>
+                    </div>
+                    <div class="niveau-content">
+                        <ul class="niveau-list">
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Gérer une équipe de partenaires dans votre pays</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Organisation par ville et par marché</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Ristournes très avantageuses</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Accès aux outils de gestion avancés</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="niveau-actions">
+                        <a href="#contact" class="btn-niveau grapejs-editable" data-gjs-type="text" data-gjs-name="Bouton">Devenir Master User</a>
+                    </div>
+                </div>
+
+                <!-- Niveau 2 (Populaire) -->
+                <div class="niveau-card popular">
+                    <div class="niveau-badge grapejs-editable" data-gjs-type="text" data-gjs-name="Badge">Populaire</div>
+                    <div class="niveau-header">
+                        <div class="niveau-numero grapejs-editable" data-gjs-type="text" data-gjs-name="Numéro">NIVEAU 2</div>
+                        <h3 class="niveau-titre grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Partenaires Régionaux</h3>
+                        <p class="niveau-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">Gestionnaires de marché cibles par ville</p>
+                    </div>
+                    <div class="niveau-content">
+                        <ul class="niveau-list">
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Soliciter restaurants et boutiques dans votre ville</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Liste des prospects directement dans GO EXPLORIA</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Ristournes avantageuses</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Édition et offre de services aux entreprises</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="niveau-actions">
+                        <a href="#contact" class="btn-niveau grapejs-editable" data-gjs-type="text" data-gjs-name="Bouton">Devenir Partenaire Régional</a>
+                    </div>
+                </div>
+
+                <!-- Niveau 3 -->
+                <div class="niveau-card">
+                    <div class="niveau-header">
+                        <div class="niveau-numero grapejs-editable" data-gjs-type="text" data-gjs-name="Numéro">NIVEAU 3</div>
+                        <h3 class="niveau-titre grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Partenaires Spontanés</h3>
+                        <p class="niveau-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">Votre espace partenaire personnalisé</p>
+                    </div>
+                    <div class="niveau-content">
+                        <ul class="niveau-list">
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Développer des récits de voyages et d'aventures</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Afficher photos, vidéos, nouvelles et avis</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Créer votre chaîne vidéo et partager vos commentaires</span>
+                            </li>
+                            <li class="niveau-item">
+                                <i class="fas fa-check niveau-icon"></i>
+                                <span class="grapejs-editable" data-gjs-type="text" data-gjs-name="Élément">Évaluer les fournisseurs sur place</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="niveau-actions">
+                        <a href="#contact" class="btn-niveau grapejs-editable" data-gjs-type="text" data-gjs-name="Bouton">Devenir Partenaire Spontané</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Critères de sélection -->
+        <div class="section-header">
+            <h2 class="section-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Critères de Sélection</h2>
+            <div class="avantages-grid">
+                <div class="avantage-card">
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Abonnement</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">Plan de base de 99$ par mois avec contrat de 12 mois</p>
+                </div>
+                <div class="avantage-card">
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Documents Requis</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">Lettre de motivation, CV et références pertinentes</p>
+                </div>
+                <div class="avantage-card">
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Expertise</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">Expertise reconnue dans votre domaine</p>
+                </div>
+                <div class="avantage-card">
+                    <h3 class="avantage-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Valeurs</h3>
+                    <p class="avantage-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">Partage de nos valeurs: qualité, professionnalisme, livrables, orientation client</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section CTA -->
+        <div id="inscription" class="cta-section">
+            <h2 class="cta-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Prêt à Rejoindre le Réseau?</h2>
+            <p class="cta-description grapejs-editable" data-gjs-type="text" data-gjs-name="Description">
+                Collaborez avec GO Exploria afin de promouvoir, développer et enrichir ses offres touristiques et d'affaires. Créez des synergies mutuellement bénéfiques et atteignez la liberté financière.
+            </p>
+            <a href="#contact" class="cta-btn grapejs-editable" data-gjs-type="text" data-gjs-name="Bouton">Devenir Partenaire Affilié</a>
+        </div>
+
+        <!-- Contact Information -->
+        <div id="contact" class="contact-info">
+            <h2 class="contact-title grapejs-editable" data-gjs-type="text" data-gjs-name="Titre">Contactez-nous</h2>
+            <p class="contact-person grapejs-editable" data-gjs-type="text" data-gjs-name="Nom">Jean Bourget</p>
+            <p class="grapejs-editable" data-gjs-type="text" data-gjs-name="Poste">Directeur du Développement</p>
+            <div class="contact-phone grapejs-editable" data-gjs-type="text" data-gjs-name="Téléphone">418-525-7748</div>
+            <p class="section-description" style="margin-top: 20px;">
+                Pour plus d'informations sur les partenariats ou pour soumettre votre candidature, contactez-nous directement.
+            </p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Initialisation du slider Swiper
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                speed: 800,
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+            
+            // Animation des cartes au survol
+            const cards = document.querySelectorAll('.avantage-card, .niveau-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                });
+            });
+            
+            // Simulation de soumission de formulaire
+            const buttons = document.querySelectorAll('.slide-btn, .btn-niveau, .cta-btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if(this.getAttribute('href') === '#contact' || this.getAttribute('href') === '#inscription') {
+                        e.preventDefault();
+                        
+                        // Animation de confirmation
+                        const originalText = this.textContent;
+                        this.textContent = 'Redirection...';
+                        this.style.opacity = '0.8';
+                        
+                        // Réinitialiser après 2 secondes
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.opacity = '1';
+                            
+                            // Scroll vers la section contact
+                            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                        }, 2000);
+                        
+                        console.log('Formulaire de partenariat ouvert');
+                    }
+                });
+            });
+            
+            // Indication pour l'édition GrapeJS
+            const editableElements = document.querySelectorAll('.grapejs-editable');
+            
+            editableElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.outline = '2px dashed rgba(26, 95, 180, 0.5)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.outline = '2px dashed rgba(26, 95, 180, 0.2)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

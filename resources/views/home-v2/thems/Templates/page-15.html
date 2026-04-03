@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marché ALQUI - Boucherie & Charcuterie</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1e24;
+            line-height: 1.5;
+            background-color: #ffffff;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        .top-bar {
+            background-color: #c8102e;
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .contact-info i, .user-area i {
+            margin-right: 6px;
+        }
+        .contact-info span {
+            margin-right: 20px;
+        }
+        .user-area a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .main-nav {
+            padding: 20px 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .main-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #c8102e;
+            letter-spacing: -0.5px;
+        }
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #2d3436;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #c8102e;
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        .slide h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .slide p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 12px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dot.active {
+            background: white;
+        }
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 3;
+            transition: background 0.3s;
+        }
+        .slider-arrow:hover {
+            background: rgba(200,16,46,0.8);
+        }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        /* Sections */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1e2a2f;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: #c8102e;
+        }
+        .section-title-center {
+            text-align: center;
+        }
+        .section-title-center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-padding {
+            padding: 80px 0;
+        }
+        .bg-light {
+            background-color: #f9fafb;
+        }
+        .bg-dark {
+            background-color: #1e2a2f;
+            color: white;
+        }
+        .bg-dark .section-title {
+            color: white;
+        }
+        .bg-dark .section-title:after {
+            background-color: #c8102e;
+        }
+
+        /* Grilles */
+        .grid-2, .grid-3, .grid-4 {
+            display: grid;
+            gap: 30px;
+        }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #edf2f7;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+        }
+        .card-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+        .card-content {
+            padding: 24px;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .card p {
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        .badge {
+            background-color: #c8102e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        /* Boutons */
+        .btn {
+            display: inline-block;
+            background-color: #c8102e;
+            color: white;
+            padding: 14px 36px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #a00d25;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: #c8102e;
+        }
+
+        /* Statistiques */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #c8102e;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Témoignages */
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e2a2f;
+            color: #cbd5e0;
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        footer h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        footer a {
+            color: #cbd5e0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        footer a:hover {
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2d3f48;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-slider { height: 500px; }
+            .slide h2 { font-size: 2.4rem; }
+            .top-bar .container { flex-direction: column; gap: 8px; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <i class="fas fa-phone-alt"></i> <span>(418) 672-4792</span>
+                <i class="fas fa-envelope"></i> <span>maestroalqui@gmail.com</span>
+                <i class="fas fa-map-marker-alt"></i> <span>St-Ambroise, Saguenay</span>
+            </div>
+            <div class="user-area">
+                <a href="#"><i class="fas fa-user"></i> Connexion</a>
+                <a href="#"><i class="fas fa-shopping-cart"></i> (0)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="logo">
+                <h1>Marché ALQUI</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#">Accueil</a>
+                <a href="#">Boucherie</a>
+                <a href="#">Charcuterie</a>
+                <a href="#">Traiteur</a>
+                <a href="#">Chasse & Pêche</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <div class="hero-slider">
+        <!-- Slide 1 -->
+        <div class="slide active" style="background-image: url('http://www.marchealqui.com/uploads/galleries/403/mechoui-saguenay-marche-alqui.jpg')">
+            <div class="slide-content">
+                <div class="container">
+                    <h2>FRAÎCHEUR & DIVERSITÉ</h2>
+                    <p>Boucherie, Charcuterie et Traiteur depuis plus de 20 ans</p>
+                    <a href="#" class="btn">Découvrir nos produits</a>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" style="background-image: url('http://www.marchealqui.com/uploads/companies/197/marche-alqui_headImage.jpg')">
+            <div class="slide-content">
+                <div class="container">
+                    <h2>CHARCUTERIE ARTISANALE</h2>
+                    <p>Cretons, pépperoni, saucisses BBQ - Fait maison avec passion</p>
+                    <a href="#" class="btn btn-outline">Notre sélection</a>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide" style="background-image: url('http://www.marchealqui.com/uploads/galleries/403/charcuteries-maison-saguenay.jpg')">
+            <div class="slide-content">
+                <div class="container">
+                    <h2>SERVICE TRAITEUR & MÉCHOUI</h2>
+                    <p>Location de poêle à méchoui et buffets pour vos événements</p>
+                    <a href="#" class="btn btn-outline">Nos forfaits</a>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="slide" style="background-image: url('http://www.marchealqui.com/uploads/galleries/403/marche-alqui-boutique-peche-saguenay.jpg')">
+            <div class="slide-content">
+                <div class="container">
+                    <h2>EXPERTISE CHASSE & PÊCHE</h2>
+                    <p>Conseils personnalisés avec Maryeve Pepin, notre experte</p>
+                    <a href="#" class="btn btn-outline">Vente de permis</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider controls -->
+        <div class="slider-arrow prev" onclick="changeSlide(-1)">❮</div>
+        <div class="slider-arrow next" onclick="changeSlide(1)">❯</div>
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </div>
+
+    <!-- Section Statistiques -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Années d'expérience</div>
+                </div>
+                <div>
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Variétés de saucisses</div>
+                </div>
+                <div>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Clients satisfaits</div>
+                </div>
+                <div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Service traiteur</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Boucherie & Charcuterie -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Notre Boucherie & Charcuterie</h2>
+            <div class="grid-2" style="align-items: center;">
+                <div>
+                    <p class="about-text" style="font-size: 1.2rem; margin-bottom: 20px;">Depuis 20 ans, nous fabriquons nos cretons, pépperonis, et 6 à 8 variétés de saucisses pour le BBQ. Des produits frais, savoureux et authentiques, préparés avec passion.</p>
+                    <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; margin: 30px 0;">
+                        <div><i class="fas fa-check-circle" style="color: #c8102e;"></i> Saucisses artisanales</div>
+                        <div><i class="fas fa-check-circle" style="color: #c8102e;"></i> Pépperoni maison</div>
+                        <div><i class="fas fa-check-circle" style="color: #c8102e;"></i> Cretons traditionnels</div>
+                        <div><i class="fas fa-check-circle" style="color: #c8102e;"></i> Découpe sur mesure</div>
+                        <div><i class="fas fa-check-circle" style="color: #c8102e;"></i> Jambon fumé</div>
+                        <div><i class="fas fa-check-circle" style="color: #c8102e;"></i> Pâtés et terrines</div>
+                    </div>
+                    <a href="#" class="btn">Voir toute la boucherie</a>
+                </div>
+                <div class="card-img" style="height: 400px; background-image: url('https://images.pexels.com/photos/12949420/pexels-photo-12949420.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); border-radius: 16px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grille des Produits -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title section-title-center">Nos produits phares</h2>
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.pexels.com/photos/1650431/pexels-photo-1650431.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                    <div class="card-content">
+                        <span class="badge">Nouveauté</span>
+                        <h3>Saucisses BBQ</h3>
+                        <p>6 variétés disponibles : nature, épicées, aux herbes...</p>
+                        <p style="font-weight: 700; color: #c8102e;">À partir de 12.99$ / lb</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.pexels.com/photos/6187758/pexels-photo-6187758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                    <div class="card-content">
+                        <span class="badge">Maison</span>
+                        <h3>Cretons traditionnels</h3>
+                        <p>Recette familiale, préparée sur place</p>
+                        <p style="font-weight: 700; color: #c8102e;">5.99$ / pot</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.pexels.com/photos/4033170/pexels-photo-4033170.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                    <div class="card-content">
+                        <span class="badge">Prêt-à-manger</span>
+                        <h3>Mets cuisinés</h3>
+                        <p>Tourtières, pâtés, plats réconfortants</p>
+                        <p style="font-weight: 700; color: #c8102e;">Dès 8.99$</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.pexels.com/photos/5764872/pexels-photo-5764872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                    <div class="card-content">
+                        <span class="badge">Spécialité</span>
+                        <h3>Pépperoni maison</h3>
+                        <p>Séché sur place, parfum intense</p>
+                        <p style="font-weight: 700; color: #c8102e;">15.99$ / unité</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Traiteur & Méchoui -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="grid-2">
+                <div class="card-img" style="height: 400px; background-image: url('https://images.pexels.com/photos/4551177/pexels-photo-4551177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); border-radius: 16px;"></div>
+                <div>
+                    <h2 class="section-title">Service traiteur & Méchoui</h2>
+                    <p class="about-text" style="font-size: 1.2rem; margin-bottom: 20px;">Pour vos événements spéciaux, nous offrons un service de traiteur complet ainsi que des buffets chauds ou froids pour le secteur du Saguenay Lac St-Jean.</p>
+                    <div style="margin: 30px 0;">
+                        <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 15px;">
+                            <i class="fas fa-utensils" style="color: #c8102e; font-size: 2rem;"></i>
+                            <div><strong>Buffets sur mesure</strong> - Chauds ou froids, pour tous les goûts</div>
+                        </div>
+                        <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 15px;">
+                            <i class="fas fa-fire" style="color: #c8102e; font-size: 2rem;"></i>
+                            <div><strong>Location de poêle à méchoui</strong> - Pour vos BBQ géants</div>
+                        </div>
+                        <div style="display: flex; gap: 20px; align-items: center;">
+                            <i class="fas fa-calendar-alt" style="color: #c8102e; font-size: 2rem;"></i>
+                            <div><strong>Réservation requise</strong> - Contactez-nous pour un devis</div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Demander un devis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Chasse & Pêche -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Boutique Chasse & Pêche</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-img" style="height: 200px; background-image: url('https://images.pexels.com/photos/6568951/pexels-photo-6568951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                    <div class="card-content">
+                        <h3>Conseils d'experts</h3>
+                        <p>Maryeve Pepin, notre experte en produits de chasse, vous accueille pour tous vos besoins.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="height: 200px; background-image: url('https://images.pexels.com/photos/3766794/pexels-photo-3766794.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                    <div class="card-content">
+                        <h3>Vente de permis</h3>
+                        <p>Permis de chasse et pêche disponibles en magasin.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="height: 200px; background-image: url('https://images.pexels.com/photos/6194198/pexels-photo-6194198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                    <div class="card-content">
+                        <h3>Débitage d'orignaux</h3>
+                        <p>Service professionnel de débitage pour votre gibier.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title section-title-center">Ce que nos clients disent</h2>
+            <div class="grid-3">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i class="fas fa-quote-left" style="color: #c8102e; opacity: 0.3; font-size: 2rem;"></i>
+                        <p>Toujours un service exceptionnel à la boucherie. Leurs saucisses sont les meilleures de la région !</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
+                        <div class="author-info">
+                            <h4>Marie-Claude Tremblay</h4>
+                            <p>Clients depuis 10 ans</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i class="fas fa-quote-left" style="color: #c8102e; opacity: 0.3; font-size: 2rem;"></i>
+                        <p>J'ai fait affaire avec eux pour un méchoui de famille. Service impeccable et viande délicieuse !</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                        <div class="author-info">
+                            <h4>Jean-François Gagnon</h4>
+                            <p>Événement juillet 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <i class="fas fa-quote-left" style="color: #c8102e; opacity: 0.3; font-size: 2rem;"></i>
+                        <p>Maryeve est très compétente pour les conseils de chasse. Je recommande fortement !</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/75.jpg');"></div>
+                        <div class="author-info">
+                            <h4>Pierre-Luc Bouchard</h4>
+                            <p>Chasseur passionné</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Galerie -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title section-title-center">Notre univers en images</h2>
+            <div class="grid-4">
+                <div class="card-img" style="height: 200px; background-image: url('https://images.pexels.com/photos/3495242/pexels-photo-3495242.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); border-radius: 12px;"></div>
+                <div class="card-img" style="height: 200px; background-image: url('https://images.pexels.com/photos/4551177/pexels-photo-4551177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); border-radius: 12px;"></div>
+                <div class="card-img" style="height: 200px; background-image: url('https://images.pexels.com/photos/6187758/pexels-photo-6187758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); border-radius: 12px;"></div>
+                <div class="card-img" style="height: 200px; background-image: url('https://images.pexels.com/photos/6194198/pexels-photo-6194198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); border-radius: 12px;"></div>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="#" style="color: #c8102e; font-weight: 600;">Voir plus de photos <i class="fas fa-arrow-right"></i></a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Section Newsletter -->
+    <section class="section-padding bg-dark">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title section-title-center" style="color: white;">Restez informé</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Inscrivez-vous à notre infolettre pour recevoir nos promotions et nouveautés</p>
+            <form style="display: flex; max-width: 500px; margin: 0 auto; gap: 10px;">
+                <input type="email" placeholder="Votre adresse courriel" style="flex: 1; padding: 15px; border-radius: 40px; border: none; font-size: 1rem;">
+                <button type="submit" class="btn" style="padding: 15px 30px;">S'inscrire</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Marché ALQUI</h4>
+                    <p>Frais, diversifié et authentique depuis plus de 20 ans au cœur de St-Ambroise.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="#" style="display: inline-block; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="display: inline-block; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <a href="#">Boucherie</a>
+                    <a href="#">Charcuterie</a>
+                    <a href="#">Traiteur / Méchoui</a>
+                    <a href="#">Chasse & Pêche</a>
+                    <a href="#">Location poêle à méchoui</a>
+                </div>
+                <div>
+                    <h4>Liens utiles</h4>
+                    <a href="#">Accueil</a>
+                    <a href="#">Menu traiteur</a>
+                    <a href="#">Nos départements</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Débitage orignaux</a>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> (418) 672-4792</p>
+                    <p><i class="fas fa-envelope"></i> maestroalqui@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Lundi au Samedi: 8h - 20h</p>
+                    <p><i class="fas fa-clock"></i> Dimanche: 9h - 17h</p>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Marché ALQUI - Tous droits réservés. Boucherie & Charcuterie artisanale.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script pour le slider -->
+    <script>
+        let slideIndex = 1;
+        const slides = document.getElementsByClassName("slide");
+        const dots = document.getElementsByClassName("dot");
+
+        function showSlide(n) {
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            slides[slideIndex-1].classList.add("active");
+            dots[slideIndex-1].classList.add("active");
+        }
+
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+
+        // Auto slide
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>

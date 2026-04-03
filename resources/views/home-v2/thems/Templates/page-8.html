@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hôtellerie · Réservation en ligne</title>
+  <style>
+    /* ===== STYLE HÔTELLERIE - LUXE, CONFORT, ÉVASION ===== */
+    /* Design premium, chaleureux, expérience client */
+    .hotel-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      max-width: 1440px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #2c2c2c;
+      position: relative;
+    }
+
+    /* HEADER HÔTEL - ÉLÉGANCE */
+    .hotel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: white;
+      border-bottom: 1px solid #f5efe9;
+      flex-wrap: wrap;
+    }
+
+    .hotel-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hotel-logo-icon {
+      font-size: 34px;
+      background: linear-gradient(145deg, #c69c6d, #b2845a);
+      color: white;
+      padding: 10px;
+      border-radius: 14px;
+      transform: rotate(-2deg);
+    }
+
+    .hotel-logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: #4a3729;
+      letter-spacing: -0.5px;
+    }
+
+    .hotel-logo-text span {
+      color: #b2845a;
+      font-weight: 300;
+    }
+
+    .hotel-nav {
+      display: flex;
+      gap: 42px;
+      font-weight: 500;
+    }
+
+    .hotel-nav a {
+      text-decoration: none;
+      color: #4e3e35;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .hotel-nav a:hover {
+      color: #b2845a;
+    }
+
+    .hotel-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hotel-lang {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #6b5a4e;
+      font-weight: 500;
+    }
+
+    .hotel-reservation-btn {
+      background: #b2845a;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      box-shadow: 0 10px 20px -10px rgba(178, 132, 90, 0.4);
+    }
+
+    /* HERO HÔTEL - ÉVASION */
+    .hotel-hero {
+      position: relative;
+      padding: 80px 60px;
+      background: linear-gradient(145deg, #fcf8f4, #f8f1ea);
+      border-radius: 0 0 48px 48px;
+      overflow: hidden;
+    }
+
+    .hotel-hero-bg {
+      position: absolute;
+      top: 20px;
+      right: 60px;
+      font-size: 200px;
+      opacity: 0.05;
+      color: #b2845a;
+    }
+
+    .hotel-hero-content {
+      max-width: 700px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hotel-hero-tag {
+      background: rgba(178, 132, 90, 0.12);
+      color: #8b6b4c;
+      padding: 10px 26px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hotel-hero-title {
+      font-size: 58px;
+      font-weight: 800;
+      line-height: 1.05;
+      margin: 0 0 24px 0;
+      color: #2e2a27;
+      letter-spacing: -2px;
+    }
+
+    .hotel-hero-accent {
+      color: #b2845a;
+      font-style: italic;
+    }
+
+    .hotel-hero-desc {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #5f5248;
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    /* MOTEUR DE RÉSERVATION */
+    .hotel-booking-engine {
+      background: white;
+      border-radius: 80px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      max-width: 900px;
+      box-shadow: 0 30px 50px -25px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.6);
+      flex-wrap: wrap;
+    }
+
+    .booking-field {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 28px;
+      border-right: 1px solid #efe5dd;
+      flex: 1 1 180px;
+    }
+
+    .booking-field:last-child {
+      border-right: none;
+    }
+
+    .booking-icon {
+      font-size: 24px;
+      color: #b2845a;
+    }
+
+    .booking-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .booking-label {
+      font-size: 12px;
+      color: #8f7e73;
+      font-weight: 500;
+    }
+
+    .booking-value {
+      font-weight: 700;
+      color: #3a342f;
+      font-size: 16px;
+    }
+
+    .booking-btn {
+      background: #b2845a;
+      border: none;
+      border-radius: 60px;
+      padding: 18px 44px;
+      color: white;
+      font-weight: 700;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: default;
+      box-shadow: 0 12px 22px -8px rgba(178,132,90,0.5);
+    }
+
+    /* SECTION CHAMBRES & SUITES */
+    .hotel-rooms {
+      padding: 90px 60px;
+      background: white;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .section-title-left h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #2e2a27;
+      letter-spacing: -1px;
+    }
+
+    .section-title-left p {
+      font-size: 18px;
+      color: #6f6258;
+      margin: 0;
+    }
+
+    .section-link {
+      color: #b2845a;
+      font-weight: 600;
+      border-bottom: 2px solid #b2845a;
+      padding-bottom: 4px;
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 20px;
+    }
+
+    .room-card {
+      background: white;
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 25px 40px -25px rgba(0,0,0,0.05);
+      border: 1px solid #f5ede7;
+      transition: 0.3s ease;
+    }
+
+    .room-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 35px 60px -30px rgba(178,132,90,0.2);
+      border-color: #e3d2c5;
+    }
+
+    .room-image {
+      background: linear-gradient(145deg, #e8ddd2, #dfd1c4);
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 80px;
+    }
+
+    .room-badge {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: white;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 700;
+      color: #b2845a;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.03);
+      font-size: 15px;
+    }
+
+    .room-info {
+      padding: 32px;
+    }
+
+    .room-category {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #b2845a;
+      margin-bottom: 10px;
+    }
+
+    .room-name {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: #2e2a27;
+    }
+
+    .room-features {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+      color: #6f6258;
+      font-size: 15px;
+    }
+
+    .room-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .price-amount {
+      font-size: 32px;
+      font-weight: 800;
+      color: #2e2a27;
+    }
+
+    .price-period {
+      font-size: 16px;
+      color: #8f7e73;
+    }
+
+    .room-btn {
+      background: transparent;
+      border: 1.5px solid #b2845a;
+      color: #8b6b4c;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      width: 100%;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .room-btn:hover {
+      background: #b2845a;
+      color: white;
+    }
+
+    /* SECTION ÉQUIPEMENTS & SERVICES */
+    .hotel-amenities {
+      background: #fcf9f6;
+      padding: 80px 60px;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .amenity-item {
+      text-align: center;
+      padding: 36px 24px;
+      background: white;
+      border-radius: 32px;
+      border: 1px solid #f5eae3;
+      transition: 0.2s;
+    }
+
+    .amenity-item:hover {
+      border-color: #dcc9bb;
+      transform: translateY(-5px);
+    }
+
+    .amenity-icon {
+      font-size: 48px;
+      margin-bottom: 24px;
+    }
+
+    .amenity-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #4a3f38;
+    }
+
+    .amenity-desc {
+      font-size: 15px;
+      color: #73645b;
+      line-height: 1.6;
+    }
+
+    /* SECTION GALERIE PHOTOS */
+    .hotel-gallery {
+      padding: 80px 60px;
+      background: white;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .gallery-item {
+      background: linear-gradient(145deg, #f0e7e0, #e5d9d1);
+      border-radius: 28px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      border: 1px solid #f5ede7;
+      transition: 0.2s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 35px -18px rgba(0,0,0,0.1);
+    }
+
+    /* SECTION TARIFS & OFFRES */
+    .hotel-offers {
+      background: #fcf9f6;
+      padding: 80px 60px;
+    }
+
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .offer-card {
+      background: white;
+      border-radius: 36px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #f5eae3;
+    }
+
+    .offer-tag {
+      background: #b2845a;
+      color: white;
+      padding: 6px 20px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      align-self: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .offer-name {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: #2e2a27;
+    }
+
+    .offer-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #6f6258;
+      margin-bottom: 28px;
+    }
+
+    .offer-price {
+      font-size: 36px;
+      font-weight: 800;
+      color: #b2845a;
+      margin-bottom: 24px;
+    }
+
+    .offer-price small {
+      font-size: 16px;
+      font-weight: 400;
+      color: #8f7e73;
+    }
+
+    .offer-btn {
+      background: #b2845a;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+    }
+
+    /* SECTION TÉMOIGNAGES CLIENTS */
+    .hotel-testimonials {
+      padding: 80px 60px;
+      background: white;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background: #fcf9f6;
+      border-radius: 32px;
+      padding: 36px;
+      border: 1px solid #f5ede7;
+    }
+
+    .testimonial-rating {
+      color: #ffb347;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-text {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #5f5248;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .testimonial-avatar {
+      width: 56px;
+      height: 56px;
+      background: #e8ddd2;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #b2845a;
+    }
+
+    /* SECTION NEWSLETTER */
+    .hotel-newsletter {
+      background: linear-gradient(145deg, #b2845a, #9f7350);
+      border-radius: 48px;
+      margin: 40px 60px 60px;
+      padding: 56px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: white;
+    }
+
+    .newsletter-left h3 {
+      font-size: 34px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .newsletter-left p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      margin: 0;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 16px;
+      background: white;
+      border-radius: 60px;
+      padding: 6px;
+    }
+
+    .newsletter-input {
+      border: none;
+      padding: 14px 24px;
+      border-radius: 60px;
+      font-size: 16px;
+      width: 260px;
+      outline: none;
+    }
+
+    .newsletter-btn {
+      background: #b2845a;
+      color: white;
+      border: none;
+      border-radius: 60px;
+      padding: 14px 36px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    /* FOOTER HÔTEL */
+    .hotel-footer {
+      background: #2e2a27;
+      color: white;
+      padding: 60px 60px 30px;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .footer-about p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 28px;
+      font-size: 22px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .rooms-grid,
+      .amenities-grid,
+      .gallery-grid,
+      .testimonials-grid,
+      .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .offers-grid {
+        grid-template-columns: 1fr;
+      }
+      .hotel-header {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .rooms-grid,
+      .amenities-grid,
+      .gallery-grid,
+      .testimonials-grid,
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+      .hotel-hero,
+      .hotel-rooms,
+      .hotel-amenities,
+      .hotel-gallery,
+      .hotel-offers,
+      .hotel-testimonials {
+        padding: 40px 24px;
+      }
+    }
+
+    .gjs-draggable { cursor: move; }
+  </style>
+</head>
+<body>
+  <!-- HÔTEL - RÉSERVATION EN LIGNE -->
+  <section class="hotel-section">
+
+    <!-- HEADER HÔTEL -->
+    <header class="hotel-header">
+      <div class="hotel-logo">
+        <span class="hotel-logo-icon">🏨</span>
+        <span class="hotel-logo-text">Palace<span>Hotel</span></span>
+      </div>
+      <nav class="hotel-nav">
+        <a href="#">Chambres</a>
+        <a href="#">Services</a>
+        <a href="#">Galerie</a>
+        <a href="#">Offres</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="hotel-actions">
+        <span class="hotel-lang">🌐 FR</span>
+        <button class="hotel-reservation-btn">Réserver</button>
+      </div>
+    </header>
+
+    <!-- HERO AVEC MOTEUR DE RÉSERVATION -->
+    <div class="hotel-hero">
+      <span class="hotel-hero-bg">🏨</span>
+      <div class="hotel-hero-content">
+        <span class="hotel-hero-tag">
+          <span>✨</span> Hôtel 5 étoiles - Paris Centre
+        </span>
+        <h1 class="hotel-hero-title">
+          Séjournez dans <span class="hotel-hero-accent">l'élégance</span> parisienne
+        </h1>
+        <p class="hotel-hero-desc">
+          Chambres luxueuses, spa primé, restaurant gastronomique. 
+          Une expérience unique au cœur de la ville lumière.
+        </p>
+        
+        <!-- MOTEUR DE RÉSERVATION -->
+        <div class="hotel-booking-engine">
+          <div class="booking-field">
+            <span class="booking-icon">📅</span>
+            <div class="booking-content">
+              <span class="booking-label">Arrivée</span>
+              <span class="booking-value">15 mars 2026</span>
+            </div>
+          </div>
+          <div class="booking-field">
+            <span class="booking-icon">📅</span>
+            <div class="booking-content">
+              <span class="booking-label">Départ</span>
+              <span class="booking-value">18 mars 2026</span>
+            </div>
+          </div>
+          <div class="booking-field">
+            <span class="booking-icon">👥</span>
+            <div class="booking-content">
+              <span class="booking-label">Voyageurs</span>
+              <span class="booking-value">2 adultes</span>
+            </div>
+          </div>
+          <button class="booking-btn">
+            <span>🔍</span> Vérifier disponibilités
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAMBRES & SUITES -->
+    <div class="hotel-rooms">
+      <div class="section-header">
+        <div class="section-title-left">
+          <h2>Chambres & Suites</h2>
+          <p>Un confort absolu dans chaque espace</p>
+        </div>
+        <span class="section-link">Voir toutes nos chambres →</span>
+      </div>
+
+      <div class="rooms-grid">
+        <!-- CHAMBRE CLASSIQUE -->
+        <div class="room-card">
+          <div class="room-image">
+            <span>🛏️</span>
+            <span class="room-badge">À partir de 199€</span>
+          </div>
+          <div class="room-info">
+            <div class="room-category">CHAMBRE</div>
+            <h3 class="room-name">Classique</h3>
+            <div class="room-features">
+              <span>🛏️ 1 lit double</span>
+              <span>🚿 Douche</span>
+            </div>
+            <div class="room-price">
+              <span class="price-amount">199€</span>
+              <span class="price-period">/ nuit</span>
+            </div>
+            <button class="room-btn">Réserver</button>
+          </div>
+        </div>
+        <!-- CHAMBRE SUPÉRIEURE -->
+        <div class="room-card">
+          <div class="room-image">
+            <span>🛋️</span>
+            <span class="room-badge">À partir de 299€</span>
+          </div>
+          <div class="room-info">
+            <div class="room-category">SUPÉRIEURE</div>
+            <h3 class="room-name">Supérieure</h3>
+            <div class="room-features">
+              <span>🛏️ 1 lit king</span>
+              <span>🛁 Baignoire</span>
+              <span>🌆 Vue cour</span>
+            </div>
+            <div class="room-price">
+              <span class="price-amount">299€</span>
+              <span class="price-period">/ nuit</span>
+            </div>
+            <button class="room-btn">Réserver</button>
+          </div>
+        </div>
+        <!-- SUITE DELUXE -->
+        <div class="room-card">
+          <div class="room-image">
+            <span>✨</span>
+            <span class="room-badge">À partir de 499€</span>
+          </div>
+          <div class="room-info">
+            <div class="room-category">SUITE</div>
+            <h3 class="room-name">Deluxe</h3>
+            <div class="room-features">
+              <span>🛏️ 2 lits queen</span>
+              <span>🛁 Jacuzzi</span>
+              <span>🏙️ Vue Paris</span>
+            </div>
+            <div class="room-price">
+              <span class="price-amount">499€</span>
+              <span class="price-period">/ nuit</span>
+            </div>
+            <button class="room-btn">Réserver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉQUIPEMENTS & SERVICES -->
+    <div class="hotel-amenities">
+      <div class="section-header">
+        <div class="section-title-left">
+          <h2>Services & équipements</h2>
+          <p>L'excellence à chaque instant</p>
+        </div>
+      </div>
+
+      <div class="amenities-grid">
+        <div class="amenity-item">
+          <div class="amenity-icon">🍽️</div>
+          <h4 class="amenity-title">Restaurant étoilé</h4>
+          <p class="amenity-desc">Cuisine gastronomique française, chef primé</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-icon">💆</div>
+          <h4 class="amenity-title">Spa & bien-être</h4>
+          <p class="amenity-desc">Piscine, sauna, hammam, soins sur mesure</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-icon">🏋️</div>
+          <h4 class="amenity-title">Fitness</h4>
+          <p class="amenity-desc">Équipements haut de gamme, coach disponible</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-icon">🚗</div>
+          <h4 class="amenity-title">Parking privé</h4>
+          <p class="amenity-desc">Sécurisé, accès direct à l'hôtel</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALERIE PHOTOS -->
+    <div class="hotel-gallery">
+      <div class="section-header">
+        <div class="section-title-left">
+          <h2>Galerie</h2>
+          <p>Découvrez l'atmosphère unique du Palace</p>
+        </div>
+        <span class="section-link">Voir plus →</span>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">🏊</div>
+        <div class="gallery-item">🍷</div>
+        <div class="gallery-item">🛋️</div>
+        <div class="gallery-item">🌇</div>
+      </div>
+    </div>
+
+    <!-- OFFRES SPÉCIALES -->
+    <div class="hotel-offers">
+      <div class="section-header">
+        <div class="section-title-left">
+          <h2>Offres spéciales</h2>
+          <p>Des séjours d'exception à tarifs privilégiés</p>
+        </div>
+      </div>
+
+      <div class="offers-grid">
+        <div class="offer-card">
+          <span class="offer-tag">⭐ COUP DE CŒUR</span>
+          <h3 class="offer-name">Escapade romantique</h3>
+          <p class="offer-desc">
+            Champagne offert, dîner aux chandelles, accès spa en illimité et départ tardif.
+          </p>
+          <div class="offer-price">
+            349€ <small>/ nuit</small>
+          </div>
+          <button class="offer-btn">Réserver cette offre</button>
+        </div>
+        <div class="offer-card">
+          <span class="offer-tag">🏆 FAMILLE</span>
+          <h3 class="offer-name">Séjour en famille</h3>
+          <p class="offer-desc">
+            Petit-déjeuner inclus pour 4 personnes, lit bébé offert, accès au club enfants.
+          </p>
+          <div class="offer-price">
+            449€ <small>/ nuit</small>
+          </div>
+          <button class="offer-btn">Réserver cette offre</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TÉMOIGNAGES CLIENTS -->
+    <div class="hotel-testimonials">
+      <div class="section-header">
+        <div class="section-title-left">
+          <h2>Ils ont séjourné chez nous</h2>
+          <p>Votre satisfaction, notre fierté</p>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-text">"Un séjour parfait ! Le personnel est aux petits soins, la chambre spacieuse et le spa magnifique. Nous reviendrons."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">C</div>
+            <div>
+              <div style="font-weight: 700; color: #2e2a27;">Claire M.</div>
+              <div style="font-size: 13px; color: #6f6258;">Séjour romantique</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-text">"Le restaurant est une vraie découverte gastronomique. Chambre luxueuse, literie exceptionnelle. Merci pour l'accueil."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">T</div>
+            <div>
+              <div style="font-weight: 700; color: #2e2a27;">Thomas R.</div>
+              <div style="font-size: 13px; color: #6f6258;">Séjour affaires</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★☆</div>
+          <p class="testimonial-text">"Très bel hôtel, bien situé. Le petit-déjeuner buffet est copieux et varié. Je recommande la suite avec vue."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <div style="font-weight: 700; color: #2e2a27;">Sophie L.</div>
+              <div style="font-size: 13px; color: #6f6258;">Séjour en famille</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="hotel-newsletter">
+      <div class="newsletter-left">
+        <h3>Offres exclusives</h3>
+        <p>Inscrivez-vous pour recevoir nos promotions et nouveautés</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Votre adresse email" value="">
+        <button class="newsletter-btn">S'inscrire</button>
+      </div>
+    </div>
+
+    <!-- FOOTER HÔTEL -->
+    <footer class="hotel-footer">
+      <div class="footer-main">
+        <div class="footer-about">
+          <div class="footer-logo">PalaceHotel</div>
+          <p>Hôtel 5 étoiles au cœur de Paris. Alliant tradition et modernité pour une expérience unique depuis 1925.</p>
+          <div class="footer-social">
+            <span>📘</span>
+            <span>📷</span>
+            <span>🐦</span>
+            <span>🎵</span>
+          </div>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Hébergement</span>
+          <a href="#">Chambres classiques</a>
+          <a href="#">Chambres supérieures</a>
+          <a href="#">Suites</a>
+          <a href="#">Offres spéciales</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Services</span>
+          <a href="#">Restauration</a>
+          <a href="#">Spa & bien-être</a>
+          <a href="#">Événements</a>
+          <a href="#">Séminaires</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Contact</span>
+          <a href="#">15 avenue Montaigne, 75008 Paris</a>
+          <a href="#">01 53 67 89 01</a>
+          <a href="#">reservation@palacehotel.fr</a>
+          <a href="#">Accès & plan</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 PalaceHotel - Tous droits réservés</span>
+        <span style="display: flex; gap: 28px;">
+          <span>Mentions légales</span>
+          <span>Confidentialité</span>
+          <span>CGV</span>
+        </span>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>

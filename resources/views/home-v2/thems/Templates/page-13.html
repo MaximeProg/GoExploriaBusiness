@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal LePage - Vente immobilière premium</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #fafbfc;
+      color: #1a2b3c;
+      line-height: 1.5;
+    }
+
+    /* Import Inter font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Navigation ultra moderne */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #0a2942, #1e4a6f);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #0a2942;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1e4a6f;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #0a2942, #1e4a6f);
+      color: white !important;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600 !important;
+    }
+
+    /* Hero section avec image placeholder */
+    .hero {
+      background: linear-gradient(145deg, #f0f5fa 0%, #ffffff 100%);
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(27,79,107,0.03) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      background: rgba(27, 79, 107, 0.1);
+      color: #1e4a6f;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(27, 79, 107, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: #0a1a2a;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-highlight {
+      color: #1e4a6f;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: rgba(27, 79, 107, 0.2);
+      z-index: -1;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #4a5a6a;
+      margin-bottom: 2rem;
+      max-width: 550px;
+    }
+
+    .hero-image-container {
+      background: #d9e6f2;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 20, 30, 0.2);
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #b8d1e5, #8fb4d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e4a6f;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .image-placeholder::after {
+      content: '🏠 Maison contemporaine, Outremont';
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Section e-commerce immobilier */
+    .ecommerce {
+      padding: 5rem 0;
+      background: white;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 3rem auto;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0a1a2a;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: #5a6b7a;
+      font-size: 1.1rem;
+    }
+
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .property-card {
+      background: white;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #edf2f7;
+    }
+
+    .property-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(27, 79, 107, 0.1);
+    }
+
+    .property-image {
+      height: 240px;
+      background: #cbdae9;
+      position: relative;
+    }
+
+    .prop-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #a5c0d9, #7fa3c4);
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      color: white;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .property-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #1e4a6f;
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .property-content {
+      padding: 1.8rem;
+    }
+
+    .property-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e4a6f;
+      margin-bottom: 0.5rem;
+    }
+
+    .property-address {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .property-details {
+      display: flex;
+      gap: 1.5rem;
+      margin: 1rem 0;
+      color: #5a6b7a;
+      font-size: 0.95rem;
+    }
+
+    .property-details span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .btn-property {
+      width: 100%;
+      padding: 1rem;
+      background: #f0f5fa;
+      border: none;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #1e4a6f;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 1rem;
+    }
+
+    .btn-property:hover {
+      background: #1e4a6f;
+      color: white;
+    }
+
+    /* Section 8 étapes revisitée */
+    .steps-showcase {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, #f8fbfe 0%, #ffffff 100%);
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .step-block {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      border: 1px solid #eef4f9;
+      position: relative;
+    }
+
+    .step-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(27, 79, 107, 0.1);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      line-height: 1;
+    }
+
+    .step-icon {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-block h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Section marketplace (ecommerce avancé) */
+    .marketplace {
+      padding: 5rem 0;
+      background: #0a1a2a;
+      color: white;
+    }
+
+    .marketplace .section-header h2,
+    .marketplace .section-header p {
+      color: white;
+    }
+
+    .marketplace-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      transition: transform 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 1rem 0;
+      color: #ffd966;
+    }
+
+    .btn-service {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 40px;
+      width: 100%;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-service:hover {
+      background: white;
+      color: #0a1a2a;
+      border-color: white;
+    }
+
+    /* Agents section avec vraies photos */
+    .agents {
+      padding: 5rem 0;
+      background: white;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .agent-card {
+      text-align: center;
+      background: #f8fbfe;
+      border-radius: 40px;
+      padding: 2rem;
+    }
+
+    .agent-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      background: #cbdae9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #8fb4d4, #5a7a9a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .agent-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .agent-title {
+      color: #1e4a6f;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .agent-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      color: #5a6b7a;
+    }
+
+    /* Section témoignages vidéo/luxury */
+    .testimonials-luxury {
+      padding: 5rem 0;
+      background: #fafbfc;
+    }
+
+    .testimonial-card-large {
+      background: white;
+      border-radius: 40px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.03);
+    }
+
+    .testimonial-image {
+      height: 300px;
+      background: #b8d1e5;
+      border-radius: 30px;
+    }
+
+    /* Formulaire ultra moderne */
+    .contact-premium {
+      padding: 5rem 0;
+      background: white;
+    }
+
+    .form-premium {
+      background: #f8fbfe;
+      border-radius: 50px;
+      padding: 3rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      border: 2px solid #e0e9f0;
+      border-radius: 60px;
+      font-size: 1rem;
+      background: white;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #1e4a6f;
+      box-shadow: 0 0 0 4px rgba(27, 79, 107, 0.1);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #0a2942, #1e4a6f);
+      color: white;
+      border: none;
+      padding: 1.2rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s;
+    }
+
+    .btn-submit:hover {
+      transform: scale(1.02);
+    }
+
+    footer {
+      background: #0a1a2a;
+      color: #b0c4d9;
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+      .steps-container,
+      .marketplace-grid,
+      .agents-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid,
+      .testimonial-card-large {
+        grid-template-columns: 1fr;
+      }
+      
+      .steps-container,
+      .marketplace-grid,
+      .agents-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <div class="logo-icon">RL</div>
+        <span class="logo-text">Royal LePage</span>
+      </div>
+      <div class="nav-links">
+        <a href="#">Vendre</a>
+        <a href="#">Acheter</a>
+        <a href="#">Propriétés</a>
+        <a href="#">Courtiers</a>
+        <a href="#">Marketplace</a>
+        <a href="#" class="nav-cta">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero avec image réelle placeholder -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-badge">✦ Expertise depuis 1913</span>
+          <h1>
+            Vendre votre maison 
+            <span class="hero-highlight">au juste prix</span>
+            , c'est une science
+          </h1>
+          <p>Obtenez une évaluation précise et un accompagnement stratégique en 8 étapes avec un courtier expert de votre quartier.</p>
+          <div style="display: flex; gap: 1rem;">
+            <a href="#" class="nav-cta" style="background: #1e4a6f; color: white; padding: 1rem 2rem;">Évaluation gratuite</a>
+            <a href="#" style="padding: 1rem 2rem; border: 2px solid #1e4a6f; border-radius: 40px; color: #1e4a6f; font-weight: 600; text-decoration: none;">Nos propriétés</a>
+          </div>
+        </div>
+        <div class="hero-image-container">
+          <div class="image-placeholder">
+            <!-- Ici vous mettrez votre image réelle : /images/maison-contemporaine.jpg -->
+            <span style="opacity: 0.5;">[Photo : Maison contemporaine]</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section e-commerce : Propriétés à vendre -->
+    <section class="ecommerce">
+      <div class="container">
+        <div class="section-header">
+          <h2>Propriétés d'exception à vendre</h2>
+          <p>Découvrez notre sélection de biens premium, avec visites virtuelles et dossier complet.</p>
+        </div>
+        <div class="properties-grid">
+          <!-- Carte 1 -->
+          <div class="property-card">
+            <div class="property-image">
+              <div class="prop-img-placeholder">
+                <!-- Image réelle : /images/propriete1.jpg -->
+                <span>[Photo : Penthouse]</span>
+              </div>
+              <span class="property-tag">À vendre</span>
+            </div>
+            <div class="property-content">
+              <div class="property-price">$1,295,000</div>
+              <div class="property-address">3455 Av. du Musée</div>
+              <div class="property-details">
+                <span>🛏️ 3 chambres</span>
+                <span>🛁 2 salles de bain</span>
+                <span>📐 1,850 pi²</span>
+              </div>
+              <button class="btn-property">Voir la propriété</button>
+            </div>
+          </div>
+          <!-- Carte 2 -->
+          <div class="property-card">
+            <div class="property-image">
+              <div class="prop-img-placeholder">
+                <!-- Image réelle : /images/propriete2.jpg -->
+                <span>[Photo : Maison de ville]</span>
+              </div>
+              <span class="property-tag">Nouveau</span>
+            </div>
+            <div class="property-content">
+              <div class="property-price">$895,000</div>
+              <div class="property-address">122 Rue Saint-Paul</div>
+              <div class="property-details">
+                <span>🛏️ 4 chambres</span>
+                <span>🛁 2 salles de bain</span>
+                <span>📐 2,200 pi²</span>
+              </div>
+              <button class="btn-property">Voir la propriété</button>
+            </div>
+          </div>
+          <!-- Carte 3 -->
+          <div class="property-card">
+            <div class="property-image">
+              <div class="prop-img-placeholder">
+                <!-- Image réelle : /images/propriete3.jpg -->
+                <span>[Photo : Condo luxe]</span>
+              </div>
+              <span class="property-tag">Prestige</span>
+            </div>
+            <div class="property-content">
+              <div class="property-price">$2,450,000</div>
+              <div class="property-address">1 Place Ville-Marie</div>
+              <div class="property-details">
+                <span>🛏️ 2 chambres</span>
+                <span>🛁 2 salles de bain</span>
+                <span>📐 2,100 pi²</span>
+              </div>
+              <button class="btn-property">Voir la propriété</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketplace immobilier (e-commerce services) -->
+    <section class="marketplace">
+      <div class="container">
+        <div class="section-header">
+          <h2>Marketplace immobilière</h2>
+          <p>Des services premium pour maximiser la valeur de votre bien</p>
+        </div>
+        <div class="marketplace-grid">
+          <div class="service-card">
+            <div class="service-icon">📸</div>
+            <h3>Photo & vidéo drone</h3>
+            <p>Prise de vue professionnelle avec drone certifié</p>
+            <div class="service-price">$450</div>
+            <button class="btn-service">Réserver</button>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🏠</div>
+            <h3>Home staging</h3>
+            <p>Design d'intérieur pour valoriser votre espace</p>
+            <div class="service-price">$890</div>
+            <button class="btn-service">Réserver</button>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📊</div>
+            <h3>Évaluation premium</h3>
+            <p>Analyse comparative approfondie + tendances</p>
+            <div class="service-price">$199</div>
+            <button class="btn-service">Commander</button>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">⚖️</div>
+            <h3>Inspection pré-vente</h3>
+            <p>Rapport d'inspection par expert certifié</p>
+            <div class="service-price">$650</div>
+            <button class="btn-service">Réserver</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agents avec photos réelles -->
+    <section class="agents">
+      <div class="container">
+        <div class="section-header">
+          <h2>Votre expert local</h2>
+          <p>Des courtiers qui connaissent votre quartier sur le bout des doigts</p>
+        </div>
+        <div class="agents-grid">
+          <div class="agent-card">
+            <div class="agent-photo">
+              <div class="photo-placeholder">
+                <!-- Photo réelle : /images/agent1.jpg -->
+                <span>👤</span>
+              </div>
+            </div>
+            <div class="agent-name">Sophie Bélanger</div>
+            <div class="agent-title">Courtier immobilier - Outremont</div>
+            <div class="agent-stats">
+              <span>🏠 124 ventes</span>
+              <span>⭐ 4.9</span>
+            </div>
+            <button class="btn-property" style="background: #1e4a6f; color: white;">Contacter</button>
+          </div>
+          <div class="agent-card">
+            <div class="agent-photo">
+              <div class="photo-placeholder">
+                <!-- Photo réelle : /images/agent2.jpg -->
+                <span>👤</span>
+              </div>
+            </div>
+            <div class="agent-name">Marc Tremblay</div>
+            <div class="agent-title">Courtier - Vieux-Montréal</div>
+            <div class="agent-stats">
+              <span>🏠 98 ventes</span>
+              <span>⭐ 4.8</span>
+            </div>
+            <button class="btn-property" style="background: #1e4a6f; color: white;">Contacter</button>
+          </div>
+          <div class="agent-card">
+            <div class="agent-photo">
+              <div class="photo-placeholder">
+                <!-- Photo réelle : /images/agent3.jpg -->
+                <span>👤</span>
+              </div>
+            </div>
+            <div class="agent-name">Julie Lavoie</div>
+            <div class="agent-title">Courtier - Westmount</div>
+            <div class="agent-stats">
+              <span>🏠 156 ventes</span>
+              <span>⭐ 5.0</span>
+            </div>
+            <button class="btn-property" style="background: #1e4a6f; color: white;">Contacter</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Les 8 étapes revisitées -->
+    <section class="steps-showcase">
+      <div class="container">
+        <div class="section-header">
+          <h2>Vendre en 8 étapes stratégiques</h2>
+          <p>Un processus scientifique, transparent et sans stress</p>
+        </div>
+        <div class="steps-container">
+          <div class="step-block">
+            <span class="step-number">01</span>
+            <div class="step-icon">📋</div>
+            <h3>Consultation</h3>
+            <p>Analyse de vos objectifs et visite-conseil</p>
+          </div>
+          <div class="step-block">
+            <span class="step-number">02</span>
+            <div class="step-icon">🔍</div>
+            <h3>Évaluation</h3>
+            <p>Étude comparative du marché local</p>
+          </div>
+          <div class="step-block">
+            <span class="step-number">03</span>
+            <div class="step-icon">✨</div>
+            <h3>Préparation</h3>
+            <p>Home staging et travaux légers</p>
+          </div>
+          <div class="step-block">
+            <span class="step-number">04</span>
+            <div class="step-icon">📸</div>
+            <h3>Photo pro</h3>
+            <p>Visuels haute définition et drone</p>
+          </div>
+          <div class="step-block">
+            <span class="step-number">05</span>
+            <div class="step-icon">📢</div>
+            <h3>Marketing</h3>
+            <p>Diffusion multicanal premium</p>
+          </div>
+          <div class="step-block">
+            <span class="step-number">06</span>
+            <div class="step-icon">🚪</div>
+            <h3>Visites</h3>
+            <p>Portes ouvertes et visites privées</p>
+          </div>
+          <div class="step-block">
+            <span class="step-number">07</span>
+            <div class="step-icon">🤝</div>
+            <h3>Négociation</h3>
+            <p>Stratégie d'offres et contre-offres</p>
+          </div>
+          <div class="step-block">
+            <span class="step-number">08</span>
+            <div class="step-icon">🔑</div>
+            <h3>Clôture</h3>
+            <p>Accompagnement jusqu'à la signature</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Témoignage vidéo / luxe -->
+    <section class="testimonials-luxury">
+      <div class="container">
+        <div class="testimonial-card-large">
+          <div>
+            <span class="hero-badge">Témoignage</span>
+            <h2 style="font-size: 2rem; margin: 1rem 0;">"Vendu en 12 jours, au-dessus du prix"</h2>
+            <p style="font-size: 1.1rem; color: #4a5a6a;">Marie et Philippe ont confié leur propriété de Westmount à notre équipe. Résultat : 12 jours sur le marché, 3 offres et un prix de vente supérieur de 8% à l'estimation.</p>
+            <div style="margin-top: 2rem;">
+              <strong>Marie & Philippe L.</strong>
+              <p style="color: #1e4a6f;">Vente - Westmount</p>
+            </div>
+          </div>
+          <div class="testimonial-image">
+            <!-- Image réelle : /images/temoignage-maison.jpg -->
+            <div class="image-placeholder" style="height: 100%; border-radius: 30px;">[Photo : Maison Westmount]</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulaire de contact premium -->
+    <section class="contact-premium">
+      <div class="container">
+        <div class="form-premium">
+          <h2 style="font-size: 2rem; margin-bottom: 2rem;">Recevez une évaluation gratuite</h2>
+          <form>
+            <div class="form-row" style="margin-bottom: 1rem;">
+              <input type="text" class="form-input" placeholder="Prénom" required>
+              <input type="text" class="form-input" placeholder="Nom" required>
+            </div>
+            <div style="margin-bottom: 1rem;">
+              <input type="email" class="form-input" placeholder="Courriel" required>
+            </div>
+            <div style="margin-bottom: 1rem;">
+              <input type="tel" class="form-input" placeholder="Téléphone">
+            </div>
+            <div style="margin-bottom: 2rem;">
+              <input type="text" class="form-input" placeholder="Adresse de la propriété">
+            </div>
+            <button type="submit" class="btn-submit">Obtenir mon évaluation</button>
+            <p style="text-align: center; margin-top: 1.5rem; color: #7f8c8d;">Sans engagement • Réponse sous 24h</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Royal LePage Real Estate Services. Marque déposée.</p>
+      <p style="margin-top: 1rem;">Toutes les propriétés et photos sont présentées à titre indicatif. Les images réelles doivent être remplacées.</p>
+    </div>
+  </footer>
+</body>
+</html>

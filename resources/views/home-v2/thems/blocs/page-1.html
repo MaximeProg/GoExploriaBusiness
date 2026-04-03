@@ -1,0 +1,1486 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+.resto-card {
+  max-width: 1200px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Bloc 1 - Menu Classique */
+.menu-classic {
+  padding: 2rem;
+}
+
+.resto-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.resto-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.header-desc {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stars {
+  color: #f1c40f;
+  font-size: 1.2rem;
+}
+
+.menu-section {
+  margin-bottom: 2.5rem;
+}
+
+.menu-section h3 {
+  font-size: 1.5rem;
+  color: #e67e22;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, #e67e22, transparent);
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.menu-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s;
+  background: #f9f9f9;
+}
+
+.menu-item:hover {
+  transform: translateX(10px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.menu-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e67e22;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.item-title h4 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.price {
+  font-weight: 600;
+  color: #e67e22;
+  background: #fff;
+  padding: 0.2rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #e67e22;
+}
+
+.item-info p {
+  color: #7f8c8d;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.tag {
+  display: inline-block;
+  background: #e67e22;
+  color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Bloc 2 - Menu Mosaïque */
+.menu-mosaic {
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.mosaic-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.mosaic-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1rem;
+}
+
+.mosaic-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.mosaic-item.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.mosaic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.mosaic-item:hover img {
+  transform: scale(1.1);
+}
+
+.mosaic-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.mosaic-item:hover .mosaic-overlay {
+  transform: translateY(0);
+}
+
+.mosaic-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.mosaic-overlay p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.mosaic-price {
+  display: inline-block;
+  background: #e67e22;
+  padding: 0.2rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Bloc 3 - Carrousel */
+.carousel-block {
+  padding: 2rem;
+  background: #f9f9f9;
+}
+
+.carousel-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.carousel-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carousel-track-wrapper {
+  overflow: hidden;
+  flex: 1;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.carousel-card {
+  min-width: 280px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.card-image:hover img {
+  transform: scale(1.1);
+}
+
+.card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #e67e22;
+  color: white;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-content h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.card-content p {
+  color: #7f8c8d;
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-price {
+  font-weight: 700;
+  color: #e67e22;
+  font-size: 1.2rem;
+}
+
+.card-rating {
+  color: #f1c40f;
+}
+
+.carousel-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+
+.carousel-arrow:hover {
+  background: #e67e22;
+  color: white;
+}
+
+/* Bloc 4 - Media Wall */
+.media-wall-block {
+  padding: 2rem;
+}
+
+.wall-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.wall-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.wall-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1rem;
+}
+
+.wall-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.wall-item-1 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.wall-item-2 {
+  grid-column: span 2;
+}
+
+.wall-item-4 {
+  grid-column: span 2;
+}
+
+.wall-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.wall-item:hover img {
+  transform: scale(1.1);
+}
+
+.wall-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.wall-item:hover .wall-overlay {
+  opacity: 1;
+}
+
+.wall-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.wall-overlay p {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Bloc 5 - Vidéos */
+.video-menu-block {
+  padding: 2rem;
+  background: #1a1a1a;
+  color: white;
+}
+
+.video-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.video-card {
+  background: #2d2d2d;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.video-wrapper {
+  position: relative;
+  height: 200px;
+  background: #000;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(230, 126, 34, 0.9);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.video-play:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: #e67e22;
+}
+
+.video-info {
+  padding: 1rem;
+}
+
+.video-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.video-info p {
+  margin: 0;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* Bloc 6 - Instagram Wall */
+.instagram-block {
+  padding: 2rem;
+  background: white;
+}
+
+.insta-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.insta-header i {
+  font-size: 3rem;
+  color: #e4405f;
+}
+
+.insta-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.insta-header span {
+  color: #e4405f;
+  font-weight: 300;
+}
+
+.insta-wall {
+  margin-bottom: 2rem;
+}
+
+.insta-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.insta-post {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.insta-post img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.insta-post:hover img {
+  transform: scale(1.1);
+}
+
+.post-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  gap: 1rem;
+}
+
+.insta-post:hover .post-overlay {
+  opacity: 1;
+}
+
+.post-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.insta-post:hover .post-caption {
+  transform: translateY(0);
+}
+
+.insta-footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.insta-link {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: #e4405f;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.insta-link:hover {
+  background: #c1354d;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(228, 64, 95, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-item {
+    flex-direction: column;
+  }
+  
+  .menu-item img {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+  }
+  
+  .mosaic-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mosaic-item.large {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  .insta-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .wall-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .wall-item-1,
+  .wall-item-2,
+  .wall-item-4 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .carousel-card {
+    min-width: 240px;
+  }
+}
+
+/* Version avec défilement manuel (sans boutons) */
+.carousel-scroll-container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem 0.5rem;
+  margin: 0 -0.5rem;
+  
+  /* Masquer la scrollbar par défaut mais la garder fonctionnelle */
+  scrollbar-width: thin;
+  scrollbar-color: #e67e22 #f0f0f0;
+}
+
+/* Style de la scrollbar pour Chrome/Safari */
+.carousel-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-scroll-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.carousel-scroll-container::-webkit-scrollbar-thumb {
+  background: #e67e22;
+  border-radius: 10px;
+}
+
+.carousel-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #d35400;
+}
+
+.carousel-scroll {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+/* Style des cartes (inchangé) */
+.carousel-card {
+  min-width: 280px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.carousel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.card-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.carousel-card:hover .card-image img {
+  transform: scale(1.1);
+}
+
+.card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #e67e22;
+  color: white;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-content h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.card-content p {
+  color: #7f8c8d;
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-price {
+  font-weight: 700;
+  color: #e67e22;
+  font-size: 1.2rem;
+}
+
+.card-rating {
+  color: #f1c40f;
+}
+
+/* Indicateur de défilement */
+.scroll-indicator {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.scroll-text {
+  display: inline-block;
+  color: #e67e22;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  animation: bounceRight 2s infinite;
+}
+
+@keyframes bounceRight {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+.scroll-bar {
+  width: 200px;
+  height: 4px;
+  background: #f0f0f0;
+  border-radius: 2px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-thumb {
+  width: 50px;
+  height: 100%;
+  background: #e67e22;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  animation: slide 3s ease-in-out infinite;
+}
+
+@keyframes slide {
+  0%, 100% {
+    left: 0;
+  }
+  50% {
+    left: calc(100% - 50px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-card {
+    min-width: 240px;
+  }
+  
+  .scroll-bar {
+    width: 150px;
+  }
+}
+
+/* Option pour cacher la scrollbar mais garder la fonctionnalité */
+.carousel-scroll-container.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.carousel-scroll-container.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Styles pour le bloc media wall avec vidéos */
+.media-wall-block {
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.wall-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.wall-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.wall-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Grille existante */
+.wall-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1rem;
+}
+
+.wall-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+
+.wall-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.wall-item-1 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.wall-item-2 {
+  grid-column: span 2;
+}
+
+.wall-item-3 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.wall-item-4 {
+  grid-column: span 2;
+}
+
+.wall-item-5 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Styles pour les images */
+.wall-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.wall-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Styles pour les vidéos */
+.wall-item-video {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none; /* Désactivé par défaut */
+  transition: opacity 0.3s;
+}
+
+.wall-item-video:hover .video-embed iframe {
+  pointer-events: auto; /* Activé au survol */
+}
+
+/* Tag vidéo */
+.video-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(255, 0, 0, 0.9);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 3;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  animation: pulse 2s infinite;
+}
+
+/* Indicateur de lecture */
+.wall-item-video::before {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 0, 0, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  z-index: 3;
+  opacity: 0.8;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.wall-item-video:hover::before {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Overlay commun */
+.wall-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+  z-index: 2;
+}
+
+.wall-item:hover .wall-overlay {
+  transform: translateY(0);
+}
+
+.wall-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.wall-overlay p {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Animation d'apparition */
+.wall-item {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .wall-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .wall-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+  }
+  
+  .wall-item-1,
+  .wall-item-2,
+  .wall-item-4 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  .wall-header h2 {
+    font-size: 2rem;
+  }
+  
+  .video-tag {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+  
+  .wall-item-video::before {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wall-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+  }
+}
+</style>
+
+
+<div class="resto-card menu-classic">
+  <div class="resto-header">
+    <h2>Le Bistrot Parisien</h2>
+    <p class="header-desc">Cuisine traditionnelle française</p>
+    <div class="stars">★★★★★</div>
+  </div>
+  
+  <div class="menu-section">
+    <h3>Entrées <span class="section-line"></span></h3>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="food">
+        <div class="item-info">
+          <div class="item-title">
+            <h4>Tartare de Saumon</h4>
+            <span class="price">14€</span>
+          </div>
+          <p>Saumon frais, avocat, mangue, sauce yuzu</p>
+          <span class="tag">Chef's special</span>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="food">
+        <div class="item-info">
+          <div class="item-title">
+            <h4>Foie Gras Maison</h4>
+            <span class="price">18€</span>
+          </div>
+          <p>Foie gras mi-cuit, chutney de figues, pain brioché</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="menu-section">
+    <h3>Plats <span class="section-line"></span></h3>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="food">
+        <div class="item-info">
+          <div class="item-title">
+            <h4>Magret de Canard</h4>
+            <span class="price">24€</span>
+          </div>
+          <p>Magret rôti, sauce aux cerises, pommes de terre sautées</p>
+          <span class="tag">Populaire</span>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187" alt="food">
+        <div class="item-info">
+          <div class="item-title">
+            <h4>Risotto aux Champignons</h4>
+            <span class="price">19€</span>
+          </div>
+          <p>Risotto crémeux, champignons de saison, parmesan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="resto-card menu-mosaic">
+  <div class="mosaic-header">
+    <h2>La Table Créative</h2>
+    <p>Menu Dégustation</p>
+  </div>
+  
+  <div class="mosaic-grid">
+    <div class="mosaic-item large">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0" alt="restaurant">
+      <div class="mosaic-overlay">
+        <h3>Amuse-Bouche</h3>
+        <p>Création du chef</p>
+      </div>
+    </div>
+    
+    <div class="mosaic-item">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="food">
+      <div class="mosaic-overlay">
+        <h3>Entrée</h3>
+        <p>Saumon fumé</p>
+        <span class="mosaic-price">16€</span>
+      </div>
+    </div>
+    
+    <div class="mosaic-item">
+      <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="food">
+      <div class="mosaic-overlay">
+        <h3>Plat</h3>
+        <p>Filet de boeuf</p>
+        <span class="mosaic-price">28€</span>
+      </div>
+    </div>
+    
+    <div class="mosaic-item">
+      <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187" alt="food">
+      <div class="mosaic-overlay">
+        <h3>Dessert</h3>
+        <p>Crème brûlée</p>
+        <span class="mosaic-price">9€</span>
+      </div>
+    </div>
+    
+    <div class="mosaic-item">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="food">
+      <div class="mosaic-overlay">
+        <h3>Fromage</h3>
+        <p>Plateau affinage</p>
+        <span class="mosaic-price">12€</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="resto-card carousel-block">
+  <div class="carousel-title">
+    <h2>Nos Spécialités</h2>
+    <p>Les plats signatures de notre chef</p>
+  </div>
+  
+  <div class="carousel-scroll-container">
+    <div class="carousel-scroll">
+      <div class="carousel-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="dish">
+          <span class="card-badge">Chef's</span>
+        </div>
+        <div class="card-content">
+          <h3>Filet de Boeuf</h3>
+          <p>Sauce poivre, gratin dauphinois</p>
+          <div class="card-footer">
+            <span class="card-price">32€</span>
+            <span class="card-rating">★★★★★</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="carousel-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187" alt="dish">
+          <span class="card-badge">Nouveau</span>
+        </div>
+        <div class="card-content">
+          <h3>Risotto Truffé</h3>
+          <p>Truffe noire, parmesan 36 mois</p>
+          <div class="card-footer">
+            <span class="card-price">29€</span>
+            <span class="card-rating">★★★★☆</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="carousel-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="dish">
+        </div>
+        <div class="card-content">
+          <h3>Tartare de Thon</h3>
+          <p>Thon rouge, avocat, sésame</p>
+          <div class="card-footer">
+            <span class="card-price">24€</span>
+            <span class="card-rating">★★★★★</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="carousel-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601" alt="dish">
+        </div>
+        <div class="card-content">
+          <h3>Tiramisu</h3>
+          <p>Mascarpone, café, cacao</p>
+          <div class="card-footer">
+            <span class="card-price">11€</span>
+            <span class="card-rating">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1551024700-8e4a9f9e6c9e" alt="dish">
+        </div>
+        <div class="card-content">
+          <h3>Homard Grillé</h3>
+          <p>Homard breton, beurre citronné</p>
+          <div class="card-footer">
+            <span class="card-price">45€</span>
+            <span class="card-rating">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1559847844-5315695dadae" alt="dish">
+        </div>
+        <div class="card-content">
+          <h3>Saint-Jacques</h3>
+          <p>Noix de saint-jacques, purée de panais</p>
+          <div class="card-footer">
+            <span class="card-price">38€</span>
+            <span class="card-rating">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2" alt="dish">
+        </div>
+        <div class="card-content">
+          <h3>Bar de Ligne</h3>
+          <p>Bar rôti, fenouil confit, sauce vierge</p>
+          <div class="card-footer">
+            <span class="card-price">36€</span>
+            <span class="card-rating">★★★★★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="resto-card media-wall-block">
+  <div class="wall-header">
+    <h2>L'Ambiance du Restaurant</h2>
+    <p>Découvrez notre univers en images et vidéos</p>
+  </div>
+  
+  <div class="wall-grid">
+    <!-- Image 1 - Salle Principale (nouvelle image) -->
+    <div class="wall-item wall-item-1">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="salle principale">
+      <div class="wall-overlay">
+        <h3>La Salle Principale</h3>
+        <p>Ambiance chaleureuse et élégante</p>
+      </div>
+    </div>
+    
+    <!-- Image 2 - Bar (nouvelle image) -->
+    <div class="wall-item wall-item-2">
+      <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187" alt="bar moderne">
+      <div class="wall-overlay">
+        <h3>Notre Bar</h3>
+        <p>Cocktails signatures et mixologie</p>
+      </div>
+    </div>
+    
+    <!-- Image 3 - Cuisine (nouvelle image) -->
+    <div class="wall-item wall-item-3">
+      <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d" alt="cuisine moderne">
+      <div class="wall-overlay">
+        <h3>La Cuisine</h3>
+        <p>Équipements dernière génération</p>
+      </div>
+    </div>
+    
+    <!-- Image 4 - Chef (nouvelle image) -->
+    <div class="wall-item wall-item-3">
+      <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16" alt="chef cuisinier">
+      <div class="wall-overlay">
+        <h3>Notre Chef</h3>
+        <p>15 ans d'expérience en gastronomie</p>
+      </div>
+    </div>
+    
+    <!-- Image 5 - Terrasse (nouvelle image) -->
+    <div class="wall-item wall-item-2">
+      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="terrasse restaurant">
+      <div class="wall-overlay">
+        <h3>La Terrasse</h3>
+        <p>Vue panoramique sur la ville</p>
+      </div>
+    </div>
+    
+    <!-- Image 6 - Plat Signature (nouvelle image) -->
+    <div class="wall-item wall-item-5">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0" alt="plat gastronomique">
+      <div class="wall-overlay">
+        <h3>Notre Signature</h3>
+        <p>Filet de boeuf truffé</p>
+      </div>
+    </div>
+    
+    <!-- Image 7 - Cave à Vins (nouvelle image) -->
+    <div class="wall-item wall-item-5">
+      <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb" alt="cave à vins">
+      <div class="wall-overlay">
+        <h3>Cave à Vins</h3>
+        <p>Sélection de grands crus</p>
+      </div>
+    </div>
+
+    <!-- UNE SEULE VIDÉO - Salle Privative -->
+    <div class="wall-item wall-item-1 wall-item-video">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/53nwh1aHCU8?si=example3" 
+                title="Salle Privative"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+      </div>
+      <div class="wall-overlay">
+        <h3>Salle Privative</h3>
+        <p>Pour vos événements privés - Vidéo</p>
+      </div>
+      <span class="video-tag">🎥</span>
+    </div>
+    
+    <!-- Image 8 - Décoration (nouvelle image) -->
+    <div class="wall-item wall-item-2">
+      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa" alt="decoration interieur">
+      <div class="wall-overlay">
+        <h3>Décoration</h3>
+        <p>Style contemporain et épuré</p>
+      </div>
+    </div>
+    
+    <!-- Image 9 - Salon Privé (nouvelle image) -->
+    <div class="wall-item wall-item-3">
+      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de" alt="salon prive">
+      <div class="wall-overlay">
+        <h3>Salon Privé</h3>
+        <p>Idéal pour vos réunions d'affaires</p>
+      </div>
+    </div>
+    
+    <!-- Image 10 - Extérieur (nouvelle image) -->
+    <div class="wall-item wall-item-3">
+      <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b" alt="exterieur restaurant">
+      <div class="wall-overlay">
+        <h3>Façade</h3>
+        <p>Architecture moderne</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="resto-card instagram-block">
+  <div class="insta-header">
+    <i class="fab fa-instagram"></i>
+    <h2>Instagram <span>@notre_resto</span></h2>
+  </div>
+  
+  <div class="insta-wall">
+    <div class="insta-row">
+      <div class="insta-post">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="post">
+        <div class="post-overlay">
+          <span>❤️ 1,234</span>
+          <span>💬 45</span>
+        </div>
+        <div class="post-caption">Notre nouveau plat ! #gastronomie</div>
+      </div>
+      
+      <div class="insta-post">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd" alt="post">
+        <div class="post-overlay">
+          <span>❤️ 892</span>
+          <span>💬 23</span>
+        </div>
+        <div class="post-caption">Soirée spéciale ce soir 🍷</div>
+      </div>
+      
+      <div class="insta-post">
+        <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601" alt="post">
+        <div class="post-overlay">
+          <span>❤️ 2,567</span>
+          <span>💬 89</span>
+        </div>
+        <div class="post-caption">Dessert du moment 🍰</div>
+      </div>
+      
+      <div class="insta-post">
+        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="post">
+        <div class="post-overlay">
+          <span>❤️ 1,789</span>
+          <span>💬 56</span>
+        </div>
+        <div class="post-caption">Le chef en action 🔪</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="insta-footer">
+    <a href="#" class="insta-link">Suivez-nous sur Instagram</a>
+  </div>
+</div>

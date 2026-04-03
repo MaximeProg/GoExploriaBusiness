@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Grid Slider</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#111;
+}
+
+/* HERO SECTION */
+.hero-slider{
+    overflow:hidden;
+    width:100%;
+    height:500px;
+    position:relative;
+    padding:30px 0;
+}
+
+.hero-track{
+    display:flex;
+    gap:20px;
+    height:100%;
+    animation: scrollLeft 60s linear infinite;
+}
+
+.hero-slider:hover .hero-track{
+    animation-play-state: paused;
+}
+
+.hero-card{
+    min-width:350px;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+    border-radius:15px;
+    flex-shrink:0;
+    cursor:pointer;
+}
+
+.hero-card.large{
+    min-width:550px;
+}
+
+.hero-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.6s ease;
+}
+
+.hero-card:hover img{
+    transform:scale(1.1);
+}
+
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:25px;
+    background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    color:#fff;
+}
+
+.category{
+    background:#ff3c3c;
+    padding:6px 14px;
+    font-size:12px;
+    border-radius:4px;
+    display:inline-block;
+    margin-bottom:12px;
+}
+
+.overlay h3{
+    font-size:20px;
+}
+
+/* Animation */
+@keyframes scrollLeft{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .hero-card{
+        min-width:280px;
+    }
+    .hero-card.large{
+        min-width:400px;
+    }
+    .hero-slider{
+        height:350px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero-slider">
+    <div class="hero-track">
+
+        <div class="hero-card large">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80">
+            <div class="overlay">
+                <span class="category">Nature</span>
+                <h3>Wild Landscape Adventure</h3>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=80">
+            <div class="overlay">
+                <span class="category">Travel</span>
+                <h3>Mountain Exploration</h3>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80">
+            <div class="overlay">
+                <span class="category">Lifestyle</span>
+                <h3>Urban Style Mood</h3>
+            </div>
+        </div>
+
+        <div class="hero-card large">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80">
+            <div class="overlay">
+                <span class="category">Ocean</span>
+                <h3>Ocean Sunset Dream</h3>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80">
+            <div class="overlay">
+                <span class="category">Adventure</span>
+                <h3>Sea Waves Motion</h3>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+// Duplicate content for smooth infinite scrolling
+const track = document.querySelector('.hero-track');
+track.innerHTML += track.innerHTML;
+</script>
+
+</body>
+</html>

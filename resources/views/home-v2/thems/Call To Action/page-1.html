@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-nous - Formulaire Moderne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            display: flex;
+            min-height: 700px;
+            position: relative;
+        }
+        
+        /* Left Column - Form */
+        .form-column {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+        }
+        
+        .form-header {
+            margin-bottom: 40px;
+        }
+        
+        .form-header h1 {
+            color: #2c3e50;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .form-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .form-group {
+            text-align: left;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #eef2f7;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+            color: #333;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: white;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            grid-column: span 2;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            accent-color: #3498db;
+        }
+        
+        .required-info {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .required-info span {
+            color: #e74c3c;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 20px 45px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            width: 100%;
+            margin-top: 10px;
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+        
+        /* Right Column - Image/Illustration */
+        .image-column {
+            flex: 1;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+        
+        .image-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+        
+        .illustration {
+            font-size: 6rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .image-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .image-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 18px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        
+        .contact-text h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+        
+        .contact-text p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0;
+            opacity: 1;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            grid-column: span 2;
+            margin-top: 20px;
+        }
+        
+        .success-message.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+                max-width: 700px;
+            }
+            
+            .form-column, .image-column {
+                padding: 40px;
+            }
+            
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width, .form-options, .btn-submit {
+                grid-column: span 1;
+            }
+            
+            .image-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                border-radius: 16px;
+            }
+            
+            .form-column, .image-column {
+                padding: 30px 25px;
+            }
+            
+            .form-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .illustration {
+                font-size: 4rem;
+            }
+            
+            .image-content h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column - Contact Form -->
+        <div class="form-column">
+            <div class="form-header">
+                <h1>Contactez-Nous</h1>
+                <p>Nous sommes là pour répondre à toutes vos questions. Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+            </div>
+            
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label class="form-label" for="firstName">
+                        <i class="fas fa-user"></i> Prénom
+                    </label>
+                    <input type="text" id="firstName" class="form-control" placeholder="Votre prénom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="lastName">
+                        <i class="fas fa-user"></i> Nom
+                    </label>
+                    <input type="text" id="lastName" class="form-control" placeholder="Votre nom" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label" for="email">
+                        <i class="fas fa-envelope"></i> Adresse Email
+                    </label>
+                    <input type="email" id="email" class="form-control" placeholder="votre.email@exemple.com" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label" for="phone">
+                        <i class="fas fa-phone-alt"></i> Téléphone (Optionnel)
+                    </label>
+                    <input type="tel" id="phone" class="form-control" placeholder="+33 1 23 45 67 89">
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label" for="subject">
+                        <i class="fas fa-tag"></i> Sujet
+                    </label>
+                    <select id="subject" class="form-control" required>
+                        <option value="" disabled selected>Sélectionnez un sujet</option>
+                        <option value="support">Support Technique</option>
+                        <option value="sales">Demande Commerciale</option>
+                        <option value="partnership">Partenariat</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label" for="message">
+                        <i class="fas fa-comment-dots"></i> Votre Message
+                    </label>
+                    <textarea id="message" class="form-control" placeholder="Décrivez votre demande en détail..." required></textarea>
+                </div>
+                
+                <div class="form-options">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" checked>
+                        <label for="newsletter">S'abonner à notre newsletter</label>
+                    </div>
+                    
+                    <div class="required-info">
+                        Les champs marqués d'un <span>*</span> sont obligatoires
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span id="submitText">Envoyer le Message</span>
+                    <div class="spinner" id="submitSpinner" style="display: none;"></div>
+                </button>
+                
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Message Envoyé avec Succès!</h3>
+                    <p>Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.</p>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Right Column - Image & Contact Info -->
+        <div class="image-column">
+            <div class="image-content">
+                <div class="illustration">
+                    <i class="fas fa-comments"></i>
+                </div>
+                
+                <h2>Nous Sommes là Pour Vous Aider</h2>
+                <p>Notre équipe est disponible du lundi au vendredi de 9h à 18h pour répondre à toutes vos questions et vous accompagner dans vos projets.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Téléphone</h4>
+                            <p>+33 1 23 45 67 89</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>contact@entreprise.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Horaires d'ouverture</h4>
+                            <p>Lun-Ven: 9h-18h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const submitSpinner = document.getElementById('submitSpinner');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Form submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitText.textContent = 'Envoi en cours...';
+            submitSpinner.style.display = 'inline-block';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual AJAX call)
+            setTimeout(() => {
+                // Hide form and show success message
+                contactForm.style.display = 'none';
+                successMessage.classList.add('active');
+                
+                // Reset form after 5 seconds (for demo purposes)
+                setTimeout(() => {
+                    contactForm.reset();
+                    contactForm.style.display = 'grid';
+                    successMessage.classList.remove('active');
+                    submitText.textContent = 'Envoyer le Message';
+                    submitSpinner.style.display = 'none';
+                    submitBtn.disabled = false;
+                }, 5000);
+            }, 2000);
+        });
+        
+        // Add focus effects to form controls
+        const formControls = document.querySelectorAll('.form-control');
+        
+        formControls.forEach(control => {
+            control.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            control.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Phone input formatting
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 0) {
+                if (value.length <= 2) {
+                    value = '+33 ' + value;
+                } else if (value.length <= 4) {
+                    value = '+33 ' + value.substring(2);
+                } else if (value.length <= 6) {
+                    value = '+33 ' + value.substring(2, 4) + ' ' + value.substring(4);
+                } else if (value.length <= 8) {
+                    value = '+33 ' + value.substring(2, 4) + ' ' + value.substring(4, 6) + ' ' + value.substring(6);
+                } else {
+                    value = '+33 ' + value.substring(2, 4) + ' ' + value.substring(4, 6) + ' ' + value.substring(6, 8) + ' ' + value.substring(8, 10);
+                }
+            }
+            
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>

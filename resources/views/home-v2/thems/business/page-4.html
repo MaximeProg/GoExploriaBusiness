@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section Partenaires Régionaux Canada - Éditable</title>
+    <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+        
+        .demo-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: #e74c3c;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .partners-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .partner-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eaeaea;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .partner-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        .partner-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .partner-content {
+            padding: 20px;
+        }
+        
+        .partner-name {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .partner-region {
+            display: inline-block;
+            background: #e8f4fc;
+            color: #2980b9;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        
+        .partner-description {
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        .controls {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+        }
+        
+        .btn-outline:hover {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .instructions {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .instructions h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .gjs-editor {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .region-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background-color: #ecf0f1;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .no-partners {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-style: italic;
+            grid-column: 1 / -1;
+        }
+        
+        @media (max-width: 768px) {
+            .partners-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .demo-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Section Partenaires Régionaux - Canada</h1>
+            <p class="subtitle">Section éditable avec GrapesJS - Modifiez les partenaires, images et régions</p>
+        </header>
+        
+        <div class="controls">
+            <div>
+                <h3 style="color: white; margin-bottom: 5px;">Contrôles d'édition</h3>
+                <p style="color: #ecf0f1; font-size: 0.9rem;">Activez/désactivez l'éditeur GrapesJS</p>
+            </div>
+            <div>
+                <button id="toggle-editor" class="btn">Activer l'éditeur</button>
+                <button id="export-btn" class="btn btn-outline">Exporter le HTML</button>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>Instructions d'utilisation</h3>
+            <ul>
+                <li>Cliquez sur "Activer l'éditeur" pour modifier la section partenaires</li>
+                <li>Dans l'éditeur, vous pouvez modifier le texte, les images et la mise en page</li>
+                <li>Pour modifier une image, cliquez dessus puis utilisez l'icône d'image dans le panneau de droite</li>
+                <li>Pour ajouter un nouveau partenaire, cliquez sur le "+" dans le panneau de gauche</li>
+                <li>Cliquez sur "Exporter le HTML" pour obtenir le code de votre section</li>
+                <li>Les filtres de région fonctionnent en mode visualisation seulement</li>
+            </ul>
+        </div>
+        
+        <div class="demo-section">
+            <h2 class="section-title">Nos Partenaires Régionaux</h2>
+            
+            <div class="region-filter">
+                <button class="filter-btn active" data-region="all">Toutes les régions</button>
+                <button class="filter-btn" data-region="quebec">Québec</button>
+                <button class="filter-btn" data-region="ontario">Ontario</button>
+                <button class="filter-btn" data-region="bc">Colombie-Britannique</button>
+                <button class="filter-btn" data-region="alberta">Alberta</button>
+                <button class="filter-btn" data-region="atlantic">Provinces Atlantiques</button>
+            </div>
+            
+            <div class="partners-container" id="partners-section">
+                <!-- Les cartes de partenaires seront insérées ici -->
+                <div class="partner-card" data-region="quebec">
+                    <div class="partner-img">
+                        <img src="https://images.unsplash.com/photo-1605568427561-42d0bc7d424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Partenaire Québec">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">TechnoMontréal</h3>
+                        <span class="partner-region">Québec</span>
+                        <p class="partner-description">Organisation qui soutient le développement de l'industrie technologique à Montréal et à travers le Québec.</p>
+                    </div>
+                </div>
+                
+                <div class="partner-card" data-region="ontario">
+                    <div class="partner-img">
+                        <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Partenaire Ontario">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Ontario Tech Alliance</h3>
+                        <span class="partner-region">Ontario</span>
+                        <p class="partner-description">Consortium d'entreprises technologiques œuvrant pour l'innovation et la croissance en Ontario.</p>
+                    </div>
+                </div>
+                
+                <div class="partner-card" data-region="bc">
+                    <div class="partner-img">
+                        <img src="https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-1.2.1&auto=format&fit=crop&w-600&q=80" alt="Partenaire Colombie-Britannique">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Vancouver Digital Hub</h3>
+                        <span class="partner-region">Colombie-Britannique</span>
+                        <p class="partner-description">Centre d'innovation numérique soutenant les startups et entreprises établies en Colombie-Britannique.</p>
+                    </div>
+                </div>
+                
+                <div class="partner-card" data-region="alberta">
+                    <div class="partner-img">
+                        <img src="https://images.unsplash.com/photo-1577023311546-cdc07a8453d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Partenaire Alberta">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Calgary Energy Tech</h3>
+                        <span class="partner-region">Alberta</span>
+                        <p class="partner-description">Spécialisé dans les technologies énergétiques durables pour l'industrie pétrolière et gazière de l'Alberta.</p>
+                    </div>
+                </div>
+                
+                <div class="partner-card" data-region="atlantic">
+                    <div class="partner-img">
+                        <img src="https://images.unsplash.com/photo-1573481078804-70c9d3406cce?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Partenaire Provinces Atlantiques">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Atlantic Ocean Tech</h3>
+                        <span class="partner-region">Provinces Atlantiques</span>
+                        <p class="partner-description">Initiative collaborative pour le développement des technologies maritimes dans les provinces de l'Atlantique.</p>
+                    </div>
+                </div>
+                
+                <div class="partner-card" data-region="quebec">
+                    <div class="partner-img">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Partenaire Québec">
+                    </div>
+                    <div class="partner-content">
+                        <h3 class="partner-name">Québec AI Institute</h3>
+                        <span class="partner-region">Québec</span>
+                        <p class="partner-description">Institut de recherche en intelligence artificielle basé à Québec, leader en IA éthique et responsable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Section Partenaires Régionaux Canada - Éditable avec GrapesJS</p>
+            <p>Cliquez sur "Activer l'éditeur" pour personnaliser cette section</p>
+        </footer>
+    </div>
+    
+    <!-- Modal pour afficher le code HTML exporté -->
+    <div id="export-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background-color: white; border-radius: 10px; width: 90%; max-width: 800px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="background-color: #2c3e50; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0;">Code HTML exporté</h3>
+                <button id="close-modal" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            <div style="padding: 20px; overflow: auto; flex-grow: 1;">
+                <pre id="export-code" style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; overflow: auto; max-height: 60vh; font-family: monospace; white-space: pre-wrap;"></pre>
+            </div>
+            <div style="padding: 15px 20px; background-color: #f8f9fa; text-align: right;">
+                <button id="copy-code" class="btn" style="padding: 8px 16px;">Copier le code</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts GrapesJS -->
+    <script src="https://unpkg.com/grapesjs"></script>
+    <script>
+        // Variables pour gérer l'éditeur
+        let editor = null;
+        let isEditorActive = false;
+        
+        // Initialisation des filtres de région
+        document.addEventListener('DOMContentLoaded', function() {
+            initRegionFilters();
+            setupEventListeners();
+        });
+        
+        // Fonction pour initialiser les filtres de région
+        function initRegionFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Retirer la classe active de tous les boutons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Ajouter la classe active au bouton cliqué
+                    this.classList.add('active');
+                    
+                    const region = this.getAttribute('data-region');
+                    filterPartners(region);
+                });
+            });
+        }
+        
+        // Fonction pour filtrer les partenaires par région
+        function filterPartners(region) {
+            const partners = document.querySelectorAll('.partner-card');
+            const noPartnersMessage = document.querySelector('.no-partners');
+            
+            // Si un message "aucun partenaire" existe déjà, le supprimer
+            if (noPartnersMessage) {
+                noPartnersMessage.remove();
+            }
+            
+            let visibleCount = 0;
+            
+            partners.forEach(partner => {
+                if (region === 'all' || partner.getAttribute('data-region') === region) {
+                    partner.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    partner.style.display = 'none';
+                }
+            });
+            
+            // Si aucun partenaire n'est visible, afficher un message
+            if (visibleCount === 0) {
+                const container = document.getElementById('partners-section');
+                const message = document.createElement('div');
+                message.className = 'no-partners';
+                message.textContent = 'Aucun partenaire disponible pour cette région.';
+                container.appendChild(message);
+            }
+        }
+        
+        // Configuration des écouteurs d'événements
+        function setupEventListeners() {
+            // Bouton pour activer/désactiver l'éditeur
+            document.getElementById('toggle-editor').addEventListener('click', toggleEditor);
+            
+            // Bouton pour exporter le HTML
+            document.getElementById('export-btn').addEventListener('click', exportHTML);
+            
+            // Bouton pour fermer la modal
+            document.getElementById('close-modal').addEventListener('click', function() {
+                document.getElementById('export-modal').style.display = 'none';
+            });
+            
+            // Bouton pour copier le code
+            document.getElementById('copy-code').addEventListener('click', copyCodeToClipboard);
+            
+            // Fermer la modal en cliquant en dehors
+            document.getElementById('export-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+        }
+        
+        // Fonction pour activer/désactiver l'éditeur GrapesJS
+        function toggleEditor() {
+            const toggleButton = document.getElementById('toggle-editor');
+            
+            if (!isEditorActive) {
+                // Initialiser l'éditeur GrapesJS
+                editor = grapesjs.init({
+                    container: '#partners-section',
+                    fromElement: true,
+                    storageManager: false,
+                    panels: { defaults: [] },
+                    plugins: [],
+                    pluginsOpts: {},
+                    blockManager: {
+                        appendTo: '#partners-section',
+                        blocks: [
+                            {
+                                id: 'partner-card',
+                                label: 'Carte Partenaire',
+                                content: `
+                                    <div class="partner-card" data-region="quebec">
+                                        <div class="partner-img">
+                                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Nouveau partenaire">
+                                        </div>
+                                        <div class="partner-content">
+                                            <h3 class="partner-name">Nouveau Partenaire</h3>
+                                            <span class="partner-region">Québec</span>
+                                            <p class="partner-description">Description du nouveau partenaire. Cliquez pour modifier ce texte.</p>
+                                        </div>
+                                    </div>
+                                `,
+                                category: 'Structure'
+                            },
+                            {
+                                id: 'section-title',
+                                label: 'Titre de Section',
+                                content: '<h2 class="section-title">Titre de la Section</h2>',
+                                category: 'Basique'
+                            }
+                        ]
+                    }
+                });
+                
+                // Désactiver les filtres pendant l'édition
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.5';
+                });
+                
+                toggleButton.textContent = 'Désactiver l\'éditeur';
+                toggleButton.style.backgroundColor = '#3498db';
+                
+                isEditorActive = true;
+                
+                console.log('Éditeur GrapesJS activé. Vous pouvez maintenant modifier la section partenaires.');
+            } else {
+                // Désactiver l'éditeur
+                if (editor) {
+                    editor.destroy();
+                }
+                
+                // Réactiver les filtres
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+                });
+                
+                toggleButton.textContent = 'Activer l\'éditeur';
+                toggleButton.style.backgroundColor = '#e74c3c';
+                
+                isEditorActive = false;
+                
+                console.log('Éditeur GrapesJS désactivé.');
+            }
+        }
+        
+        // Fonction pour exporter le HTML
+        function exportHTML() {
+            const section = document.querySelector('.demo-section');
+            const htmlContent = section.innerHTML;
+            
+            // Afficher le code HTML dans la modal
+            document.getElementById('export-code').textContent = htmlContent;
+            document.getElementById('export-modal').style.display = 'flex';
+        }
+        
+        // Fonction pour copier le code dans le presse-papier
+        function copyCodeToClipboard() {
+            const codeElement = document.getElementById('export-code');
+            const textArea = document.createElement('textarea');
+            textArea.value = codeElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Changer temporairement le texte du bouton
+            const copyButton = document.getElementById('copy-code');
+            const originalText = copyButton.textContent;
+            copyButton.textContent = 'Code copié!';
+            copyButton.style.backgroundColor = '#27ae60';
+            
+            setTimeout(() => {
+                copyButton.textContent = originalText;
+                copyButton.style.backgroundColor = '#e74c3c';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

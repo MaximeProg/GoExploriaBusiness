@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourism Info - Aventures & Saisons</title>
+  <style>
+    /* Style compatible GrapesJS - design nature/aventure */
+    .tourism-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 70px 32px;
+      background: linear-gradient(145deg, #f9f7f5 0%, #f0ede8 100%);
+      border-radius: 56px 56px 56px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Éléments décoratifs nature */
+    .tourism-section::before {
+      content: "🏔️";
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      font-size: 220px;
+      opacity: 0.04;
+      transform: rotate(-10deg);
+      color: #2c3e50;
+    }
+
+    .tourism-section::after {
+      content: "🌲";
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 180px;
+      opacity: 0.04;
+      transform: rotate(15deg);
+      color: #2d5a27;
+    }
+
+    .tourism-container {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* HEADER PRINCIPAL */
+    .tourism-hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .tourism-title-block {
+      max-width: 600px;
+    }
+
+    .tourism-main-title {
+      font-size: 52px;
+      font-weight: 800;
+      margin: 0 0 16px 0;
+      color: #1e2b2e;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+
+    .tourism-main-title span {
+      background: linear-gradient(145deg, #2e6b3e, #1f4a2a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tourism-subhead {
+      font-size: 18px;
+      color: #4a5c4c;
+      line-height: 1.6;
+      margin: 0 0 24px 0;
+    }
+
+    .tourism-badge-container {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tourism-badge {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      padding: 12px 24px;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #1e3b2e;
+      border: 1px solid rgba(120, 100, 80, 0.15);
+      box-shadow: 0 8px 20px -10px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    /* GRILLE 3 COLONNES - IDÉES AVENTURES */
+    .aventures-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .aventure-card {
+      background: white;
+      border-radius: 36px;
+      padding: 30px 28px;
+      box-shadow: 0 30px 40px -25px rgba(0,0,0,0.1);
+      transition: all 0.35s cubic-bezier(0.15, 0.75, 0.4, 1);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .aventure-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 40px 60px -20px rgba(30, 60, 40, 0.2);
+      border-color: rgba(110, 150, 100, 0.3);
+    }
+
+    .aventure-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(145deg, #f3f9f0, #e4ede0);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      color: #2a5c3e;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 18px -10px rgba(70, 120, 70, 0.2);
+    }
+
+    .aventure-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 0 0 14px 0;
+      color: #1b2c1d;
+      letter-spacing: -0.5px;
+    }
+
+    .aventure-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #3a4a3c;
+      margin: 0 0 24px 0;
+    }
+
+    .aventure-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: #5e6e5e;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .meta-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* SECTION 4 SAISONS - DESIGN CIRCULAIRE/HORIZONTAL */
+    .saisons-section {
+      margin-top: 30px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .section-header-left h3 {
+      font-size: 34px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #1f3a2a;
+      letter-spacing: -1px;
+    }
+
+    .section-header-left p {
+      font-size: 17px;
+      color: #4f6450;
+      margin: 0;
+    }
+
+    .saisons-carousel {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .saison-card {
+      background: white;
+      border-radius: 32px;
+      padding: 28px 20px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(200, 190, 170, 0.3);
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 30px -15px rgba(60, 70, 50, 0.08);
+    }
+
+    .saison-card:hover {
+      background: linear-gradient(145deg, #ffffff, #fafaf5);
+      border-color: #aabbaa;
+      transform: scale(1.02);
+    }
+
+    .saison-emoji {
+      font-size: 52px;
+      margin-bottom: 16px;
+    }
+
+    .saison-name {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #1d3d2d;
+    }
+
+    .saison-activite {
+      font-size: 16px;
+      color: #3a5343;
+      margin: 8px 0;
+      font-weight: 500;
+    }
+
+    .saison-temp {
+      display: inline-block;
+      background: #eef3ec;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 15px;
+      color: #2e5c3b;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    /* ACTIVITÉS HIVERNALES - CARTES SPÉCIALES */
+    .hiver-section {
+      background: linear-gradient(165deg, #e3ecf0 0%, #d6e2e9 100%);
+      border-radius: 48px;
+      padding: 48px 48px;
+      margin-top: 30px;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+    }
+
+    .hiver-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .hiver-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(145deg, #d9eaf5, #c2dae8);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: #1e4a6b;
+      box-shadow: 0 12px 18px -10px rgba(0,80,100,0.2);
+    }
+
+    .hiver-title {
+      font-size: 34px;
+      font-weight: 700;
+      margin: 0;
+      color: #0f3342;
+    }
+
+    .hiver-sub {
+      font-size: 17px;
+      color: #295c6e;
+      margin: 6px 0 0 0;
+    }
+
+    .hiver-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .hiver-activity-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.8);
+      transition: all 0.25s ease;
+    }
+
+    .hiver-activity-card:hover {
+      background: white;
+      transform: translateY(-6px);
+      box-shadow: 0 25px 35px -18px rgba(30, 80, 100, 0.3);
+    }
+
+    .activity-icon-big {
+      font-size: 48px;
+      margin-bottom: 18px;
+    }
+
+    .activity-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #13343d;
+    }
+
+    .activity-desc {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #2c4a54;
+      margin: 0 0 20px 0;
+    }
+
+    .activity-difficulte {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #37616b;
+      font-weight: 600;
+    }
+
+    .difficulty-stars {
+      color: #f5b342;
+      letter-spacing: 3px;
+    }
+
+    .snow-decoration {
+      display: inline-block;
+      background: rgba(255,255,255,0.6);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 14px;
+      color: #1f5c6b;
+      margin-top: 16px;
+      border: 1px solid white;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .aventures-grid, .hiver-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .saisons-carousel {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .tourism-section {
+        padding: 40px 20px;
+      }
+      .tourism-main-title {
+        font-size: 42px;
+      }
+      .aventures-grid, .hiver-grid, .saisons-carousel {
+        grid-template-columns: 1fr;
+      }
+      .hiver-section {
+        padding: 32px 20px;
+      }
+    }
+
+    /* GrapesJS compatibility */
+    .gjs-draggable {
+      cursor: move;
+    }
+
+    /* Flocon animation */
+    @keyframes flocon {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(10px) rotate(5deg); }
+    }
+    .flocon-animation {
+      animation: flocon 4s infinite alternate;
+    }
+  </style>
+</head>
+<body>
+  <!-- SECTION TOURISME - AVENTURES, 4 SAISONS, HIVER -->
+  <section class="tourism-section">
+    <div class="tourism-container">
+      
+      <!-- HERO / BANDEAU D'ACCUEIL -->
+      <div class="tourism-hero">
+        <div class="tourism-title-block">
+          <h1 class="tourism-main-title">
+            Explorez <span>l'inattendu</span><br>à chaque saison
+          </h1>
+          <p class="tourism-subhead">
+            Des aventures immersives, des expériences uniques. Que vous cherchiez le frisson ou la sérénité, la nature vous attend.
+          </p>
+          <div class="tourism-badge-container">
+            <span class="tourism-badge">🏔️ 25+ destinations</span>
+            <span class="tourism-badge">🧭 Guides experts</span>
+            <span class="tourism-badge">🌿 Écotourisme</span>
+          </div>
+        </div>
+        <div style="font-size: 100px; opacity: 0.2; transform: rotate(5deg);">🧭</div>
+      </div>
+
+      <!-- PARTIE 1 : IDÉES AVENTURES (3 CARTES FORTES) -->
+      <div style="margin-top: 20px;">
+        <div class="section-header">
+          <div class="section-header-left">
+            <h3>🧗 Idées aventures</h3>
+            <p>Pour les âmes libres et les explorateurs modernes</p>
+          </div>
+          <span style="background: #e5eae0; padding: 10px 22px; border-radius: 40px; font-weight: 600; color: #2c5e3a;">👉 12 expériences</span>
+        </div>
+
+        <div class="aventures-grid">
+          <!-- Aventure 1 : Trek volcanique -->
+          <div class="aventure-card">
+            <div class="aventure-icon">
+              🌋
+            </div>
+            <h4 class="aventure-title">Réveil des volcans</h4>
+            <p class="aventure-desc">
+              Ascension du Pico de Fogo au lever du soleil. Traversée de champs de lave noire et baignade dans des sources chaudes naturelles.
+            </p>
+            <div class="aventure-meta">
+              <span class="meta-tag">⏱️ 6 jours</span>
+              <span class="meta-tag">📈 Difficile</span>
+              <span class="meta-tag">🏕️ Cap-Vert</span>
+            </div>
+          </div>
+          <!-- Aventure 2 : Kayak mangrove -->
+          <div class="aventure-card">
+            <div class="aventure-icon">
+              🛶
+            </div>
+            <h4 class="aventure-title">Mangroves secrètes</h4>
+            <p class="aventure-desc">
+              Expédition en kayak à travers les canaux cachés de la mangrove. Observation des singes hurleurs et dauphins roses de l'Amazone.
+            </p>
+            <div class="aventure-meta">
+              <span class="meta-tag">⏱️ 4 jours</span>
+              <span class="meta-tag">📈 Modéré</span>
+              <span class="meta-tag">🏕️ Brésil</span>
+            </div>
+          </div>
+          <!-- Aventure 3 : Traversée désert -->
+          <div class="aventure-card">
+            <div class="aventure-icon">
+              🐪
+            </div>
+            <h4 class="aventure-title">Caravane berbère</h4>
+            <p class="aventure-desc">
+              Traversée du désert du Sahara à dos de dromadaire. Nuits à la belle étoile et rencontres avec les nomades du désert.
+            </p>
+            <div class="aventure-meta">
+              <span class="meta-tag">⏱️ 8 jours</span>
+              <span class="meta-tag">📈 Facile</span>
+              <span class="meta-tag">🏕️ Maroc</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTIE 2 : ACTIVITÉS 4 SAISONS -->
+      <div class="saisons-section">
+        <div class="section-header">
+          <div class="section-header-left">
+            <h3>🌸🍂 Activités 4 saisons</h3>
+            <p>Chaque moment de l'année a son aventure</p>
+          </div>
+        </div>
+
+        <div class="saisons-carousel">
+          <!-- Printemps -->
+          <div class="saison-card">
+            <div class="saison-emoji">🌸</div>
+            <div class="saison-name">Printemps</div>
+            <div class="saison-activite">🌿 Randonnée florale</div>
+            <div class="saison-activite">🐝 Observation abeilles</div>
+            <div class="saison-activite">🚴 Vélo en vallée</div>
+            <span class="saison-temp">12°C - 20°C</span>
+          </div>
+          <!-- Été -->
+          <div class="saison-card">
+            <div class="saison-emoji">☀️</div>
+            <div class="saison-name">Été</div>
+            <div class="saison-activite">🏊 Plongée corail</div>
+            <div class="saison-activite">🪂 Parapente</div>
+            <div class="saison-activite">⛰️ Via ferrata</div>
+            <span class="saison-temp">25°C - 35°C</span>
+          </div>
+          <!-- Automne -->
+          <div class="saison-card">
+            <div class="saison-emoji">🍂</div>
+            <div class="saison-name">Automne</div>
+            <div class="saison-activite">🍄 Cueillette champignons</div>
+            <div class="saison-activite">🎣 Pêche en rivière</div>
+            <div class="saison-activite">📸 Safari photo</div>
+            <span class="saison-temp">8°C - 16°C</span>
+          </div>
+          <!-- Hiver (avec lien vers section hiver) -->
+          <div class="saison-card" style="background: linear-gradient(145deg, #e1f0f5, #d1e2ec);">
+            <div class="saison-emoji">❄️</div>
+            <div class="saison-name">Hiver</div>
+            <div class="saison-activite">⛷️ Ski hors-piste</div>
+            <div class="saison-activite">🛷 Traîneau chiens</div>
+            <div class="saison-activite">🏔️ Raquettes</div>
+            <span class="saison-temp">-10°C - 2°C</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTIE 3 : ACTIVITÉS HIVERNALES (IMMERSIF) -->
+      <div class="hiver-section">
+        <!-- Décor neige (léger) -->
+        <div style="position: absolute; top: 20px; right: 40px; font-size: 90px; opacity: 0.1; transform: rotate(10deg);">❄️</div>
+        
+        <div class="hiver-header">
+          <div class="hiver-icon">
+            ❄️
+          </div>
+          <div>
+            <h3 class="hiver-title">Activités hivernales</h3>
+            <p class="hiver-sub">L'hiver, un terrain de jeu magique • 8 expériences glacées</p>
+          </div>
+        </div>
+
+        <div class="hiver-grid">
+          <!-- Activité hiver 1 : Chiens de traîneau -->
+          <div class="hiver-activity-card">
+            <div class="activity-icon-big">🛷</div>
+            <h4 class="activity-name">Traîneau à chiens</h4>
+            <p class="activity-desc">
+              Conduisez votre propre attelage à travers les forêts enneigées de Laponie. Nuit en chalet et aurores boréales.
+            </p>
+            <div class="activity-difficulte">
+              <span>Difficulté</span>
+              <span class="difficulty-stars">★★☆☆☆</span>
+            </div>
+            <div class="snow-decoration">
+              ⏱️ 5 jours • Dès 890€
+            </div>
+          </div>
+          <!-- Activité hiver 2 : Plongée sous glace -->
+          <div class="hiver-activity-card">
+            <div class="activity-icon-big">🧊</div>
+            <h4 class="activity-name">Plongée sous glace</h4>
+            <p class="activity-desc">
+              Expérience unique au Québec : plongez sous la surface gelée, visibilité cristalline et paysages féériques.
+            </p>
+            <div class="activity-difficulte">
+              <span>Difficulté</span>
+              <span class="difficulty-stars">★★★★☆</span>
+            </div>
+            <div class="snow-decoration">
+              ⏱️ 2 jours • Encadré
+            </div>
+          </div>
+          <!-- Activité hiver 3 : Ski hors-piste -->
+          <div class="hiver-activity-card">
+            <div class="activity-icon-big">⛷️</div>
+            <h4 class="activity-name">Ski extrême</h4>
+            <p class="activity-desc">
+              Descentes hors-piste dans les Alpes suisses, neige poudreuse, guides de haute montagne et fonds secrets.
+            </p>
+            <div class="activity-difficulte">
+              <span>Difficulté</span>
+              <span class="difficulty-stars">★★★★★</span>
+            </div>
+            <div class="snow-decoration">
+              ⏱️ 4 jours • Niveau confirmé
+            </div>
+          </div>
+          <!-- Activité hiver 4 : Bivouac glaciaire -->
+          <div class="hiver-activity-card">
+            <div class="activity-icon-big">🏕️</div>
+            <h4 class="activity-name">Nuit sur glacier</h4>
+            <p class="activity-desc">
+              Bivouac en igloo ou tente d'expédition sur le glacier du Jostedal. Immersion totale dans le silence blanc.
+            </p>
+            <div class="activity-difficulte">
+              <span>Difficulté</span>
+              <span class="difficulty-stars">★★★☆☆</span>
+            </div>
+            <div class="snow-decoration">
+              ⏱️ 2 jours • Norvège
+            </div>
+          </div>
+          <!-- Activité hiver 5 : Observation aurores -->
+          <div class="hiver-activity-card">
+            <div class="activity-icon-big">✨</div>
+            <h4 class="activity-name">Aurores boréales</h4>
+            <p class="activity-desc">
+              Expédition en Islande pour traquer les aurores boréales, bain géothermique et nuit en refuge isolé.
+            </p>
+            <div class="activity-difficulte">
+              <span>Difficulté</span>
+              <span class="difficulty-stars">★☆☆☆☆</span>
+            </div>
+            <div class="snow-decoration">
+              ⏱️ 6 jours • Photo
+            </div>
+          </div>
+          <!-- Activité hiver 6 : Raquettes & fondue -->
+          <div class="hiver-activity-card">
+            <div class="activity-icon-big">🥾</div>
+            <h4 class="activity-name">Raquettes nocturnes</h4>
+            <p class="activity-desc">
+              Randonnée en raquettes à la lumière des lampes frontales, dégustation de fondue savoyarde dans un refuge d'altitude.
+            </p>
+            <div class="activity-difficulte">
+              <span>Difficulté</span>
+              <span class="difficulty-stars">★★☆☆☆</span>
+            </div>
+            <div class="snow-decoration">
+              ⏱️ 1 jour • France
+            </div>
+          </div>
+        </div>
+
+        <!-- Petit appel à l'aventure hivernale -->
+        <div style="display: flex; justify-content: center; margin-top: 42px;">
+          <span style="background: #1a3f4a; color: white; padding: 16px 36px; border-radius: 60px; font-weight: 600; font-size: 18px; box-shadow: 0 20px 30px -12px #0f3342; border: 1px solid rgba(255,255,255,0.3); display: inline-flex; align-items: center; gap: 12px;">
+            ❄️ Réserver une aventure hivernale → 
+          </span>
+        </div>
+      </div>
+
+      <!-- Pied de section voyage / inspiration -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px; color: #4c6752; border-top: 1px solid rgba(120,100,80,0.15); padding-top: 35px;">
+        <div style="display: flex; gap: 30px; font-weight: 500;">
+          <span>🏞️ 52 aventures proposées</span>
+          <span>🧊 18 activités hiver</span>
+          <span>🌱 Voyage responsable</span>
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <span style="background: white; border-radius: 50%; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;">📘</span>
+          <span style="background: white; border-radius: 50%; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;">📸</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

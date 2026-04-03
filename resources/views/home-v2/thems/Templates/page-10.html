@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>NOVA · Startup Landing Page</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #0f172a;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ===== CONTAINER ===== */
+    .ns-container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ===== SECTIONS ===== */
+    .ns-section {
+      padding: 100px 0;
+    }
+
+    .ns-section-sm {
+      padding: 64px 0;
+    }
+
+    .ns-section-lg {
+      padding: 140px 0;
+    }
+
+    /* ===== TYPOGRAPHIE ===== */
+    .ns-h1, .ns-h2, .ns-h3, .ns-h4, .ns-h5 {
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .ns-h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ns-h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .ns-h3 {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .ns-h4 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ns-section-title {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
+    }
+
+    .ns-section-title .ns-h2 {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+
+    .ns-section-title .ns-h2:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, #4f46e5, #818cf8);
+      border-radius: 4px;
+    }
+
+    .ns-section-subtitle {
+      color: #475569;
+      font-size: 1.2rem;
+      margin-top: 16px;
+    }
+
+    /* ===== GRID SYSTEM ===== */
+    .ns-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    .ns-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .ns-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .ns-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .ns-grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+    /* ===== BUTTONS ===== */
+    .ns-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 36px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      line-height: 1;
+    }
+
+    .ns-btn-primary {
+      background: #4f46e5;
+      color: white;
+      box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.2);
+    }
+
+    .ns-btn-primary:hover {
+      background: #4338ca;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 30px -8px rgba(79, 70, 229, 0.3);
+    }
+
+    .ns-btn-outline {
+      border: 2px solid #4f46e5;
+      color: #4f46e5;
+      background: transparent;
+    }
+
+    .ns-btn-outline:hover {
+      background: #4f46e5;
+      color: white;
+    }
+
+    .ns-btn-outline-light {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+    }
+
+    .ns-btn-outline-light:hover {
+      background: white;
+      color: #0f172a;
+    }
+
+    .ns-btn-white {
+      background: white;
+      color: #4f46e5;
+    }
+
+    .ns-btn-white:hover {
+      background: #f1f5f9;
+      transform: translateY(-3px);
+    }
+
+    .ns-btn-link {
+      padding: 0;
+      color: #4f46e5;
+      font-weight: 600;
+      gap: 6px;
+    }
+
+    .ns-btn-link i {
+      transition: transform 0.2s;
+    }
+
+    .ns-btn-link:hover i {
+      transform: translateX(4px);
+    }
+
+    /* ===== BADGES ===== */
+    .ns-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(79, 70, 229, 0.08);
+      color: #4f46e5;
+      border: 1px solid rgba(79, 70, 229, 0.15);
+      margin-bottom: 24px;
+    }
+
+    .ns-badge-white {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* ===== NAVBAR ===== */
+    .ns-navbar {
+      padding: 24px 0;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .ns-navbar .ns-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ns-logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #4f46e5, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.03em;
+    }
+
+    .ns-nav-links {
+      display: flex;
+      gap: 48px;
+      font-weight: 500;
+      color: white;
+    }
+
+    .ns-nav-links a:hover {
+      opacity: 0.85;
+    }
+
+    /* ===== HERO ===== */
+    .ns-hero {
+      background: radial-gradient(circle at 80% 20%, rgba(79,70,229,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(245,158,11,0.1) 0%, transparent 50%),
+                  linear-gradient(145deg, #0f172a, #0b1120);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ns-hero::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(255,255,255,0.02)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    .ns-hero .ns-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .ns-hero-content {
+      max-width: 700px;
+    }
+
+    .ns-hero .ns-h1 {
+      font-size: 4.2rem;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .ns-hero p {
+      font-size: 1.25rem;
+      color: #cbd5e1;
+      margin-bottom: 32px;
+    }
+
+    .ns-hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .ns-hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 60px;
+    }
+
+    .ns-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ns-stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .ns-stat-label {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    /* ===== LOGOS CLIENTS ===== */
+    .ns-clients {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 40px 0;
+    }
+
+    .ns-clients-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      opacity: 0.7;
+    }
+
+    .ns-clients-grid i {
+      font-size: 2.2rem;
+      color: #64748b;
+    }
+
+    /* ===== FEATURES ===== */
+    .ns-feature-card {
+      background: white;
+      padding: 40px 32px;
+      border-radius: 24px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.03);
+      transition: all 0.3s;
+      border: 1px solid #f1f5f9;
+      height: 100%;
+    }
+
+    .ns-feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05);
+      border-color: #818cf8;
+    }
+
+    .ns-feature-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(79, 70, 229, 0.08);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      color: #4f46e5;
+      font-size: 1.8rem;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .ns-step {
+      text-align: center;
+      padding: 32px;
+    }
+
+    .ns-step-number {
+      width: 56px;
+      height: 56px;
+      background: #4f46e5;
+      color: white;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 24px;
+      transform: rotate(8deg);
+    }
+
+    /* ===== PRODUCT SHOWCASE ===== */
+    .ns-showcase {
+      background: #f8fafc;
+    }
+
+    .ns-showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .ns-showcase-image {
+      background: linear-gradient(145deg, #818cf8, #4f46e5);
+      border-radius: 32px;
+      padding: 20px;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.03);
+    }
+
+    .ns-showcase-image img {
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05);
+    }
+
+    /* ===== PRICING ===== */
+    .ns-pricing-card {
+      background: white;
+      border-radius: 32px;
+      padding: 48px 32px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.03);
+      border: 1px solid #e2e8f0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+    }
+
+    .ns-pricing-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05);
+      border-color: #4f46e5;
+    }
+
+    .ns-pricing-card.ns-popular {
+      border: 2px solid #4f46e5;
+      position: relative;
+      background: white;
+    }
+
+    .ns-popular-badge {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4f46e5;
+      color: white;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .ns-price {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 24px 0 8px;
+    }
+
+    .ns-price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #64748b;
+    }
+
+    .ns-pricing-features {
+      margin: 32px 0;
+      flex-grow: 1;
+    }
+
+    .ns-pricing-features li {
+      padding: 12px 0;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .ns-pricing-features i {
+      color: #4f46e5;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .ns-testimonial {
+      background: #f8fafc;
+    }
+
+    .ns-testimonial-card {
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+
+    .ns-testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      margin-right: 16px;
+    }
+
+    .ns-testimonial-author {
+      display: flex;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    /* ===== TEAM ===== */
+    .ns-team-card {
+      text-align: center;
+      background: white;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+      transition: 0.3s;
+    }
+
+    .ns-team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.03);
+    }
+
+    .ns-team-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+    }
+
+    /* ===== CTA ===== */
+    .ns-cta {
+      background: linear-gradient(145deg, #4f46e5, #4338ca);
+      border-radius: 40px;
+      padding: 80px 60px;
+      color: white;
+      text-align: center;
+    }
+
+    .ns-cta .ns-h2 {
+      color: white;
+    }
+
+    .ns-cta .ns-btn-white {
+      margin-top: 32px;
+    }
+
+    /* ===== FAQ ===== */
+    .ns-faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 28px 0;
+    }
+
+    .ns-faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .ns-faq-question .ns-h4 {
+      margin: 0;
+    }
+
+    .ns-faq-answer {
+      margin-top: 16px;
+      color: #475569;
+      display: none;
+    }
+
+    .ns-faq-item.ns-active .ns-faq-answer {
+      display: block;
+    }
+
+    /* ===== BLOG ===== */
+    .ns-blog-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+      transition: 0.3s;
+    }
+
+    .ns-blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.03);
+    }
+
+    .ns-blog-image {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .ns-blog-content {
+      padding: 28px;
+    }
+
+    .ns-blog-meta {
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    /* ===== CONTACT ===== */
+    .ns-contact-form {
+      background: white;
+      padding: 48px;
+      border-radius: 24px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.03);
+    }
+
+    .ns-form-group {
+      margin-bottom: 24px;
+    }
+
+    .ns-form-control {
+      width: 100%;
+      padding: 16px 20px;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    .ns-form-control:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+    }
+
+    /* ===== FOOTER ===== */
+    .ns-footer {
+      background: #0f172a;
+      color: white;
+      padding: 80px 0 40px;
+    }
+
+    .ns-footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 60px;
+    }
+
+    .ns-footer-logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #818cf8, #4f46e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+
+    .ns-footer p {
+      color: #94a3b8;
+      margin-bottom: 24px;
+    }
+
+    .ns-social-links {
+      display: flex;
+      gap: 24px;
+      font-size: 1.5rem;
+    }
+
+    .ns-social-links a {
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+
+    .ns-social-links a:hover {
+      color: white;
+    }
+
+    .ns-footer .ns-h4 {
+      color: white;
+      margin-bottom: 28px;
+    }
+
+    .ns-footer-links li {
+      margin-bottom: 16px;
+    }
+
+    .ns-footer-links a {
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+
+    .ns-footer-links a:hover {
+      color: white;
+    }
+
+    .ns-copyright {
+      text-align: center;
+      padding-top: 48px;
+      margin-top: 48px;
+      border-top: 1px solid #334155;
+      color: #64748b;
+    }
+
+    /* ===== UTILITAIRES ===== */
+    .ns-bg-gray {
+      background: #f8fafc;
+    }
+    
+    .ns-text-gray {
+      color: #475569;
+    }
+    
+    .ns-text-primary {
+      color: #4f46e5;
+    }
+    
+    .ns-mb-0 { margin-bottom: 0; }
+    .ns-mt-4 { margin-top: 16px; }
+    .ns-mb-4 { margin-bottom: 16px; }
+    .ns-mb-5 { margin-bottom: 20px; }
+    .ns-mb-6 { margin-bottom: 24px; }
+    .ns-mb-8 { margin-bottom: 32px; }
+    
+    .ns-w-100 { width: 100%; }
+    .ns-text-center { text-align: center; }
+    .ns-d-flex { display: flex; }
+    .ns-align-center { align-items: center; }
+    .ns-gap-3 { gap: 12px; }
+    .ns-gap-4 { gap: 16px; }
+    .ns-gap-6 { gap: 24px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .ns-h1 { font-size: 3.5rem; }
+      .ns-h2 { font-size: 2.5rem; }
+      .ns-grid-4 { grid-template-columns: repeat(3, 1fr); }
+      .ns-footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .ns-section { padding: 80px 0; }
+      .ns-h1 { font-size: 3rem; }
+      .ns-grid-2, .ns-grid-3, .ns-grid-4, .ns-showcase-grid, .ns-footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .ns-navbar .ns-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .ns-nav-links {
+        gap: 32px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .ns-hero-content {
+        text-align: center;
+        margin: 0 auto;
+      }
+      .ns-hero-buttons {
+        justify-content: center;
+      }
+      .ns-hero-stats {
+        justify-content: center;
+      }
+      .ns-showcase-grid {
+        gap: 40px;
+      }
+      .ns-cta {
+        padding: 60px 30px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .ns-container { padding: 0 24px; }
+      .ns-h1 { font-size: 2.5rem; }
+      .ns-h2 { font-size: 2rem; }
+      .ns-grid-2, .ns-grid-3, .ns-grid-4, .ns-grid-5 {
+        grid-template-columns: 1fr;
+      }
+      .ns-hero-stats {
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+      }
+      .ns-clients-grid {
+        justify-content: center;
+      }
+      .ns-contact-form {
+        padding: 32px;
+      }
+    }
+
+    /* ===== GRAPESJS COMPATIBILITY ===== */
+    .gjs-draggable {
+      cursor: move;
+    }
+    [data-gjs-type] {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="ns-navbar">
+    <div class="ns-container">
+      <a href="#" class="ns-logo">NOVA</a>
+      <div class="ns-nav-links">
+        <a href="#">Produit</a>
+        <a href="#">Fonctionnalités</a>
+        <a href="#">Tarifs</a>
+        <a href="#">Ressources</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="ns-hero">
+    <div class="ns-container">
+      <div class="ns-hero-content">
+        <span class="ns-badge ns-badge-white">✨ LA RÉVOLUTION NOVA</span>
+        <h1 class="ns-h1">L'IA qui transforme<br>votre productivité</h1>
+        <p>NOVA analyse, organise et automatise vos tâches quotidiennes. Gagnez 10h par semaine dès le premier mois.</p>
+        <div class="ns-hero-buttons">
+          <a href="#" class="ns-btn ns-btn-primary">Démarrer gratuitement</a>
+          <a href="#" class="ns-btn ns-btn-outline-light">Demander une démo</a>
+        </div>
+        <div class="ns-hero-stats">
+          <div class="ns-stat-item">
+            <span class="ns-stat-number">+15 000</span>
+            <span class="ns-stat-label">entreprises clientes</span>
+          </div>
+          <div class="ns-stat-item">
+            <span class="ns-stat-number">98%</span>
+            <span class="ns-stat-label">de satisfaction</span>
+          </div>
+          <div class="ns-stat-item">
+            <span class="ns-stat-number">4.9</span>
+            <span class="ns-stat-label">★ sur G2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLIENTS ===== -->
+  <section class="ns-clients">
+    <div class="ns-container">
+      <div class="ns-clients-grid">
+        <i class="fab fa-microsoft"></i>
+        <i class="fab fa-google"></i>
+        <i class="fab fa-amazon"></i>
+        <i class="fab figma">⚡</i>
+        <i class="fab fa-slack"></i>
+        <i class="fab fa-shopify"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="ns-section">
+    <div class="ns-container">
+      <div class="ns-section-title">
+        <span class="ns-badge">POURQUOI NOVA ?</span>
+        <h2 class="ns-h2">Plus qu'un outil, un assistant</h2>
+        <p class="ns-section-subtitle">Automatisez, collaborez, analysez — tout en un.</p>
+      </div>
+      <div class="ns-grid ns-grid-3">
+        <div class="ns-feature-card">
+          <div class="ns-feature-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="ns-h3">IA prédictive</h3>
+          <p style="color: #475569;">Anticipe vos besoins et propose des actions avant même que vous y pensiez.</p>
+        </div>
+        <div class="ns-feature-card">
+          <div class="ns-feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3 class="ns-h3">Automatisation</h3>
+          <p style="color: #475569;">Créez des workflows sans code en quelques clics.</p>
+        </div>
+        <div class="ns-feature-card">
+          <div class="ns-feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="ns-h3">Sécurité renforcée</h3>
+          <p style="color: #475569;">Chiffrement AES-256 et conformité RGPD.</p>
+        </div>
+        <div class="ns-feature-card">
+          <div class="ns-feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="ns-h3">Analytics avancés</h3>
+          <p style="color: #475569;">Tableaux de bord personnalisables en temps réel.</p>
+        </div>
+        <div class="ns-feature-card">
+          <div class="ns-feature-icon">
+            <i class="fas fa-plug"></i>
+          </div>
+          <h3 class="ns-h3">100+ intégrations</h3>
+          <p style="color: #475569;">Se connecte à tous vos outils (Slack, Notion, Salesforce).</p>
+        </div>
+        <div class="ns-feature-card">
+          <div class="ns-feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3 class="ns-h3">Support prioritaire</h3>
+          <p style="color: #475569;">Réponse sous 2h, 7j/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="ns-section ns-bg-gray">
+    <div class="ns-container">
+      <div class="ns-section-title">
+        <span class="ns-badge">COMMENT ÇA MARCHE</span>
+        <h2 class="ns-h2">Trois étapes, zéro complexité</h2>
+        <p class="ns-section-subtitle">Conçu pour une adoption immédiate par toute votre équipe.</p>
+      </div>
+      <div class="ns-grid ns-grid-3">
+        <div class="ns-step">
+          <div class="ns-step-number">1</div>
+          <h3 class="ns-h3">Connectez vos outils</h3>
+          <p style="color: #475569;">API sécurisée, intégration en 2 minutes.</p>
+        </div>
+        <div class="ns-step">
+          <div class="ns-step-number">2</div>
+          <h3 class="ns-h3">Paramétrez vos règles</h3>
+          <p style="color: #475569;">Interface no-code intuitive.</p>
+        </div>
+        <div class="ns-step">
+          <div class="ns-step-number">3</div>
+          <h3 class="ns-h3">Gagnez du temps</h3>
+          <p style="color: #475569;">Résultats immédiats.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCT SHOWCASE ===== -->
+  <section class="ns-section ns-showcase">
+    <div class="ns-container">
+      <div class="ns-showcase-grid">
+        <div>
+          <span class="ns-badge">DASHBOARD</span>
+          <h2 class="ns-h2">Visualisez votre activité en un coup d'œil</h2>
+          <p style="font-size: 1.1rem; color: #475569; margin: 24px 0 32px;">Tableaux de bord personnalisables, métriques clés, partage en équipe.</p>
+          <ul style="margin-bottom: 32px;">
+            <li style="display: flex; gap: 12px; margin-bottom: 16px;"><i class="fas fa-check-circle" style="color: #4f46e5;"></i> 15 indicateurs prêts à l'emploi</li>
+            <li style="display: flex; gap: 12px; margin-bottom: 16px;"><i class="fas fa-check-circle" style="color: #4f46e5;"></i> Export PDF/Excel automatisé</li>
+            <li style="display: flex; gap: 12px; margin-bottom: 16px;"><i class="fas fa-check-circle" style="color: #4f46e5;"></i> Alertes personnalisées</li>
+          </ul>
+          <a href="#" class="ns-btn ns-btn-primary">Voir la démo</a>
+        </div>
+        <div class="ns-showcase-image">
+          <img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Dashboard" style="width: 100%; border-radius: 24px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="ns-section">
+    <div class="ns-container">
+      <div class="ns-section-title">
+        <span class="ns-badge">TARIFS</span>
+        <h2 class="ns-h2">Des offres pour tous les besoins</h2>
+        <p class="ns-section-subtitle">Sans engagement, annulable à tout moment.</p>
+      </div>
+      <div class="ns-grid ns-grid-3">
+        <div class="ns-pricing-card">
+          <h3 class="ns-h3">Starter</h3>
+          <div class="ns-price">29€<span>/mois</span></div>
+          <p style="color: #64748b;">Idéal pour les petites équipes</p>
+          <ul class="ns-pricing-features">
+            <li><i class="fas fa-check"></i> Jusqu'à 5 utilisateurs</li>
+            <li><i class="fas fa-check"></i> 100 automatisations/mois</li>
+            <li><i class="fas fa-check"></i> Support email</li>
+            <li><i class="fas fa-check"></i> 5Go de stockage</li>
+          </ul>
+          <a href="#" class="ns-btn ns-btn-outline ns-w-100">Commencer</a>
+        </div>
+        <div class="ns-pricing-card ns-popular">
+          <div class="ns-popular-badge">⭐ LE PLUS CHOISI</div>
+          <h3 class="ns-h3">Business</h3>
+          <div class="ns-price">79€<span>/mois</span></div>
+          <p style="color: #64748b;">Pour les équipes en croissance</p>
+          <ul class="ns-pricing-features">
+            <li><i class="fas fa-check"></i> Jusqu'à 20 utilisateurs</li>
+            <li><i class="fas fa-check"></i> Automatisations illimitées</li>
+            <li><i class="fas fa-check"></i> Support prioritaire</li>
+            <li><i class="fas fa-check"></i> 50Go de stockage</li>
+            <li><i class="fas fa-check"></i> API dédiée</li>
+          </ul>
+          <a href="#" class="ns-btn ns-btn-primary ns-w-100">Choisir Business</a>
+        </div>
+        <div class="ns-pricing-card">
+          <h3 class="ns-h3">Enterprise</h3>
+          <div class="ns-price">Sur mesure</div>
+          <p style="color: #64748b;">Pour les grands comptes</p>
+          <ul class="ns-pricing-features">
+            <li><i class="fas fa-check"></i> Utilisateurs illimités</li>
+            <li><i class="fas fa-check"></i> SLA personnalisé</li>
+            <li><i class="fas fa-check"></i> Account manager dédié</li>
+            <li><i class="fas fa-check"></i> SSO, audit logs</li>
+            <li><i class="fas fa-check"></i> On-premise possible</li>
+          </ul>
+          <a href="#" class="ns-btn ns-btn-outline ns-w-100">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="ns-section ns-testimonial">
+    <div class="ns-container">
+      <div class="ns-section-title">
+        <span class="ns-badge">TÉMOIGNAGES</span>
+        <h2 class="ns-h2">Ils ont adopté NOVA</h2>
+        <p class="ns-section-subtitle">Des startups aux grands groupes, tous gagnent en efficacité.</p>
+      </div>
+      <div class="ns-grid ns-grid-3">
+        <div class="ns-testimonial-card">
+          <i class="fas fa-quote-left" style="font-size: 2rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+          <p style="font-size: 1rem; font-style: italic;">"NOVA nous a fait gagner 12h par semaine sur la gestion de projet. Indispensable."</p>
+          <div class="ns-testimonial-author">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(145deg, #818cf8, #4f46e5); margin-right: 16px;"></div>
+            <div>
+              <h4 class="ns-h4 ns-mb-0">Sophie Martin</h4>
+              <p style="color: #64748b;">CEO, Stackly</p>
+            </div>
+          </div>
+        </div>
+        <div class="ns-testimonial-card">
+          <i class="fas fa-quote-left" style="font-size: 2rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+          <p style="font-size: 1rem; font-style: italic;">"L'intégration a pris 10 minutes. ROI mesuré dès la première semaine."</p>
+          <div class="ns-testimonial-author">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(145deg, #818cf8, #4f46e5); margin-right: 16px;"></div>
+            <div>
+              <h4 class="ns-h4 ns-mb-0">Thomas Dubois</h4>
+              <p style="color: #64748b;">CTO, Finova</p>
+            </div>
+          </div>
+        </div>
+        <div class="ns-testimonial-card">
+          <i class="fas fa-quote-left" style="font-size: 2rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+          <p style="font-size: 1rem; font-style: italic;">"Support réactif et produit stable. Nous avons déployé à 200 utilisateurs."</p>
+          <div class="ns-testimonial-author">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(145deg, #818cf8, #4f46e5); margin-right: 16px;"></div>
+            <div>
+              <h4 class="ns-h4 ns-mb-0">Julie Lambert</h4>
+              <p style="color: #64748b;">COO, HealthTech</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEAM ===== -->
+  <section class="ns-section">
+    <div class="ns-container">
+      <div class="ns-section-title">
+        <span class="ns-badge">L'ÉQUIPE</span>
+        <h2 class="ns-h2">Des passionnés de technologie</h2>
+        <p class="ns-section-subtitle">Derrière NOVA, une équipe d'experts IA et SaaS.</p>
+      </div>
+      <div class="ns-grid ns-grid-4">
+        <div class="ns-team-card">
+          <div class="ns-team-avatar" style="background: linear-gradient(145deg, #4f46e5, #818cf8);">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h4 class="ns-h4">Alexandre Moreau</h4>
+          <p style="color: #64748b;">CEO & Co-fondateur</p>
+        </div>
+        <div class="ns-team-card">
+          <div class="ns-team-avatar" style="background: linear-gradient(145deg, #0f172a, #334155);">
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <h4 class="ns-h4">Claire Fontaine</h4>
+          <p style="color: #64748b;">CTO & Co-fondatrice</p>
+        </div>
+        <div class="ns-team-card">
+          <div class="ns-team-avatar" style="background: linear-gradient(145deg, #f59e0b, #fbbf24);">
+            <i class="fas fa-user-astronaut"></i>
+          </div>
+          <h4 class="ns-h4">Lucas Bernard</h4>
+          <p style="color: #64748b;">Lead Product</p>
+        </div>
+        <div class="ns-team-card">
+          <div class="ns-team-avatar" style="background: linear-gradient(145deg, #10b981, #34d399);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h4 class="ns-h4">Emma Petit</h4>
+          <p style="color: #64748b;">Head of Customer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOG ===== -->
+  <section class="ns-section ns-bg-gray">
+    <div class="ns-container">
+      <div class="ns-section-title">
+        <span class="ns-badge">BLOG</span>
+        <h2 class="ns-h2">Conseils et actualités</h2>
+        <p class="ns-section-subtitle">Tendances, guides, retours d'expérience.</p>
+      </div>
+      <div class="ns-grid ns-grid-3">
+        <div class="ns-blog-card">
+          <div class="ns-blog-image" style="background-image: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+          <div class="ns-blog-content">
+            <div class="ns-blog-meta">📅 12 mars 2026 • 5 min</div>
+            <h3 class="ns-h3">5 automatisations qui changent votre quotidien</h3>
+            <p style="color: #475569; margin: 16px 0 20px;">Découvrez les workflows les plus utilisés par nos clients.</p>
+            <a href="#" class="ns-btn-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="ns-blog-card">
+          <div class="ns-blog-image" style="background-image: url('https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+          <div class="ns-blog-content">
+            <div class="ns-blog-meta">📅 25 fév 2026 • 4 min</div>
+            <h3 class="ns-h3">IA générative vs productivité : le guide</h3>
+            <p style="color: #475569; margin: 16px 0 20px;">Comment utiliser l'IA sans se perdre.</p>
+            <a href="#" class="ns-btn-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="ns-blog-card">
+          <div class="ns-blog-image" style="background-image: url('https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+          <div class="ns-blog-content">
+            <div class="ns-blog-meta">📅 10 fév 2026 • 6 min</div>
+            <h3 class="ns-h3">Sécurité des données : nos bonnes pratiques</h3>
+            <p style="color: #475569; margin: 16px 0 20px;">Certifications, chiffrement, conformité.</p>
+            <a href="#" class="ns-btn-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="ns-section">
+    <div class="ns-container">
+      <div class="ns-section-title">
+        <span class="ns-badge">FAQ</span>
+        <h2 class="ns-h2">Questions fréquentes</h2>
+        <p class="ns-section-subtitle">Tout ce que vous devez savoir.</p>
+      </div>
+      <div style="max-width: 900px; margin: 0 auto;">
+        <div class="ns-faq-item ns-active">
+          <div class="ns-faq-question">
+            <h4 class="ns-h4">Puis-je annuler mon abonnement à tout moment ?</h4>
+            <i class="fas fa-chevron-up" style="color: #4f46e5;"></i>
+          </div>
+          <div class="ns-faq-answer" style="display: block;">
+            Oui, sans frais, directement depuis votre espace client.
+          </div>
+        </div>
+        <div class="ns-faq-item">
+          <div class="ns-faq-question">
+            <h4 class="ns-h4">Mes données sont-elles sécurisées ?</h4>
+            <i class="fas fa-chevron-down" style="color: #4f46e5;"></i>
+          </div>
+          <div class="ns-faq-answer">
+            Nous utilisons un chiffrement AES-256 et sommes certifiés ISO 27001.
+          </div>
+        </div>
+        <div class="ns-faq-item">
+          <div class="ns-faq-question">
+            <h4 class="ns-h4">Proposez-vous une version d'essai ?</h4>
+            <i class="fas fa-chevron-down" style="color: #4f46e5;"></i>
+          </div>
+          <div class="ns-faq-answer">
+            Oui, 14 jours gratuits sans carte bancaire.
+          </div>
+        </div>
+        <div class="ns-faq-item">
+          <div class="ns-faq-question">
+            <h4 class="ns-h4">Quels sont les modes de paiement acceptés ?</h4>
+            <i class="fas fa-chevron-down" style="color: #4f46e5;"></i>
+          </div>
+          <div class="ns-faq-answer">
+            Carte bancaire, virement, PayPal. Facture mensuelle ou annuelle.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="ns-section ns-bg-gray">
+    <div class="ns-container">
+      <div class="ns-grid ns-grid-2" style="align-items: center;">
+        <div>
+          <span class="ns-badge">CONTACT</span>
+          <h2 class="ns-h2">Parlons de votre projet</h2>
+          <p style="font-size: 1.1rem; color: #475569; margin: 24px 0;">Notre équipe répond sous 24h ouvrées.</p>
+          <div style="display: flex; gap: 24px; margin-top: 32px;">
+            <div style="display: flex; gap: 16px; align-items: center;">
+              <i class="fas fa-envelope" style="color: #4f46e5; font-size: 1.5rem;"></i>
+              <span>contact@nova.ai</span>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: center;">
+              <i class="fas fa-phone-alt" style="color: #4f46e5; font-size: 1.5rem;"></i>
+              <span>+33 1 84 80 00 00</span>
+            </div>
+          </div>
+        </div>
+        <div class="ns-contact-form">
+          <form>
+            <div class="ns-form-group">
+              <input type="text" class="ns-form-control" placeholder="Nom complet">
+            </div>
+            <div class="ns-form-group">
+              <input type="email" class="ns-form-control" placeholder="Email professionnel">
+            </div>
+            <div class="ns-form-group">
+              <select class="ns-form-control">
+                <option>Budget</option>
+                <option>Moins de 1k€</option>
+                <option>1k€ - 5k€</option>
+                <option>Plus de 5k€</option>
+              </select>
+            </div>
+            <div class="ns-form-group">
+              <textarea class="ns-form-control" rows="4" placeholder="Votre message..."></textarea>
+            </div>
+            <button class="ns-btn ns-btn-primary ns-w-100">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="ns-section">
+    <div class="ns-container">
+      <div class="ns-cta">
+        <span class="ns-badge ns-badge-white">PRÊT À PASSER À L'ACTION ?</span>
+        <h2 class="ns-h2">Rejoignez +15 000 entreprises</h2>
+        <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 32px;">Commencez gratuitement, aucune carte requise.</p>
+        <a href="#" class="ns-btn ns-btn-white">Démarrer maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="ns-footer">
+    <div class="ns-container">
+      <div class="ns-footer-grid">
+        <div>
+          <a href="#" class="ns-footer-logo">NOVA</a>
+          <p>L'assistant IA nouvelle génération pour les équipes performantes.</p>
+          <div class="ns-social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="ns-h4">Produit</h4>
+          <ul class="ns-footer-links">
+            <li><a href="#">Fonctionnalités</a></li>
+            <li><a href="#">Tarifs</a></li>
+            <li><a href="#">Sécurité</a></li>
+            <li><a href="#">Intégrations</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="ns-h4">Ressources</h4>
+          <ul class="ns-footer-links">
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Guide</a></li>
+            <li><a href="#">Communauté</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="ns-h4">Légal</h4>
+          <ul class="ns-footer-links">
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">CGV</a></li>
+            <li><a href="#">Préférences cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ns-copyright">
+        <p>© 2026 NOVA. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JS POUR FAQ ===== -->
+  <script>
+    document.querySelectorAll('.ns-faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        const item = this.closest('.ns-faq-item');
+        item.classList.toggle('ns-active');
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('fa-chevron-down')) {
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-up');
+        } else {
+          icon.classList.remove('fa-chevron-up');
+          icon.classList.add('fa-chevron-down');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Boulangerie artisanale · Bouchard</title>
+  <!-- Google Font : Charme & lisibilité -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (gratuit) pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* RESET & BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefaf5;
+      color: #3a2c1f;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    h1 { font-size: clamp(2.8rem, 7vw, 5rem); margin-bottom: 0.5rem; line-height: 1.1; }
+    h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 1.2rem; }
+    h3 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 1rem; }
+    p { font-size: 1rem; color: #4f3f2e; }
+    @media (min-width: 768px) { p { font-size: 1.1rem; } }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+    @media (min-width: 640px) { .container { padding: 0 24px; } }
+
+    section { padding: 60px 0; }
+    @media (min-width: 768px) { section { padding: 80px 0; } }
+
+    /* boutons style artisanal */
+    .btn {
+      display: inline-block;
+      background-color: #b45f2b;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      text-decoration: none;
+      transition: 0.2s;
+      box-shadow: 0 8px 16px rgba(150, 80, 30, 0.15);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    @media (min-width: 480px) { .btn { padding: 14px 36px; font-size: 1rem; } }
+
+    .btn:hover {
+      background-color: #9a4a1f;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(120, 60, 20, 0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #b45f2b;
+      color: #b45f2b;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: #b45f2b;
+      color: white;
+    }
+
+    /* Grilles – version mobile d'abord */
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: 1fr; /* 1 colonne par défaut */
+    }
+
+    @media (min-width: 640px) {
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); } /* tablette : 2 col */
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Cartes "produit" */
+    .card-produit {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px -10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(210, 170, 130, 0.2);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-produit:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 40px -12px rgba(100, 50, 10, 0.18);
+    }
+    .card-produit img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (min-width: 768px) { .card-produit img { height: 260px; } }
+    .card-content {
+      padding: 20px 18px 24px;
+      flex: 1;
+    }
+    .card-content h4 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+    .prix {
+      font-weight: 700;
+      color: #b45f2b;
+      font-size: 1.3rem;
+      margin-top: 12px;
+    }
+
+    /* Bandeau "produit du terroir" */
+    .badge-terroir {
+      background: #f0e4d5;
+      color: #7b4a2a;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: inline-block;
+      letter-spacing: 0.4px;
+      border: 1px solid #dbbc9b;
+      margin-bottom: 12px;
+    }
+    @media (min-width: 480px) { .badge-terroir { padding: 8px 20px; font-size: 0.9rem; } }
+
+    /* images réalistes */
+    .img-artisanale {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 20px 30px -12px rgba(60, 40, 20, 0.2);
+      transition: all 0.3s;
+      border: 1px solid #e7d7c4;
+    }
+    @media (min-width: 768px) { .img-artisanale { border-radius: 28px; } }
+    .img-artisanale:hover {
+      box-shadow: 0 30px 45px -10px #aa7e5a80;
+    }
+
+    /* vidéo (iframe) */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 35px -12px #3a2c1f40;
+      border: 2px solid #fff5e9;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Header / Nav – version responsive complète */
+    .navbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 2px dashed #d4b595;
+      gap: 18px;
+    }
+    @media (min-width: 900px) {
+      .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0;
+      }
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #5a3e28;
+      line-height: 1;
+      text-align: center;
+    }
+    .logo span {
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      display: block;
+      color: #967259;
+      letter-spacing: 1px;
+    }
+    @media (min-width: 480px) { .logo { font-size: 2.6rem; } .logo span { font-size: 1rem; } }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 18px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #3a2c1f;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover { border-bottom-color: #b45f2b; }
+    @media (min-width: 900px) { .nav-links a { margin-left: 32px; } }
+
+    /* Hero */
+    .hero { background: linear-gradient(177deg, #fefaf5 0%, #faf1e7 100%); border-bottom: 1px solid #eddccb; }
+    .hero-content { text-align: center; }
+    @media (min-width: 768px) { .hero-content { text-align: left; } }
+    .sous-titre {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #6f523b;
+      margin: 15px 0 25px;
+      max-width: 100%;
+    }
+    @media (min-width: 768px) { .sous-titre { font-size: 1.4rem; } }
+    @media (min-width: 1024px) { .sous-titre { max-width: 90%; } }
+
+    /* Hero boutons groupés */
+    .hero-buttons { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+    @media (min-width: 480px) { .hero-buttons { flex-direction: row; justify-content: center; } }
+    @media (min-width: 768px) { .hero-buttons { justify-content: flex-start; } }
+    .hero-buttons .btn { margin: 0; }
+
+    /* Section témoignage */
+    .temoignage-block {
+      background: #fff3e9;
+      border-radius: 40px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    @media (min-width: 768px) { .temoignage-block { padding: 40px; } }
+    @media (min-width: 1024px) { .temoignage-block { flex-direction: row; align-items: center; } }
+    .temoignage-avatar {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .temoignage-avatar img {
+      width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 4px solid white;
+    }
+    @media (min-width: 480px) { .temoignage-avatar img { width: 85px; height: 85px; } }
+    .temoignage-texte p { font-size: 1.2rem; font-family: 'Cormorant Garamond'; }
+    @media (min-width: 768px) { .temoignage-texte p { font-size: 1.4rem; } }
+
+    /* Pied de page */
+    .footer {
+      background: #2f241b;
+      color: #e9d9cb;
+      border-radius: 40px 40px 0 0;
+      padding: 50px 0 30px;
+      margin-top: 40px;
+    }
+    .footer a { color: #d6b99d; text-decoration: none; }
+    .footer a:hover { color: #f5d3b3; }
+    .footer .grid-3 { gap: 35px; }
+    @media (max-width: 639px) { .footer .grid-3 { text-align: center; } }
+
+    /* CTA final */
+    .cta-card {
+      background: #f5ede3;
+      padding: 35px 20px;
+      border-radius: 40px;
+    }
+    @media (min-width: 640px) { .cta-card { padding: 50px; border-radius: 60px; } }
+
+    /* Ajustements divers */
+    hr { border: 0; border-top: 1px solid #5f4a38; margin: 40px 0 20px; }
+    .text-center { text-align: center; }
+    [data-gjs-type] { transition: outline 0.1s; }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="container">
+  <nav class="navbar" data-gjs-type="navbar">
+    <div class="logo" data-gjs-type="text">Boulangerie Bouchard<span>artisan boulanger depuis 1984</span></div>
+    <div class="nav-links" data-gjs-type="nav-links">
+      <a href="#" data-gjs-type="link">Pains</a>
+      <a href="#" data-gjs-type="link">Pâtisseries</a>
+      <a href="#" data-gjs-type="link">Terroir</a>
+      <a href="#" data-gjs-type="link">Savoir-faire</a>
+      <a href="#" data-gjs-type="link">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ========== HERO : accueil chaleureux + image réelle ========== -->
+<section class="hero" data-gjs-type="section">
+  <div class="container">
+    <div class="grid-2" style="align-items: center;">
+      <div class="hero-content" data-gjs-type="text-block">
+        <h1 data-gjs-type="text">Une halte gourmande <br>authentiquement Charlevoisienne</h1>
+        <p class="sous-titre" data-gjs-type="text">Entrez dans notre boulangerie artisanale c'est découvrir une gamme de produits régionaux, avec ses pains, ses pâtés croches, ses délicieuses brioches et ses incontournables tartes Grand-mère et au sucre.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn" data-gjs-type="button">Découvrir nos spécialités <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+          <a href="#" class="btn btn-outline" data-gjs-type="button">Notre histoire</a>
+        </div>
+      </div>
+      <div data-gjs-type="image-block" style="margin-top: 30px;">
+        <img class="img-artisanale" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&auto=format&fit=crop&q=80" alt="Vitrine boulangerie artisanale" style="max-height: 500px; object-fit: cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION "NOTRE HAVRE DE PAIN" (vidéo YouTube iframe) ========== -->
+<section data-gjs-type="section">
+  <div class="container">
+    <div class="text-center" style="max-width: 800px; margin: 0 auto 40px;">
+      <span class="badge-terroir" data-gjs-type="badge">🍞 Le geste traditionnel</span>
+      <h2 data-gjs-type="text">Découvrez notre Havre de pain</h2>
+      <p data-gjs-type="text">Plongez au cœur de notre fournil avec cette vidéo qui montre le façonnage à la main de nos pains de campagne. Un savoir-faire transmis depuis trois générations.</p>
+    </div>
+    <div class="grid-2" style="gap: 30px; align-items: center;">
+      <div class="video-wrapper" data-gjs-type="video">
+        <iframe src="https://www.youtube.com/embed/8Wg_3xV72W0?si=ZXDYY1hOxKtRlDw-" title="Fabrication pain artisanal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div>
+        <h3 data-gjs-type="text">Des méthodes traditionnelles pour un goût unique</h3>
+        <p style="font-size: 1.1rem;" data-gjs-type="text">Notre pain au levain fermente lentement, développant des arômes complexes. Chaque boule est façonnée à la main et cuite au feu de bois dans notre four rénové.</p>
+        <p style="margin-top: 24px;"><i class="fas fa-check-circle" style="color: #b45f2b;"></i> <span data-gjs-type="text">Farine bio moulue sur pierre</span></p>
+        <p><i class="fas fa-check-circle" style="color: #b45f2b;"></i> <span data-gjs-type="text">Levain naturel sans additif</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GRILLE PRODUITS ICONIQUES (pâté croche, brioches, tartes) ========== -->
+<section class="bg-tendrel" data-gjs-type="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 40px;">
+      <span class="badge-terroir" data-gjs-type="badge">🧑‍🍳 Spécialités maison</span>
+      <h2 data-gjs-type="text">Nos incontournables</h2>
+    </div>
+
+    <div class="grid-3">
+      <!-- Carte 1 : Pâté croche (image réelle) -->
+      <div class="card-produit" data-gjs-type="card">
+        <img src="https://images.unsplash.com/photo-1627308595171-d1b5d67115bd?w=800&auto=format&fit=crop&q=70" alt="Pâté croche maison" loading="lazy">
+        <div class="card-content">
+          <h4 data-gjs-type="text">Pâté croche</h4>
+          <p data-gjs-type="text">Notre recette secrète, mijotée longuement avec des épices douces. Une texture fondante.</p>
+          <div class="prix" data-gjs-type="text">9,50 € / pièce</div>
+        </div>
+      </div>
+      <!-- Carte 2 : Brioche tressée -->
+      <div class="card-produit" data-gjs-type="card">
+        <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=800&auto=format&fit=crop&q=70" alt="Brioche feuilletée" loading="lazy">
+        <div class="card-content">
+          <h4 data-gjs-type="text">Brioche feuilletée</h4>
+          <p data-gjs-type="text">Dorée au beurre d'Échiré, elle se déchire en fines couches. Parfaite au petit-déjeuner.</p>
+          <div class="prix" data-gjs-type="text">4,80 €</div>
+        </div>
+      </div>
+      <!-- Carte 3 : Tarte Grand-mère -->
+      <div class="card-produit" data-gjs-type="card">
+        <img src="https://images.unsplash.com/photo-1464305795236-6ec744ff5de6?w=800&auto=format&fit=crop&q=70" alt="Tarte aux pommes traditionnelle" loading="lazy">
+        <div class="card-content">
+          <h4 data-gjs-type="text">Tarte Grand-mère</h4>
+          <p data-gjs-type="text">Pâte sablée croustillante, compote de pommes et une généreuse couche de sucre à la cannelle.</p>
+          <div class="prix" data-gjs-type="text">22,00 € (6 pers.)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION PRODUITS DU TERROIR & PARTENARIAT ========== -->
+<section data-gjs-type="section">
+  <div class="container">
+    <div class="grid-2" style="align-items: center;">
+      <img class="img-artisanale" src="https://images.unsplash.com/photo-1559925393-8c8e5a4b9d8b?w=1000&auto=format&fit=crop&q=75" alt="Produits régionaux fromages et confits" data-gjs-type="image" loading="lazy">
+      <div>
+        <span class="badge-terroir" data-gjs-type="badge"><i class="fas fa-leaf"></i> Route des Saveurs de Charlevoix</span>
+        <h2 data-gjs-type="text">Fier partenaire de La Route des Saveurs de Charlevoix</h2>
+        <p data-gjs-type="text">Nous sélectionnons avec soin des fromages affinés, des confits de canard, des rillettes, ketchups maison et autres trésors du terroir. Retrouvez également nos sandwichs et pains-pizzas préparés chaque matin.</p>
+        <p style="margin-top: 24px;"><strong data-gjs-type="text">👉 Comptoir sandwich & sous-marin ouvert du mardi au samedi.</strong></p>
+        <a href="#" class="btn btn-outline" style="margin-top: 20px;" data-gjs-type="button">Voir tous nos produits du terroir</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALERIE D'IMAGES RÉELLES ========== -->
+<section class="bg-tendrel" data-gjs-type="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 30px;">
+      <span class="badge-terroir" data-gjs-type="badge">📸 Voir c'est craquer</span>
+      <h2 data-gjs-type="text">L'œil du boulanger</h2>
+    </div>
+    <div class="grid-4">
+      <img class="img-artisanale" src="https://images.unsplash.com/photo-1585478259715-4e7f2b1d5c9a?w=600&auto=format&fit=crop&q=70" alt="Pain de campagne" style="height:200px; object-fit:cover;" data-gjs-type="image" loading="lazy">
+      <img class="img-artisanale" src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=600&auto=format&fit=crop&q=70" alt="Baguette tradition" style="height:200px; object-fit:cover;" data-gjs-type="image" loading="lazy">
+      <img class="img-artisanale" src="https://images.unsplash.com/photo-1574085733277-b125e5854fb7?w=600&auto=format&fit=crop&q=70" alt="Viennoiseries" style="height:200px; object-fit:cover;" data-gjs-type="image" loading="lazy">
+      <img class="img-artisanale" src="https://images.unsplash.com/photo-1611485988300-b7530defb8e2?w=600&auto=format&fit=crop&q=70" alt="Tarte au sucre" style="height:200px; object-fit:cover;" data-gjs-type="image" loading="lazy">
+    </div>
+    <p class="text-center" style="margin-top: 30px; font-style: italic;" data-gjs-type="text">Pains de campagne, tradition, viennoiseries feuilletées, tarte au sucre… tout est fait maison.</p>
+  </div>
+</section>
+
+<!-- ========== MINI TÉMOIGNAGE ========== -->
+<section data-gjs-type="section" style="padding: 40px 0 60px;">
+  <div class="container">
+    <div class="temoignage-block">
+      <div class="temoignage-avatar">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=60" alt="cliente souriante" loading="lazy">
+        <div class="temoignage-texte">
+          <p data-gjs-type="text"><i class="fas fa-quote-left" style="color: #b45f2b;"></i> Leurs tartes Grand-mère me rappellent celles de mon enfance. Un vrai voyage gustatif.</p>
+          <strong data-gjs-type="text">— Madeleine T., cliente fidèle</strong>
+        </div>
+      </div>
+      <div class="video-wrapper" style="max-width: 360px; margin-left: auto; width: 100%;" data-gjs-type="video">
+        <iframe src="https://www.youtube.com/embed/-dLz-EfB1CQ?si=rBw9eE2KR1xSQ5xS" title="Ambiance boulangerie" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== APPEL À VISITE / CONTACT ========== -->
+<section data-gjs-type="section">
+  <div class="container">
+    <div class="cta-card">
+      <div class="grid-2" style="align-items: center;">
+        <div>
+          <h2 data-gjs-type="text">Passez nous voir au fournil</h2>
+          <p style="font-size: 1.2rem;" data-gjs-type="text">24 rue du Moulin, 7190 Charlevoix — Ouvert du mardi au dimanche de 7h à 19h.</p>
+          <a href="#" class="btn" data-gjs-type="button"><i class="fas fa-map-pin"></i> Itinéraire</a>
+        </div>
+        <img class="img-artisanale" src="https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=800&auto=format&fit=crop&q=70" alt="devanture boulangerie" style="max-height: 240px;" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer" data-gjs-type="footer">
+  <div class="container">
+    <div class="grid-3" style="gap: 40px;">
+      <div>
+        <div class="logo" style="color: #f5d3b3; font-size: 2.2rem;" data-gjs-type="text">Boulangerie Bouchard</div>
+        <p style="margin: 20px 0;"><span data-gjs-type="text">Savoir-faire artisanal et produits du terroir depuis 1984.</span></p>
+        <p><i class="fas fa-phone-alt"></i> <span data-gjs-type="text">+33 1 23 45 67 89</span></p>
+        <p><i class="fas fa-envelope"></i> <span data-gjs-type="text">bonjour@boulangeriebouchard.fr</span></p>
+      </div>
+      <div>
+        <h4 style="color: white;" data-gjs-type="text">Horaires</h4>
+        <p data-gjs-type="text">Mar - Sam : 7h - 19h</p>
+        <p data-gjs-type="text">Dim : 7h - 13h</p>
+        <p data-gjs-type="text">Lundi : fermé</p>
+        <p style="margin-top: 20px;"><i class="fab fa-instagram"></i> <i class="fab fa-facebook" style="margin-left: 16px;"></i></p>
+      </div>
+      <div>
+        <h4 style="color: white;" data-gjs-type="text">Liens rapides</h4>
+        <p><a href="#" data-gjs-type="link">Pains artisanaux</a></p>
+        <p><a href="#" data-gjs-type="link">Pâté croche & rillettes</a></p>
+        <p><a href="#" data-gjs-type="link">Tartes & brioches</a></p>
+        <p><a href="#" data-gjs-type="link">Espace pro</a></p>
+      </div>
+    </div>
+    <hr>
+    <p style="text-align: center;">© 2025 Boulangerie Bouchard - Tous droits réservés - Fier partenaire de La Route des Saveurs</p>
+  </div>
+</footer>
+
+<script>(function() { console.log('🍞 Landing boulangerie – responsive + GrapeJS ready'); })();</script>
+</body>
+</html>

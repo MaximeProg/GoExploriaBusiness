@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Collection | Mode d'Hiver Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* DESIGN SANS VARIABLES CSS - COULEURS EN DUR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #F8F9FA 0%, #E8F4F8 100%);
+            color: #2C3E50;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* SECTION MULTI-LANGUES */
+        .language-section {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 80px;
+            box-shadow: 0 15px 35px rgba(44, 62, 80, 0.08);
+            border: 1px solid rgba(26, 188, 156, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .language-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2C3E50, #1ABC9C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .language-header p {
+            font-size: 1.2rem;
+            color: #7F8C8D;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .language-card {
+            background: linear-gradient(145deg, #ffffff, #f5f7fa);
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+        }
+
+        .language-card:hover {
+            transform: translateY(-12px);
+            border-color: #1ABC9C;
+            box-shadow: 0 25px 40px rgba(26, 188, 156, 0.12);
+        }
+
+        .language-flag {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 10px 25px rgba(44, 62, 80, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .language-card:hover .language-flag {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #1ABC9C;
+        }
+
+        .language-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+
+        .language-card p {
+            color: #7F8C8D;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 2px solid #1ABC9C;
+            color: #1ABC9C;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .language-btn:hover {
+            background: #1ABC9C;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(26, 188, 156, 0.3);
+        }
+
+        .language-btn i {
+            font-size: 1rem;
+        }
+
+        .language-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #9B59B6;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.25);
+        }
+
+        /* En-tête */
+        .fashion-header {
+            text-align: center;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .snow-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-10px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .season-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1ABC9C, #9B59B6);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 0 20px rgba(26, 188, 156, 0.15);
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2C3E50, #4A6572);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .header-subtitle {
+            font-size: 1.3rem;
+            color: #7F8C8D;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Grille de produits */
+        .products-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #1ABC9C, #9B59B6);
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(189, 195, 199, 0.2);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(44, 62, 80, 0.1);
+        }
+
+        .product-card-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            color: white;
+        }
+
+        .product-card-badge.new { background: #1ABC9C; }
+        .product-card-badge.sale { background: #8B0000; }
+        .product-card-badge.limited { background: #9B59B6; }
+
+        .product-card-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 8s ease;
+        }
+
+        .product-card:hover .product-card-image img {
+            transform: scale(1.1);
+        }
+
+        .quick-view-btn {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #2C3E50;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 8px 25px rgba(189, 195, 199, 0.2);
+            z-index: 2;
+            opacity: 0;
+        }
+
+        .product-card:hover .quick-view-btn {
+            bottom: 20px;
+            opacity: 1;
+        }
+
+        .quick-view-btn:hover {
+            background: #2C3E50;
+            color: white;
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .product-card-content {
+            padding: 25px;
+        }
+
+        .product-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #2C3E50;
+        }
+
+        .product-card-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #1ABC9C;
+        }
+
+        .original-price {
+            font-size: 1.1rem;
+            color: #BDC3C7;
+            text-decoration: line-through;
+        }
+
+        .product-card-colors {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .color-dot:hover {
+            transform: scale(1.2);
+        }
+
+        .product-card-sizes {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .size-chip {
+            padding: 5px 10px;
+            background: #ECF0F1;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #2C3E50;
+        }
+
+        /* Section Afficher vos forfaits ici */
+        .showcase-section {
+            margin: 100px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(26, 188, 156, 0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .showcase-header h2 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #2C3E50, #1ABC9C, #9B59B6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .showcase-header p {
+            font-size: 1.2rem;
+            color: #7F8C8D;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .showcase-item {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(26, 188, 156, 0.1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 25px rgba(189, 195, 199, 0.1);
+        }
+
+        .showcase-item:hover {
+            border-color: #1ABC9C;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(44, 62, 80, 0.1);
+        }
+
+        .showcase-item h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2C3E50;
+        }
+
+        .showcase-item h4 i {
+            color: #1ABC9C;
+        }
+
+        .showcase-item p {
+            margin-bottom: 15px;
+            color: #7F8C8D;
+            flex-grow: 1;
+        }
+
+        .showcase-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1ABC9C;
+            margin: 15px 0;
+        }
+
+        .showcase-price span {
+            font-size: 0.9rem;
+            color: #95A5A6;
+            font-weight: 500;
+        }
+
+        .showcase-badge {
+            display: inline-block;
+            background: #1ABC9C;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+
+        /* Footer */
+        .fashion-footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #7F8C8D;
+            border-top: 1px solid #ECF0F1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #2C3E50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1ABC9C;
+            transition: width 0.3s;
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+            .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+            .language-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 992px) {
+            .main-title { font-size: 2.8rem; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.2rem; }
+            .header-subtitle { font-size: 1.1rem; }
+            .products-grid { grid-template-columns: 1fr; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .language-grid { grid-template-columns: 1fr; }
+            .showcase-header h2 { font-size: 2.2rem; }
+            .language-header h2 { font-size: 2.2rem; }
+            .language-section { padding: 40px 25px; }
+        }
+
+        /* GrapeJS Compatibility */
+        [data-gjs-type="wrapper"] { min-height: 100vh; }
+        .gjs-dashed .product-card,
+        .gjs-dashed .showcase-item,
+        .gjs-dashed .language-card { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ========================================= -->
+        <!-- SECTION MULTI-LANGUES - ÉDITABLE GRAPEJS -->
+        <!-- ========================================= -->
+        <section class="language-section" 
+                 data-gjs-type="language-section" 
+                 data-gjs-attributes='{"title": "Section Multi-Langues"}'
+                 data-gjs-draggable="true"
+                 data-gjs-resizable="true">
+            
+            <div class="language-header" 
+                 data-gjs-type="language-header"
+                 data-gjs-editable="true">
+                <h2 data-gjs-type="text" 
+                    data-gjs-editable="true"
+                    data-gjs-attributes='{"title": "Titre Section Langues"}'>
+                    <span data-gjs-editable="true">🌍 Site disponible en 4 langues</span>
+                </h2>
+                <p data-gjs-type="text" 
+                   data-gjs-editable="true"
+                   data-gjs-attributes='{"title": "Sous-titre Langues"}'>
+                    Choisissez votre langue préférée pour une expérience de shopping personnalisée
+                </p>
+            </div>
+
+            <div class="language-grid" 
+                 data-gjs-type="language-grid"
+                 data-gjs-attributes='{"title": "Grille Langues"}'>
+                
+                <!-- Carte Français -->
+                <div class="language-card" 
+                     data-gjs-type="language-card"
+                     data-gjs-attributes='{"title": "Langue Française"}'
+                     data-gjs-draggable="true"
+                     data-gjs-editable="true">
+                    <span class="language-badge" 
+                          data-gjs-type="badge"
+                          data-gjs-editable="true"
+                          data-gjs-attributes='{"title": "Badge Langue"}'>
+                          PRINCIPALE
+                    </span>
+                    <img src="https://flagcdn.com/w320/fr.png" 
+                         alt="Français" 
+                         class="language-flag"
+                         data-gjs-type="image"
+                         data-gjs-editable="true"
+                         data-gjs-attributes='{"title": "Drapeau Français"}'>
+                    <h3 data-gjs-type="text" 
+                        data-gjs-editable="true"
+                        data-gjs-attributes='{"title": "Nom Langue"}'>
+                        Français
+                    </h3>
+                    <p data-gjs-type="text" 
+                       data-gjs-editable="true"
+                       data-gjs-attributes='{"title": "Description Langue"}'>
+                        Langue originale. Contenu complet et support client en français.
+                    </p>
+                    <button class="language-btn" 
+                            data-gjs-type="button"
+                            data-gjs-editable="true"
+                            data-gjs-attributes='{"title": "Bouton Sélection"}'>
+                        <i class="fas fa-check-circle"></i> Sélectionné
+                    </button>
+                </div>
+
+                <!-- Carte Anglais -->
+                <div class="language-card" 
+                     data-gjs-type="language-card"
+                     data-gjs-attributes='{"title": "Langue Anglaise"}'
+                     data-gjs-draggable="true"
+                     data-gjs-editable="true">
+                    <span class="language-badge" 
+                          data-gjs-type="badge"
+                          data-gjs-editable="true"
+                          data-gjs-attributes='{"title": "Badge Langue"}'
+                          style="background: #1ABC9C;">
+                          POPULAIRE
+                    </span>
+                    <img src="https://flagcdn.com/w320/gb.png" 
+                         alt="English" 
+                         class="language-flag"
+                         data-gjs-type="image"
+                         data-gjs-editable="true"
+                         data-gjs-attributes='{"title": "Drapeau Anglais"}'>
+                    <h3 data-gjs-type="text" 
+                        data-gjs-editable="true"
+                        data-gjs-attributes='{"title": "Nom Langue"}'>
+                        English
+                    </h3>
+                    <p data-gjs-type="text" 
+                       data-gjs-editable="true"
+                       data-gjs-attributes='{"title": "Description Langue"}'>
+                        International version. Full content and customer support.
+                    </p>
+                    <button class="language-btn" 
+                            data-gjs-type="button"
+                            data-gjs-editable="true"
+                            data-gjs-attributes='{"title": "Bouton Sélection"}'>
+                        <i class="fas fa-globe"></i> Select
+                    </button>
+                </div>
+
+                <!-- Carte Espagnol -->
+                <div class="language-card" 
+                     data-gjs-type="language-card"
+                     data-gjs-attributes='{"title": "Langue Espagnole"}'
+                     data-gjs-draggable="true"
+                     data-gjs-editable="true">
+                    <span class="language-badge" 
+                          data-gjs-type="badge"
+                          data-gjs-editable="true"
+                          data-gjs-attributes='{"title": "Badge Langue"}'
+                          style="background: #E67E22;">
+                          NOUVEAU
+                    </span>
+                    <img src="https://flagcdn.com/w320/es.png" 
+                         alt="Español" 
+                         class="language-flag"
+                         data-gjs-type="image"
+                         data-gjs-editable="true"
+                         data-gjs-attributes='{"title": "Drapeau Espagnol"}'>
+                    <h3 data-gjs-type="text" 
+                        data-gjs-editable="true"
+                        data-gjs-attributes='{"title": "Nom Langue"}'>
+                        Español
+                    </h3>
+                    <p data-gjs-type="text" 
+                       data-gjs-editable="true"
+                       data-gjs-attributes='{"title": "Description Langue"}'>
+                        Versión internacional. Contenido completo y soporte.
+                    </p>
+                    <button class="language-btn" 
+                            data-gjs-type="button"
+                            data-gjs-editable="true"
+                            data-gjs-attributes='{"title": "Bouton Sélection"}'>
+                        <i class="fas fa-globe"></i> Seleccionar
+                    </button>
+                </div>
+
+                <!-- Carte Allemand -->
+                <div class="language-card" 
+                     data-gjs-type="language-card"
+                     data-gjs-attributes='{"title": "Langue Allemande"}'
+                     data-gjs-draggable="true"
+                     data-gjs-editable="true">
+                    <span class="language-badge" 
+                          data-gjs-type="badge"
+                          data-gjs-editable="true"
+                          data-gjs-attributes='{"title": "Badge Langue"}'
+                          style="background: #8B4513;">
+                          PROCHAINE
+                    </span>
+                    <img src="https://flagcdn.com/w320/de.png" 
+                         alt="Deutsch" 
+                         class="language-flag"
+                         data-gjs-type="image"
+                         data-gjs-editable="true"
+                         data-gjs-attributes='{"title": "Drapeau Allemand"}'>
+                    <h3 data-gjs-type="text" 
+                        data-gjs-editable="true"
+                        data-gjs-attributes='{"title": "Nom Langue"}'>
+                        Deutsch
+                    </h3>
+                    <p data-gjs-type="text" 
+                       data-gjs-editable="true"
+                       data-gjs-attributes='{"title": "Description Langue"}'>
+                        Internationale Version. Vollständiger Inhalt.
+                    </p>
+                    <button class="language-btn" 
+                            data-gjs-type="button"
+                            data-gjs-editable="true"
+                            data-gjs-attributes='{"title": "Bouton Sélection"}'>
+                        <i class="fas fa-globe"></i> Auswählen
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bannière multilingue supplémentaire -->
+            <div style="margin-top: 50px; text-align: center; padding: 25px; background: rgba(26, 188, 156, 0.05); border-radius: 16px;"
+                 data-gjs-type="language-banner"
+                 data-gjs-editable="true"
+                 data-gjs-attributes='{"title": "Bannière Multilingue"}'>
+                <p style="font-size: 1rem; color: #2C3E50; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <i class="fas fa-language" style="color: #1ABC9C; font-size: 1.8rem;"></i>
+                    <span data-gjs-type="text" data-gjs-editable="true" style="font-weight: 500;">
+                        🌐 Notre site est traduit par des experts locaux dans chaque langue
+                    </span>
+                    <span style="background: #2C3E50; color: white; padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; margin-left: 10px;">
+                        + 12 langues disponibles
+                    </span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- EN-TÊTE -->
+        <!-- ========================================= -->
+        <header class="fashion-header">
+            <div class="snow-effect" id="snow-container"></div>
+            <div class="header-content">
+                <div class="season-badge">Collection Hiver 2024</div>
+                <h1 class="main-title">Élégance Hivernale</h1>
+                <p class="header-subtitle">Découvrez notre collection premium de vêtements d'hiver, alliant confort, style et chaleur.</p>
+            </div>
+        </header>
+
+        <!-- ========================================= -->
+        <!-- PRODUITS - VÊTEMENTS CHAUDS -->
+        <!-- ========================================= -->
+        <section class="products-section">
+            <h2 class="section-title">Vêtements chauds</h2>
+            <div class="products-grid">
+                <!-- Carte 1 -->
+                <div class="product-card">
+                    <div class="product-card-badge new">Nouveau</div>
+                    <div class="product-card-image">
+                        <img src="https://images.pexels.com/photos/6192325/pexels-photo-6192325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Manteau Long Himalaya">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Voir le produit
+                        </button>
+                    </div>
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Manteau Long Himalaya</h3>
+                        <div class="product-card-price">
+                            <span class="current-price">189,99 €</span>
+                            <span class="original-price">249,99 €</span>
+                        </div>
+                        <div class="product-card-colors">
+                            <div class="color-dot" style="background-color: #2C3E50;"></div>
+                            <div class="color-dot" style="background-color: #ECF0F1;"></div>
+                            <div class="color-dot" style="background-color: #7F8C8D;"></div>
+                            <div class="color-dot" style="background-color: #8B0000;"></div>
+                        </div>
+                        <div class="product-card-sizes">
+                            <span class="size-chip">XS</span>
+                            <span class="size-chip">S</span>
+                            <span class="size-chip">M</span>
+                            <span class="size-chip">L</span>
+                            <span class="size-chip">XL</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte 2 -->
+                <div class="product-card">
+                    <div class="product-card-badge sale">Promo</div>
+                    <div class="product-card-image">
+                        <img src="https://images.pexels.com/photos/7674524/pexels-photo-7674524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Veste Polaire Technique">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Voir le produit
+                        </button>
+                    </div>
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Veste Polaire Technique</h3>
+                        <div class="product-card-price">
+                            <span class="current-price">89,99 €</span>
+                            <span class="original-price">119,99 €</span>
+                        </div>
+                        <div class="product-card-colors">
+                            <div class="color-dot" style="background-color: #2C3E50;"></div>
+                            <div class="color-dot" style="background-color: #1ABC9C;"></div>
+                            <div class="color-dot" style="background-color: #E74C3C;"></div>
+                            <div class="color-dot" style="background-color: #000000;"></div>
+                        </div>
+                        <div class="product-card-sizes">
+                            <span class="size-chip">S</span>
+                            <span class="size-chip">M</span>
+                            <span class="size-chip">L</span>
+                            <span class="size-chip">XL</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte 3 -->
+                <div class="product-card">
+                    <div class="product-card-badge new">Nouveau</div>
+                    <div class="product-card-image">
+                        <img src="https://images.pexels.com/photos/6192309/pexels-photo-6192309.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doudoune Premium Quilted">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Voir le produit
+                        </button>
+                    </div>
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Doudoune Premium Quilted</h3>
+                        <div class="product-card-price">
+                            <span class="current-price">229,99 €</span>
+                            <span class="original-price">299,99 €</span>
+                        </div>
+                        <div class="product-card-colors">
+                            <div class="color-dot" style="background-color: #F5F5DC;"></div>
+                            <div class="color-dot" style="background-color: #000000;"></div>
+                            <div class="color-dot" style="background-color: #8B0000;"></div>
+                            <div class="color-dot" style="background-color: #556B2F;"></div>
+                        </div>
+                        <div class="product-card-sizes">
+                            <span class="size-chip">XS</span>
+                            <span class="size-chip">S</span>
+                            <span class="size-chip">M</span>
+                            <span class="size-chip">L</span>
+                            <span class="size-chip">XL</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte 4 -->
+                <div class="product-card">
+                    <div class="product-card-badge limited">Limitée</div>
+                    <div class="product-card-image">
+                        <img src="https://images.pexels.com/photos/7674538/pexels-photo-7674538.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Parka Imperméable">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Voir le produit
+                        </button>
+                    </div>
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Parka Imperméable</h3>
+                        <div class="product-card-price">
+                            <span class="current-price">199,99 €</span>
+                            <span class="original-price">259,99 €</span>
+                        </div>
+                        <div class="product-card-colors">
+                            <div class="color-dot" style="background-color: #556B2F;"></div>
+                            <div class="color-dot" style="background-color: #2C3E50;"></div>
+                            <div class="color-dot" style="background-color: #8B4513;"></div>
+                        </div>
+                        <div class="product-card-sizes">
+                            <span class="size-chip">S</span>
+                            <span class="size-chip">M</span>
+                            <span class="size-chip">L</span>
+                            <span class="size-chip">XL</span>
+                            <span class="size-chip">XXL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- SECTION AFFICHER VOS FORFAITS ICI -->
+        <!-- ========================================= -->
+        <section class="showcase-section">
+            <div class="showcase-header">
+                <h2>Afficher vos forfaits ici</h2>
+                <p>Découvrez tous nos forfaits exclusifs pour la collection hiver</p>
+            </div>
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <span class="showcase-badge">Pack Sport</span>
+                    <h4><i class="fas fa-vest"></i> Forfait Ski</h4>
+                    <p>Veste polaire + Pantalon de ski + Gants techniques</p>
+                    <div class="showcase-price">279€<span>/pack</span></div>
+                </div>
+                <div class="showcase-item">
+                    <span class="showcase-badge">Pack Confort</span>
+                    <h4><i class="fas fa-mitten"></i> Forfait Bien-être</h4>
+                    <p>Pull cachemire + Écharpe laine + Bonnet mérinos</p>
+                    <div class="showcase-price">189€<span>/pack</span></div>
+                </div>
+                <div class="showcase-item">
+                    <span class="showcase-badge">Pack Luxe</span>
+                    <h4><i class="fas fa-crown"></i> Forfait Premium</h4>
+                    <p>Manteau long + Bottes imperméables + Gants cuir</p>
+                    <div class="showcase-price">449€<span>/pack</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- FOOTER -->
+        <!-- ========================================= -->
+        <footer class="fashion-footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Nouveautés</a>
+                <a href="#" class="footer-link">Collection</a>
+                <a href="#" class="footer-link">Guide des tailles</a>
+                <a href="#" class="footer-link">Livraison</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <p>© 2024 Winter Collection. Tous droits réservés.</p>
+            <p style="font-size: 0.9rem; margin-top: 10px; color: #95A5A6;">Images réelles - Collection hiver 2024</p>
+            <p style="font-size: 0.85rem; margin-top: 15px; color: #7F8C8D;">
+                <i class="fas fa-globe"></i> Site disponible en : Français, English, Español, Deutsch
+            </p>
+        </footer>
+    </div>
+
+    <!-- Script minimal pour GrapeJS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Effet de neige
+            const snowContainer = document.getElementById('snow-container');
+            if (snowContainer) {
+                const snowflakeCount = 30;
+                for (let i = 0; i < snowflakeCount; i++) {
+                    const snowflake = document.createElement('div');
+                    snowflake.className = 'snowflake';
+                    const size = Math.random() * 4 + 2;
+                    const posX = Math.random() * 100;
+                    const duration = Math.random() * 8 + 8;
+                    const delay = Math.random() * 8;
+                    
+                    snowflake.style.width = size + 'px';
+                    snowflake.style.height = size + 'px';
+                    snowflake.style.left = posX + '%';
+                    snowflake.style.animationDuration = duration + 's';
+                    snowflake.style.animationDelay = delay + 's';
+                    snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+                    
+                    snowContainer.appendChild(snowflake);
+                }
+            }
+
+            // Interactions boutons langue - Éditable dans GrapeJS
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.closest('.language-card')?.querySelector('h3')?.innerText || 'Langue';
+                    alert(`🌐 Langue sélectionnée : ${lang}\n\nCette fonctionnalité est entièrement éditable dans GrapeJS.`);
+                });
+            });
+
+            // Boutons produits
+            document.querySelectorAll('.quick-view-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Détail du produit - Collection Hiver 2024');
+                });
+            });
+
+            // Clic sur les cartes produits
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.quick-view-btn')) {
+                        alert('Page produit - Collection Hiver 2024');
+                    }
+                });
+            });
+
+            // Clic sur les forfaits
+            document.querySelectorAll('.showcase-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    alert('Détail du forfait - Pack hiver');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

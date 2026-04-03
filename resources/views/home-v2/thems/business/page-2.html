@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partenaires Affiliés - Interface Moderne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #38b000;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* En-tête */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.5;
+        }
+
+        /* Section profil */
+        .profile-section {
+            margin-bottom: 50px;
+            animation: fadeIn 1.2s ease 0.3s both;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .profile-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .profile-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            background: rgba(58, 134, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .profile-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .profile-card p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .profile-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .profile-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+        }
+
+        /* Section carrousels */
+        .carousels-section {
+            margin-bottom: 60px;
+            animation: fadeIn 1.2s ease 0.6s both;
+        }
+
+        .carousel-container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .carousel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .carousel-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .carousel-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-nav button {
+            background: var(--light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .carousel-nav button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+        }
+
+        .carousel-item {
+            min-width: 200px;
+            background: var(--light);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .carousel-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .carousel-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .carousel-item h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .carousel-item p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Section IA */
+        .ai-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 1.2s ease 0.9s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 1%);
+            background-size: 20px 20px;
+            animation: float 20s linear infinite;
+        }
+
+        .ai-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .ai-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            animation: fadeIn 1.2s ease 1.2s both;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .profile-cards {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .ai-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête -->
+        <header class="header">
+            <h1>PARTENAIRES AFFILIÉS</h1>
+            <p class="subtitle">Choisi ton profil et ce qui te va le mieux avec différents types de carrousels pour entreprises, régions et activités</p>
+        </header>
+
+        <!-- Section Profils -->
+        <section class="profile-section">
+            <h2 class="section-title">CHOISIS TON PROFIL</h2>
+            <div class="profile-cards">
+                <!-- Carte 1 -->
+                <div class="profile-card" id="travel-card">
+                    <div class="profile-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>PARTENAIRES AFFILIÉS VOYAGES</h3>
+                    <p>Deviens libre de ton horaire, obtiens des avantages voyages. Inscris-toi ici pour rejoindre les contributeurs volontaires voyage.</p>
+                    <button class="profile-btn">S'INSCRIRE</button>
+                </div>
+
+                <!-- Carte 2 -->
+                <div class="profile-card" id="user-card">
+                    <div class="profile-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>USERS VOYAGES</h3>
+                    <p>Contributeurs volontaires: téléchargez des photos, vidéos, histoires de vacances, partagez vos avis, etc.</p>
+                    <button class="profile-btn">EXPLORER</button>
+                </div>
+
+                <!-- Carte 3 -->
+                <div class="profile-card" id="master-card">
+                    <div class="profile-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>MASTERS USERS</h3>
+                    <p>Activez et gérez vos destinations et vos marchés. Contrôle complet sur votre expérience voyage.</p>
+                    <button class="profile-btn">GÉRER</button>
+                </div>
+
+                <!-- Carte 4 -->
+                <div class="profile-card" id="business-card">
+                    <div class="profile-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>USERS ENTREPRISES</h3>
+                    <p>Gérez votre espace entreprise et votre marketing. Solutions complètes pour entreprises.</p>
+                    <button class="profile-btn">DÉMARRER</button>
+                </div>
+
+                <!-- Carte 5 -->
+                <div class="profile-card" id="startup-card">
+                    <div class="profile-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>CONTRIBUTEUR STARTUP</h3>
+                    <p>Faites un don pour faire avancer le projet. Contribuez à l'innovation dans le secteur voyage.</p>
+                    <button class="profile-btn">CONTRIBUER</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Carrousels -->
+        <section class="carousels-section">
+            <h2 class="section-title">EXPLOREZ NOS CATÉGORIES</h2>
+            
+            <!-- Carrousel Entreprises -->
+            <div class="carousel-container">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">ENTREPRISES</h3>
+                    <div class="carousel-nav">
+                        <button class="carousel-prev" data-carousel="business"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-next" data-carousel="business"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="carousel-track" id="business-carousel">
+                    <!-- Les éléments seront générés par JavaScript -->
+                </div>
+            </div>
+
+            <!-- Carrousel Région -->
+            <div class="carousel-container">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">RÉGION</h3>
+                    <div class="carousel-nav">
+                        <button class="carousel-prev" data-carousel="region"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-next" data-carousel="region"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="carousel-track" id="region-carousel">
+                    <!-- Les éléments seront générés par JavaScript -->
+                </div>
+            </div>
+
+            <!-- Carrousel Activité -->
+            <div class="carousel-container">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">ACTIVITÉ</h3>
+                    <div class="carousel-nav">
+                        <button class="carousel-prev" data-carousel="activity"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-next" data-carousel="activity"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="carousel-track" id="activity-carousel">
+                    <!-- Les éléments seront générés par JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section IA -->
+        <section class="ai-section">
+            <h2 class="ai-title">BLOC IA ASSISTANT DE CRÉATION</h2>
+            <p class="ai-description">Notre IA vous assiste dans la création de contenu, l'optimisation de vos annonces, et la personnalisation de vos expériences voyage. Utilisez l'outil intelligent pour maximiser votre impact.</p>
+            <a href="#" class="ai-btn pulse"><i class="fas fa-robot"></i> ACTIVER L'ASSISTANT IA</a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2023 Partenaires Affiliés Voyages. Tous droits réservés.</p>
+            <p>Contact: info@partenaires-affilies.com | Tel: +33 1 23 45 67 89</p>
+        </footer>
+    </div>
+
+    <script>
+        // Données pour les carrousels
+        const carouselData = {
+            business: [
+                { icon: "fas fa-hotel", title: "Hôtels", desc: "Partenaires hôteliers" },
+                { icon: "fas fa-utensils", title: "Restauration", desc: "Restaurants & cafés" },
+                { icon: "fas fa-car", title: "Location", desc: "Location de véhicules" },
+                { icon: "fas fa-ship", title: "Croisières", desc: "Compagnies maritimes" },
+                { icon: "fas fa-plane-departure", title: "Compagnies aériennes", desc: "Transport aérien" },
+                { icon: "fas fa-suitcase-rolling", title: "Agences", desc: "Agences de voyage" },
+                { icon: "fas fa-gem", title: "Luxe", desc: "Partenaires luxe" },
+                { icon: "fas fa-hiking", title: "Aventure", desc: "Tourisme d'aventure" }
+            ],
+            region: [
+                { icon: "fas fa-euro-sign", title: "Europe", desc: "Destinations européennes" },
+                { icon: "fas fa-globe-americas", title: "Amériques", desc: "Amérique du Nord & Sud" },
+                { icon: "fas fa-globe-asia", title: "Asie", desc: "Destinations asiatiques" },
+                { icon: "fas fa-umbrella-beach", title: "Caraïbes", desc: "Îles paradisiaques" },
+                { icon: "fas fa-mountain", title: "Alpes", desc: "Destinations montagne" },
+                { icon: "fas fa-sun", title: "Méditerranée", desc: "Bord de mer méditerranéen" },
+                { icon: "fas fa-leaf", title: "Écotourisme", desc: "Destinations vertes" },
+                { icon: "fas fa-city", title: "Métropoles", desc: "Grandes villes mondiales" }
+            ],
+            activity: [
+                { icon: "fas fa-skiing", title: "Ski", desc: "Sports d'hiver" },
+                { icon: "fas fa-swimmer", title: "Plongée", desc: "Activités nautiques" },
+                { icon: "fas fa-hiking", title: "Randonnée", desc: "Treks & randonnées" },
+                { icon: "fas fa-bicycle", title: "Vélo", desc: "Cyclotourisme" },
+                { icon: "fas fa-wine-glass-alt", title: "Œnologie", desc: "Dégustations" },
+                { icon: "fas fa-camera", title: "Photographie", desc: "Voyage photo" },
+                { icon: "fas fa-utensils", title: "Gastronomie", desc: "Tourisme culinaire" },
+                { icon: "fas fa-spa", title: "Bien-être", desc: "Spa & relaxation" }
+            ]
+        };
+
+        // Initialiser les carrousels
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remplir les carrousels avec les données
+            for (const [carouselId, items] of Object.entries(carouselData)) {
+                const carouselElement = document.getElementById(`${carouselId}-carousel`);
+                
+                items.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'carousel-item';
+                    itemElement.innerHTML = `
+                        <i class="${item.icon}"></i>
+                        <h4>${item.title}</h4>
+                        <p>${item.desc}</p>
+                    `;
+                    carouselElement.appendChild(itemElement);
+                });
+            }
+
+            // Gérer les clics sur les cartes de profil
+            const profileCards = document.querySelectorAll('.profile-card');
+            profileCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Animation de clic
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                    
+                    // Afficher un message (simuler une action)
+                    const title = this.querySelector('h3').textContent;
+                    alert(`Vous avez sélectionné: ${title}\n(Simulation - Dans une vraie application, cela ouvrirait une page dédiée)`);
+                });
+            });
+
+            // Gérer les boutons de navigation des carrousels
+            const carouselButtons = document.querySelectorAll('.carousel-prev, .carousel-next');
+            carouselButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const carouselId = this.getAttribute('data-carousel');
+                    const carouselElement = document.getElementById(`${carouselId}-carousel`);
+                    const scrollAmount = 220; // Largeur d'un élément + gap
+                    
+                    if (this.classList.contains('carousel-next')) {
+                        carouselElement.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    } else {
+                        carouselElement.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    }
+                    
+                    // Animation du bouton
+                    this.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+
+            // Animation d'apparition au défilement
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observer les sections pour l'animation
+            const sections = document.querySelectorAll('.profile-section, .carousels-section, .ai-section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+
+            // Effet de particules pour la section IA
+            const aiSection = document.querySelector('.ai-section');
+            const particlesContainer = document.createElement('div');
+            particlesContainer.style.position = 'absolute';
+            particlesContainer.style.top = '0';
+            particlesContainer.style.left = '0';
+            particlesContainer.style.width = '100%';
+            particlesContainer.style.height = '100%';
+            particlesContainer.style.overflow = 'hidden';
+            particlesContainer.style.zIndex = '0';
+            aiSection.appendChild(particlesContainer);
+
+            // Créer des particules
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255, 255, 255, 0.2)';
+                particle.style.borderRadius = '50%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                
+                // Animation de flottement
+                particle.animate([
+                    { transform: 'translateY(0px)' },
+                    { transform: `translateY(${Math.random() * 40 - 20}px)` }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    iterations: Infinity,
+                    direction: 'alternate'
+                });
+                
+                particlesContainer.appendChild(particle);
+            }
+
+            // Animation pour le bouton "pulse"
+            const pulseBtn = document.querySelector('.pulse');
+            setInterval(() => {
+                pulseBtn.classList.toggle('pulse');
+                setTimeout(() => {
+                    pulseBtn.classList.toggle('pulse');
+                }, 100);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

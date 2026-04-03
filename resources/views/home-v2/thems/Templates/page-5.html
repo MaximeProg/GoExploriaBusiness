@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate · Présence Institutionnelle</title>
+  <style>
+    /* ===== STYLE CORPORATE - ÉLÉGANCE & CONFIANCE ===== */
+    /* Design institutionnel, premium, sobre */
+    .corporate-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1440px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #1e2b3c;
+      position: relative;
+    }
+
+    /* HEADER CORPORATE - SOBRE & PROFESSIONNEL */
+    .corp-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: white;
+      border-bottom: 1px solid #f0f2f5;
+      flex-wrap: wrap;
+    }
+
+    .corp-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .corp-logo-icon {
+      font-size: 32px;
+      background: linear-gradient(145deg, #0a3143, #0b3b4f);
+      color: white;
+      padding: 10px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .corp-logo-text {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0c2a36;
+    }
+
+    .corp-logo-text span {
+      font-weight: 300;
+      color: #4f7a8c;
+    }
+
+    .corp-nav {
+      display: flex;
+      gap: 44px;
+      font-weight: 500;
+    }
+
+    .corp-nav a {
+      text-decoration: none;
+      color: #2c404c;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .corp-nav a:hover {
+      color: #0066a1;
+    }
+
+    .corp-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .corp-lang {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #3a5a6a;
+      font-weight: 500;
+    }
+
+    .corp-contact-btn {
+      background: transparent;
+      border: 1.5px solid #0a3143;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #0a3143;
+      transition: 0.2s;
+    }
+
+    /* HERO CORPORATE - IMPACT VISUEL */
+    .corp-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 60px 60px 80px;
+      background: linear-gradient(145deg, #f9fcff, #f4f8fd);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .corp-hero::before {
+      content: "● ● ●";
+      position: absolute;
+      top: 30px;
+      right: 60px;
+      font-size: 140px;
+      color: rgba(10, 49, 67, 0.02);
+      letter-spacing: 20px;
+    }
+
+    .corp-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .corp-hero-tag {
+      background: rgba(10, 49, 67, 0.06);
+      color: #0a3143;
+      padding: 8px 22px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+
+    .corp-hero-title {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 24px 0;
+      color: #0a1e26;
+      letter-spacing: -1.5px;
+    }
+
+    .corp-hero-title span {
+      color: #0066a1;
+      position: relative;
+    }
+
+    .corp-hero-desc {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #3a5563;
+      margin-bottom: 40px;
+      max-width: 90%;
+    }
+
+    .corp-hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 16px;
+    }
+
+    .corp-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .corp-stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: #0a3143;
+    }
+
+    .corp-stat-label {
+      font-size: 15px;
+      color: #597888;
+    }
+
+    .corp-hero-right {
+      background: white;
+      border-radius: 40px;
+      padding: 40px;
+      box-shadow: 0 30px 50px -25px rgba(0,60,90,0.08);
+      border: 1px solid rgba(10,49,67,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .corp-quote {
+      font-size: 22px;
+      line-height: 1.5;
+      color: #1a3c4c;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    .corp-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .corp-avatar {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(145deg, #d9e6f0, #c5d8e5);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #0a3143;
+    }
+
+    /* SECTION VALEURS / MÉTIER */
+    .corp-values {
+      padding: 80px 60px;
+      background: white;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .section-surtitle {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #0066a1;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      color: #0a1e26;
+      letter-spacing: -1px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: #4d6773;
+      line-height: 1.6;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .value-card {
+      background: #fafcfe;
+      border-radius: 32px;
+      padding: 36px 28px;
+      border: 1px solid #eaf0f4;
+      transition: 0.25s ease;
+    }
+
+    .value-card:hover {
+      border-color: #b0cddb;
+      box-shadow: 0 20px 35px -18px rgba(0,80,110,0.08);
+      transform: translateY(-5px);
+    }
+
+    .value-icon {
+      font-size: 48px;
+      margin-bottom: 28px;
+    }
+
+    .value-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: #0a2a36;
+    }
+
+    .value-text {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #45606b;
+      margin: 0;
+    }
+
+    /* SECTION EXPERTISE / SERVICES */
+    .corp-expertise {
+      background: #f5f9fc;
+      padding: 80px 60px;
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .expertise-card {
+      background: white;
+      border-radius: 32px;
+      padding: 36px;
+      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.02);
+      border: 1px solid #eef3f7;
+    }
+
+    .expertise-number {
+      font-size: 42px;
+      font-weight: 800;
+      color: rgba(0,102,161,0.1);
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .expertise-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 18px 0;
+      color: #0a2a36;
+    }
+
+    .expertise-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #47636e;
+      margin-bottom: 24px;
+    }
+
+    .expertise-link {
+      color: #0066a1;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* SECTION CHIFFRES CLÉS */
+    .corp-figures {
+      padding: 70px 60px;
+      background: white;
+    }
+
+    .figures-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      background: linear-gradient(145deg, #f0f7fa, #eaf2f6);
+      border-radius: 60px;
+      padding: 60px 50px;
+    }
+
+    .figure-block {
+      text-align: center;
+    }
+
+    .figure-big {
+      font-size: 52px;
+      font-weight: 800;
+      color: #0a3143;
+      margin-bottom: 12px;
+    }
+
+    .figure-label {
+      font-size: 17px;
+      color: #2d5563;
+      font-weight: 500;
+    }
+
+    /* SECTION ÉQUIPE DIRIGEANTE */
+    .corp-leadership {
+      padding: 80px 60px;
+      background: #f5f9fc;
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .leader-card {
+      background: white;
+      border-radius: 32px;
+      padding: 32px;
+      border: 1px solid #e9f0f3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .leader-avatar {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(145deg, #d0e1e8, #c0d5df);
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      margin-bottom: 24px;
+      color: #0a3143;
+    }
+
+    .leader-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: #0a2a36;
+    }
+
+    .leader-position {
+      font-size: 16px;
+      color: #0066a1;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .leader-bio {
+      font-size: 15px;
+      color: #4b6873;
+      line-height: 1.6;
+    }
+
+    /* SECTION ENGAGEMENTS RSE */
+    .corp-commitments {
+      padding: 70px 60px;
+      background: white;
+    }
+
+    .commitments-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .commitment-item {
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .commitment-icon {
+      font-size: 36px;
+      background: #f0f7fa;
+      padding: 16px;
+      border-radius: 22px;
+      color: #0066a1;
+    }
+
+    .commitment-text h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #0a2a36;
+    }
+
+    .commitment-text p {
+      font-size: 16px;
+      color: #4e6b76;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* BANDEAU CONTACT / ACCOMPAGNEMENT */
+    .corp-cta {
+      background: linear-gradient(145deg, #0a3143, #0b3b4f);
+      border-radius: 48px;
+      margin: 40px 60px 60px;
+      padding: 60px 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: white;
+    }
+
+    .cta-left h3 {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .cta-left p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      margin: 0;
+      max-width: 600px;
+    }
+
+    .cta-btn {
+      background: white;
+      color: #0a3143;
+      padding: 18px 52px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 18px;
+      border: none;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+      transition: 0.2s;
+    }
+
+    /* FOOTER CORPORATE */
+    .corp-footer {
+      background: #0f2835;
+      color: white;
+      padding: 60px 60px 30px;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .footer-logo span {
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .footer-about p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin: 0 0 24px 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 28px;
+      font-size: 22px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .values-grid,
+      .figures-container,
+      .leadership-grid,
+      .commitments-grid,
+      .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .expertise-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .corp-hero {
+        grid-template-columns: 1fr;
+      }
+      .corp-header {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .values-grid,
+      .expertise-grid,
+      .figures-container,
+      .leadership-grid,
+      .commitments-grid,
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+      .corp-hero,
+      .corp-values,
+      .corp-expertise,
+      .corp-leadership {
+        padding: 40px 24px;
+      }
+    }
+
+    .gjs-draggable { cursor: move; }
+  </style>
+</head>
+<body>
+  <!-- SITE CORPORATE - PRÉSENCE INSTITUTIONNELLE PREMIUM -->
+  <section class="corporate-section">
+
+    <!-- HEADER INSTITUTIONNEL -->
+    <header class="corp-header">
+      <div class="corp-logo">
+        <span class="corp-logo-icon">G</span>
+        <span class="corp-logo-text">Groupe<span>Altus</span></span>
+      </div>
+      <nav class="corp-nav">
+        <a href="#">Groupe</a>
+        <a href="#">Expertises</a>
+        <a href="#">Engagements</a>
+        <a href="#">Médias</a>
+        <a href="#">Carrières</a>
+      </nav>
+      <div class="corp-actions">
+        <span class="corp-lang">🌐 FR</span>
+        <span class="corp-contact-btn">Contact</span>
+      </div>
+    </header>
+
+    <!-- HERO INSTITUTIONNEL - MESSAGE FORT -->
+    <div class="corp-hero">
+      <div class="corp-hero-left">
+        <span class="corp-hero-tag">
+          <span>🏛️</span> Groupe international
+        </span>
+        <h1 class="corp-hero-title">
+          Construisons ensemble <span>l'avenir</span> avec responsabilité
+        </h1>
+        <p class="corp-hero-desc">
+          Depuis 1985, Groupe Altus accompagne les transformations stratégiques 
+          des grandes institutions et entreprises. Présents dans 25 pays.
+        </p>
+        <div class="corp-hero-stats">
+          <div class="corp-stat-item">
+            <span class="corp-stat-number">25</span>
+            <span class="corp-stat-label">Pays d'implantation</span>
+          </div>
+          <div class="corp-stat-item">
+            <span class="corp-stat-number">1 200</span>
+            <span class="corp-stat-label">Collaborateurs</span>
+          </div>
+          <div class="corp-stat-item">
+            <span class="corp-stat-number">450M€</span>
+            <span class="corp-stat-label">Chiffre d'affaires</span>
+          </div>
+        </div>
+      </div>
+      <div class="corp-hero-right">
+        <div class="corp-quote">
+          “Notre raison d'être : innover avec intégrité pour construire un monde plus durable et inclusif.”
+        </div>
+        <div class="corp-author">
+          <div class="corp-avatar">👤</div>
+          <div>
+            <div style="font-weight: 700; color: #0a2a36;">Marie-Noëlle Delacroix</div>
+            <div style="font-size: 14px; color: #4e6b76;">Présidente-directrice générale</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALEURS & MISSION -->
+    <div class="corp-values">
+      <div class="section-header">
+        <div class="section-surtitle">NOS VALEURS</div>
+        <h2 class="section-title">Une éthique au cœur de nos actions</h2>
+        <p class="section-desc">
+          L'exigence, la confiance et l'engagement guident chacune de nos décisions depuis 40 ans.
+        </p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">⚖️</div>
+          <h3 class="value-title">Intégrité</h3>
+          <p class="value-text">Transparence totale dans nos relations avec nos parties prenantes.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🚀</div>
+          <h3 class="value-title">Excellence</h3>
+          <p class="value-text">La recherche permanente de la qualité et de la performance.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3 class="value-title">Respect</h3>
+          <p class="value-text">Considération de nos collaborateurs, clients et de l'environnement.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🌍</div>
+          <h3 class="value-title">Responsabilité</h3>
+          <p class="value-text">Agir pour un impact positif sur la société et les territoires.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERTISES / PÔLES D'ACTIVITÉ -->
+    <div class="corp-expertise">
+      <div class="section-header">
+        <div class="section-surtitle">NOS EXPERTISES</div>
+        <h2 class="section-title">Quatre pôles complémentaires</h2>
+        <p class="section-desc">
+          Une offre intégrée au service des grandes transformations.
+        </p>
+      </div>
+
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <div class="expertise-number">01</div>
+          <h3 class="expertise-name">Conseil stratégique</h3>
+          <p class="expertise-desc">
+            Accompagnement des directions générales dans leurs décisions majeures : fusions, transformations, internationalisation.
+          </p>
+          <span class="expertise-link">Découvrir →</span>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-number">02</div>
+          <h3 class="expertise-name">Ingénierie financière</h3>
+          <p class="expertise-desc">
+            Optimisation de la structure financière, levées de fonds, due diligence et accompagnement M&A.
+          </p>
+          <span class="expertise-link">Découvrir →</span>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-number">03</div>
+          <h3 class="expertise-name">Transition numérique</h3>
+          <p class="expertise-desc">
+            Accélération digitale des organisations, cybersécurité, data intelligence et expérience client.
+          </p>
+          <span class="expertise-link">Découvrir →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHIFFRES CLÉS -->
+    <div class="corp-figures">
+      <div class="figures-container">
+        <div class="figure-block">
+          <div class="figure-big">40</div>
+          <div class="figure-label">ans d'expertise</div>
+        </div>
+        <div class="figure-block">
+          <div class="figure-big">25</div>
+          <div class="figure-label">implantations</div>
+        </div>
+        <div class="figure-block">
+          <div class="figure-big">1 200</div>
+          <div class="figure-label">talents</div>
+        </div>
+        <div class="figure-block">
+          <div class="figure-big">+800</div>
+          <div class="figure-label">clients grands comptes</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMITÉ DE DIRECTION -->
+    <div class="corp-leadership">
+      <div class="section-header">
+        <div class="section-surtitle">GOUVERNANCE</div>
+        <h2 class="section-title">Notre comité exécutif</h2>
+        <p class="section-desc">
+          Une équipe dirigeante pluridisciplinaire, engagée au service de notre mission.
+        </p>
+      </div>
+
+      <div class="leadership-grid">
+        <div class="leader-card">
+          <div class="leader-avatar">👩</div>
+          <h3 class="leader-name">Marie-Noëlle Delacroix</h3>
+          <div class="leader-position">Présidente</div>
+          <p class="leader-bio">40 ans d'expérience dans le conseil aux directions générales.</p>
+        </div>
+        <div class="leader-card">
+          <div class="leader-avatar">👨</div>
+          <h3 class="leader-name">Thomas Beauchamp</h3>
+          <div class="leader-position">Directeur Général</div>
+          <p class="leader-bio">Ancien associé chez McKinsey, expert en transformation.</p>
+        </div>
+        <div class="leader-card">
+          <div class="leader-avatar">👩‍⚖️</div>
+          <h3 class="leader-name">Catherine Fontaine</h3>
+          <div class="leader-position">Directrice Juridique & RSE</div>
+          <p class="leader-bio">Pilote la stratégie RSE et conformité groupe.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGAGEMENTS RSE -->
+    <div class="corp-commitments">
+      <div class="section-header">
+        <div class="section-surtitle">RESPONSABILITÉ SOCIÉTALE</div>
+        <h2 class="section-title">Nos engagements concrets</h2>
+        <p class="section-desc">
+          Parce que la performance durable est notre seul horizon.
+        </p>
+      </div>
+
+      <div class="commitments-grid">
+        <div class="commitment-item">
+          <span class="commitment-icon">🌱</span>
+          <div class="commitment-text">
+            <h4>Neutralité carbone</h4>
+            <p>Objectif 2035 : réduction de 50% de nos émissions et compensation intégrale.</p>
+          </div>
+        </div>
+        <div class="commitment-item">
+          <span class="commitment-icon">🤲</span>
+          <div class="commitment-text">
+            <h4>Fondation d'entreprise</h4>
+            <p>Soutien à l'éducation et l'insertion professionnelle des jeunes.</p>
+          </div>
+        </div>
+        <div class="commitment-item">
+          <span class="commitment-icon">⚖️</span>
+          <div class="commitment-text">
+            <h4>Parité & inclusion</h4>
+            <p>45% de femmes au comex, 35 nationalités représentées.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANDEAU CONTACT / PRISE DE CONTACT -->
+    <div class="corp-cta">
+      <div class="cta-left">
+        <h3>Une ambition ? Un projet ?</h3>
+        <p>Nos équipes sont à votre écoute pour échanger sur vos enjeux stratégiques.</p>
+      </div>
+      <span class="cta-btn">Nous contacter →</span>
+    </div>
+
+    <!-- FOOTER CORPORATE -->
+    <footer class="corp-footer">
+      <div class="footer-main">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <span>Groupe Altus</span>
+          </div>
+          <p>Société de conseil et d'ingénierie financière, certifiée B Corp et signataire du Global Compact.</p>
+          <div class="footer-social">
+            <span>📘</span>
+            <span>📷</span>
+            <span>🐦</span>
+            <span>🔗</span>
+          </div>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Groupe</span>
+          <a href="#">Qui sommes-nous</a>
+          <a href="#">Gouvernance</a>
+          <a href="#">Rapport annuel</a>
+          <a href="#">Presse</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Expertises</span>
+          <a href="#">Stratégie</a>
+          <a href="#">Finance</a>
+          <a href="#">Digital</a>
+          <a href="#">RSE</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Carrières</span>
+          <a href="#">Offres d'emploi</a>
+          <a href="#">Candidature spontanée</a>
+          <a href="#">Talents</a>
+          <a href="#">FAQ recrutement</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Groupe Altus. Tous droits réservés.</span>
+        <span style="display: flex; gap: 28px;">
+          <span>Mentions légales</span>
+          <span>Confidentialité</span>
+          <span>Cookies</span>
+        </span>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>

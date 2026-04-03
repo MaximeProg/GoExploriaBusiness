@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>URBAN FUSION · Dropshipping Landing Page</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #171717;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    /* ===== CONTAINER ===== */
+    .df-container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* ===== SECTIONS ===== */
+    .df-section {
+      padding: 80px 0;
+    }
+    
+    .df-section-sm {
+      padding: 48px 0;
+    }
+    
+    /* ===== TYPOGRAPHIE ===== */
+    .df-h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    
+    .df-h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    
+    .df-h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    
+    .df-h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .df-section-title {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 56px;
+    }
+    
+    .df-section-title .df-h2 {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    
+    .df-section-title .df-h2:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #f97316;
+      border-radius: 4px;
+    }
+    
+    .df-section-subtitle {
+      color: #737373;
+      font-size: 1.2rem;
+    }
+    
+    /* ===== GRID ===== */
+    .df-grid {
+      display: grid;
+      gap: 30px;
+    }
+    
+    .df-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .df-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .df-grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    /* ===== BOUTONS ===== */
+    .df-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 40px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .df-btn-primary {
+      background: #f97316;
+      color: white;
+      box-shadow: 0 10px 25px -5px rgba(249,115,22,0.2);
+    }
+    
+    .df-btn-primary:hover {
+      background: #ea580c;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 30px -8px rgba(249,115,22,0.3);
+    }
+    
+    .df-btn-outline {
+      border: 2px solid #f97316;
+      color: #f97316;
+      background: transparent;
+    }
+    
+    .df-btn-outline:hover {
+      background: #f97316;
+      color: white;
+    }
+    
+    .df-btn-dark {
+      background: #171717;
+      color: white;
+    }
+    
+    .df-btn-dark:hover {
+      background: #000000;
+    }
+    
+    .df-btn-large {
+      padding: 20px 56px;
+      font-size: 1.2rem;
+    }
+    
+    /* ===== BADGES ===== */
+    .df-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: rgba(249,115,22,0.1);
+      color: #f97316;
+      border: 1px solid rgba(249,115,22,0.2);
+      margin-bottom: 24px;
+    }
+    
+    .df-badge-dark {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    /* ===== TOP ANNOUNCE ===== */
+    .df-top-announce {
+      background: #171717;
+      color: white;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    
+    .df-top-announce span {
+      color: #f97316;
+    }
+    
+    /* ===== NAVBAR ===== */
+    .df-navbar {
+      padding: 20px 0;
+      background: white;
+      border-bottom: 1px solid #e5e5e5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .df-navbar .df-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .df-logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #171717, #404040);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .df-nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 600;
+    }
+    
+    .df-nav-icons {
+      display: flex;
+      gap: 24px;
+      font-size: 1.2rem;
+    }
+    
+    /* ===== HERO ===== */
+    .df-hero {
+      background: linear-gradient(145deg, #fff6ed, #ffffff);
+      padding: 60px 0 80px;
+      overflow: hidden;
+    }
+    
+    .df-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .df-hero .df-h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    
+    .df-hero .df-h1 span {
+      color: #f97316;
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .df-hero p {
+      font-size: 1.2rem;
+      color: #737373;
+      margin-bottom: 32px;
+    }
+    
+    .df-hero-image {
+      position: relative;
+    }
+    
+    .df-hero-image img {
+      border-radius: 32px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05);
+      transform: rotate(2deg);
+    }
+    
+    .df-hero-badge {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: #f97316;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 60px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px -5px rgba(249,115,22,0.2);
+    }
+    
+    .df-hero-features {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+    }
+    
+    .df-hero-features div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .df-hero-features i {
+      color: #f97316;
+    }
+    
+    /* ===== COUNTDOWN ===== */
+    .df-countdown {
+      background: linear-gradient(145deg, #f97316, #ea580c);
+      color: white;
+      padding: 24px 0;
+    }
+    
+    .df-countdown .df-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .df-countdown-text {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .df-countdown-text i {
+      font-size: 2rem;
+    }
+    
+    .df-countdown-timer {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .df-timer-item {
+      text-align: center;
+    }
+    
+    .df-timer-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    
+    .df-timer-label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      text-transform: uppercase;
+    }
+    
+    /* ===== USP ===== */
+    .df-usp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .df-usp-item {
+      text-align: center;
+      padding: 24px;
+    }
+    
+    .df-usp-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(249,115,22,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: #f97316;
+      font-size: 2rem;
+    }
+    
+    /* ===== PRODUCT CARD ===== */
+    .df-product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.03);
+      transition: 0.3s;
+      border: 1px solid #e5e5e5;
+      position: relative;
+    }
+    
+    .df-product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05);
+    }
+    
+    .df-product-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #f97316;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+    
+    .df-product-badge-soldout {
+      background: #737373;
+    }
+    
+    .df-product-image {
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+      transition: 0.5s;
+    }
+    
+    .df-product-card:hover .df-product-image {
+      transform: scale(1.05);
+    }
+    
+    .df-product-content {
+      padding: 24px;
+    }
+    
+    .df-product-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .df-product-price {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    
+    .df-current-price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #f97316;
+    }
+    
+    .df-old-price {
+      color: #a3a3a3;
+      text-decoration: line-through;
+      font-size: 1.1rem;
+    }
+    
+    .df-product-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fbbf24;
+      margin-bottom: 16px;
+    }
+    
+    .df-product-rating span {
+      color: #737373;
+    }
+    
+    /* ===== STATS ===== */
+    .df-stats-section {
+      background: #fafafa;
+    }
+    
+    .df-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+    
+    .df-stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #f97316;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    
+    /* ===== REVIEW CARD ===== */
+    .df-review-card {
+      background: white;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+      border: 1px solid #e5e5e5;
+    }
+    
+    .df-review-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    
+    .df-review-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #d4d4d4;
+      background-size: cover;
+    }
+    
+    .df-review-stars {
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+    
+    .df-review-date {
+      color: #a3a3a3;
+      font-size: 0.85rem;
+    }
+    
+    /* ===== GALLERY ===== */
+    .df-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    
+    .df-gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1;
+    }
+    
+    .df-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* ===== GUARANTEE ===== */
+    .df-guarantee {
+      background: white;
+      border: 2px solid #f97316;
+      border-radius: 32px;
+      padding: 48px;
+      text-align: center;
+    }
+    
+    .df-guarantee-icon {
+      font-size: 3rem;
+      color: #f97316;
+      margin-bottom: 24px;
+    }
+    
+    /* ===== FAQ ===== */
+    .df-faq-section {
+      background: #fafafa;
+    }
+    
+    .df-faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .df-faq-item {
+      background: white;
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid #e5e5e5;
+    }
+    
+    .df-faq-item .df-h4 {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .df-faq-item i {
+      color: #f97316;
+    }
+    
+    /* ===== CTA ===== */
+    .df-cta {
+      background: linear-gradient(145deg, #171717, #000000);
+      color: white;
+      border-radius: 32px;
+      padding: 80px 60px;
+      text-align: center;
+    }
+    
+    .df-cta .df-h2 {
+      color: white;
+    }
+    
+    .df-cta .df-btn-primary {
+      margin-top: 32px;
+    }
+    
+    /* ===== NEWSLETTER ===== */
+    .df-newsletter {
+      background: #f5f5f5;
+      padding: 48px 0;
+    }
+    
+    .df-newsletter-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    
+    .df-newsletter-form {
+      display: flex;
+      gap: 16px;
+      flex: 1;
+      max-width: 500px;
+    }
+    
+    .df-newsletter-input {
+      flex: 1;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 60px;
+      font-size: 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+    
+    /* ===== FOOTER ===== */
+    .df-footer {
+      background: #171717;
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .df-footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+    }
+    
+    .df-footer-logo {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #a3a3a3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .df-footer p {
+      color: #a3a3a3;
+    }
+    
+    .df-social-links {
+      display: flex;
+      gap: 24px;
+      font-size: 1.4rem;
+      margin-top: 24px;
+    }
+    
+    .df-social-links a {
+      color: #a3a3a3;
+    }
+    
+    .df-social-links a:hover {
+      color: white;
+    }
+    
+    .df-footer .df-h4 {
+      color: white;
+      margin-bottom: 24px;
+    }
+    
+    .df-footer-links li {
+      margin-bottom: 14px;
+    }
+    
+    .df-footer-links a {
+      color: #a3a3a3;
+    }
+    
+    .df-footer-links a:hover {
+      color: white;
+    }
+    
+    .df-copyright {
+      text-align: center;
+      padding-top: 48px;
+      margin-top: 48px;
+      border-top: 1px solid #404040;
+      color: #a3a3a3;
+    }
+    
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .df-h1 { font-size: 3.2rem; }
+      .df-h2 { font-size: 2.4rem; }
+      .df-hero-grid { grid-template-columns: 1fr; }
+      .df-usp-grid { grid-template-columns: repeat(2, 1fr); }
+      .df-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .df-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .df-faq-grid { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .df-section { padding: 60px 0; }
+      .df-h1 { font-size: 2.5rem; }
+      .df-h2 { font-size: 2rem; }
+      .df-grid-2, .df-grid-3, .df-grid-4, .df-usp-grid, .df-stats-grid, .df-footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .df-navbar .df-container {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .df-nav-links {
+        display: none;
+      }
+      .df-countdown .df-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .df-cta {
+        padding: 48px 24px;
+      }
+      .df-newsletter-wrapper {
+        flex-direction: column;
+        text-align: center;
+      }
+      .df-newsletter-form {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== TOP ANNOUNCEMENT ===== -->
+  <div class="df-top-announce">
+    <div class="df-container">
+      🚚 LIVRAISON GRATUITE DÈS 50€ · 🔥 -20% AVEC CODE <span>URBAN20</span>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="df-navbar">
+    <div class="df-container">
+      <a href="#" class="df-logo">URBAN FUSION</a>
+      <div class="df-nav-links">
+        <a href="#">Nouveautés</a>
+        <a href="#">Homme</a>
+        <a href="#">Femme</a>
+        <a href="#">Accessoires</a>
+        <a href="#">Soldes</a>
+      </div>
+      <div class="df-nav-icons">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-user"></i>
+        <i class="fas fa-shopping-bag"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="df-hero">
+    <div class="df-container">
+      <div class="df-hero-grid">
+        <div>
+          <span class="df-badge">🔥 RELEASE 2026</span>
+          <h1 class="df-h1">L'URBAN STYLE<br><span>RÉINVENTÉ</span></h1>
+          <p>Collection capsule édition limitée. Streetwear premium, matières durables, designs exclusifs.</p>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#" class="df-btn df-btn-primary df-btn-large">SHOPPER MAINTENANT</a>
+            <a href="#" class="df-btn df-btn-outline df-btn-large">DÉCOUVRIR</a>
+          </div>
+          <div class="df-hero-features">
+            <div><i class="fas fa-check-circle"></i> Paiement sécurisé</div>
+            <div><i class="fas fa-check-circle"></i> Retours gratuits</div>
+            <div><i class="fas fa-check-circle"></i> Livraison 48h</div>
+          </div>
+        </div>
+        <div class="df-hero-image">
+          <img src="https://images.pexels.com/photos/8371408/pexels-photo-8371408.jpeg?auto=compress&cs=tinysrgb&w=600" alt="streetwear">
+          <div class="df-hero-badge">
+            -30% <span style="font-size: 0.9rem; opacity: 0.9;">Launch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COUNTDOWN PROMO ===== -->
+  <section class="df-countdown">
+    <div class="df-container">
+      <div class="df-countdown-text">
+        <i class="fas fa-bolt"></i>
+        <span style="font-weight: 700; font-size: 1.2rem;">OFFRE FLASH -30%</span>
+        <span style="opacity: 0.9;">Fin dans :</span>
+      </div>
+      <div class="df-countdown-timer">
+        <div class="df-timer-item">
+          <div class="df-timer-number">08</div>
+          <div class="df-timer-label">Heures</div>
+        </div>
+        <div class="df-timer-item">
+          <div class="df-timer-number">24</div>
+          <div class="df-timer-label">Minutes</div>
+        </div>
+        <div class="df-timer-item">
+          <div class="df-timer-number">36</div>
+          <div class="df-timer-label">Secondes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== USPS ===== -->
+  <section class="df-section-sm">
+    <div class="df-container">
+      <div class="df-usp-grid">
+        <div class="df-usp-item">
+          <div class="df-usp-icon">
+            <i class="fas fa-truck"></i>
+          </div>
+          <h4 class="df-h4">Livraison express</h4>
+          <p style="color: #737373;">En 48h chrono</p>
+        </div>
+        <div class="df-usp-item">
+          <div class="df-usp-icon">
+            <i class="fas fa-rotate-left"></i>
+          </div>
+          <h4 class="df-h4">Retour gratuit</h4>
+          <p style="color: #737373;">30 jours satisfait</p>
+        </div>
+        <div class="df-usp-item">
+          <div class="df-usp-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h4 class="df-h4">Paiement sécurisé</h4>
+          <p style="color: #737373;">CB, PayPal, Apple Pay</p>
+        </div>
+        <div class="df-usp-item">
+          <div class="df-usp-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h4 class="df-h4">Éco-responsable</h4>
+          <p style="color: #737373;">Coton bio recyclé</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUITS BESTSELLERS ===== -->
+  <section class="df-section">
+    <div class="df-container">
+      <div class="df-section-title">
+        <span class="df-badge">🔥 BESTSELLERS</span>
+        <h2 class="df-h2">Les plus vendus</h2>
+        <p class="df-section-subtitle">Ce que tout le monde s'arrache en ce moment</p>
+      </div>
+      <div class="df-grid df-grid-3">
+        <div class="df-product-card">
+          <span class="df-product-badge">-30%</span>
+          <div class="df-product-image" style="background-image: url('https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+          <div class="df-product-content">
+            <div class="df-product-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              <span>(128 avis)</span>
+            </div>
+            <h3 class="df-product-title">Hoodie Oversized Noir</h3>
+            <div class="df-product-price">
+              <span class="df-current-price">48,99€</span>
+              <span class="df-old-price">69,99€</span>
+            </div>
+            <a href="#" class="df-btn df-btn-dark" style="width: 100%;">AJOUTER AU PANIER</a>
+          </div>
+        </div>
+        <div class="df-product-card">
+          <span class="df-product-badge">-25%</span>
+          <div class="df-product-image" style="background-image: url('https://images.pexels.com/photos/6311390/pexels-photo-6311390.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+          <div class="df-product-content">
+            <div class="df-product-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <span>(94 avis)</span>
+            </div>
+            <h3 class="df-product-title">Panther Jogging Beige</h3>
+            <div class="df-product-price">
+              <span class="df-current-price">44,99€</span>
+              <span class="df-old-price">59,99€</span>
+            </div>
+            <a href="#" class="df-btn df-btn-dark" style="width: 100%;">AJOUTER AU PANIER</a>
+          </div>
+        </div>
+        <div class="df-product-card">
+          <span class="df-product-badge df-product-badge-soldout">RUPTURE</span>
+          <div class="df-product-image" style="background-image: url('https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+          <div class="df-product-content">
+            <div class="df-product-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <span>(211 avis)</span>
+            </div>
+            <h3 class="df-product-title">Casquette TNF Rétro</h3>
+            <div class="df-product-price">
+              <span class="df-current-price">29,99€</span>
+              <span class="df-old-price">39,99€</span>
+            </div>
+            <a href="#" class="df-btn df-btn-outline" style="width: 100%;">ALERTE STOCK</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATISTIQUES PREUVES SOCIALES ===== -->
+  <section class="df-section df-stats-section">
+    <div class="df-container">
+      <div class="df-stats-grid">
+        <div>
+          <div class="df-stat-number">50K+</div>
+          <p style="font-weight: 600;">Clients satisfaits</p>
+        </div>
+        <div>
+          <div class="df-stat-number">4.8</div>
+          <p style="font-weight: 600;">★ Note moyenne</p>
+        </div>
+        <div>
+          <div class="df-stat-number">15K+</div>
+          <p style="font-weight: 600;">Commandes / mois</p>
+        </div>
+        <div>
+          <div class="df-stat-number">98%</div>
+          <p style="font-weight: 600;">Recommandent</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AVIS CLIENTS ===== -->
+  <section class="df-section">
+    <div class="df-container">
+      <div class="df-section-title">
+        <span class="df-badge">📸 CLIENTS SATISFAITS</span>
+        <h2 class="df-h2">Ils portent Urban Fusion</h2>
+        <p class="df-section-subtitle">+15 000 avis vérifiés</p>
+      </div>
+      <div class="df-grid df-grid-3">
+        <div class="df-review-card">
+          <div class="df-review-header">
+            <div class="df-review-avatar" style="background-image: url('https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+            <div>
+              <div class="df-review-stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <p style="font-weight: 700;">Marie L.</p>
+              <span class="df-review-date">Acheté il y a 3 jours</span>
+            </div>
+          </div>
+          <p>"Le hoodie est incroyablement confortable, taille parfaitement. Livraison super rapide !"</p>
+        </div>
+        <div class="df-review-card">
+          <div class="df-review-header">
+            <div class="df-review-avatar" style="background-image: url('https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+            <div>
+              <div class="df-review-stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <p style="font-weight: 700;">Thomas D.</p>
+              <span class="df-review-date">Acheté il y a 5 jours</span>
+            </div>
+          </div>
+          <p>"Qualité au top, le tissu est épais et la coupe parfaite. Je recommande !"</p>
+        </div>
+        <div class="df-review-card">
+          <div class="df-review-header">
+            <div class="df-review-avatar" style="background-image: url('https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+            <div>
+              <div class="df-review-stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </div>
+              <p style="font-weight: 700;">Léa M.</p>
+              <span class="df-review-date">Acheté il y a 1 semaine</span>
+            </div>
+          </div>
+          <p>"Le jogging beige est magnifique, matière douce. Je vais prendre le noir aussi !"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALERIE INSTAGRAM ===== -->
+  <section class="df-section" style="background: #fafafa;">
+    <div class="df-container">
+      <div class="df-section-title">
+        <span class="df-badge">📸 @URBANFUSION</span>
+        <h2 class="df-h2">Ils nous taguent</h2>
+        <p class="df-section-subtitle">Partagez votre look avec #UrbanFusionStyle</p>
+      </div>
+      <div class="df-gallery-grid">
+        <div class="df-gallery-item"><img src="https://images.pexels.com/photos/8371408/pexels-photo-8371408.jpeg?auto=compress&cs=tinysrgb&w=600" alt="streetwear"></div>
+        <div class="df-gallery-item"><img src="https://images.pexels.com/photos/6311390/pexels-photo-6311390.jpeg?auto=compress&cs=tinysrgb&w=600" alt="streetwear"></div>
+        <div class="df-gallery-item"><img src="https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg?auto=compress&cs=tinysrgb&w=600" alt="streetwear"></div>
+        <div class="df-gallery-item"><img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&w=600" alt="streetwear"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GARANTIE SATISFAIT ===== -->
+  <section class="df-section">
+    <div class="df-container">
+      <div class="df-guarantee">
+        <div class="df-guarantee-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h2 class="df-h2" style="margin-bottom: 16px;">Satisfait ou remboursé</h2>
+        <p style="font-size: 1.2rem; color: #737373; max-width: 600px; margin: 0 auto 32px;">Vous avez 30 jours pour changer d'avis. Retour gratuit et remboursement sous 48h.</p>
+        <a href="#" class="df-btn df-btn-primary">COMMENCER MON SHOPPING</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="df-section df-faq-section">
+    <div class="df-container">
+      <div class="df-section-title">
+        <span class="df-badge">❓ FAQ</span>
+        <h2 class="df-h2">Questions fréquentes</h2>
+        <p class="df-section-subtitle">Tout savoir avant de commander</p>
+      </div>
+      <div class="df-faq-grid">
+        <div class="df-faq-item">
+          <h4 class="df-h4"><i class="fas fa-truck"></i> Quels sont les délais de livraison ?</h4>
+          <p style="color: #737373;">Livraison express 48h offerte dès 50€. Standard 3-5 jours (4,90€).</p>
+        </div>
+        <div class="df-faq-item">
+          <h4 class="df-h4"><i class="fas fa-rotate-left"></i> Comment retourner un article ?</h4>
+          <p style="color: #737373;">Depuis votre espace client, imprimez l'étiquette retour et déposez le colis en point relais.</p>
+        </div>
+        <div class="df-faq-item">
+          <h4 class="df-h4"><i class="fas fa-ruler"></i> Comment choisir ma taille ?</h4>
+          <p style="color: #737373;">Notre guide des tailles est disponible sur chaque fiche produit. Nos produits taillent normalement.</p>
+        </div>
+        <div class="df-faq-item">
+          <h4 class="df-h4"><i class="fas fa-credit-card"></i> Quels modes de paiement ?</h4>
+          <p style="color: #737373;">CB, PayPal, Apple Pay, Google Pay et Klarna (paiement 3x sans frais).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="df-section">
+    <div class="df-container">
+      <div class="df-cta">
+        <span class="df-badge df-badge-dark">🔥 ÉDITION LIMITÉE</span>
+        <h2 class="df-h2">Ne ratez pas la collection</h2>
+        <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 16px;">-30% sur votre première commande avec le code URBAN30</p>
+        <a href="#" class="df-btn df-btn-primary df-btn-large">JE PROFITE DE L'OFFRE</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="df-newsletter">
+    <div class="df-container">
+      <div class="df-newsletter-wrapper">
+        <div>
+          <h3 class="df-h3" style="margin-bottom: 8px;">-10% sur votre prochaine commande</h3>
+          <p style="color: #737373;">Inscrivez-vous à la newsletter et recevez un code exclusif.</p>
+        </div>
+        <div class="df-newsletter-form">
+          <input type="email" placeholder="Votre adresse email" class="df-newsletter-input">
+          <button class="df-btn df-btn-primary">S'INSCRIRE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="df-footer">
+    <div class="df-container">
+      <div class="df-footer-grid">
+        <div>
+          <a href="#" class="df-footer-logo">URBAN FUSION</a>
+          <p>Streetwear premium, éthique et accessible. Inspiré par la culture urbaine.</p>
+          <div class="df-social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="df-h4">Aide</h4>
+          <ul class="df-footer-links">
+            <li><a href="#">Livraison</a></li>
+            <li><a href="#">Retours</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="df-h4">À propos</h4>
+          <ul class="df-footer-links">
+            <li><a href="#">Notre histoire</a></li>
+            <li><a href="#">Engagements</a></li>
+            <li><a href="#">Carrières</a></li>
+            <li><a href="#">Presse</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="df-h4">Légal</h4>
+          <ul class="df-footer-links">
+            <li><a href="#">CGV</a></li>
+            <li><a href="#">Confidentialité</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">Mentions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="df-copyright">
+        <p>© 2026 URBAN FUSION. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple countdown simulation pour l'exemple
+    console.log("Landing page dropshipping prête - 100% classes personnalisées");
+  </script>
+</body>
+</html>

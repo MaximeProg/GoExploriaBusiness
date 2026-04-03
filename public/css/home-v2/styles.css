@@ -15,6 +15,76 @@
     --gray-medium: #e9ecef;
     --overlay-dark: rgba(10, 22, 40, 0.7);
     --overlay-medium: rgba(10, 22, 40, 0.5);
+
+    /* --- DESIGN SYSTEM BOSSE (Standard) --- */
+    --bosse-border: #e0e0e0;
+    --bosse-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --bosse-bg: #ffffff;
+    --bosse-accent: #d32f2f;
+    --bosse-radius: 16px;
+}
+
+/* --- UTILITIES DESIGN BOSSE --- */
+.design-bosse-section {
+    padding: 80px 0;
+    width: 100%;
+}
+
+.design-bosse-block {
+    background: var(--bosse-bg);
+    border: 1px solid var(--bosse-border);
+    box-shadow: var(--bosse-shadow);
+    border-radius: var(--bosse-radius);
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.design-bosse-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--navy-dark);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.design-bosse-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.design-bosse-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.design-bosse-more-btn {
+    background: var(--bosse-accent);
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.design-bosse-more-btn:hover {
+    background: var(--navy-dark);
+    transform: translateY(-2px);
 }
 
 * {
@@ -26,8 +96,29 @@
 body {
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: #333333;
-    overflow-x: hidden;
+    overflow-x: hidden !important; /* TOTAL PROTECTION FROM HORIZONTAL SCROLL */
     background-color: #ffffff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    max-width: 100vw;
+}
+
+html {
+    overflow-x: hidden !important;
+    width: 100%;
+}
+
+* {
+    max-width: 100vw;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
 }
 
 /* ============================================
@@ -213,23 +304,8 @@ body {
     position: relative;
 }
 
-.nav-menu li a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-gold);
-    transition: width 0.3s ease;
-}
-
 .nav-menu li a:hover {
     color: var(--accent-gold);
-}
-
-.nav-menu li a:hover::after {
-    width: 100%;
 }
 
 .nav-right {
@@ -856,7 +932,7 @@ body {
     }
 
     .main-content {
-        margin-top: 90px;
+        margin-top: 0;
     }
 }
 
@@ -982,8 +1058,8 @@ body {
 
     .hero-v2 {
         padding: 0 !important;
-        height: 120vh;
-        min-height: 120vh;
+        height: 100vh;
+        min-height: 500px;
         margin-top: 70px;
         justify-content: flex-start;
     }
@@ -1188,8 +1264,8 @@ body {
 
     .hero-v2 {
         padding: 0;
-        height: 120vh;
-        min-height: 120vh;
+        height: 100vh;
+        min-height: 500px;
     }
 
     .hero-main {

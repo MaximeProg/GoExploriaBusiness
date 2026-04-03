@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidéos Québec</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e30613;
+            --primary-dark: #b3050f;
+            --secondary: #0b6e4f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --accent: #ffd166;
+            --border-radius: 12px;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: white;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-subtitle::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Video Showcase Section */
+        .video-showcase-section {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 500px;
+            overflow: hidden;
+            margin-bottom: 60px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .video-slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: var(--border-radius);
+        }
+
+        .video-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .video-slide.active {
+            opacity: 1;
+        }
+
+        .youtube-video-full {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+
+        .video-slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            border-radius: var(--border-radius);
+        }
+
+        .video-slide-content {
+            max-width: 800px;
+            text-align: center;
+            color: white;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
+        }
+
+        .video-slide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .video-slide-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Carrousel Container */
+        .carousel-container {
+            margin-bottom: 80px;
+        }
+
+        .carousel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .carousel-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .carousel-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .carousel-items {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 10px 5px 20px;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .carousel-items::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 300px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .carousel-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .carousel-item.active {
+            border: 2px solid var(--primary);
+        }
+
+        .carousel-item-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .carousel-item-content {
+            padding: 20px;
+        }
+
+        .carousel-item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .carousel-item-description {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .carousel-item-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .carousel-item-rating {
+            color: var(--accent);
+        }
+
+        /* Video Controls */
+        .video-slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .slider-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .slider-arrow {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .slider-arrow:hover {
+            background-color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .slide-counter {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .carousel-item {
+                width: 280px;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+            
+            .video-slide-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .carousel-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .carousel-title {
+                font-size: 1.6rem;
+            }
+            
+            .video-showcase-section {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
+            .video-slide-title {
+                font-size: 1.8rem;
+            }
+            
+            .video-slide-description {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-header {
+                margin-bottom: 40px;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .carousel-item {
+                width: 250px;
+            }
+            
+            .video-showcase-section {
+                height: 40vh;
+                min-height: 300px;
+            }
+            
+            .video-slide-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Section Header -->
+        <header class="section-header">
+            <h2 class="section-subtitle">Explorez le Québec</h2>
+            <h1 class="section-title">VIDÉOS DU QUÉBEC</h1>
+            <p class="section-description">
+                Découvrez la beauté de notre province à travers une sélection exclusive de vidéos captivantes. 
+                Des paysages spectaculaires aux événements culturels, explorez le Québec comme jamais auparavant.
+            </p>
+        </header>
+
+        <!-- Video Showcase Section -->
+        <section class="video-showcase-section">
+            <div class="video-slider-container">
+                <!-- Slide 1 -->
+                <div class="video-slide active" data-slide="1">
+                    <iframe class="youtube-video-full" src="https://www.youtube.com/embed/Tmn9inxTvPo?rel=0&modestbranding=1&showinfo=0" title="Vidéo principale Québec" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-slide-overlay">
+                        <div class="video-slide-content">
+                            <h1 class="video-slide-title">Les Plus Beaux Paysages du Québec</h1>
+                            <p class="video-slide-description">Une exploration visuelle des paysages les plus spectaculaires de notre belle province, des montagnes aux lacs cristallins.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="video-slide" data-slide="2">
+                    <iframe class="youtube-video-full" src="https://www.youtube.com/embed/Z7T0OnbBkG4?rel=0&modestbranding=1&showinfo=0" title="Festival de Jazz" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-slide-overlay">
+                        <div class="video-slide-content">
+                            <h1 class="video-slide-title">Festival International de Jazz de Montréal</h1>
+                            <p class="video-slide-description">Plongez dans l'ambiance électrisante du plus grand festival de jazz au monde.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="video-slide" data-slide="3">
+                    <iframe class="youtube-video-full" src="https://www.youtube.com/embed/Dwvd2FhUwIE?rel=0&modestbranding=1&showinfo=0" title="Gastronomie québécoise" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-slide-overlay">
+                        <div class="video-slide-content">
+                            <h1 class="video-slide-title">Saveurs Authentiques du Québec</h1>
+                            <p class="video-slide-description">Découvrez les délices culinaires qui font la renommée de notre terroir.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Controls -->
+            <div class="video-slider-controls">
+                <button class="slider-arrow prev-slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="slider-nav">
+                    <button class="slider-dot active" data-slide="1"></button>
+                    <button class="slider-dot" data-slide="2"></button>
+                    <button class="slider-dot" data-slide="3"></button>
+                </div>
+                
+                <div class="slide-counter">
+                    <span class="current-slide">1</span> / <span class="total-slides">3</span>
+                </div>
+                
+                <button class="slider-arrow next-slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Carrousel Videos -->
+        <section class="carousel-container">
+            <div class="carousel-header">
+                <h3 class="carousel-title">Plus de Vidéos à Découvrir</h3>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-carousel">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next-carousel">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="carousel-items" id="videosCarousel">
+                <!-- Video 1 -->
+                <div class="carousel-item active" 
+                     data-video-id="Tmn9inxTvPo"
+                     data-title="Les Plus Beaux Paysages du Québec"
+                     data-description="Une exploration visuelle des paysages les plus spectaculaires de notre belle province."
+                     data-duration="12:45">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Paysages du Québec" class="carousel-item-img">
+                    <div class="carousel-item-content">
+                        <h4 class="carousel-item-title">Les Plus Beaux Paysages</h4>
+                        <p class="carousel-item-description">Explorez les paysages naturels les plus spectaculaires de la province.</p>
+                        <div class="carousel-item-meta">
+                            <span>12:45</span>
+                            <span class="carousel-item-rating">★★★★★</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="carousel-item"
+                     data-video-id="Z7T0OnbBkG4"
+                     data-title="Festival International de Jazz de Montréal"
+                     data-description="Plongez dans l'ambiance électrisante du plus grand festival de jazz au monde."
+                     data-duration="8:22">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Festival de Jazz" class="carousel-item-img">
+                    <div class="carousel-item-content">
+                        <h4 class="carousel-item-title">Festival de Jazz Montréal</h4>
+                        <p class="carousel-item-description">L'événement musical le plus attendu de l'été québécois.</p>
+                        <div class="carousel-item-meta">
+                            <span>8:22</span>
+                            <span class="carousel-item-rating">★★★★☆</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="carousel-item"
+                     data-video-id="Dwvd2FhUwIE"
+                     data-title="Saveurs Authentiques du Québec"
+                     data-description="Découvrez les délices culinaires qui font la renommée de notre terroir."
+                     data-duration="15:30">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Gastronomie québécoise" class="carousel-item-img">
+                    <div class="carousel-item-content">
+                        <h4 class="carousel-item-title">Gastronomie Québécoise</h4>
+                        <p class="carousel-item-description">Un voyage culinaire à travers les spécialités traditionnelles.</p>
+                        <div class="carousel-item-meta">
+                            <span>15:30</span>
+                            <span class="carousel-item-rating">★★★★★</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 4 -->
+                <div class="carousel-item"
+                     data-video-id="Ay6DnI7fR_c"
+                     data-title="Ski dans les Laurentides"
+                     data-description="Dévaler les pentes enneigées des meilleures stations de ski de l'est du Canada."
+                     data-duration="10:15">
+                    <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Ski Laurentides" class="carousel-item-img">
+                    <div class="carousel-item-content">
+                        <h4 class="carousel-item-title">Ski dans les Laurentides</h4>
+                        <p class="carousel-item-description">Les meilleures stations pour profiter de l'hiver québécois.</p>
+                        <div class="carousel-item-meta">
+                            <span>10:15</span>
+                            <span class="carousel-item-rating">★★★★☆</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 5 -->
+                <div class="carousel-item"
+                     data-video-id="ZdHjKTv8bIE"
+                     data-title="Parc national de la Gaspésie"
+                     data-description="Randonnée au cœur des montagnes gaspésiennes, à la rencontre d'une faune exceptionnelle."
+                     data-duration="7:45">
+                    <img src="https://images.unsplash.com/photo-1578661556445-f0f4e27d2b3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Parc Gaspésie" class="carousel-item-img">
+                    <div class="carousel-item-content">
+                        <h4 class="carousel-item-title">Parc de la Gaspésie</h4>
+                        <p class="carousel-item-description">Exploration des sentiers de randonnée spectaculaires.</p>
+                        <div class="carousel-item-meta">
+                            <span>7:45</span>
+                            <span class="carousel-item-rating">★★★★★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ========== VIDEO SHOWCASE SLIDER ==========
+            const slides = document.querySelectorAll('.video-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.querySelector('.prev-slide');
+            const nextBtn = document.querySelector('.next-slide');
+            const currentSlideSpan = document.querySelector('.current-slide');
+            const totalSlidesSpan = document.querySelector('.total-slides');
+            
+            let currentSlide = 0;
+            let slideInterval;
+            const slideDuration = 6000;
+            
+            // Initialize total slides
+            totalSlidesSpan.textContent = slides.length;
+            
+            // Function to show specific slide
+            function showSlide(index) {
+                if (index < 0) index = slides.length - 1;
+                if (index >= slides.length) index = 0;
+                
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                
+                currentSlideSpan.textContent = index + 1;
+                currentSlide = index;
+            }
+            
+            // Next slide function
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+            
+            // Previous slide function
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+            
+            // Start autoplay
+            function startAutoPlay() {
+                slideInterval = setInterval(nextSlide, slideDuration);
+            }
+            
+            // Stop autoplay
+            function stopAutoPlay() {
+                clearInterval(slideInterval);
+            }
+            
+            // Event listeners for navigation
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    stopAutoPlay();
+                    startAutoPlay();
+                });
+            }
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    stopAutoPlay();
+                    startAutoPlay();
+                });
+            }
+            
+            // Event listeners for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                    stopAutoPlay();
+                    startAutoPlay();
+                });
+            });
+            
+            // Initialize slider
+            showSlide(0);
+            startAutoPlay();
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                    stopAutoPlay();
+                    startAutoPlay();
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                    stopAutoPlay();
+                    startAutoPlay();
+                }
+            });
+            
+            // ========== CARROUSEL VIDEOS ==========
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            const carouselContainer = document.getElementById('videosCarousel');
+            const prevCarouselBtn = document.querySelector('.prev-carousel');
+            const nextCarouselBtn = document.querySelector('.next-carousel');
+            
+            // Function to load video in main player
+            function loadVideoInPlayer(videoCard) {
+                const videoId = videoCard.getAttribute('data-video-id');
+                const title = videoCard.getAttribute('data-title');
+                const description = videoCard.getAttribute('data-description');
+                
+                // Update active state
+                carouselItems.forEach(item => item.classList.remove('active'));
+                videoCard.classList.add('active');
+                
+                // Find corresponding slide and activate it
+                slides.forEach((slide, index) => {
+                    const iframe = slide.querySelector('iframe');
+                    if (iframe.src.includes(videoId)) {
+                        showSlide(index);
+                        stopAutoPlay();
+                        startAutoPlay();
+                    }
+                });
+            }
+            
+            // Event listeners for carousel items
+            carouselItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    loadVideoInPlayer(this);
+                });
+            });
+            
+            // Carousel navigation
+            if (prevCarouselBtn) {
+                prevCarouselBtn.addEventListener('click', () => {
+                    carouselContainer.scrollBy({
+                        left: -320,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            if (nextCarouselBtn) {
+                nextCarouselBtn.addEventListener('click', () => {
+                    carouselContainer.scrollBy({
+                        left: 320,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Hover effects for carousel items
+            carouselItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

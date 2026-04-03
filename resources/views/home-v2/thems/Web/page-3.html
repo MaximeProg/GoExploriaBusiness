@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infos Voyage - Interface Moderne</title>
+  <style>
+    /* Style compatible GrapesJS - classes modulaires */
+    .travel-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+      border-radius: 48px 48px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Éléments décoratifs */
+    .travel-section::before {
+      content: "✈";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      font-size: 200px;
+      opacity: 0.03;
+      transform: rotate(15deg);
+      color: #0f172a;
+    }
+
+    .travel-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Colonne gauche - Alerts */
+    .travel-alerts {
+      flex: 1 1 55%;
+      min-width: 300px;
+    }
+
+    /* Colonne droite - Bullets d'avions */
+    .travel-bullets {
+      flex: 1 1 35%;
+      min-width: 250px;
+    }
+
+    /* En-têtes */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      box-shadow: 0 10px 20px -8px rgba(37, 99, 235, 0.3);
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: #475569;
+      margin: 4px 0 0 0;
+      font-weight: 400;
+    }
+
+    /* Cartes d'alertes */
+    .alert-card {
+      background: white;
+      border-radius: 28px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .alert-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.15);
+    }
+
+    .alert-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .alert-orange {
+      background: linear-gradient(145deg, #fff7ed, #ffedd5);
+      color: #9a3412;
+    }
+
+    .alert-blue {
+      background: linear-gradient(145deg, #eff6ff, #dbeafe);
+      color: #1e40af;
+    }
+
+    .alert-red {
+      background: linear-gradient(145deg, #fef2f2, #fee2e2);
+      color: #b91c1c;
+    }
+
+    .alert-green {
+      background: linear-gradient(145deg, #f0fdf4, #dcfce7);
+      color: #166534;
+    }
+
+    .alert-content {
+      flex: 1;
+    }
+
+    .alert-title {
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 0 6px 0;
+      color: #0f172a;
+    }
+
+    .alert-desc {
+      font-size: 15px;
+      color: #334155;
+      margin: 0 0 12px 0;
+      line-height: 1.5;
+    }
+
+    .alert-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Bullets d'avions */
+    .bullets-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .bullet-item {
+      background: white;
+      border-radius: 22px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(226, 232, 240, 0.6);
+      transition: all 0.2s ease;
+    }
+
+    .bullet-item:hover {
+      border-color: #94a3b8;
+      background: white;
+    }
+
+    .plane-icon {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #2563eb;
+      flex-shrink: 0;
+    }
+
+    .plane-details {
+      flex: 1;
+    }
+
+    .plane-route {
+      font-weight: 700;
+      font-size: 18px;
+      color: #0f172a;
+      margin: 0 0 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .plane-status {
+      font-size: 14px;
+      color: #475569;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-badge {
+      background: #e6f7e6;
+      color: #0a5c0a;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-warning {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .flight-time {
+      font-size: 13px;
+      color: #62748b;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    /* Badges météo / infos */
+    .weather-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(203, 213, 225, 0.3);
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 13px;
+      color: #1e293b;
+      margin-top: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .travel-container {
+        flex-direction: column;
+      }
+      
+      .travel-section {
+        padding: 40px 20px;
+        border-radius: 32px;
+      }
+      
+      .section-title {
+        font-size: 24px;
+      }
+    }
+
+    /* GrapesJS: classes draggables facilement identifiables */
+    .gjs-draggable {
+      cursor: move;
+    }
+
+    /* Animation subtle */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <!-- Section Voyage - Compatible GrapesJS -->
+  <section class="travel-section">
+    <div class="travel-container">
+      
+      <!-- COLONNE GAUCHE : ALERTS VOYAGE -->
+      <div class="travel-alerts">
+        <div class="section-header">
+          <div class="section-icon">
+            ⚠️
+          </div>
+          <div>
+            <h2 class="section-title">Alertes voyage</h2>
+            <p class="section-sub">Informations en temps réel • 3 alertes</p>
+          </div>
+        </div>
+
+        <!-- Alerte 1 - Orange (Météo) -->
+        <div class="alert-card">
+          <div class="alert-icon alert-orange">🌪️</div>
+          <div class="alert-content">
+            <h3 class="alert-title">Fortes turbulences - Atlantique Nord</h3>
+            <p class="alert-desc">Des turbulences sévères sont signalées sur les vols entre New York et Londres. Prévoyez des retards possibles.</p>
+            <div class="alert-meta">
+              <span class="meta-item">🕒 Il y a 25 min</span>
+              <span class="meta-item">📍 Zone A4</span>
+              <span class="meta-item">🔔 8 vols concernés</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerte 2 - Bleue (Grève) -->
+        <div class="alert-card">
+          <div class="alert-icon alert-blue">✊</div>
+          <div class="alert-content">
+            <h3 class="alert-title">Mouvement social - Aéroport de Paris</h3>
+            <p class="alert-desc">Préavis de grève des contrôleurs aériens ce vendredi. Jusqu'à 40% des vols pourraient être annulés.</p>
+            <div class="alert-meta">
+              <span class="meta-item">🕒 Il y a 2h</span>
+              <span class="meta-item">📍 CDG, ORY</span>
+              <span class="meta-item">📅 15-16 Mars</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerte 3 - Rouge (Sécurité) -->
+        <div class="alert-card">
+          <div class="alert-icon alert-red">🛡️</div>
+          <div class="alert-content">
+            <h3 class="alert-title">Niveau de sécurité renforcé - Tel Aviv</h3>
+            <p class="alert-desc">Mesures de contrôle supplémentaires. Prévoyez 3h d'avance pour votre départ.</p>
+            <div class="alert-meta">
+              <span class="meta-item">🕒 Il y a 45 min</span>
+              <span class="meta-item">📍 TLV</span>
+              <span class="meta-item">⚠️ Vigilance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLONNE DROITE : BULLETS D'AVIONS -->
+      <div class="travel-bullets">
+        <div class="section-header">
+          <div class="section-icon">
+            ✈
+          </div>
+          <div>
+            <h2 class="section-title">Vols en direct</h2>
+            <p class="section-sub">Suivi des départs • 4 vols</p>
+          </div>
+        </div>
+
+        <div class="bullets-grid">
+          <!-- Bullet 1 - AF 164 -->
+          <div class="bullet-item">
+            <div class="plane-icon">
+              ✈
+            </div>
+            <div class="plane-details">
+              <h4 class="plane-route">
+                <span>AF 164</span>
+                <span style="font-size: 14px; color: #62748b;">✈</span>
+              </h4>
+              <p class="plane-status">
+                Paris → New York
+                <span class="status-badge">À l'heure</span>
+              </p>
+              <div class="flight-time">
+                <span>🕒 14:45 • Terminal 2E</span>
+              </div>
+              <div class="weather-badge">
+                <span>☁️ 7°C • Visibilité bonne</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bullet 2 - LH 456 -->
+          <div class="bullet-item">
+            <div class="plane-icon">
+              ✈
+            </div>
+            <div class="plane-details">
+              <h4 class="plane-route">
+                <span>LH 456</span>
+              </h4>
+              <p class="plane-status">
+                Francfort → Tokyo
+                <span class="status-badge status-warning">Retard 25min</span>
+              </p>
+              <div class="flight-time">
+                <span>🕒 22:10 • Porte B43</span>
+              </div>
+              <div class="weather-badge">
+                <span>🌧 13°C • Pluie légère</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bullet 3 - BA 278 -->
+          <div class="bullet-item">
+            <div class="plane-icon">
+              ✈
+            </div>
+            <div class="plane-details">
+              <h4 class="plane-route">
+                <span>BA 278</span>
+              </h4>
+              <p class="plane-status">
+                Londres → Dubai
+                <span class="status-badge">À l'heure</span>
+              </p>
+              <div class="flight-time">
+                <span>🕒 09:20 • Gate 12</span>
+              </div>
+              <div class="weather-badge">
+                <span>☀️ 28°C • Ciel dégagé</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bullet 4 - EK 202 -->
+          <div class="bullet-item">
+            <div class="plane-icon">
+              ✈
+            </div>
+            <div class="plane-details">
+              <h4 class="plane-route">
+                <span>EK 202</span>
+              </h4>
+              <p class="plane-status">
+                Milan → Dubaï
+                <span class="status-badge">Embarquement</span>
+              </p>
+              <div class="flight-time">
+                <span>🕒 16:30 • Porte D7</span>
+              </div>
+              <div class="weather-badge">
+                <span>☀️ 22°C • Vent faible</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lien voir tous les vols -->
+        <div style="margin-top: 28px; text-align: right;">
+          <span style="display: inline-flex; align-items: center; gap: 8px; background: white; padding: 12px 24px; border-radius: 40px; font-weight: 600; color: #2563eb; box-shadow: 0 6px 12px -6px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; font-size: 15px;">
+            Voir tous les vols → 
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Note pour GrapesJS: structure facile à éditer -->
+</body>
+</html>

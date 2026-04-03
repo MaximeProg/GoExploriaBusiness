@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global News - Actualités par Régions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS Classes for GrapesJS */
+        
+        /* Global Variables */
+        :root {
+            --gn-primary: #1a237e;
+            --gn-secondary: #0d6efd;
+            --gn-accent: #ff6b35;
+            --gn-dark: #1a1a2e;
+            --gn-light: #f8f9ff;
+            --gn-success: #28a745;
+            --gn-warning: #ffc107;
+            --gn-danger: #dc3545;
+            --gn-border-radius: 12px;
+            --gn-box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            --gn-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Typography */
+        .gn-font-primary {
+            font-family: 'Poppins', sans-serif !important;
+        }
+        
+        .gn-font-secondary {
+            font-family: 'Inter', sans-serif !important;
+        }
+        
+        .gn-text-gradient {
+            background: linear-gradient(135deg, var(--gn-primary) 0%, var(--gn-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Layout */
+        .gn-section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .gn-section-light {
+            background-color: var(--gn-light) !important;
+        }
+        
+        .gn-section-dark {
+            background-color: var(--gn-dark) !important;
+            color: white !important;
+        }
+        
+        .gn-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .gn-navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+            padding: 15px 0 !important;
+            transition: var(--gn-transition) !important;
+        }
+        
+        .gn-logo {
+            font-size: 28px !important;
+            font-weight: 800 !important;
+            color: var(--gn-primary) !important;
+            text-decoration: none !important;
+        }
+        
+        .gn-logo-accent {
+            color: var(--gn-accent) !important;
+        }
+        
+        /* Hero Section */
+        .gn-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.9), rgba(13, 110, 253, 0.8)),
+                        url('https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover !important;
+            background-position: center !important;
+            color: white !important;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gn-hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gn-hero-title {
+            font-size: 3.5rem !important;
+            font-weight: 800 !important;
+            margin-bottom: 20px !important;
+            line-height: 1.2 !important;
+        }
+        
+        .gn-hero-subtitle {
+            font-size: 1.2rem !important;
+            opacity: 0.9;
+            margin-bottom: 30px !important;
+            max-width: 600px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* Buttons */
+        .gn-btn {
+            padding: 12px 32px !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+            border: none !important;
+            transition: var(--gn-transition) !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+        }
+        
+        .gn-btn-primary {
+            background: var(--gn-primary) !important;
+            color: white !important;
+        }
+        
+        .gn-btn-primary:hover {
+            background: #151c6a !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 20px rgba(26, 35, 126, 0.3) !important;
+        }
+        
+        .gn-btn-secondary {
+            background: white !important;
+            color: var(--gn-primary) !important;
+        }
+        
+        .gn-btn-secondary:hover {
+            background: #f8f9fa !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        
+        .gn-btn-accent {
+            background: var(--gn-accent) !important;
+            color: white !important;
+        }
+        
+        .gn-btn-accent:hover {
+            background: #e55a2b !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3) !important;
+        }
+        
+        /* Cards */
+        .gn-card {
+            background: white !important;
+            border-radius: var(--gn-border-radius) !important;
+            border: none !important;
+            box-shadow: var(--gn-box-shadow) !important;
+            overflow: hidden !important;
+            transition: var(--gn-transition) !important;
+            height: 100% !important;
+        }
+        
+        .gn-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+        }
+        
+        .gn-card-img {
+            width: 100% !important;
+            height: 220px !important;
+            object-fit: cover !important;
+            transition: var(--gn-transition) !important;
+        }
+        
+        .gn-card:hover .gn-card-img {
+            transform: scale(1.05) !important;
+        }
+        
+        .gn-card-body {
+            padding: 25px !important;
+        }
+        
+        .gn-card-title {
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 15px !important;
+            line-height: 1.4 !important;
+        }
+        
+        .gn-card-text {
+            color: #666 !important;
+            margin-bottom: 20px !important;
+            font-size: 0.95rem !important;
+        }
+        
+        /* Category Badges */
+        .gn-badge {
+            display: inline-block !important;
+            padding: 6px 15px !important;
+            border-radius: 50px !important;
+            font-size: 0.8rem !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+        }
+        
+        .gn-badge-primary {
+            background: rgba(26, 35, 126, 0.1) !important;
+            color: var(--gn-primary) !important;
+        }
+        
+        .gn-badge-secondary {
+            background: rgba(13, 110, 253, 0.1) !important;
+            color: var(--gn-secondary) !important;
+        }
+        
+        .gn-badge-accent {
+            background: rgba(255, 107, 53, 0.1) !important;
+            color: var(--gn-accent) !important;
+        }
+        
+        /* Section Headers */
+        .gn-section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .gn-section-title {
+            font-size: 2.5rem !important;
+            font-weight: 800 !important;
+            margin-bottom: 15px !important;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .gn-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gn-accent);
+            border-radius: 2px;
+        }
+        
+        .gn-section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Featured Article */
+        .gn-featured-article {
+            position: relative;
+            border-radius: var(--gn-border-radius);
+            overflow: hidden;
+            box-shadow: var(--gn-box-shadow);
+            transition: var(--gn-transition);
+        }
+        
+        .gn-featured-article:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .gn-featured-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: var(--gn-transition);
+        }
+        
+        .gn-featured-article:hover .gn-featured-img {
+            transform: scale(1.05);
+        }
+        
+        .gn-featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            padding: 40px;
+        }
+        
+        /* Region Cards */
+        .gn-region-card {
+            position: relative;
+            border-radius: var(--gn-border-radius);
+            overflow: hidden;
+            height: 300px;
+            box-shadow: var(--gn-box-shadow);
+            transition: var(--gn-transition);
+        }
+        
+        .gn-region-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gn-region-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--gn-transition);
+        }
+        
+        .gn-region-card:hover .gn-region-img {
+            transform: scale(1.1);
+        }
+        
+        .gn-region-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: white;
+        }
+        
+        /* Newsletter */
+        .gn-newsletter {
+            background: linear-gradient(135deg, var(--gn-primary), var(--gn-secondary));
+            color: white;
+            border-radius: var(--gn-border-radius);
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gn-newsletter::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+        
+        /* Footer */
+        .gn-footer {
+            background: var(--gn-dark);
+            color: #aaa;
+            padding: 80px 0 30px;
+        }
+        
+        .gn-footer-title {
+            color: white !important;
+            font-size: 1.2rem !important;
+            font-weight: 600 !important;
+            margin-bottom: 25px !important;
+        }
+        
+        .gn-footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .gn-footer-link {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--gn-transition);
+            display: block;
+            padding: 8px 0;
+        }
+        
+        .gn-footer-link:hover {
+            color: white;
+            padding-left: 10px;
+        }
+        
+        /* Social Icons */
+        .gn-social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gn-social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--gn-transition);
+        }
+        
+        .gn-social-icon:hover {
+            background: var(--gn-accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        .gn-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: gnFadeIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes gnFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .gn-delay-1 { animation-delay: 0.1s !important; }
+        .gn-delay-2 { animation-delay: 0.2s !important; }
+        .gn-delay-3 { animation-delay: 0.3s !important; }
+        .gn-delay-4 { animation-delay: 0.4s !important; }
+        
+        /* Utility Classes */
+        .gn-mb-10 { margin-bottom: 10px !important; }
+        .gn-mb-20 { margin-bottom: 20px !important; }
+        .gn-mb-30 { margin-bottom: 30px !important; }
+        .gn-mb-40 { margin-bottom: 40px !important; }
+        .gn-mb-50 { margin-bottom: 50px !important; }
+        
+        .gn-mt-10 { margin-top: 10px !important; }
+        .gn-mt-20 { margin-top: 20px !important; }
+        .gn-mt-30 { margin-top: 30px !important; }
+        .gn-mt-40 { margin-top: 40px !important; }
+        
+        .gn-text-center { text-align: center !important; }
+        .gn-text-left { text-align: left !important; }
+        .gn-text-right { text-align: right !important; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gn-hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .gn-section-title {
+                font-size: 2rem !important;
+            }
+            
+            .gn-newsletter {
+                padding: 40px 20px !important;
+            }
+        }
+    </style>
+</head>
+<body class="gn-font-secondary">
+    <!-- Navigation -->
+    <nav class="gn-navbar navbar navbar-expand-lg sticky-top">
+        <div class="gn-container container">
+            <a class="gn-logo gn-font-primary" href="#">
+                <i class="fas fa-globe-americas"></i> Global<span class="gn-logo-accent">News</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#regions">Régions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#destinations">Destinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#business">Business</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                
+                <form class="d-flex ms-lg-3 gn-mt-20 gn-mb-20">
+                    <input class="form-control" type="search" placeholder="Rechercher...">
+                    <button class="gn-btn gn-btn-accent ms-2" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="gn-hero" id="home">
+        <div class="gn-container">
+            <div class="gn-hero-content gn-fade-in">
+                <h1 class="gn-hero-title gn-font-primary">
+                    Vos Nouvelles<br>
+                    <span class="gn-text-gradient">Par Régions & Destinations</span>
+                </h1>
+                <p class="gn-hero-subtitle">
+                    Restez informé des dernières actualités à travers le monde. Des reportages exclusifs, 
+                    des analyses approfondies et des nouvelles fraîches de chaque coin de la planète.
+                </p>
+                <div class="gn-mt-30">
+                    <a href="#news" class="gn-btn gn-btn-primary">
+                        <i class="fas fa-newspaper"></i> Voir les Dernières Nouvelles
+                    </a>
+                    <a href="#regions" class="gn-btn gn-btn-secondary ms-3">
+                        <i class="fas fa-globe-americas"></i> Explorer les Régions
+                    </a>
+                </div>
+                
+                <div class="gn-mt-50">
+                    <div class="row justify-content-center g-4">
+                        <div class="col-auto">
+                            <span class="gn-badge gn-badge-primary">Afrique</span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="gn-badge gn-badge-secondary">Europe</span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="gn-badge gn-badge-accent">Asie</span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="gn-badge gn-badge-primary">Amériques</span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="gn-badge gn-badge-secondary">Moyen-Orient</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured News -->
+    <section class="gn-section" id="news">
+        <div class="gn-container">
+            <div class="gn-section-header gn-mb-50">
+                <h2 class="gn-section-title gn-font-primary">À La Une</h2>
+                <p class="gn-section-subtitle">Les actualités les plus importantes du moment</p>
+            </div>
+            
+            <div class="gn-featured-article gn-fade-in gn-delay-1">
+                <img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Sommet International" class="gn-featured-img">
+                <div class="gn-featured-overlay">
+                    <span class="gn-badge gn-badge-accent gn-mb-20">Politique Internationale</span>
+                    <h3 class="h2 gn-font-primary">Sommet mondial sur le climat: Les engagements des grandes puissances</h3>
+                    <div class="d-flex align-items-center gn-mt-20">
+                        <i class="fas fa-user me-2"></i>
+                        <span class="me-4">Marie Dubois</span>
+                        <i class="fas fa-clock me-2"></i>
+                        <span class="me-4">Il y a 2 heures</span>
+                        <i class="fas fa-eye me-2"></i>
+                        <span>12K vues</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Latest News -->
+    <section class="gn-section gn-section-light">
+        <div class="gn-container">
+            <div class="gn-section-header gn-mb-50">
+                <h2 class="gn-section-title gn-font-primary">Dernières Nouvelles</h2>
+                <p class="gn-section-subtitle">Les articles les plus récents par région</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="gn-card gn-fade-in gn-delay-1">
+                        <img src="https://images.unsplash.com/photo-1518834103328-93d45986dce1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2076&q=80" 
+                             class="gn-card-img" alt="Marché Africain">
+                        <div class="gn-card-body">
+                            <span class="gn-badge gn-badge-primary gn-mb-10">Économie • Afrique</span>
+                            <h3 class="gn-card-title gn-font-primary">
+                                Croissance record des économies d'Afrique de l'Ouest
+                            </h3>
+                            <p class="gn-card-text">
+                                La CEDEAO annonce une croissance économique de 6.2% pour le dernier trimestre, 
+                                dépassant toutes les prévisions.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Il y a 3 heures</small>
+                                <a href="#" class="gn-btn gn-btn-primary btn-sm">Lire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="gn-card gn-fade-in gn-delay-2">
+                        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             class="gn-card-img" alt="Union Européenne">
+                        <div class="gn-card-body">
+                            <span class="gn-badge gn-badge-secondary gn-mb-10">Politique • Europe</span>
+                            <h3 class="gn-card-title gn-font-primary">
+                                Nouvelle politique migratoire de l'Union Européenne
+                            </h3>
+                            <p class="gn-card-text">
+                                Les membres de l'UE trouvent un accord sur une approche commune pour la 
+                                gestion des frontières et l'accueil des réfugiés.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Il y a 6 heures</small>
+                                <a href="#" class="gn-btn gn-btn-primary btn-sm">Lire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="gn-card gn-fade-in gn-delay-3">
+                        <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2092&q=80" 
+                             class="gn-card-img" alt="Asie Technologie">
+                        <div class="gn-card-body">
+                            <span class="gn-badge gn-badge-accent gn-mb-10">Innovation • Asie</span>
+                            <h3 class="gn-card-title gn-font-primary">
+                                Le Japon lance son plus grand satellite d'observation
+                            </h3>
+                            <p class="gn-card-text">
+                                Une avancée majeure pour la surveillance climatique et la prévention 
+                                des catastrophes naturelles en Asie-Pacifique.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Il y a 8 heures</small>
+                                <a href="#" class="gn-btn gn-btn-primary btn-sm">Lire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Regions Section -->
+    <section class="gn-section" id="regions">
+        <div class="gn-container">
+            <div class="gn-section-header gn-mb-50">
+                <h2 class="gn-section-title gn-font-primary">Nouvelles Par Région</h2>
+                <p class="gn-section-subtitle">Explorez les actualités spécifiques à chaque région du monde</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="gn-region-card gn-fade-in gn-delay-1">
+                        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2068&q=80" 
+                             class="gn-region-img" alt="Afrique">
+                        <div class="gn-region-overlay">
+                            <h4 class="h3 gn-font-primary">Afrique</h4>
+                            <p class="gn-mb-20">245 nouvelles aujourd'hui</p>
+                            <a href="#" class="gn-btn gn-btn-accent">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gn-region-card gn-fade-in gn-delay-2">
+                        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2020&q=80" 
+                             class="gn-region-img" alt="Europe">
+                        <div class="gn-region-overlay">
+                            <h4 class="h3 gn-font-primary">Europe</h4>
+                            <p class="gn-mb-20">189 nouvelles aujourd'hui</p>
+                            <a href="#" class="gn-btn gn-btn-accent">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gn-region-card gn-fade-in gn-delay-3">
+                        <img src="https://images.unsplash.com/photo-1535139262971-c51845709a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             class="gn-region-img" alt="Asie">
+                        <div class="gn-region-overlay">
+                            <h4 class="h3 gn-font-primary">Asie</h4>
+                            <p class="gn-mb-20">312 nouvelles aujourd'hui</p>
+                            <a href="#" class="gn-btn gn-btn-accent">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gn-region-card gn-fade-in gn-delay-4">
+                        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&auto=format&fit=crop&w=2032&q=80" 
+                             class="gn-region-img" alt="Amériques">
+                        <div class="gn-region-overlay">
+                            <h4 class="h3 gn-font-primary">Amériques</h4>
+                            <p class="gn-mb-20">278 nouvelles aujourd'hui</p>
+                            <a href="#" class="gn-btn gn-btn-accent">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="gn-section">
+        <div class="gn-container">
+            <div class="gn-newsletter gn-fade-in">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3 class="h2 gn-font-primary gn-mb-20">
+                            <i class="fas fa-envelope-open-text me-3"></i>
+                            Ne manquez aucune actualité
+                        </h3>
+                        <p class="opacity-90">
+                            Abonnez-vous à notre newsletter pour recevoir les dernières nouvelles 
+                            par région et destination directement dans votre boîte mail.
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Votre email" required>
+                                <button class="gn-btn gn-btn-accent" type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            <div class="form-check form-check-inline gn-mt-20">
+                                <input class="form-check-input" type="checkbox" id="region-news" checked>
+                                <label class="form-check-label small" for="region-news">Nouvelles par région</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="destination-news" checked>
+                                <label class="form-check-label small" for="destination-news">Nouvelles par destination</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="gn-footer">
+        <div class="gn-container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 gn-mb-40">
+                    <h5 class="gn-footer-title gn-font-primary">
+                        <i class="fas fa-globe-americas me-2"></i>Global News
+                    </h5>
+                    <p class="gn-mt-20">
+                        Votre source d'information fiable pour les actualités internationales, 
+                        régionales et locales. Couverture complète de plus de 150 pays.
+                    </p>
+                    <div class="gn-social-icons">
+                        <a href="#" class="gn-social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="gn-social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="gn-social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="gn-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 gn-mb-40">
+                    <h5 class="gn-footer-title gn-font-primary">Régions</h5>
+                    <ul class="gn-footer-links">
+                        <li><a href="#" class="gn-footer-link">Afrique</a></li>
+                        <li><a href="#" class="gn-footer-link">Europe</a></li>
+                        <li><a href="#" class="gn-footer-link">Asie</a></li>
+                        <li><a href="#" class="gn-footer-link">Amériques</a></li>
+                        <li><a href="#" class="gn-footer-link">Moyen-Orient</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 gn-mb-40">
+                    <h5 class="gn-footer-title gn-font-primary">Catégories</h5>
+                    <ul class="gn-footer-links">
+                        <li><a href="#" class="gn-footer-link">Politique</a></li>
+                        <li><a href="#" class="gn-footer-link">Économie</a></li>
+                        <li><a href="#" class="gn-footer-link">Technologie</a></li>
+                        <li><a href="#" class="gn-footer-link">Santé</a></li>
+                        <li><a href="#" class="gn-footer-link">Culture</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 gn-mb-40">
+                    <h5 class="gn-footer-title gn-font-primary">Contact</h5>
+                    <ul class="gn-footer-links">
+                        <li><a href="#" class="gn-footer-link">
+                            <i class="fas fa-map-marker-alt me-2"></i>Paris, France
+                        </a></li>
+                        <li><a href="tel:+33123456789" class="gn-footer-link">
+                            <i class="fas fa-phone me-2"></i>+33 1 23 45 67 89
+                        </a></li>
+                        <li><a href="mailto:contact@globalnews.com" class="gn-footer-link">
+                            <i class="fas fa-envelope me-2"></i>contact@globalnews.com
+                        </a></li>
+                        <li><a href="#" class="gn-footer-link">
+                            <i class="fas fa-clock me-2"></i>24h/24, 7j/7
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center gn-mt-40 pt-4 border-top border-secondary">
+                <p class="small mb-0">
+                    &copy; 2024 Global News. Tous droits réservés. | 
+                    <a href="#" class="text-decoration-underline">Politique de confidentialité</a> | 
+                    <a href="#" class="text-decoration-underline">Conditions d'utilisation</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Show success message
+            this.innerHTML = `
+                <div class="alert alert-success mb-0" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Merci ! Vous êtes maintenant abonné à notre newsletter.
+                </div>
+            `;
+        });
+        
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('gn-fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all cards and sections
+        document.querySelectorAll('.gn-card, .gn-region-card, .gn-newsletter').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

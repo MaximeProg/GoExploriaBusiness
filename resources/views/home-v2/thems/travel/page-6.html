@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forfaits Premium | Québec & Europe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* GrapeJS Compatible - DESIGN SANS VARIABLES CSS */
+        /* Toutes les couleurs sont en dur pour une compatibilité maximale */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F1C2D;
+            color: #F8FAFF;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Background Animé */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #0F1C2D, #1A2B3C);
+            overflow: hidden;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, #3399FF, transparent);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0066CC, #00CC99);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+            color: #00CC99;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: #00CC99;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: #F8FAFF;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(135deg, #0066CC, #00CC99);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #3399FF;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 120px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ffffff, #3399FF, #00CC99);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textShine 3s ease-in-out infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Section des catégories de forfaits */
+        .packages-section {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #F8FAFF;
+        }
+
+        .category-title i {
+            color: #00CC99;
+            font-size: 2.5rem;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .package-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-15px);
+            border-color: #3399FF;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .package-image {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .package-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .package-card:hover .package-image img {
+            transform: scale(1.1);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #FF3366;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            z-index: 2;
+        }
+
+        .package-content {
+            padding: 25px;
+        }
+
+        .package-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .package-header h3 {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #F8FAFF;
+        }
+
+        .package-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0066CC, #00CC99);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            white-space: nowrap;
+        }
+
+        .package-price span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .package-location {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .package-location i {
+            margin-right: 10px;
+            color: #00CC99;
+        }
+
+        .package-description {
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .package-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .feature {
+            background: rgba(0, 102, 204, 0.2);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #3399FF;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-primary {
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0066CC, #00CC99);
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.5);
+        }
+
+        /* Section Afficher vos forfaits ici */
+        .showcase-packages {
+            margin: 100px 0;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .showcase-header h2 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #ffffff, #3399FF, #00CC99);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .showcase-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .showcase-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .showcase-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #3399FF;
+            transform: translateY(-5px);
+        }
+
+        .showcase-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #F8FAFF;
+        }
+
+        .showcase-item h4 i {
+            color: #00CC99;
+        }
+
+        .showcase-item p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            flex-grow: 1;
+        }
+
+        .showcase-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #3399FF;
+            margin: 15px 0;
+        }
+
+        .showcase-price span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+
+        .showcase-badge {
+            display: inline-block;
+            background: #00CC99;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+
+        .showcase-badge.quebec {
+            background: #0066CC;
+        }
+
+        .showcase-badge.europe {
+            background: #FF3366;
+        }
+
+        /* Section Création de forfaits */
+        .creation-section {
+            margin: 100px 0;
+        }
+
+        .creation-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .creation-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #F8FAFF;
+        }
+
+        .creation-info p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .features-list i {
+            color: #00CC99;
+            font-size: 1.2rem;
+        }
+
+        .creation-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .creation-form h3 {
+            color: #F8FAFF;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066CC;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .btn-create {
+            background: linear-gradient(135deg, #0066CC, #00CC99);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-create:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: #1A2B3C;
+            padding: 80px 0 40px;
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            color: #F8FAFF;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 4px;
+            background: linear-gradient(135deg, #0066CC, #00CC99);
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: #3399FF;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #0066CC, #00CC99);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .copyright a {
+            color: #00CC99;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            33% {
+                transform: translateY(-30px) translateX(20px);
+            }
+
+            66% {
+                transform: translateY(20px) translateX(-20px);
+            }
+        }
+
+        @keyframes textShine {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .creation-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+
+            .showcase-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .creation-card {
+                padding: 30px;
+            }
+
+            .creation-form {
+                padding: 25px;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* GrapeJS Compatibility - Structure statique visible */
+        .gjs-dashed .package-card,
+        .gjs-dashed .showcase-item,
+        .gjs-dashed .creation-card {
+            pointer-events: all;
+            cursor: pointer;
+        }
+
+        [data-gjs-type="wrapper"] {
+            min-height: 100vh;
+        }
+
+        /* Force display pour GrapeJS */
+        .package-card,
+        .showcase-item {
+            display: block;
+        }
+
+        /* Couleurs spécifiques */
+        .text-accent {
+            color: #00CC99;
+        }
+
+        .text-primary {
+            color: #0066CC;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(135deg, #0066CC, #00CC99);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-globe-americas"></i>
+                    ForfaitsPremium
+                </div>
+                <div class="nav-links">
+                    <a href="#quebec" class="nav-link">Québec</a>
+                    <a href="#europe" class="nav-link">Europe</a>
+                    <a href="#showcase" class="nav-link">Forfaits</a>
+                    <a href="#creation" class="nav-link">Création</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Forfaits Voyage sur Mesure</h1>
+            <p>Découvrez nos forfaits exclusifs pour le Québec et l'Europe avec des images réelles et authentiques.</p>
+        </div>
+    </section>
+
+    <!-- Vente Forfaits Québec - STATIC HTML -->
+    <section id="quebec" class="packages-section">
+        <div class="container">
+            <div class="category-title">
+                <i class="fas fa-maple-leaf"></i>
+                <h2>Forfaits Québec</h2>
+            </div>
+            <div class="packages-grid">
+                <!-- Forfait Québec 1 -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="https://images.pexels.com/photos/208745/pexels-photo-208745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            alt="Vieux-Québec" loading="lazy">
+                        <div class="package-badge">POPULAIRE</div>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-header">
+                            <h3>Escapade Montréal & Québec</h3>
+                            <div class="package-price">$1899<span>/pers.</span></div>
+                        </div>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Montréal, Québec</span>
+                        </div>
+                        <p class="package-description">Séjour de 5 jours dans les plus belles villes du Québec. Visites
+                            guidées, gastronomie locale et hébergement 4 étoiles inclus.</p>
+                        <div class="package-features">
+                            <div class="feature"><i class="fas fa-check"></i> Culture</div>
+                            <div class="feature"><i class="fas fa-check"></i> Gastronomie</div>
+                            <div class="feature"><i class="fas fa-check"></i> Histoire</div>
+                        </div>
+                        <button class="btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Voir le forfait
+                        </button>
+                    </div>
+                </div>
+                <!-- Forfait Québec 2 -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="https://images.pexels.com/photos/4275885/pexels-photo-4275885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            alt="Gaspésie" loading="lazy">
+                        <div class="package-badge">NOUVEAU</div>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-header">
+                            <h3>Aventure Gaspésie</h3>
+                            <div class="package-price">$2199<span>/pers.</span></div>
+                        </div>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Gaspé, Québec</span>
+                        </div>
+                        <p class="package-description">Parc national Forillon, observation des baleines, randonnée et
+                            découverte du Rocher Percé.</p>
+                        <div class="package-features">
+                            <div class="feature"><i class="fas fa-check"></i> Nature</div>
+                            <div class="feature"><i class="fas fa-check"></i> Aventure</div>
+                            <div class="feature"><i class="fas fa-check"></i> Faune</div>
+                        </div>
+                        <button class="btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Voir le forfait
+                        </button>
+                    </div>
+                </div>
+                <!-- Forfait Québec 3 -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="https://images.pexels.com/photos/361104/pexels-photo-361104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            alt="Charlevoix" loading="lazy">
+                        <div class="package-badge">LUXE</div>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-header">
+                            <h3>Ski & Spa Charlevoix</h3>
+                            <div class="package-price">$2499<span>/pers.</span></div>
+                        </div>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Charlevoix, Québec</span>
+                        </div>
+                        <p class="package-description">Forfait ski dans les Laurentides avec hébergement luxueux et
+                            accès au spa nordique.</p>
+                        <div class="package-features">
+                            <div class="feature"><i class="fas fa-check"></i> Sport</div>
+                            <div class="feature"><i class="fas fa-check"></i> Bien-être</div>
+                            <div class="feature"><i class="fas fa-check"></i> Luxe</div>
+                        </div>
+                        <button class="btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Voir le forfait
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vente Forfaits Europe - STATIC HTML -->
+    <section id="europe" class="packages-section">
+        <div class="container">
+            <div class="category-title">
+                <i class="fas fa-globe-europe"></i>
+                <h2>Forfaits Europe</h2>
+            </div>
+            <div class="packages-grid">
+                <!-- Forfait Europe 1 -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="https://images.pexels.com/photos/699466/pexels-photo-699466.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            alt="Paris" loading="lazy">
+                        <div class="package-badge">COUPLE</div>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-header">
+                            <h3>Romantique Paris</h3>
+                            <div class="package-price">$2899<span>/pers.</span></div>
+                        </div>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Paris, France</span>
+                        </div>
+                        <p class="package-description">Week-end romantique à Paris avec croisière sur la Seine, dîner
+                            gastronomique et visite des monuments emblématiques.</p>
+                        <div class="package-features">
+                            <div class="feature"><i class="fas fa-check"></i> Romantique</div>
+                            <div class="feature"><i class="fas fa-check"></i> Culture</div>
+                            <div class="feature"><i class="fas fa-check"></i> Gastronomie</div>
+                        </div>
+                        <button class="btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Voir le forfait
+                        </button>
+                    </div>
+                </div>
+                <!-- Forfait Europe 2 -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="https://images.pexels.com/photos/361750/pexels-photo-361750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            alt="Toscane" loading="lazy">
+                        <div class="package-badge">EXCLUSIF</div>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-header">
+                            <h3>Route des Vins Toscane</h3>
+                            <div class="package-price">$3299<span>/pers.</span></div>
+                        </div>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Toscane, Italie</span>
+                        </div>
+                        <p class="package-description">Circuit œnologique dans les plus beaux domaines viticoles
+                            toscans. Dégustations, ateliers et hébergement dans un agriturismo.</p>
+                        <div class="package-features">
+                            <div class="feature"><i class="fas fa-check"></i> Vin</div>
+                            <div class="feature"><i class="fas fa-check"></i> Gastronomie</div>
+                            <div class="feature"><i class="fas fa-check"></i> Détente</div>
+                        </div>
+                        <button class="btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Voir le forfait
+                        </button>
+                    </div>
+                </div>
+                <!-- Forfait Europe 3 -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            alt="Islande" loading="lazy">
+                        <div class="package-badge">INCONTOURNABLE</div>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-header">
+                            <h3>Aurores Boréales Islande</h3>
+                            <div class="package-price">$3999<span>/pers.</span></div>
+                        </div>
+                        <div class="package-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Reykjavik, Islande</span>
+                        </div>
+                        <p class="package-description">Chasse aux aurores boréales, bains géothermiques et découverte
+                            des paysages lunaires islandais.</p>
+                        <div class="package-features">
+                            <div class="feature"><i class="fas fa-check"></i> Aventure</div>
+                            <div class="feature"><i class="fas fa-check"></i> Nordique</div>
+                            <div class="feature"><i class="fas fa-check"></i> Photographie</div>
+                        </div>
+                        <button class="btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Voir le forfait
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Afficher vos forfaits ici - STATIC HTML -->
+    <section id="showcase" class="showcase-packages">
+        <div class="container">
+            <div class="showcase-header">
+                <h2>Afficher vos forfaits ici</h2>
+                <p>Découvrez tous nos forfaits exclusifs en un coup d'œil</p>
+            </div>
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <span class="showcase-badge quebec">Québec</span>
+                    <h4><i class="fas fa-maple-leaf"></i> Escapade Montréal</h4>
+                    <p>Séjour de 5 jours dans les plus belles villes du Québec.</p>
+                    <div class="showcase-price">$1899<span>/pers.</span></div>
+                </div>
+                <div class="showcase-item">
+                    <span class="showcase-badge quebec">Québec</span>
+                    <h4><i class="fas fa-maple-leaf"></i> Aventure Gaspésie</h4>
+                    <p>Parc national Forillon, observation des baleines.</p>
+                    <div class="showcase-price">$2199<span>/pers.</span></div>
+                </div>
+                <div class="showcase-item">
+                    <span class="showcase-badge quebec">Québec</span>
+                    <h4><i class="fas fa-maple-leaf"></i> Ski & Spa Charlevoix</h4>
+                    <p>Forfait ski avec hébergement luxueux et spa nordique.</p>
+                    <div class="showcase-price">$2499<span>/pers.</span></div>
+                </div>
+                <div class="showcase-item">
+                    <span class="showcase-badge europe">Europe</span>
+                    <h4><i class="fas fa-globe-europe"></i> Romantique Paris</h4>
+                    <p>Week-end romantique avec croisière sur la Seine.</p>
+                    <div class="showcase-price">$2899<span>/pers.</span></div>
+                </div>
+                <div class="showcase-item">
+                    <span class="showcase-badge europe">Europe</span>
+                    <h4><i class="fas fa-globe-europe"></i> Route des Vins Toscane</h4>
+                    <p>Circuit œnologique dans les domaines viticoles.</p>
+                    <div class="showcase-price">$3299<span>/pers.</span></div>
+                </div>
+                <div class="showcase-item">
+                    <span class="showcase-badge europe">Europe</span>
+                    <h4><i class="fas fa-globe-europe"></i> Aurores Boréales Islande</h4>
+                    <p>Chasse aux aurores boréales et bains géothermiques.</p>
+                    <div class="showcase-price">$3999<span>/pers.</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Création de forfaits - STATIC HTML -->
+    <section id="creation" class="creation-section">
+        <div class="container">
+            <div class="creation-card">
+                <div class="creation-info">
+                    <h3>Créez votre forfait personnalisé</h3>
+                    <p>Composez le voyage de vos rêves en quelques clics. Sélectionnez vos destinations, activités et
+                        hébergements préférés.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Choix illimité de destinations</li>
+                        <li><i class="fas fa-check-circle"></i> Activités sur mesure</li>
+                        <li><i class="fas fa-check-circle"></i> Hébergements premium</li>
+                        <li><i class="fas fa-check-circle"></i> Devis instantané</li>
+                        <li><i class="fas fa-check-circle"></i> Support personnalisé 24/7</li>
+                    </ul>
+                </div>
+                <div class="creation-form">
+                    <h3>Nouveau forfait</h3>
+                    <form id="package-creation-form">
+                        <div class="form-group">
+                            <label for="package-title">Titre du forfait</label>
+                            <input type="text" id="package-title" placeholder="Ex: Escapade à Montréal"
+                                value="Nouveau forfait Québec">
+                        </div>
+                        <div class="form-group">
+                            <label for="package-category">Catégorie</label>
+                            <select id="package-category">
+                                <option value="">Sélectionnez une catégorie</option>
+                                <option value="quebec" selected>Québec</option>
+                                <option value="europe">Europe</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="package-destination">Destination</label>
+                            <input type="text" id="package-destination" placeholder="Ville, Pays"
+                                value="Ville de Québec">
+                        </div>
+                        <div class="form-group">
+                            <label for="package-price">Prix (par personne)</label>
+                            <input type="number" id="package-price" placeholder="1899" value="1999">
+                        </div>
+                        <div class="form-group">
+                            <label for="package-description">Description</label>
+                            <textarea id="package-description"
+                                placeholder="Décrivez votre forfait...">Découvrez les charmes de la ville de Québec avec ce forfait exclusif.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="package-image">URL de l'image</label>
+                            <input type="url" id="package-image" placeholder="https://example.com/image.jpg"
+                                value="https://images.pexels.com/photos/208745/pexels-photo-208745.jpeg">
+                        </div>
+                        <button type="submit" class="btn-create">
+                            <i class="fas fa-magic"></i>
+                            Créer le forfait
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ForfaitsPremium</h3>
+                    <p>Votre expert en voyages sur mesure au Québec et en Europe. Création de forfaits personnalisés
+                        depuis 2010.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Forfaits</h3>
+                    <ul class="footer-links">
+                        <li><a href="#quebec"><i class="fas fa-chevron-right"></i> Forfaits Québec</a></li>
+                        <li><a href="#europe"><i class="fas fa-chevron-right"></i> Forfaits Europe</a></li>
+                        <li><a href="#showcase"><i class="fas fa-chevron-right"></i> Tous les forfaits</a></li>
+                        <li><a href="#creation"><i class="fas fa-chevron-right"></i> Création sur mesure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Montréal, QC, Canada</a></li>
+                        <li><a href="tel:+15141234567"><i class="fas fa-phone"></i> +1 (514) 123-4567</a></li>
+                        <li><a href="mailto:contact@forfaitspremium.com"><i class="fas fa-envelope"></i>
+                                contact@forfaitspremium.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 ForfaitsPremium. Tous droits réservés. | Design compatible GrapeJS - Images réelles
+                    Pexels</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script minimal pour GrapeJS - Pas de logique complexe
+        document.addEventListener('DOMContentLoaded', function () {
+            // Animation douce pour le background
+            document.addEventListener('mousemove', function (e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                const bg = document.querySelector('.bg-animation');
+                if (bg) {
+                    bg.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+                }
+            });
+
+            // Formulaire de création - Simple notification
+            const form = document.getElementById('package-creation-form');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    alert('✓ Forfait créé avec succès ! (Mode démonstration)');
+                });
+            }
+
+            // Boutons "Voir le forfait"
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    alert('✓ Page de détail du forfait (Mode démonstration)');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

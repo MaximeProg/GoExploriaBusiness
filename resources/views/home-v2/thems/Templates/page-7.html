@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services Médicaux · Cabinet & Soins</title>
+  <style>
+    /* ===== STYLE SERVICES MÉDICAUX - CONFIANCE & BIEN-ÊTRE ===== */
+    /* Design apaisant, professionnel, rassurant */
+    .medical-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      max-width: 1440px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #1e3a3f;
+      position: relative;
+    }
+
+    /* HEADER MÉDICAL - SOBRE & RASSURANT */
+    .med-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: white;
+      border-bottom: 1px solid #eef5f6;
+      flex-wrap: wrap;
+    }
+
+    .med-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .med-logo-icon {
+      font-size: 32px;
+      background: linear-gradient(145deg, #2c7a7b, #1e5f60);
+      color: white;
+      padding: 10px;
+      border-radius: 16px;
+    }
+
+    .med-logo-text {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1e4a4d;
+      letter-spacing: -0.5px;
+    }
+
+    .med-logo-text span {
+      color: #2c7a7b;
+      font-weight: 300;
+    }
+
+    .med-nav {
+      display: flex;
+      gap: 42px;
+      font-weight: 500;
+    }
+
+    .med-nav a {
+      text-decoration: none;
+      color: #2c4e52;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .med-nav a:hover {
+      color: #1e5f60;
+    }
+
+    .med-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .med-urgent {
+      background: #fff1e0;
+      color: #b34141;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(179, 65, 65, 0.1);
+    }
+
+    .med-rdv-btn {
+      background: #2c7a7b;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      box-shadow: 0 8px 18px -8px rgba(44, 122, 123, 0.4);
+    }
+
+    /* HERO MÉDICAL - APAI SANT */
+    .med-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 60px 60px 80px;
+      background: linear-gradient(145deg, #f6fbfc, #edf5f7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .med-hero::before {
+      content: "⚕️";
+      position: absolute;
+      bottom: -20px;
+      right: 40px;
+      font-size: 180px;
+      opacity: 0.03;
+      transform: rotate(10deg);
+    }
+
+    .med-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .med-hero-tag {
+      background: rgba(44, 122, 123, 0.1);
+      color: #1e5f60;
+      padding: 8px 24px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+
+    .med-hero-title {
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 24px 0;
+      color: #0f3b3d;
+      letter-spacing: -1.5px;
+    }
+
+    .med-hero-accent {
+      color: #1e5f60;
+      position: relative;
+      border-bottom: 4px solid rgba(44, 122, 123, 0.2);
+    }
+
+    .med-hero-desc {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #3b676b;
+      margin-bottom: 36px;
+      max-width: 90%;
+    }
+
+    .med-hero-btns {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #2c7a7b;
+      color: white;
+      padding: 16px 38px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 17px;
+      border: none;
+      box-shadow: 0 12px 22px -12px rgba(44, 122, 123, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #2c7a7b;
+      color: #1e5f60;
+      padding: 16px 38px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 17px;
+    }
+
+    .med-hero-right {
+      background: white;
+      border-radius: 40px;
+      padding: 36px;
+      box-shadow: 0 30px 50px -25px rgba(0,80,90,0.08);
+      border: 1px solid #e2f0f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .med-opening {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .med-opening-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #d0e4e5;
+    }
+
+    .med-opening-item:last-child {
+      border-bottom: none;
+    }
+
+    .med-opening-icon {
+      width: 54px;
+      height: 54px;
+      background: #ebf6f6;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: #2c7a7b;
+    }
+
+    /* SECTION SPÉCIALITÉS MÉDICALES */
+    .med-specialties {
+      padding: 80px 60px;
+      background: white;
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .section-surtitle {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #2c7a7b;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 0 0 22px 0;
+      color: #0f3b3d;
+      letter-spacing: -1px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: #4c7376;
+      line-height: 1.6;
+    }
+
+    .specialties-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .specialty-card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 36px 28px;
+      border: 1px solid #eaf2f3;
+      transition: all 0.25s ease;
+      text-align: center;
+    }
+
+    .specialty-card:hover {
+      border-color: #8fc1c2;
+      box-shadow: 0 25px 40px -22px rgba(44, 122, 123, 0.1);
+      transform: translateY(-6px);
+    }
+
+    .specialty-icon {
+      font-size: 52px;
+      margin-bottom: 24px;
+      background: #f2f9fa;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 26px;
+      margin: 0 auto 26px;
+      color: #2c7a7b;
+    }
+
+    .specialty-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 14px 0;
+      color: #1a4c4f;
+    }
+
+    .specialty-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #4a7175;
+      margin-bottom: 20px;
+    }
+
+    .specialty-link {
+      color: #2c7a7b;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    /* SECTION ÉQUIPE MÉDICALE */
+    .med-team {
+      background: #f5fbfc;
+      padding: 80px 60px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .team-card {
+      background: white;
+      border-radius: 32px;
+      padding: 32px;
+      border: 1px solid #e0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .team-card:hover {
+      border-color: #9fc9ca;
+      box-shadow: 0 20px 35px -18px rgba(44,122,123,0.1);
+    }
+
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(145deg, #d8ecec, #c4dfdf);
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      margin-bottom: 24px;
+      color: #1e5f60;
+    }
+
+    .team-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: #1a4c4f;
+    }
+
+    .team-specialty {
+      font-size: 16px;
+      color: #2c7a7b;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .team-bio {
+      font-size: 15px;
+      color: #4b7276;
+      line-height: 1.6;
+    }
+
+    /* SECTION SERVICES & SOINS */
+    .med-services {
+      padding: 80px 60px;
+      background: white;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      background: #f9fdfe;
+      border-radius: 32px;
+      padding: 36px;
+      border: 1px solid #e6f1f2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-icon {
+      font-size: 44px;
+      margin-bottom: 24px;
+    }
+
+    .service-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 18px 0;
+      color: #1a4c4f;
+    }
+
+    .service-features {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .service-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #3c6a6e;
+      font-size: 16px;
+    }
+
+    .service-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e5f60;
+      margin-top: auto;
+    }
+
+    /* SECTION TÉMOIGNAGES PATIENTS */
+    .med-testimonials {
+      background: #f5fbfc;
+      padding: 80px 60px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: 32px;
+      padding: 36px;
+      border: 1px solid #e2eff0;
+    }
+
+    .testimonial-rating {
+      color: #ffb347;
+      font-size: 20px;
+      margin-bottom: 22px;
+    }
+
+    .testimonial-text {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #3b6468;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .testimonial-avatar {
+      width: 56px;
+      height: 56px;
+      background: #e0eff0;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #2c7a7b;
+    }
+
+    /* SECTION CHIFFRES CLÉS */
+    .med-figures {
+      padding: 60px 60px 70px;
+      background: white;
+    }
+
+    .figures-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      background: linear-gradient(145deg, #eef7f8, #e3f0f2);
+      border-radius: 60px;
+      padding: 60px 40px;
+    }
+
+    .figure-item {
+      text-align: center;
+    }
+
+    .figure-number {
+      font-size: 52px;
+      font-weight: 800;
+      color: #1e5f60;
+      margin-bottom: 12px;
+    }
+
+    .figure-label {
+      font-size: 17px;
+      color: #346b6f;
+      font-weight: 500;
+    }
+
+    /* SECTION PRISE DE RENDEZ-VOUS */
+    .med-appointment {
+      padding: 60px 60px 80px;
+      background: white;
+    }
+
+    .appointment-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      background: linear-gradient(145deg, #f6fbfc, #ecf5f6);
+      border-radius: 48px;
+      padding: 56px 60px;
+    }
+
+    .appointment-left h3 {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      color: #0f3b3d;
+      letter-spacing: -1px;
+    }
+
+    .appointment-left p {
+      font-size: 18px;
+      color: #3b676b;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .appointment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .method-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .method-icon {
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #2c7a7b;
+    }
+
+    .appointment-right {
+      background: white;
+      border-radius: 36px;
+      padding: 40px;
+      box-shadow: 0 20px 35px -15px rgba(0,0,0,0.02);
+    }
+
+    .appointment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1e5f60;
+    }
+
+    .form-input {
+      padding: 16px 22px;
+      border-radius: 30px;
+      border: 1px solid #d0e4e5;
+      font-size: 16px;
+      background: white;
+    }
+
+    .form-submit {
+      background: #2c7a7b;
+      color: white;
+      padding: 18px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 17px;
+      border: none;
+      margin-top: 12px;
+    }
+
+    /* BANDEAU URGENCE */
+    .med-emergency {
+      background: #fff6f0;
+      border-radius: 32px;
+      margin: 20px 60px 40px;
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border: 1px solid #ffdbcc;
+    }
+
+    .emergency-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .emergency-icon {
+      font-size: 48px;
+    }
+
+    .emergency-text h4 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: #b34141;
+    }
+
+    .emergency-text p {
+      font-size: 16px;
+      color: #6e4a3a;
+      margin: 0;
+    }
+
+    .emergency-phone {
+      background: #b34141;
+      color: white;
+      padding: 16px 42px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* FOOTER MÉDICAL */
+    .med-footer {
+      background: #0f3b3d;
+      color: white;
+      padding: 60px 60px 30px;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .footer-about p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .specialties-grid,
+      .team-grid,
+      .services-grid,
+      .testimonials-grid,
+      .figures-container,
+      .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .med-hero {
+        grid-template-columns: 1fr;
+      }
+      .appointment-container {
+        grid-template-columns: 1fr;
+      }
+      .med-header {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .specialties-grid,
+      .team-grid,
+      .services-grid,
+      .testimonials-grid,
+      .figures-container,
+      .footer-main {
+        grid-template-columns: 1fr;
+      }
+      .med-hero,
+      .med-specialties,
+      .med-team,
+      .med-services,
+      .med-testimonials {
+        padding: 40px 24px;
+      }
+    }
+
+    .gjs-draggable { cursor: move; }
+  </style>
+</head>
+<body>
+  <!-- SERVICES MÉDICAUX - CABINET & SOINS -->
+  <section class="medical-section">
+
+    <!-- HEADER MÉDICAL -->
+    <header class="med-header">
+      <div class="med-logo">
+        <span class="med-logo-icon">⚕️</span>
+        <span class="med-logo-text">Centre<span>Médical</span></span>
+      </div>
+      <nav class="med-nav">
+        <a href="#">Spécialités</a>
+        <a href="#">Équipe</a>
+        <a href="#">Services</a>
+        <a href="#">RDV</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="med-actions">
+        <span class="med-urgent">
+          <span>🚨</span> Urgences 24/7
+        </span>
+        <button class="med-rdv-btn">Prendre RDV</button>
+      </div>
+    </header>
+
+    <!-- HERO MÉDICAL -->
+    <div class="med-hero">
+      <div class="med-hero-left">
+        <span class="med-hero-tag">
+          <span>🩺</span> Centre de santé pluridisciplinaire
+        </span>
+        <h1 class="med-hero-title">
+          Votre santé, <span class="med-hero-accent">notre engagement</span>
+        </h1>
+        <p class="med-hero-desc">
+          Médecine générale, spécialistes, examens et suivi personnalisé. 
+          Un accompagnement bienveillant pour toute la famille.
+        </p>
+        <div class="med-hero-btns">
+          <button class="btn-primary">Prendre rendez-vous →</button>
+          <button class="btn-outline">Nos spécialistes</button>
+        </div>
+      </div>
+      <div class="med-hero-right">
+        <div class="med-opening">
+          <div class="med-opening-item">
+            <span class="med-opening-icon">🕒</span>
+            <div>
+              <div style="font-weight: 700; color: #1a4c4f;">Horaires d'ouverture</div>
+              <div style="color: #4b7276;">Lun-Ven: 8h-20h • Sam: 9h-17h</div>
+            </div>
+          </div>
+          <div class="med-opening-item">
+            <span class="med-opening-icon">📍</span>
+            <div>
+              <div style="font-weight: 700; color: #1a4c4f;">Notre adresse</div>
+              <div style="color: #4b7276;">12 rue de la Santé, 75010 Paris</div>
+            </div>
+          </div>
+          <div class="med-opening-item">
+            <span class="med-opening-icon">📞</span>
+            <div>
+              <div style="font-weight: 700; color: #1a4c4f;">Prise de RDV</div>
+              <div style="color: #4b7276;">01 42 68 12 34</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPÉCIALITÉS MÉDICALES -->
+    <div class="med-specialties">
+      <div class="section-header">
+        <div class="section-surtitle">NOS SPÉCIALITÉS</div>
+        <h2 class="section-title">Une prise en charge complète</h2>
+        <p class="section-desc">
+          Plus de 15 spécialités médicales pour répondre à tous vos besoins de santé.
+        </p>
+      </div>
+
+      <div class="specialties-grid">
+        <div class="specialty-card">
+          <div class="specialty-icon">🫀</div>
+          <h3 class="specialty-name">Cardiologie</h3>
+          <p class="specialty-desc">Consultations, échographies, épreuves d'effort et suivi cardiologique.</p>
+          <span class="specialty-link">En savoir +</span>
+        </div>
+        <div class="specialty-card">
+          <div class="specialty-icon">🦷</div>
+          <h3 class="specialty-name">Dentaire</h3>
+          <p class="specialty-desc">Soins, prothèses, implantologie et orthodontie pour tous les âges.</p>
+          <span class="specialty-link">En savoir +</span>
+        </div>
+        <div class="specialty-card">
+          <div class="specialty-icon">👁️</div>
+          <h3 class="specialty-name">Ophtalmologie</h3>
+          <p class="specialty-desc">Consultations, dépistage, pathologies oculaires et chirurgie.</p>
+          <span class="specialty-link">En savoir +</span>
+        </div>
+        <div class="specialty-card">
+          <div class="specialty-icon">🤰</div>
+          <h3 class="specialty-name">Gynécologie</h3>
+          <p class="specialty-desc">Suivi gynécologique, grossesse, contraception et ménopause.</p>
+          <span class="specialty-link">En savoir +</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉQUIPE MÉDICALE -->
+    <div class="med-team">
+      <div class="section-header">
+        <div class="section-surtitle">NOTRE ÉQUIPE</div>
+        <h2 class="section-title">Des professionnels à votre écoute</h2>
+        <p class="section-desc">
+          Médecins, chirurgiens et paramédicaux engagés pour votre bien-être.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">👩‍⚕️</div>
+          <h3 class="team-name">Dr. Sophie Martin</h3>
+          <div class="team-specialty">Médecine générale</div>
+          <p class="team-bio">15 ans d'expérience, approche holistique et prévention.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👨‍⚕️</div>
+          <h3 class="team-name">Dr. Thomas Bernard</h3>
+          <div class="team-specialty">Cardiologue</div>
+          <p class="team-bio">Ancien chef de clinique, spécialiste des pathologies cardiaques.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👩‍⚕️</div>
+          <h3 class="team-name">Dr. Amélie Petit</h3>
+          <div class="team-specialty">Gynécologue</div>
+          <p class="team-bio">Suivi personnalisé, chirurgie gynécologique et obstétrique.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES & SOINS -->
+    <div class="med-services">
+      <div class="section-header">
+        <div class="section-surtitle">NOS SERVICES</div>
+        <h2 class="section-title">Des soins accessibles</h2>
+        <p class="section-desc">
+          Consultations, examens et soins sans dépassement d'honoraires.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">🩺</span>
+          <h3 class="service-title">Consultation générale</h3>
+          <div class="service-features">
+            <span class="service-feature">✓ Médecine générale</span>
+            <span class="service-feature">✓ Suivi chronique</span>
+            <span class="service-feature">✓ Prévention</span>
+          </div>
+          <div class="service-price">25€ (Sécurité sociale + mutuelle)</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🩻</span>
+          <h3 class="service-title">Imagerie médicale</h3>
+          <div class="service-features">
+            <span class="service-feature">✓ Radiologie</span>
+            <span class="service-feature">✓ Échographie</span>
+            <span class="service-feature">✓ Mammographie</span>
+          </div>
+          <div class="service-price">Sur rendez-vous</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">💉</span>
+          <h3 class="service-title">Analyses & dépistages</h3>
+          <div class="service-features">
+            <span class="service-feature">✓ Prise de sang</span>
+            <span class="service-feature">✓ Dépistages</span>
+            <span class="service-feature">✓ Vaccinations</span>
+          </div>
+          <div class="service-price">Sans RDV</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TÉMOIGNAGES PATIENTS -->
+    <div class="med-testimonials">
+      <div class="section-header">
+        <div class="section-surtitle">AVIS PATIENTS</div>
+        <h2 class="section-title">Ils nous ont fait confiance</h2>
+        <p class="section-desc">
+          Votre satisfaction est notre priorité.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-text">"Accueil chaleureux, délais de rendez-vous très raisonnables. Le Dr. Martin est à l'écoute et prend le temps d'expliquer."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div style="font-weight: 700; color: #1a4c4f;">Marie L.</div>
+              <div style="font-size: 13px; color: #4b7276;">Patiente depuis 5 ans</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-text">"Service de cardiologie très professionnel. Examen complet et suivi personnalisé. Je recommande vivement."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">P</div>
+            <div>
+              <div style="font-weight: 700; color: #1a4c4f;">Philippe D.</div>
+              <div style="font-size: 13px; color: #4b7276;">Patient</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★☆</div>
+          <p class="testimonial-text">"Prise de RDV en ligne très pratique. Équipe dentaire compétente et douce avec les enfants."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <div style="font-weight: 700; color: #1a4c4f;">Sophie R.</div>
+              <div style="font-size: 13px; color: #4b7276;">Maman de 2 enfants</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHIFFRES CLÉS -->
+    <div class="med-figures">
+      <div class="figures-container">
+        <div class="figure-item">
+          <div class="figure-number">+25k</div>
+          <div class="figure-label">patients par an</div>
+        </div>
+        <div class="figure-item">
+          <div class="figure-number">15</div>
+          <div class="figure-label">spécialités</div>
+        </div>
+        <div class="figure-item">
+          <div class="figure-number">8</div>
+          <div class="figure-label">médecins</div>
+        </div>
+        <div class="figure-item">
+          <div class="figure-number">4.8</div>
+          <div class="figure-label">note moyenne</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANDEAU URGENCE -->
+    <div class="med-emergency">
+      <div class="emergency-left">
+        <span class="emergency-icon">🚨</span>
+        <div class="emergency-text">
+          <h4>Urgence médicale ?</h4>
+          <p>Notre ligne d'urgence est joignable 24h/24 et 7j/7</p>
+        </div>
+      </div>
+      <span class="emergency-phone">
+        <span>📞</span> 01 42 68 12 34
+      </span>
+    </div>
+
+    <!-- PRISE DE RENDEZ-VOUS -->
+    <div class="med-appointment">
+      <div class="appointment-container">
+        <div class="appointment-left">
+          <h3>Prenez rendez-vous en ligne</h3>
+          <p>Consultations disponibles sous 48h en moyenne. Annulation possible sans frais jusqu'à 24h avant.</p>
+          <div class="appointment-methods">
+            <div class="method-item">
+              <span class="method-icon">📅</span>
+              <div>
+                <div style="font-weight: 700; color: #1a4c4f;">RDV en ligne</div>
+                <div style="color: #4b7276;">7j/7, 24h/24</div>
+              </div>
+            </div>
+            <div class="method-item">
+              <span class="method-icon">📞</span>
+              <div>
+                <div style="font-weight: 700; color: #1a4c4f;">Par téléphone</div>
+                <div style="color: #4b7276;">Lun-Ven: 8h-20h</div>
+              </div>
+            </div>
+            <div class="method-item">
+              <span class="method-icon">🏥</span>
+              <div>
+                <div style="font-weight: 700; color: #1a4c4f;">Sur place</div>
+                <div style="color: #4b7276;">Accueil sans RDV selon disponibilités</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="appointment-right">
+          <div class="appointment-form">
+            <div class="form-group">
+              <span class="form-label">Spécialité</span>
+              <select class="form-input">
+                <option>Médecine générale</option>
+                <option>Cardiologie</option>
+                <option>Dentaire</option>
+                <option>Ophtalmologie</option>
+                <option>Gynécologie</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <span class="form-label">Date souhaitée</span>
+              <input type="text" class="form-input" placeholder="JJ/MM/AAAA" value="15/03/2026">
+            </div>
+            <div class="form-group">
+              <span class="form-label">Nom et prénom</span>
+              <input type="text" class="form-input" placeholder="Votre nom">
+            </div>
+            <button class="form-submit">Rechercher un créneau</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER MÉDICAL -->
+    <footer class="med-footer">
+      <div class="footer-main">
+        <div class="footer-about">
+          <div class="footer-logo">CentreMédical</div>
+          <p>Établissement de santé conventionné, accessible et engagé pour une médecine de qualité pour tous.</p>
+          <div style="display: flex; gap: 24px; font-size: 24px; margin-top: 24px;">
+            <span style="color: rgba(255,255,255,0.6);">📘</span>
+            <span style="color: rgba(255,255,255,0.6);">📷</span>
+            <span style="color: rgba(255,255,255,0.6);">🐦</span>
+          </div>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Spécialités</span>
+          <a href="#">Cardiologie</a>
+          <a href="#">Dentaire</a>
+          <a href="#">Ophtalmologie</a>
+          <a href="#">Gynécologie</a>
+          <a href="#">Pédiatrie</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Infos pratiques</span>
+          <a href="#">Horaires</a>
+          <a href="#">Accès</a>
+          <a href="#">Prise de RDV</a>
+          <a href="#">Téléconsultation</a>
+          <a href="#">Tarifs</a>
+        </div>
+        <div class="footer-links">
+          <span class="footer-title">Contact</span>
+          <a href="#">12 rue de la Santé, 75010 Paris</a>
+          <a href="#">01 42 68 12 34</a>
+          <a href="#">contact@centremedical.fr</a>
+          <a href="#">Urgences: 01 42 68 12 34</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 CentreMédical - Tous droits réservés</span>
+        <span style="display: flex; gap: 28px;">
+          <span>Mentions légales</span>
+          <span>Confidentialité</span>
+          <span>CGU</span>
+        </span>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>

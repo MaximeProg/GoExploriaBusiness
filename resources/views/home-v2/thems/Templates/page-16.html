@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appartements Place des Cerisiers · quartier paisible</title>
+  <!-- Google Fonts : élégant & lisible -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (gratuit) pour icônes pro -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Swiper CSS (slider moderne et léger) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #fcfaf7;
+      color: #2d3e4f;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    h1 { font-size: clamp(2.8rem, 7vw, 4.8rem); margin-bottom: 0.5rem; }
+    h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 1.5rem; }
+    h3 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 1rem; }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* Boutons élégants */
+    .btn {
+      display: inline-block;
+      background-color: #4a6d7c;  /* bleu-gris apaisant */
+      color: white;
+      border: none;
+      padding: 14px 38px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: 0.25s;
+      box-shadow: 0 8px 18px rgba(40, 60, 70, 0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn:hover {
+      background-color: #2d5061;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px rgba(30, 50, 60, 0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #4a6d7c;
+      color: #4a6d7c;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: #4a6d7c;
+      color: white;
+    }
+
+    /* Grilles */
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 40px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    /* Cartes appartement */
+    .card-appart {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+      border: 1px solid #ebdfd3;
+    }
+    .card-appart:hover {
+      transform: scale(1.02);
+      box-shadow: 0 30px 40px -12px rgba(30, 60, 70, 0.2);
+    }
+    .card-appart img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-content {
+      padding: 28px 24px 32px;
+    }
+    .card-content h4 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .detail {
+      color: #6d8a9a;
+      margin: 12px 0 16px;
+      font-weight: 400;
+    }
+    .prix {
+      font-weight: 700;
+      color: #3b6a7c;
+      font-size: 1.6rem;
+      margin: 18px 0 12px;
+    }
+
+    /* badges */
+    .badge-paisible {
+      background: #e1eef6;
+      color: #2b5f74;
+      padding: 6px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 20px;
+      border: 1px solid #bdd3df;
+    }
+
+    /* images réalistes */
+    .img-pro {
+      width: 100%;
+      height: auto;
+      border-radius: 28px;
+      box-shadow: 0 25px 35px -15px rgba(40, 60, 70, 0.25);
+      transition: 0.3s;
+    }
+    .img-pro:hover {
+      box-shadow: 0 30px 45px -12px #2d4f60;
+    }
+
+    /* vidéo iframe */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 25px 35px -12px #253b45;
+      border: 2px solid #fffaf5;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ===== SLIDER PRINCIPAL (Swiper) ===== */
+    .hero-slider {
+      width: 100%;
+      height: 85vh;
+      min-height: 600px;
+    }
+    .swiper-slide {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(107deg, rgba(20, 40, 50, 0.7) 0%, rgba(20, 40, 50, 0.3) 70%);
+      z-index: 2;
+    }
+    .slide-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: white;
+      max-width: 900px;
+      padding: 0 24px;
+    }
+    .slide-content h1 {
+      color: white;
+      text-shadow: 0 4px 20px #00000040;
+    }
+    .slide-content p {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 8px #00000030;
+    }
+    .swiper-pagination-bullet-active {
+      background: white !important;
+    }
+    .swiper-button-prev, .swiper-button-next {
+      color: white !important;
+      background: rgba(0,0,0,0.2);
+      padding: 28px 18px;
+      border-radius: 40px;
+    }
+
+    /* Header */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #1f4a5c;
+      line-height: 1.2;
+    }
+    .logo span {
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      display: block;
+      color: #5d7f8e;
+      letter-spacing: 0.5px;
+    }
+    .nav-links a {
+      margin-left: 38px;
+      text-decoration: none;
+      color: #1f3d4a;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      border-bottom-color: #4a6d7c;
+    }
+
+    /* section bienvenue */
+    .bienvenue {
+      background: #f6f9fb;
+    }
+
+    /* Galerie miniatures */
+    .mini-gal {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .mini-gal img {
+      width: 130px;
+      height: 130px;
+      border-radius: 24px;
+      object-fit: cover;
+      border: 3px solid white;
+      box-shadow: 0 10px 20px #0000001a;
+    }
+
+    /* Footer */
+    .footer {
+      background: #203e4b;
+      color: #e7f0f5;
+      border-radius: 48px 48px 0 0;
+      padding: 60px 0 30px;
+      margin-top: 40px;
+    }
+    .footer a { color: #c8dae3; text-decoration: none; }
+    .footer a:hover { color: white; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .navbar { flex-direction: column; gap: 20px; }
+      .nav-links a { margin: 0 18px; }
+      .hero-slider { height: 70vh; }
+    }
+    @media (max-width: 500px) {
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="container">
+  <nav class="navbar" data-gjs-type="navbar">
+    <div class="logo" data-gjs-type="text">Place des Cerisiers<span>appartements récents, quartier paisible</span></div>
+    <div class="nav-links" data-gjs-type="nav-links">
+      <a href="#" data-gjs-type="link">Accueil</a>
+      <a href="#" data-gjs-type="link">Nos appartements</a>
+      <a href="#" data-gjs-type="link">Galeries</a>
+      <a href="#" data-gjs-type="link">Contact</a>
+      <a href="#" data-gjs-type="link"><i class="fas fa-user"></i> Connexion</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ========== SLIDER PRINCIPAL (images + vidéo iframe intégrée) ========== -->
+<div class="hero-slider swiper" data-gjs-type="slider">
+  <div class="swiper-wrapper">
+    <!-- Slide 1 : image réelle extérieur -->
+    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=85');">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <h1 data-gjs-type="text">Bienvenue aux appartements<br>Place des Cerisiers</h1>
+        <p data-gjs-type="text">Récents, bien pensés, dans un quartier tranquille et paisible</p>
+        <a href="#" class="btn btn-outline" style="border-color:white; color:white;" data-gjs-type="button">Découvrir les appartements</a>
+      </div>
+    </div>
+    <!-- Slide 2 : image réelle intérieur moderne -->
+    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&auto=format&fit=crop&q=85');">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <h2 data-gjs-type="text">Des intérieurs lumineux</h2>
+        <p data-gjs-type="text">Espaces ouverts, finitions soignées, pour votre confort</p>
+      </div>
+    </div>
+    <!-- Slide 3 : VIDÉO YOUTUBE IFRAME (exemple drone / visite) -->
+    <div class="swiper-slide" style="background: #1f3d4a;">
+      <div style="width: 100%; height: 100%; position: relative;">
+        <div class="video-wrapper" style="width: 90%; max-width: 1000px; margin: 0 auto; top: 50%; transform: translateY(-50%); border: 4px solid white; border-radius: 32px;">
+          <iframe src="https://www.youtube.com/embed/MfAAJgCzOAs?si=MfAAJgCzOAs&autoplay=1&mute=1&loop=1&playlist=MfAAJgCzOAs" title="visite drone appartements" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div style="position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center; color: white; text-shadow: 0 2px 10px black;" data-gjs-type="text">🎬 Vue drone du quartier Place des Cerisiers</div>
+      </div>
+    </div>
+    <!-- Slide 4 : image jardin / espaces verts -->
+    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=1600&auto=format&fit=crop&q=85');">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <h2 data-gjs-type="text">Jardinez, relaxez-vous</h2>
+        <p data-gjs-type="text">Aires aménagées pour profiter du calme</p>
+      </div>
+    </div>
+  </div>
+  <!-- Pagination & navigation -->
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+
+<!-- ========== SECTION BIENVENUE ========== -->
+<section class="bienvenue" data-gjs-type="section">
+  <div class="container">
+    <div class="grid-2" style="align-items: center;">
+      <div>
+        <span class="badge-paisible" data-gjs-type="badge"><i class="fas fa-tree"></i> Quartier résidentiel</span>
+        <h2 data-gjs-type="text">Bienvenue chez vous</h2>
+        <p style="font-size: 1.2rem; color: #3f5563;" data-gjs-type="text">Les appartements Place des Cerisiers sont récents, bien pensés, situés dans un quartier tranquille et paisible pour une clientèle respectueuse de leur environnement. Vous pourrez jardiner, vous relaxer, vous amuser dans les aires aménagées.</p>
+        <p style="margin-top: 28px;"><strong data-gjs-type="text">Gaston Rioux, propriétaire</strong></p>
+        <a href="#" class="btn" style="margin-top: 24px;" data-gjs-type="button">Prendre rendez-vous</a>
+      </div>
+      <div class="video-wrapper" data-gjs-type="video">
+        <!-- 2e vidéo YouTube (ambiance) -->
+        <iframe src="https://www.youtube.com/embed/lxTop3rqXkI?si=0TfW9dzVCCuA_jH5" title="présentation résidence" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NOS APPARTEMENTS (4 blocs comme 60-62, 84-86 etc) ========== -->
+<section data-gjs-type="section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 50px;">
+      <span class="badge-paisible" data-gjs-type="badge">🏡 Sélection d'appartements</span>
+      <h2 data-gjs-type="text">Nos appartements Place des Cerisiers</h2>
+    </div>
+
+    <div class="grid-2" style="gap: 40px;">
+      <!-- Appart 60-62 -->
+      <div class="card-appart" data-gjs-type="card">
+        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&auto=format&fit=crop&q=75" alt="Appartement 60-62">
+        <div class="card-content">
+          <h4 data-gjs-type="text">Le 60-62 des Jonquilles</h4>
+          <p class="detail" data-gjs-type="text">3 pièces · 72 m² · balcon sud</p>
+          <p data-gjs-type="text">Séjour lumineux, cuisine équipée, belle vue sur le jardin.</p>
+          <div class="prix" data-gjs-type="text">850 € / mois</div>
+          <a href="#" class="btn-outline" style="padding: 10px 24px; border-radius: 30px; text-decoration: none; display: inline-block;" data-gjs-type="button">En savoir plus</a>
+        </div>
+      </div>
+      <!-- Appart 84-86 -->
+      <div class="card-appart" data-gjs-type="card">
+        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&auto=format&fit=crop&q=75" alt="Appartement 84-86">
+        <div class="card-content">
+          <h4 data-gjs-type="text">Le 84-86 des Jonquilles</h4>
+          <p class="detail" data-gjs-type="text">4 pièces · 89 m² · exposé est/ouest</p>
+          <p data-gjs-type="text">Grand séjour avec cheminée, proche des aires de jeux.</p>
+          <div class="prix" data-gjs-type="text">990 € / mois</div>
+          <a href="#" class="btn-outline" style="padding: 10px 24px;" data-gjs-type="button">En savoir plus</a>
+        </div>
+      </div>
+      <!-- Appart 104-106 -->
+      <div class="card-appart" data-gjs-type="card">
+        <img src="https://images.unsplash.com/photo-1560448075-bb485b067938?w=800&auto=format&fit=crop&q=75" alt="Appartement 104-106">
+        <div class="card-content">
+          <h4 data-gjs-type="text">Le 104-106 des Jonquilles</h4>
+          <p class="detail" data-gjs-type="text">Duplex · 105 m² · terrasse</p>
+          <p data-gjs-type="text">Espace contemporain, deux chambres, grande terrasse.</p>
+          <div class="prix" data-gjs-type="text">1250 € / mois</div>
+          <a href="#" class="btn-outline" style="padding: 10px 24px;" data-gjs-type="button">En savoir plus</a>
+        </div>
+      </div>
+      <!-- Appart 108-110 -->
+      <div class="card-appart" data-gjs-type="card">
+        <img src="https://images.unsplash.com/photo-1598928506911-0fa38e1b9b9c?w=800&auto=format&fit=crop&q=75" alt="Appartement 108-110">
+        <div class="card-content">
+          <h4 data-gjs-type="text">Le 108-110 des Jonquilles</h4>
+          <p class="detail" data-gjs-type="text">3 pièces · 78 m² · rez-de-jardin</p>
+          <p data-gjs-type="text">Accès direct au parc, idéal pour les familles.</p>
+          <div class="prix" data-gjs-type="text">890 € / mois</div>
+          <a href="#" class="btn-outline" style="padding: 10px 24px;" data-gjs-type="button">En savoir plus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALERIES PHOTOS (multiples images réelles) ========== -->
+<section style="background: #f2f6f9;" data-gjs-type="section">
+  <div class="container">
+    <div style="text-align: center;">
+      <span class="badge-paisible" data-gjs-type="badge">📸 Galeries</span>
+      <h2 data-gjs-type="text">Découvrez les lieux en images</h2>
+    </div>
+    <div class="grid-4" style="margin-top: 40px;">
+      <img class="img-pro" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&auto=format&fit=crop&q=70" alt="Façade résidence" data-gjs-type="image">
+      <img class="img-pro" src="https://images.unsplash.com/photo-1560185009-5bf5f284f890?w=600&auto=format&fit=crop&q=70" alt="Jardin partagé" data-gjs-type="image">
+      <img class="img-pro" src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=600&auto=format&fit=crop&q=70" alt="Hall d'entrée" data-gjs-type="image">
+      <img class="img-pro" src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=600&auto=format&fit=crop&q=70" alt="Cuisine moderne" data-gjs-type="image">
+    </div>
+    <div class="mini-gal">
+      <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=200&auto=format&fit=crop&q=60" alt="">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&auto=format&fit=crop&q=60" alt="">
+      <img src="https://images.unsplash.com/photo-1618213749401-4492e2c1f7d1?w=200&auto=format&fit=crop&q=60" alt="">
+      <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c045d?w=200&auto=format&fit=crop&q=60" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- ========== VIDÉOS SUPPLEMENTAIRES (drone / appartements) ========== -->
+<section data-gjs-type="section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <span class="badge-paisible" data-gjs-type="badge">🎥 Multi‑média</span>
+      <h2 data-gjs-type="text">Visites vidéo</h2>
+    </div>
+    <div class="grid-2">
+      <div class="video-wrapper" data-gjs-type="video">
+        <iframe src="https://www.youtube.com/embed/8TZ5b7hQn7Q?si=wnRuwWx8UuwpR53P" title="Appartements 104-106 vidéo" allowfullscreen></iframe>
+        <p style="margin-top: 16px;" data-gjs-type="text">Les Appartements 104-106 Place des Cerisiers VIDÉO</p>
+      </div>
+      <div class="video-wrapper" data-gjs-type="video">
+        <iframe src="https://www.youtube.com/embed/_B3Yvn9D9Yc?si=n2e8KX3Y_fCCu4Z9" title="Appartements 108-110 vidéo" allowfullscreen></iframe>
+        <p style="margin-top: 16px;" data-gjs-type="text">Appartement 108-110 Place des Cerisiers VIDÉO</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="#" class="btn-outline" style="padding: 14px 48px;" data-gjs-type="button">Voir toutes les vidéos <i class="fas fa-play"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT & COORDONNÉES ========== -->
+<section style="background: #eaf2f5;" data-gjs-type="section">
+  <div class="container">
+    <div class="grid-2" style="align-items: center;">
+      <div>
+        <h2 data-gjs-type="text">Contactez Gaston Rioux</h2>
+        <p style="font-size: 1.2rem;" data-gjs-type="text"><i class="fas fa-phone-alt"></i> 418-851-5561</p>
+        <p style="font-size: 1.2rem;" data-gjs-type="text"><i class="fas fa-envelope"></i> gastonrioux3p@gmail.com</p>
+        <p style="margin: 30px 0;" data-gjs-type="text">Visites possibles 7j/7 sur rendez-vous.</p>
+        <a href="#" class="btn" data-gjs-type="button">Nous écrire</a>
+      </div>
+      <img class="img-pro" src="https://images.unsplash.com/photo-1568605117036-5fe5e7fa44b7?w=800&auto=format&fit=crop&q=75" alt="Gaston Rioux propriétaire">
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer" data-gjs-type="footer">
+  <div class="container">
+    <div class="grid-3">
+      <div>
+        <div class="logo" style="color: #d4e7f0; font-size: 2.2rem;" data-gjs-type="text">Place des Cerisiers</div>
+        <p style="margin: 20px 0;" data-gjs-type="text">Des appartements récents dans un écrin de verdure.</p>
+      </div>
+      <div>
+        <h4 style="color: white;" data-gjs-type="text">Liens</h4>
+        <p><a href="#" data-gjs-type="link">Accueil</a></p>
+        <p><a href="#" data-gjs-type="link">Nos appartements</a></p>
+        <p><a href="#" data-gjs-type="link">Galeries</a></p>
+        <p><a href="#" data-gjs-type="link">Contact</a></p>
+      </div>
+      <div>
+        <h4 style="color: white;" data-gjs-type="text">Coordonnées</h4>
+        <p data-gjs-type="text">418-851-5561</p>
+        <p data-gjs-type="text">gastonrioux3p@gmail.com</p>
+        <p data-gjs-type="text">Place des Cerisiers, quartier des Jonquilles</p>
+      </div>
+    </div>
+    <hr style="border: 0; border-top: 1px solid #558092; margin: 48px 0 24px;">
+    <p style="text-align: center;">© 2025 Appartements Place des Cerisiers - Tous droits réservés</p>
+  </div>
+</footer>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.hero-slider', {
+    loop: true,
+    autoplay: { delay: 6000 },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+  });
+</script>
+<script>
+  (function() { console.log('🏢 Landing Appartements Place des Cerisiers prête pour GrapeJS'); })();
+</script>
+</body>
+</html>
