@@ -131,10 +131,29 @@ html {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 10000; /* SUR-ÉLEVÉ : Doit être au dessus du Hero (1000) */
     background-color: var(--navy-dark);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    overflow: visible !important;
+}
+
+/* RÉACTIVATION DES DROPDOWNS DU HEADER */
+.nav-menu-v2-has-mega:hover .mega-menu-v2,
+.nav-menu-v2-has-mega.active .mega-menu-v2 {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+}
+
+.nav-menu-v2-has-videos:hover .nav-videos-dropdown {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
 }
 
 .header-v2.scrolled {
@@ -446,11 +465,13 @@ html {
     align-items: center;
     justify-content: flex-start;
     padding: 0;
-    overflow: visible !important; /* Permettre au Mega Menu de sortir du cadre */
+    overflow: visible !important;
+    /* Permettre au Mega Menu de sortir du cadre */
     margin-top: 70px;
     margin-bottom: 0 !important;
     background-color: var(--navy-dark);
-    z-index: 1000; /* Priorité sur le reste de la page */
+    z-index: 1000;
+    /* Priorité sur le reste de la page */
 }
 
 .video-carousel-background,
@@ -1629,7 +1650,8 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 48px; /* Taille Bosse */
+    height: 48px;
+    /* Taille Bosse */
     width: auto;
     transition: transform 0.3s ease;
     cursor: pointer;
@@ -1645,13 +1667,23 @@ html {
 
 /* Animation Flash Spécifique Bosse sur l'icône Info */
 .quick-link-item.info-trigger img {
-    height: 65px; /* Plus grand comme demandé */
+    height: 65px;
+    /* Plus grand comme demandé */
     animation: flash-info-bosse 2s infinite;
 }
 
 @keyframes flash-info-bosse {
-    0%, 50%, 100% { opacity: 1; }
-    25%, 75% { opacity: 0.6; }
+
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0.6;
+    }
 }
 
 .quick-link-item:hover {
@@ -1660,7 +1692,8 @@ html {
 
 /* MEGA MENU INFO - COPIE CONFORME RÉFÉRENCE IMAGE */
 .info-mega-menu-v2 {
-    display: none !important; /* CACHÉ PAR DÉFAUT POUR ÉVITER LE DÉSORDRE */
+    display: none !important;
+    /* CACHÉ PAR DÉFAUT POUR ÉVITER LE DÉSORDRE */
     position: absolute;
     top: 100%;
     left: 50% !important;
@@ -1680,7 +1713,8 @@ html {
 }
 
 .quick-link-item.info-trigger:hover .info-mega-menu-v2 {
-    display: flex !important; /* AFFICHÉ UNIQUEMENT AU SURVOL */
+    display: flex !important;
+    /* AFFICHÉ UNIQUEMENT AU SURVOL */
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
@@ -1710,7 +1744,8 @@ html {
     display: flex;
     padding: 20px;
     background: #f8fafc;
-    max-height: 70vh; /* Barre de défilement si trop long */
+    max-height: 70vh;
+    /* Barre de défilement si trop long */
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #3498db #f1f5f9;
@@ -1725,62 +1760,129 @@ html {
     border-radius: 10px;
 }
 
-.info-mega-menu-v2 .mega-menu-columns-container {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
+/* --- DESIGN SYSTÈME : ICÔNES MINIMALISTES --- */
+.search-bar-v2-quick-links {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.search-bar-v2-quick-links .icon-circle {
+    width: 35px;
+    /* RÉDUIT : Ultra compact */
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.search-bar-v2-quick-links .info-bg {
+    background: #e67e22;
+    color: white;
+}
+
+.search-bar-v2-quick-links .icon-standard {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.info-mega-menu-v2 {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 950px;
+    background: white;
+    border-radius: 12px;
+    z-index: 999999;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 12px;
 }
 
 .info-mega-menu-v2 .mega-menu-column {
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
+.info-mega-menu-v2 .mega-menu-columns-container {
+    flex: 1;
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 12px;
+}
+
 .info-mega-menu-v2 .mega-menu-item {
-    background: white;
-    padding: 15px 10px;
-    border-radius: 10px;
+    background: #fff;
+    padding: 10px 5px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Aligner en haut pour cohérence icônes */
     text-decoration: none;
-    gap: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
     border: 1px solid #f1f5f9;
+    min-height: 75px;
+    /* FORCE LA MÊME HAUTEUR POUR TOUS */
+    width: 100%;
+}
+
+.info-mega-menu-v2 .mega-menu-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #334155;
+    text-align: center;
+    line-height: 1.1;
+    min-height: 2.2em;
+    /* Réserve l'espace pour 2 lignes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .info-mega-menu-v2 .mega-menu-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     border-color: #3498db;
 }
 
-.info-mega-menu-v2 .mega-menu-image {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
+.info-mega-menu-v2 .mega-menu-icon-wrapper {
+    width: 30px;
+    height: 30px;
+    background: #f1f5f9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #475569;
+    margin-bottom: 4px;
 }
 
 .info-mega-menu-v2 .mega-menu-label {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #2c3e50;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #334155;
     text-align: center;
 }
 
-/* Professional Clean Media Slider (Strict Height Block) */
 .info-mega-menu-v2 .mega-menu-carousel-clean {
-    width: 420px;
+    width: 300px;
+    height: 320px !important;
+    /* RÉDUIT DRASTIQUEMENT */
     background: #000;
-    margin-left: 20px;
-    border-radius: 12px;
+    margin-left: 15px;
+    border-radius: 10px;
     position: relative;
     overflow: hidden;
-    height: 500px !important; /* FORCER LA HAUTEUR POUR ÉVITER L'EFFET BARRE */
 }
 
 .info-mega-menu-v2 .carousel-media-viewport {
@@ -1876,15 +1978,21 @@ html {
     background: rgba(0, 0, 0, 0.8);
 }
 
-.info-mega-menu-v2 .mega-nav-btn.prev { left: 10px; }
-.info-mega-menu-v2 .mega-nav-btn.next { right: 10px; }
+.info-mega-menu-v2 .mega-nav-btn.prev {
+    left: 10px;
+}
+
+.info-mega-menu-v2 .mega-nav-btn.next {
+    right: 10px;
+}
 
 .info-mega-menu-v2 .mega-menu-footer-btns {
     display: flex;
-    background: white;
-    padding: 30px 40px;
-    gap: 30px;
-    border-top: 1px solid #e0e0e0;
+    background: #f8fafc;
+    padding: 10px 15px;
+    /* RÉDUIT */
+    gap: 15px;
+    border-top: 1px solid #e2e8f0;
 }
 
 .info-mega-menu-v2 .footer-btn {
@@ -1892,18 +2000,31 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    padding: 20px;
-    border-radius: 12px;
+    gap: 10px;
+    padding: 12px;
+    /* RÉDUIT */
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: 800;
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    /* RÉDUIT */
     transition: all 0.3s ease;
 }
 
-.info-mega-menu-v2 .btn-quebec { background: #3498db; color: white; }
-.info-mega-menu-v2 .btn-canada { background: #2980b9; color: white; }
-.info-mega-menu-v2 .btn-monde { background: #2c3e50; color: white; }
+.info-mega-menu-v2 .btn-quebec {
+    background: #3498db;
+    color: white;
+}
+
+.info-mega-menu-v2 .btn-canada {
+    background: #2980b9;
+    color: white;
+}
+
+.info-mega-menu-v2 .btn-monde {
+    background: #2c3e50;
+    color: white;
+}
 
 .info-mega-menu-v2 .footer-btn:hover {
     transform: translateY(-5px);
@@ -1911,34 +2032,33 @@ html {
     filter: brightness(1.1);
 }
 
-/* RÉVISION RADICALE RESPONSIVE - MEGA MENU INFO */
+/* RÉVISION RESPONSIVE : MEGA MENU INFO MINIMALISTE */
 @media (max-width: 1200px) {
     .info-mega-menu-v2 {
         width: 95vw !important;
-        max-width: 900px;
-    }
-    .info-mega-menu-v2 .mega-menu-columns-container {
-        grid-template-columns: repeat(3, 1fr) !important;
+        max-width: 1000px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 }
 
 @media (max-width: 768px) {
-    /* Boutons Hero - 3 par ligne */
+    /* BOUTONS HERO (6 ICONES) - GRILLE 3x2 FIXE */
     .search-bar-v2-quick-links {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 10px !important;
-        width: 100% !important;
-        padding: 0 10px !important;
+        width: auto !important;
+        margin: 15px auto 0 !important;
     }
 
-    .quick-link-item {
-        width: 60px !important;
-        height: 60px !important;
-        margin: 0 auto;
+    .search-bar-v2-quick-links .icon-circle {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 0.85rem !important;
     }
 
-    /* MEGA MENU INFO MOBILE - RECONSTRUCTION TOTALE */
+    /* MEGA MENU INFO - FULL SCREEN MOBILE */
     .info-mega-menu-v2 {
         position: fixed !important;
         top: 0 !important;
@@ -1951,82 +2071,79 @@ html {
         max-height: 100vh !important;
         transform: none !important;
         margin: 0 !important;
-        border-radius: 0 !important;
         display: none !important;
-        flex-direction: column !important;
-        z-index: 2147483647 !important; /* Maximum possible z-index */
-        overflow-x: hidden !important;
+        z-index: 99999999 !important;
+        background: #fff !important;
         overflow-y: auto !important;
-        background: white !important;
+        overflow-x: hidden !important;
     }
 
     .info-trigger.active .info-mega-menu-v2 {
-        display: flex !important;
+        display: block !important;
     }
 
+    /* 1. TICKER MOBILE HORIZONTAL SWIPE */
     .info-mega-menu-v2 .mega-menu-ticker {
-        display: none !important; /* Cacher le ticker sur mobile pour gagner de la place */
+        display: flex !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        padding: 12px 15px !important;
+        gap: 20px !important;
+        -webkit-overflow-scrolling: touch;
     }
+    .info-mega-menu-v2 .mega-menu-ticker::-webkit-scrollbar { display: none; }
 
+    /* 2. GRILLE D'ICÔNES MOBILE HORIZONTAL SWIPE */
     .info-mega-menu-v2 .mega-menu-main-content {
-        display: block !important; /* Passer en block pour forcer la verticale */
-        padding: 20px 15px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
     }
 
     .info-mega-menu-v2 .mega-menu-columns-container {
         display: flex !important;
-        flex-direction: column !important; /* FORCE LA VERTICALE */
-        width: 100% !important;
-        gap: 5px !important;
+        flex-direction: row !important; /* SWIPE HORIZONTAL */
+        overflow-x: auto !important;
+        padding: 20px 15px !important;
+        gap: 15px !important;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap !important;
     }
-
-    .info-mega-menu-v2 .mega-menu-column {
-        width: 100% !important;
-        display: block !important;
-    }
+    .info-mega-menu-v2 .mega-menu-columns-container::-webkit-scrollbar { display: none; }
 
     .info-mega-menu-v2 .mega-menu-item {
-        width: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        padding: 12px 15px !important;
-        border-bottom: 1px solid #eee !important;
-        background: #fff !important;
-        margin-bottom: 0 !important;
+        flex: 0 0 100px !important; /* Largeur d'un item sur mobile */
+        min-height: 70px !important;
+        padding: 8px 4px !important;
     }
 
-    .info-mega-menu-v2 .mega-menu-label {
-        font-size: 1rem !important;
-        margin-left: 15px !important;
-        text-align: left !important;
+    .info-mega-menu-v2 .mega-menu-icon-wrapper {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.8rem !important;
     }
 
-    .info-mega-menu-v2 .mega-menu-image {
-        width: 30px !important;
-        height: 30px !important;
-    }
-
-    /* Slider Média Mobile - Après le contenu */
+    /* 3. SLIDER MÉDIA PLEIN LARGEUR MOBILE */
     .info-mega-menu-v2 .mega-menu-carousel-clean {
         width: 100% !important;
         height: 250px !important;
-        margin: 20px 0 !important;
-        float: none !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
     }
 
-    /* Footer Mobile - Boutique de boutons empilés */
+    /* 4. FOOTER MOBILE HORIZONTAL SWIPE */
     .info-mega-menu-v2 .mega-menu-footer-btns {
-        flex-direction: column !important;
-        width: 100% !important;
+        display: flex !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
         padding: 15px !important;
-        box-sizing: border-box !important;
+        gap: 10px !important;
     }
+    .info-mega-menu-v2 .mega-menu-footer-btns::-webkit-scrollbar { display: none; }
 
     .info-mega-menu-v2 .footer-btn {
-        width: 100% !important;
-        margin-bottom: 10px !important;
-        padding: 15px !important;
+        flex: 0 0 180px !important;
+        padding: 10px !important;
+        font-size: 0.75rem !important;
     }
-}
+}

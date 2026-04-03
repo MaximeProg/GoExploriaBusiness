@@ -152,26 +152,43 @@
                     </div>
                 </div>
 
-                {{-- NOUVEAU : 6 Boutons Images Rapides --}}
+                {{-- NOUVEAU : 6 Boutons Icônes FontAwesome Rapides --}}
                 <div class="search-bar-v2-quick-links">
                     <div class="quick-link-item info-trigger" id="infoTrigger">
-                        <img src="{{ asset('header_info/info.png') }}" alt="Info">
+                        <div class="icon-circle info-bg">
+                            <i class="fas fa-info"></i>
+                        </div>
                         @include('home-v2.components.InfoMegaMenu')
                     </div>
+                    
                     <a href="{{ url('/deals') }}" class="quick-link-item">
-                        <img src="{{ asset('header_info/DEALS-BILLET-AVION.png') }}" alt="Deals">
+                        <div class="icon-circle icon-standard">
+                            <i class="fas fa-tag"></i>
+                        </div>
                     </a>
+                    
                     <a href="{{ url('/offres') }}" class="quick-link-item">
-                        <img src="{{ asset('header_info/offre-derniere-minutes.png') }}" alt="Offres">
+                        <div class="icon-circle icon-standard">
+                            <i class="fas fa-clock"></i>
+                        </div>
                     </a>
+                    
                     <a href="{{ url('/nouvelles') }}" class="quick-link-item">
-                        <img src="{{ asset('header_info/NOUVELLES-DU-JOUR.png') }}" alt="Nouvelles">
+                        <div class="icon-circle icon-standard">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
                     </a>
+                    
                     <a href="{{ url('/must-see') }}" class="quick-link-item">
-                        <img src="{{ asset('header_info/MOSTS-A-VOIR.png') }}" alt="Must See">
+                        <div class="icon-circle icon-standard">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
                     </a>
+                    
                     <a href="{{ url('/aventures') }}" class="quick-link-item">
-                        <img src="{{ asset('header_info/STATIONS-AVENTURE-QUEBEC.png') }}" alt="Aventures">
+                        <div class="icon-circle icon-standard">
+                            <i class="fas fa-binoculars"></i>
+                        </div>
                     </a>
                 </div>
 

@@ -34,15 +34,6 @@
                     </li>
                     <li class="nav-menu-v2-has-videos" id="videosMenuItem">
                         <a href="#videos">VIDÉOS</a>
-                        <div class="nav-videos-dropdown" id="videosDropdown">
-                            <div class="nav-videos-header">
-                                <h3 class="nav-videos-title">Nos Vidéos</h3>
-                                <p class="nav-videos-subtitle">Découvrez notre collection de vidéos</p>
-                            </div>
-                            <div class="nav-videos-list" id="videosDropdownList">
-                                {{-- Les vidéos seront chargées dynamiquement --}}
-                            </div>
-                        </div>
                     </li>
                     <li><a href="#contact">CONTACT</a></li>
                     <li><a href="#inscription">INSCRIPTION</a></li>
@@ -89,5 +80,53 @@
                 </a>
             </div>
         </div>
+        {{-- Dropdown Vidéos - HORS du <li> pour un centrage full-width correct --}}
+        <div class="nav-videos-dropdown" id="videosDropdown">
+            <div class="nav-videos-header">
+                <h3 class="nav-videos-title">Nos Vidéos</h3>
+                <p class="nav-videos-subtitle">Découvrez notre collection de vidéos</p>
+            </div>
+            <div class="nav-videos-list" id="videosDropdownList">
+                {{-- Les vidéos seront chargées dynamiquement --}}
+            </div>
+        </div>
     </nav>
 </header>
+
+<script>
+    // Déclencheur JS pour le dropdown Vidéos
+    (function() {
+        const trigger = document.getElementById('videosMenuItem');
+        const dropdown = document.getElementById('videosDropdown');
+        if (!trigger || !dropdown) return;
+
+        function closeDropdown() {
+            dropdown.classList.remove('active');
+        }
+
+        // Ouverture/fermeture au survol
+        trigger.addEventListener('mouseenter', () => dropdown.classList.add('active'));
+        trigger.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                if (!dropdown.matches(':hover')) closeDropdown();
+            }, 100);
+        });
+        dropdown.addEventListener('mouseleave', () => closeDropdown());
+        dropdown.addEventListener('mouseenter', () => dropdown.classList.add('active'));
+
+        // FERMETURE AUTOMATIQUE dès qu'un lien vidéo est cliqué
+        dropdown.addEventListener('click', function(e) {
+            const link = e.target.closest('a, button, .video-card, [data-video]');
+            if (link) {
+                closeDropdown();
+            }
+        });
+
+        // Fermer si on clique ailleurs sur la page
+        document.addEventListener('click', function(e) {
+            if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
+                closeDropdown();
+            }
+        });
+    })();
+</script>
