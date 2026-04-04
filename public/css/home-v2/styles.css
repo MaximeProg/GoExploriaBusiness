@@ -131,7 +131,8 @@ html {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10000; /* SUR-ÉLEVÉ : Doit être au dessus du Hero (1000) */
+    z-index: 10000;
+    /* SUR-ÉLEVÉ : Doit être au dessus du Hero (1000) */
     background-color: var(--navy-dark);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -1693,11 +1694,14 @@ html {
 /* MEGA MENU INFO - Positionné FIXE pour éviter les débordements */
 .info-mega-menu-v2 {
     display: none !important;
-    position: fixed !important;       /* FIXED : ignore tous les parents overflow */
-    top: auto;                        /* JS va le définir dynamiquement */
+    position: fixed !important;
+    /* FIXED : ignore tous les parents overflow */
+    top: auto;
+    /* JS va le définir dynamiquement */
     left: 50% !important;
     transform: translateX(-50%) !important;
-    width: min(980px, calc(100vw - 40px)) !important; /* jamais toucher les bords */
+    width: min(980px, calc(100vw - 40px)) !important;
+    /* jamais toucher les bords */
     max-width: calc(100vw - 40px) !important;
     background: white;
     border-radius: 16px;
@@ -1779,10 +1783,10 @@ html {
     cursor: pointer;
 }
 
-.search-bar-v2-quick-links .info-bg {
+/* .search-bar-v2-quick-links .info-bg {
     background: #e67e22;
     color: white;
-}
+} */
 
 .search-bar-v2-quick-links .icon-standard {
     background: rgba(255, 255, 255, 0.1);
@@ -2051,7 +2055,8 @@ html {
     }
 
     .search-bar-v2-quick-links {
-        order: 4 !important; /* Force les boutons infos à passer à la ligne */
+        order: 4 !important;
+        /* Force les boutons infos à passer à la ligne */
         width: 100% !important;
         justify-content: center !important;
         margin-left: 0 !important;
@@ -2065,6 +2070,7 @@ html {
 }
 
 @media (max-width: 768px) {
+
     /* BOUTONS HERO (6 ICONES) - GRILLE 3x2 FIXE */
     .search-bar-v2-quick-links {
         display: grid !important;
@@ -2083,7 +2089,8 @@ html {
     /* MEGA MENU INFO - MOBILE & TABLETTE : 100% largeur, bords respectés */
     .info-mega-menu-v2 {
         position: fixed !important;
-        top: 12vh !important;        /* Marge en haut pour cliquer et fermer */
+        top: 12vh !important;
+        /* Marge en haut pour cliquer et fermer */
         left: 0 !important;
         right: 0 !important;
         bottom: 0 !important;
@@ -2094,19 +2101,23 @@ html {
         transform: none !important;
         margin: 0 !important;
         padding: 0 !important;
-        border-radius: 24px 24px 0 0 !important; /* Style panneau tiroir */
+        border-radius: 24px 24px 0 0 !important;
+        /* Style panneau tiroir */
         box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4) !important;
         box-sizing: border-box !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
         background: #fff !important;
-        display: none !important; /* CACHÉ PAR DÉFAUT ! */
-        flex-direction: column !important; /* Conteneur flex global */
+        display: none !important;
+        /* CACHÉ PAR DÉFAUT ! */
+        flex-direction: column !important;
+        /* Conteneur flex global */
         z-index: 9999999 !important;
     }
 
     .info-mega-menu-v2.active {
-        display: flex !important; /* Affiché uniquement au clic */
+        display: flex !important;
+        /* Affiché uniquement au clic */
     }
 
     /* ============================================
@@ -2125,9 +2136,14 @@ html {
         box-sizing: border-box !important;
         -webkit-overflow-scrolling: touch;
         flex-shrink: 0 !important;
-        order: 1 !important;             /* Première position en haut */
+        order: 1 !important;
+        /* Première position en haut */
     }
-    .info-mega-menu-v2 .mega-menu-ticker::-webkit-scrollbar { display: none; }
+
+    .info-mega-menu-v2 .mega-menu-ticker::-webkit-scrollbar {
+        display: none;
+    }
+
     .info-mega-menu-v2 .mega-menu-ticker .ticker-item {
         flex: 0 0 auto !important;
         display: inline-flex !important;
@@ -2137,7 +2153,8 @@ html {
 
     /* 2. CONTENU - colonne verticale */
     .info-mega-menu-v2 .mega-menu-main-content {
-        display: contents !important; /* Permet aux enfants direct de rejoindre la grille parente pour flex order */
+        display: contents !important;
+        /* Permet aux enfants direct de rejoindre la grille parente pour flex order */
     }
 
     /* GRILLE 3 COLONNES - défilement vertical naturel */
@@ -2148,13 +2165,16 @@ html {
         padding: 12px !important;
         width: 100% !important;
         box-sizing: border-box !important;
-        overflow: visible !important;    /* défilement vertical via le menu parent */
-        order: 2 !important;             /* 2ème position (après le ticker) */
+        overflow: visible !important;
+        /* défilement vertical via le menu parent */
+        order: 2 !important;
+        /* 2ème position (après le ticker) */
     }
 
     /* Aplatir les colonnes dans la grille */
     .info-mega-menu-v2 .mega-menu-column {
-        display: contents !important;   /* les items remontent directement dans la grille */
+        display: contents !important;
+        /* les items remontent directement dans la grille */
     }
 
     /* Chaque bouton icône */
@@ -2197,15 +2217,18 @@ html {
         border-radius: 0 !important;
         box-sizing: border-box !important;
         flex-shrink: 0 !important;
-        order: 4 !important;             /* Dernière position (sous les boutons) */
-        margin-bottom: 25px !important;  /* Espace en bas */
+        order: 4 !important;
+        /* Dernière position (sous les boutons) */
+        margin-bottom: 25px !important;
+        /* Espace en bas */
     }
 
     /* 4. FOOTER - boutons glissants horizontaux */
     .info-mega-menu-v2 .mega-menu-footer-btns {
         display: flex !important;
         flex-direction: row !important;
-        order: 3 !important;             /* 3ème position (entre grille et slider) */
+        order: 3 !important;
+        /* 3ème position (entre grille et slider) */
         overflow-x: auto !important;
         white-space: nowrap !important;
         padding: 12px !important;
@@ -2215,7 +2238,10 @@ html {
         -webkit-overflow-scrolling: touch;
         flex-shrink: 0 !important;
     }
-    .info-mega-menu-v2 .mega-menu-footer-btns::-webkit-scrollbar { display: none; }
+
+    .info-mega-menu-v2 .mega-menu-footer-btns::-webkit-scrollbar {
+        display: none;
+    }
 
     .info-mega-menu-v2 .footer-btn {
         flex: 0 0 auto !important;

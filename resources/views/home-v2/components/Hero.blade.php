@@ -155,7 +155,7 @@
                 {{-- NOUVEAU : 6 Boutons Icônes FontAwesome Rapides --}}
                 <div class="search-bar-v2-quick-links">
                     <div class="quick-link-item info-trigger" id="infoTrigger">
-                        <div class="icon-circle info-bg">
+                        <div class="icon-circle icon-standard">
                             <i class="fas fa-info"></i>
                         </div>
                     </div>
